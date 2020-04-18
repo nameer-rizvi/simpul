@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/nameer-rizvi/simpul/issues"
   },
-  "homepage": "https://github.com/nameer-rizvi/simpul#readme"
+  "homepage": "https://github.com/nameer-rizvi/simpul#readme",
+  "dependencies": {
+    "he": "^1.2.0",
+    "logti": "^1.0.2",
+    "sanitized": "^1.0.5"
+  }
 }

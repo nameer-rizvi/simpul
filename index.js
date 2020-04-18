@@ -1,4 +1,19 @@
+const sanitized = require("sanitized");
+const logti = require("logti");
+const { encode } = require("he");
+
 module.exports = {
+  sanitized,
+  logti,
+  getQueryParam: (param) => {
+    const params = new URLSearchParams(window.location.search);
+    var value = params.get(param);
+    // sanitized() decodes strings, so encode()
+    // is required to transform html entities.
+    value && (value = sanitized(encode(value)));
+    const hash = sanitized(window.location.hash);
+    return value ? value : hash ? hash : null;
+  },
   stringExists: (str) => str && str.constructor === String && str.trim(),
   capitalize: (str) => str.charAt(0).toUpperCase() + str.slice(1),
   camelToSnake: (str) =>
@@ -7,6 +22,14 @@ module.exports = {
       .join("_")
       .toLowerCase(),
   snakeToCamel: (str) => str.replace(/([-_]\w)/g, (g) => g[1].toUpperCase()),
+  camelCase: (str) =>
+    str.constructor === String
+      ? str
+          .toLowerCase()
+          .replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase())
+      : str,
+  unCamelCase: (str) =>
+    str.replace(/([A-Z])/g, " $1").replace(/^./, (str) => str.toUpperCase()),
   flattenObject: (obj) =>
     Object.assign(
       {},
@@ -40,4 +63,24 @@ module.exports = {
     arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
     return arr;
   },
+  formattedTimestamp: (timestamp, format) => {
+    const date = new Date(timestamp);
+    const zeros = (num) => (num < 10 ? `0${num}` : num);
+    const resolver = {
+      M: zeros(date.getMonth() + 1),
+      D: zeros(date.getDate()),
+      Y: date.getFullYear(),
+      h: zeros(date.getHours() % 12 || "12"),
+      m: zeros(date.getMinutes()),
+      p: date.getHours() > 11 ? "PM" : "AM",
+    };
+    const { M, D, Y, h, m, p } = resolver;
+    return format
+      ? format
+          .split("")
+          .map((l) => resolver[l] || l)
+          .join("")
+      : `${M}/${D}/${Y} ${h}:${m} ${p}`;
+  },
+  clone: (original) => JSON.parse(JSON.stringify(original)),
 };
