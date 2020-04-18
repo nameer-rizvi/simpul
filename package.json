@@ -1,6 +1,6 @@
 {
   "name": "simpul",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Collection of super simple, basic functions I happen to use in a lot of projects...",
   "main": "index.js",
   "scripts": {
