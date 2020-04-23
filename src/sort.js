@@ -1,4 +1,8 @@
 module.exports = {
-  byAlphabet: (a, b) => a.toLowerCase().localeCompare(b.toLowerCase()),
-  byDate: (arr, key) => arr.sort((a, b) => new Date(a[key]) - new Date(b[key])),
+  byAlphabetKey: (arr, key) =>
+    arr.sort((a, b) =>
+      a[key].toLowerCase().localeCompare(b[key].toLowerCase())
+    ),
+  byDateKey: (arr, key) =>
+    arr.sort((a, b) => new Date(a[key]) - new Date(b[key])),
 };
