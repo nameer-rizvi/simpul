@@ -19,16 +19,16 @@ Library of (mostly) simple functions I happen to use in a lot of projects...
 9. [projectdb](#projectdb)
 10. [reduceKeysToObject](#reduceKeysToObject)
 11. [sort](#sort)
-12. [byAlphabetKey](#byAlphabetKey)
-13. [byDateKey](#byDateKey)
-14. [stringExists](#stringExists)
-15. [stringLength](#stringLength)
-16. [char](#char)
-17. [words](#words)
+    1. [byAlphabetKey](#byAlphabetKey)
+    2. [byDateKey](#byDateKey)
+12. [stringExists](#stringExists)
+13. [stringLength](#stringLength)
+    1. [char](#char)
+    2. [words](#words)
 
 ### External modules:
 
-1. [sanitized](#https://github.com/nameer-rizvi/sanitized)
+1. [sanitized](https://github.com/nameer-rizvi/sanitized)
 
 ## capitalize
 
