@@ -1,7 +1,7 @@
 {
   "name": "simpul",
   "version": "0.0.2",
-  "description": "Library of simple functions I happen to use in a lot of projects...",
+  "description": "Library of (mostly) simple functions I happen to use in a lot of projects...",
   "main": "src/index.js",
   "scripts": {
     "test": "node src/test.js"

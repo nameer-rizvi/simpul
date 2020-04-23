@@ -1,3 +1,5 @@
+const sanitized = require("sanitized");
+//
 const capitalize = require("./capitalize");
 const changeArrayIndex = require("./changeArrayIndex");
 const changeCase = require("./changeCase");
@@ -13,6 +15,7 @@ const stringExists = require("./stringExists");
 const stringLength = require("./stringLength");
 
 module.exports = {
+  sanitized,
   capitalize,
   changeArrayIndex,
   changeCase,

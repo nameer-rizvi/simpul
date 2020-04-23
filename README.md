@@ -1,6 +1,34 @@
 # simpul
 
-Library of simple functions I happen to use in a lot of projects...
+Library of (mostly) simple functions I happen to use in a lot of projects...
+
+## Table of Contents
+
+1. [capitalize](#capitalize)
+2. [changeArrayIndex](#changeArrayIndex)
+3. [changeCase](#changeCase)
+   1. [camelToSnake](#camelToSnake)
+   2. [snakeToCamel](#snakeToCamel)
+   3. [camelCase](#camelCase)
+   4. [unCamelCase](#unCamelCase)
+4. [clone](#clone)
+5. [formattedTimestamp](#formattedTimestamp)
+6. [getQueryParam](#getQueryParam)
+7. [logti](#logti)
+8. [objectFlat](#objectFlat)
+9. [projectdb](#projectdb)
+10. [reduceKeysToObject](#reduceKeysToObject)
+11. [sort](#sort)
+12. [byAlphabetKey](#byAlphabetKey)
+13. [byDateKey](#byDateKey)
+14. [stringExists](#stringExists)
+15. [stringLength](#stringLength)
+16. [char](#char)
+17. [words](#words)
+
+### External modules:
+
+1. [sanitized](#https://github.com/nameer-rizvi/sanitized)
 
 ## capitalize
 
@@ -190,7 +218,7 @@ reduceKeysToObject(["a", "b"], (key, index) => `${key}_${index}`);
 
 ## sort
 
-### byAlphabet
+### byAlphabetKey
 
 Sorts an array of objects by a string-value key by comparing string-values in lower case.
 
@@ -200,7 +228,7 @@ sort.byAlphabetKey([{ a: "this", b: "is" }, { a: "boo", b: "you" }], "a");
 // [ { a: 'boo', b: 'you' }, { a: 'this', b: 'is' } ]
 ```
 
-### byDate
+### byDateKey
 
 Sorts an array of objects by a date-value key.
 
