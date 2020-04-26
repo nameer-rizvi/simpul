@@ -1,4 +1,5 @@
 const sanitized = require("sanitized");
+const projectdb = require("projectdb");
 //
 const capitalize = require("./capitalize");
 const changeArrayIndex = require("./changeArrayIndex");
@@ -8,7 +9,6 @@ const formattedTimestamp = require("./formattedTimestamp");
 const getQueryParam = require("./getQueryParam");
 const logti = require("./logti");
 const objectFlat = require("./objectFlat");
-const projectdb = require("./projectdb");
 const reduceKeysToObject = require("./reduceKeysToObject");
 const sort = require("./sort");
 const stringExists = require("./stringExists");
@@ -16,6 +16,8 @@ const stringLength = require("./stringLength");
 
 module.exports = {
   sanitized,
+  projectdb,
+  //
   capitalize,
   changeArrayIndex,
   changeCase,
@@ -24,7 +26,6 @@ module.exports = {
   getQueryParam,
   logti,
   objectFlat,
-  projectdb,
   reduceKeysToObject,
   sort,
   stringExists,

@@ -16,19 +16,19 @@ Library of (mostly) simple functions I happen to use in a lot of projects...
 6. [getQueryParam](#getQueryParam)
 7. [logti](#logti)
 8. [objectFlat](#objectFlat)
-9. [projectdb](#projectdb)
-10. [reduceKeysToObject](#reduceKeysToObject)
-11. [sort](#sort)
+9. [reduceKeysToObject](#reduceKeysToObject)
+10. [sort](#sort)
     1. [byAlphabetKey](#byAlphabetKey)
     2. [byDateKey](#byDateKey)
-12. [stringExists](#stringExists)
-13. [stringLength](#stringLength)
+11. [stringExists](#stringExists)
+12. [stringLength](#stringLength)
     1. [char](#char)
     2. [words](#words)
 
 ### External modules:
 
-1. [sanitized](https://github.com/nameer-rizvi/sanitized)
+1. [projectdb](https://github.com/nameer-rizvi/projectdb)
+2. [sanitized](https://github.com/nameer-rizvi/sanitized)
 
 ## capitalize
 
@@ -159,52 +159,6 @@ objectFlat({ a: { b: { c: "hello" } } });
 
 // { c: "hello" }
 ```
-
-## projectdb
-
-Zero-dependency module for setting, getting, adding, and deleting data stored in a .txt file located in a project's root folder.
-
-### Usage
-
-Set db:
-
-```javascript
-const data = [{ name: "" }, ""];
-
-projectdb.set(data);
-
-// creates db.txt with stringified version of data.
-```
-
-Get db:
-
-```javascript
-projectdb.get();
-
-// [{ name: "" }, ""]
-```
-
-Add data:
-
-```javascript
-const newData = { name: "" };
-
-projectdb.add(newData);
-
-// [{ name: "" }, "", { name: "" }]
-```
-
-Delete db:
-
-```javascript
-projectdb.delete();
-
-// removes db.txt file.
-```
-
-### db.txt Path
-
-By default, PWD is the environment variable used to find a project's root folder. If it is undefined, or if you'd like to save the db.txt file in a different location, you can define an absolute path to host the file using the PROJECTDB_PATH environment variable name.
 
 ## reduceKeysToObject
 
