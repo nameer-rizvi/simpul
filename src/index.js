@@ -1,5 +1,5 @@
 const sanitized = require("sanitized");
-const projectdb = require("projectdb");
+const jsontxt = require("jsontxt");
 //
 const capitalize = require("./capitalize");
 const changeArrayIndex = require("./changeArrayIndex");
@@ -16,7 +16,7 @@ const stringLength = require("./stringLength");
 
 module.exports = {
   sanitized,
-  projectdb,
+  jsontxt,
   //
   capitalize,
   changeArrayIndex,

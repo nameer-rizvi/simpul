@@ -4,7 +4,7 @@ Library of (mostly) simple functions I happen to use in a lot of projects...
 
 ### Not on "Can't Resolve" Errors:
 
-If you recieved errors regarding missing modules or modules that can't be resolved (which is common in front-end frameworks like React or Gatsby), you might need to add something like the following to your projects root configs:
+If you receive errors regarding missing modules or modules that can't be resolved (which is common in front-end frameworks like React or Gatsby), you might need to add something like the following to your projects root configs:
 
 ```
 actions.setWebpackConfig({
