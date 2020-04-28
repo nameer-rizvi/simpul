@@ -3,6 +3,7 @@ const {
   changeArrayIndex,
   changeCase,
   clone,
+  isValidObject,
   objectFlat,
   reduceKeysToObject,
   sort,
@@ -33,6 +34,7 @@ const tests = {
       copy.toString() === "test,test,test,test"
     );
   },
+  isValidObject: () => isValidObject({}) === false,
   objectFlat: () => objectFlat({ a: { b: { c: "hello" } } }).c === "hello",
   reduceKeysToObject: () =>
     reduceKeysToObject(["key1", "key2"], (key) => key).key2 === "key2",

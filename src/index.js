@@ -7,6 +7,7 @@ const changeCase = require("./changeCase");
 const clone = require("./clone");
 const formattedTimestamp = require("./formattedTimestamp");
 const getQueryParam = require("./getQueryParam");
+const isValidObject = require("./isValidObject");
 const logti = require("./logti");
 const objectFlat = require("./objectFlat");
 const reduceKeysToObject = require("./reduceKeysToObject");
@@ -24,6 +25,7 @@ module.exports = {
   clone,
   formattedTimestamp,
   getQueryParam,
+  isValidObject,
   logti,
   objectFlat,
   reduceKeysToObject,
