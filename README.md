@@ -2,6 +2,21 @@
 
 Library of (mostly) simple functions I happen to use in a lot of projects...
 
+### Not on "Can't Resolve" Errors:
+
+If you recieved errors regarding missing modules or modules that can't be resolved (which is common in front-end frameworks like React or Gatsby), you might need to add something like the following to your projects root configs:
+
+```
+actions.setWebpackConfig({
+  node: {
+    fs: 'empty',
+    tls: 'empty',
+    net: 'empty',
+    child_process: 'empty'
+  }
+})
+```
+
 ## Table of Contents
 
 1. [capitalize](#capitalize)
@@ -27,7 +42,7 @@ Library of (mostly) simple functions I happen to use in a lot of projects...
 
 ### External modules:
 
-1. [projectdb](https://github.com/nameer-rizvi/projectdb)
+1. [jsontxt](https://github.com/nameer-rizvi/jsontxt)
 2. [sanitized](https://github.com/nameer-rizvi/sanitized)
 
 ## capitalize
