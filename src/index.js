@@ -11,6 +11,7 @@ const isValidObject = require("./isValidObject");
 const logti = require("./logti");
 const objectFlat = require("./objectFlat");
 const reduceKeysToObject = require("./reduceKeysToObject");
+const removeSpaces = require("./removeSpaces");
 const sort = require("./sort");
 const stringExists = require("./stringExists");
 const stringLength = require("./stringLength");
@@ -29,6 +30,7 @@ module.exports = {
   logti,
   objectFlat,
   reduceKeysToObject,
+  removeSpaces,
   sort,
   stringExists,
   stringLength,

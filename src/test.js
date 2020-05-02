@@ -6,6 +6,7 @@ const {
   isValidObject,
   objectFlat,
   reduceKeysToObject,
+  removeSpaces,
   sort,
   stringExists,
   stringLength,
@@ -38,6 +39,7 @@ const tests = {
   objectFlat: () => objectFlat({ a: { b: { c: "hello" } } }).c === "hello",
   reduceKeysToObject: () =>
     reduceKeysToObject(["key1", "key2"], (key) => key).key2 === "key2",
+  removeSpaces: () => removeSpaces("this is a string.") === "thisisastring.",
   stringExists: () => !Boolean(stringExists(" ")) && Boolean(stringExists("a")),
   stringLength_char: () => stringLength.char("this is a string.") === 17,
   stringLength_words: () => stringLength.words("this is a string.") === 4,

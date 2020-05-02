@@ -32,11 +32,12 @@ actions.setWebpackConfig({
 7. [logti](#logti)
 8. [objectFlat](#objectFlat)
 9. [reduceKeysToObject](#reduceKeysToObject)
-10. [sort](#sort)
+10. [removeSpaces](#removeSpaces)
+11. [sort](#sort)
     1. [byAlphabetKey](#byAlphabetKey)
     2. [byDateKey](#byDateKey)
-11. [stringExists](#stringExists)
-12. [stringLength](#stringLength)
+12. [stringExists](#stringExists)
+13. [stringLength](#stringLength)
     1. [char](#char)
     2. [words](#words)
 
@@ -183,6 +184,16 @@ Takes an array of strings and converts them to an object with assigned values.
 reduceKeysToObject(["a", "b"], (key, index) => `${key}_${index}`);
 
 // { a: "a_0", b: "b_1" }
+```
+
+## removeSpaces
+
+Removes all spaces in a string.
+
+```javascript
+removeSpaces("this is a string.");
+
+// "thisisastring."
 ```
 
 ## sort
