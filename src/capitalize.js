@@ -1,7 +1,7 @@
-const stringExists = require("./stringExists");
+const { isStringValid } = require("./validations");
 
 module.exports = (str) =>
-  stringExists(str) &&
-  stringExists(str)
+  isStringValid(str) &&
+  isStringValid(str)
     .charAt(0)
     .toUpperCase() + str.slice(1);

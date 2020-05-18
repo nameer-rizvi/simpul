@@ -13,8 +13,8 @@ const objectFlat = require("./objectFlat");
 const reduceKeysToObject = require("./reduceKeysToObject");
 const removeSpaces = require("./removeSpaces");
 const sort = require("./sort");
-const stringExists = require("./stringExists");
 const stringLength = require("./stringLength");
+const validations = require("./validations");
 
 module.exports = {
   sanitized,
@@ -32,6 +32,6 @@ module.exports = {
   reduceKeysToObject,
   removeSpaces,
   sort,
-  stringExists,
   stringLength,
+  ...validations,
 };

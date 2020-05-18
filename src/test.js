@@ -8,8 +8,18 @@ const {
   reduceKeysToObject,
   removeSpaces,
   sort,
-  stringExists,
   stringLength,
+  isBoolean,
+  isNumber,
+  isArray,
+  isString,
+  isObject,
+  isArrayEmpty,
+  isStringValid,
+  isObjectEmpty,
+  areArrayValuesAllStrings,
+  areObjectValuesAllStrings,
+  areObjectValuesAllObjects,
 } = require("./index");
 
 // Untested: formattedTimestamp, getQueryParam, logti, projectdb, sort
@@ -40,9 +50,27 @@ const tests = {
   reduceKeysToObject: () =>
     reduceKeysToObject(["key1", "key2"], (key) => key).key2 === "key2",
   removeSpaces: () => removeSpaces("this is a string.") === "thisisastring.",
-  stringExists: () => !Boolean(stringExists(" ")) && Boolean(stringExists("a")),
   stringLength_char: () => stringLength.char("this is a string.") === 17,
   stringLength_words: () => stringLength.words("this is a string.") === 4,
+  isBoolean: () => !isBoolean("true") && isBoolean(false),
+  isNumber: () =>
+    isNumber(0) && !isNumber({}) && !isNumber([]) && !isNumber(""),
+  isArray: () => !isArray(0) && !isArray({}) && isArray([]) && !isArray(""),
+  isString: () =>
+    !isString(0) && !isString({}) && !isString([]) && isString("."),
+  isObject: () =>
+    !isObject(0) && isObject({}) && !isObject([]) && !isObject(""),
+  isArrayEmpty: () => isArrayEmpty([]) && !isArrayEmpty([""]),
+  isStringValid: () => !isStringValid(" ") && isStringValid("."),
+  isObjectEmpty: () => isObjectEmpty({}) && !isObjectEmpty({ a: "" }),
+  areArrayValuesAllStrings: () =>
+    !areArrayValuesAllStrings([[], {}]) && areArrayValuesAllStrings([".", "."]),
+  areObjectValuesAllStrings: () =>
+    !areObjectValuesAllStrings({ a: ".", b: [] }) &&
+    areObjectValuesAllStrings({ a: ".", b: "." }),
+  areObjectValuesAllObjects: () =>
+    !areObjectValuesAllObjects({ a: "", b: [] }) &&
+    areObjectValuesAllObjects({ a: {}, b: {} }),
 };
 
 Object.keys(tests).forEach((test) => {

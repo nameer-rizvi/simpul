@@ -1,6 +1,6 @@
-const stringExists = require("./stringExists");
+const { isStringValid } = require("./validations");
 
 module.exports = {
-  char: (str) => stringExists(str) && stringExists(str).length,
-  words: (str) => stringExists(str) && stringExists(str).split(/\s+/).length,
+  char: (str) => isStringValid(str) && isStringValid(str).length,
+  words: (str) => isStringValid(str) && isStringValid(str).split(/\s+/).length,
 };
