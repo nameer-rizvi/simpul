@@ -3,6 +3,7 @@ const {
   changeArrayIndex,
   changeCase,
   clone,
+  generalizedNumber,
   objectFlat,
   reduceKeysToObject,
   removeSpaces,
@@ -44,6 +45,7 @@ const tests = {
       copy.toString() === "test,test,test,test"
     );
   },
+  generalizedNumber: () => generalizedNumber(1923898) === "1.9m",
   objectFlat: () => objectFlat({ a: { b: { c: "hello" } } }).c === "hello",
   reduceKeysToObject: () =>
     reduceKeysToObject(["key1", "key2"], (key) => key).key2 === "key2",

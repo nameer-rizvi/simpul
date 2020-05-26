@@ -6,6 +6,7 @@ const changeArrayIndex = require("./changeArrayIndex");
 const changeCase = require("./changeCase");
 const clone = require("./clone");
 const formattedTimestamp = require("./formattedTimestamp");
+const generalizedNumber = require("./generalizedNumber");
 const getQueryParam = require("./getQueryParam");
 const logti = require("./logti");
 const objectFlat = require("./objectFlat");
@@ -25,6 +26,7 @@ module.exports = {
   changeCase,
   clone,
   formattedTimestamp,
+  generalizedNumber,
   getQueryParam,
   logti,
   objectFlat,
