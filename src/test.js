@@ -14,9 +14,9 @@ const {
   isArray,
   isString,
   isObject,
-  isArrayEmpty,
+  isArrayValid,
   isStringValid,
-  isObjectEmpty,
+  isObjectValid,
   areArrayValuesAllStrings,
   areObjectValuesAllStrings,
   areObjectValuesAllObjects,
@@ -60,9 +60,9 @@ const tests = {
     !isString(0) && !isString({}) && !isString([]) && isString("."),
   isObject: () =>
     !isObject(0) && isObject({}) && !isObject([]) && !isObject(""),
-  isArrayEmpty: () => isArrayEmpty([]) && !isArrayEmpty([""]),
+  isArrayValid: () => !isArrayValid([]) && isArrayValid([""]),
   isStringValid: () => !isStringValid(" ") && isStringValid("."),
-  isObjectEmpty: () => isObjectEmpty({}) && !isObjectEmpty({ a: "" }),
+  isObjectValid: () => !isObjectValid({}) && isObjectValid({ a: "" }),
   areArrayValuesAllStrings: () =>
     !areArrayValuesAllStrings([[], {}]) && areArrayValuesAllStrings([".", "."]),
   areObjectValuesAllStrings: () =>
