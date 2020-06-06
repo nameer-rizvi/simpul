@@ -1,6 +1,6 @@
 {
   "name": "simpul",
-  "version": "0.1.4",
+  "version": "0.1.6",
   "description": "Library of (mostly) simple functions I happen to use in a lot of projects...",
   "main": "src/index.js",
   "scripts": {
@@ -16,9 +16,5 @@
     "url": "https://github.com/nameer-rizvi/simpul/issues"
   },
   "homepage": "https://github.com/nameer-rizvi/simpul#readme",
-  "dependencies": {
-    "he": "^1.2.0",
-    "jsontxt": "0.0.0",
-    "sanitized": "^1.0.5"
-  }
+  "dependencies": {}
 }
