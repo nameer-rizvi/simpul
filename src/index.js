@@ -1,6 +1,7 @@
 const sanitized = require("sanitized");
 const jsontxt = require("jsontxt");
 //
+const base64 = require("./base64");
 const capitalize = require("./capitalize");
 const changeArrayIndex = require("./changeArrayIndex");
 const changeCase = require("./changeCase");
@@ -21,6 +22,7 @@ module.exports = {
   sanitized,
   jsontxt,
   //
+  base64,
   capitalize,
   changeArrayIndex,
   changeCase,

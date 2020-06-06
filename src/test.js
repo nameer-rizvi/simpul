@@ -1,4 +1,5 @@
 const {
+  base64,
   capitalize,
   changeArrayIndex,
   changeCase,
@@ -25,6 +26,10 @@ const {
 // Untested: formattedTimestamp, getQueryParam, logti, projectdb, sort
 
 const tests = {
+  base64: () => {
+    const string = "hello";
+    return base64.decode(base64.encode(string)) === string;
+  },
   capitalize: () => capitalize("capitalize this...") === "Capitalize this...",
   changeArrayIndex: () =>
     changeArrayIndex([1, 2, 3, 4], 1, 3).toString() === "1,3,4,2",
