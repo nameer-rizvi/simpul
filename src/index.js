@@ -12,6 +12,7 @@ const reduceMergeObjects = require("./reduceMergeObjects");
 const reducePropCounter = require("./reducePropCounter");
 const removeSpaces = require("./removeSpaces");
 const sort = require("./sort");
+const stringDiff = require("./stringDiff");
 const stringLength = require("./stringLength");
 const validations = require("./validations");
 
@@ -30,6 +31,7 @@ module.exports = {
   reducePropCounter,
   removeSpaces,
   sort,
+  stringDiff,
   stringLength,
   ...validations,
 };
