@@ -9,6 +9,7 @@ const logti = require("./logti");
 const objectFlat = require("./objectFlat");
 const reduceKeysToObject = require("./reduceKeysToObject");
 const reduceMergeObjects = require("./reduceMergeObjects");
+const reducePropCounter = require("./reducePropCounter");
 const removeSpaces = require("./removeSpaces");
 const sort = require("./sort");
 const stringLength = require("./stringLength");
@@ -26,6 +27,7 @@ module.exports = {
   objectFlat,
   reduceKeysToObject,
   reduceMergeObjects,
+  reducePropCounter,
   removeSpaces,
   sort,
   stringLength,

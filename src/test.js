@@ -23,7 +23,7 @@ const {
   areObjectValuesAllObjects,
 } = require("./index");
 
-// Untested: formattedTimestamp, logti
+// Untested: reducePropCounter, formattedTimestamp, logti
 
 const tests = {
   base64: () => {
