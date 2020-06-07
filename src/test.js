@@ -27,8 +27,11 @@ const {
 
 const tests = {
   base64: () => {
-    const string = "hello";
-    return base64.decode(base64.encode(string)) === string;
+    const value = new Date();
+    return (
+      new Date(base64.decode(base64.encode(value))).toString() ===
+      value.toString()
+    );
   },
   capitalize: () => capitalize("capitalize this...") === "Capitalize this...",
   changeArrayIndex: () =>
