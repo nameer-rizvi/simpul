@@ -6,6 +6,7 @@ const clone = require("./clone");
 const formattedTimestamp = require("./formattedTimestamp");
 const generalizedNumber = require("./generalizedNumber");
 const logti = require("./logti");
+const mysqlDate = require("./mysqlDate");
 const objectFlat = require("./objectFlat");
 const reduceKeysToObject = require("./reduceKeysToObject");
 const reduceMergeObjects = require("./reduceMergeObjects");
@@ -25,6 +26,7 @@ module.exports = {
   formattedTimestamp,
   generalizedNumber,
   logti,
+  mysqlDate,
   objectFlat,
   reduceKeysToObject,
   reduceMergeObjects,
