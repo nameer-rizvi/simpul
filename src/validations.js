@@ -1,4 +1,7 @@
 module.exports = {
+  isFunction: (test) => test && test.constructor === Function,
+  isDate: (test) => test && test.constructor === Date,
+  isRegex: (test) => test && test.constructor === RegExp,
   isBoolean: (test) => (test || test === false) && test.constructor === Boolean,
   isNumber: (test) => (test || test === 0) && test.constructor === Number,
   isArray: (test) => test && test.constructor === Array,
