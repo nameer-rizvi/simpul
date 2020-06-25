@@ -5,7 +5,7 @@ const changeCase = require("./changeCase");
 const clone = require("./clone");
 const formattedTimestamp = require("./formattedTimestamp");
 const generalizedNumber = require("./generalizedNumber");
-const logti = require("./logti");
+const logger = require("./logger");
 const mysqlDate = require("./mysqlDate");
 const objectFlat = require("./objectFlat");
 const reduceKeysToObject = require("./reduceKeysToObject");
@@ -25,7 +25,7 @@ module.exports = {
   clone,
   formattedTimestamp,
   generalizedNumber,
-  logti,
+  logger,
   mysqlDate,
   objectFlat,
   reduceKeysToObject,

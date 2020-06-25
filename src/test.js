@@ -23,15 +23,12 @@ const {
   areObjectValuesAllObjects,
 } = require("./index");
 
-// Untested: reducePropCounter, formattedTimestamp, logti
+// Untested: reducePropCounter, formattedTimestamp, logger
 
 const tests = {
   base64: () => {
-    const value = new Date();
-    return (
-      new Date(base64.decode(base64.encode(value))).toString() ===
-      value.toString()
-    );
+    const value = "1234";
+    return base64.decode(base64.encode(value)) === value;
   },
   capitalize: () => capitalize("capitalize this...") === "Capitalize this...",
   changeArrayIndex: () =>
