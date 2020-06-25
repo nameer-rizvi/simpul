@@ -4,7 +4,8 @@
   "description": "Library of (mostly) simple functions I happen to use in a lot of projects...",
   "main": "src/index.js",
   "scripts": {
-    "test": "node src/test.js"
+    "test": "node src/test.js",
+    "logger": "node src/logger.js"
   },
   "repository": {
     "type": "git",
