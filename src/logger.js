@@ -3,7 +3,7 @@ const { isString, isArray, isObject } = require("./validations");
 
 module.exports = (param) => {
   const timestamp = `[${formattedTimestamp()}]`;
-  const environment = process.env.NODE_ENV && `[${process.env.NODE_ENV}] `;
+  const environment = process.env.NODE_ENV && `[${process.env.NODE_ENV}]`;
   const extractObject = (object) =>
     Object.keys(object)
       .map((key) => {
