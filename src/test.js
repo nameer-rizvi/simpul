@@ -3,6 +3,7 @@ const {
   capitalize,
   changeArrayIndex,
   changeCase,
+  cleanString,
   clone,
   generalizedNumber,
   objectFlat,

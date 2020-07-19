@@ -2,6 +2,7 @@ const base64 = require("./base64");
 const capitalize = require("./capitalize");
 const changeArrayIndex = require("./changeArrayIndex");
 const changeCase = require("./changeCase");
+const cleanString = require("./cleanString");
 const clone = require("./clone");
 const formattedTimestamp = require("./formattedTimestamp");
 const generalizedNumber = require("./generalizedNumber");
@@ -22,6 +23,7 @@ module.exports = {
   capitalize,
   changeArrayIndex,
   changeCase,
+  cleanString,
   clone,
   formattedTimestamp,
   generalizedNumber,
