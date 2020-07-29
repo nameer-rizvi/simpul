@@ -8,6 +8,7 @@ const formattedTimestamp = require("./formattedTimestamp");
 const generalizedNumber = require("./generalizedNumber");
 const logger = require("./logger");
 const mysqlDate = require("./mysqlDate");
+const numberFormat = require("./numberFormat");
 const objectFlat = require("./objectFlat");
 const reduceKeysToObject = require("./reduceKeysToObject");
 const reduceMergeObjects = require("./reduceMergeObjects");
@@ -29,6 +30,7 @@ module.exports = {
   generalizedNumber,
   logger,
   mysqlDate,
+  numberFormat,
   objectFlat,
   reduceKeysToObject,
   reduceMergeObjects,

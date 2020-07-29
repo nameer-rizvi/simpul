@@ -43,11 +43,6 @@ actions.setWebpackConfig({
     1. [char](#char)
     2. [words](#words)
 
-### External modules:
-
-1. [jsontxt](https://github.com/nameer-rizvi/jsontxt)
-2. [sanitized](https://github.com/nameer-rizvi/sanitized)
-
 ## capitalize
 
 Capitalizes first letter in a string.
@@ -136,18 +131,6 @@ Default format: `M/D/Y h:m p`
 formattedTimestamp(new Date(), "D-M-Y");
 
 // 23-04-2020
-```
-
-## getQueryParam
-
-Get and sanitize a query param/hash from the URL.
-
-```javascript
-// browser url: https://website.com/get?param1=poop&param2=pee
-
-getQueryParam("param1");
-
-// poop
 ```
 
 ## logti
