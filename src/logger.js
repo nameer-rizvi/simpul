@@ -34,6 +34,8 @@ module.exports = (param) => {
       ? extractObject(data)
       : isArray(data)
       ? extractArray(data)
+      : data
+      ? data.toString()
       : "";
   const log = extractor(param);
   console.log([timestamp, environment, log].filter(Boolean).join(" "));
