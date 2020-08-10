@@ -18,4 +18,10 @@ module.exports = {
     isStringValid(str)
       .replace(/([A-Z])/g, " $1")
       .replace(/^./, (str) => str.toUpperCase()),
+  camelToKebob: (str) =>
+    isStringValid(str) &&
+    isStringValid(str)
+      .replace(/([a-z0-9])([A-Z])/g, "$1-$2")
+      .replace(/([A-Z])([A-Z])(?=[a-z])/g, "$1-$2")
+      .toLowerCase(),
 };

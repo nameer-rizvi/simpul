@@ -34,6 +34,8 @@ const tests = {
   capitalize: () => capitalize("capitalize this...") === "Capitalize this...",
   changeArrayIndex: () =>
     changeArrayIndex([1, 2, 3, 4], 1, 3).toString() === "1,3,4,2",
+  changeCase_camelToKebob: () =>
+    changeCase.camelToKebob("HTMLInputElement") === "html-input-element",
   changeCase_camelToSnake: () =>
     changeCase.camelToSnake("camelToSnake") === "camel_to_snake",
   changeCase_snakeToCamel: () =>
