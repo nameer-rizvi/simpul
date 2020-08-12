@@ -1,7 +1,9 @@
+const { isDate } = require("../misc/validations");
+
 module.exports = (timestamp, format, options) => {
-  const date = new Date(timestamp || new Date());
+  const date = isDate(timestamp) ? new Date(timestamp) : new Date();
   const noZero = options && options.noZero;
-  const zeros = (num, noZero) => (num < 10 && !noZero ? `0${num}` : num);
+  const zeros = (num, noZero) => (num < 10 && !noZero ? "0" + num : num);
   const resolver = {
     M: zeros(date.getMonth() + 1, noZero),
     D: zeros(date.getDate(), noZero),

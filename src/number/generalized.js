@@ -1,4 +1,4 @@
-const { isNumber } = require("./validations");
+const { isNumber } = require("../misc/validations");
 
 module.exports = (num) =>
   isNumber(num)

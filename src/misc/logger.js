@@ -1,4 +1,4 @@
-const formattedTimestamp = require("./formattedTimestamp");
+const { formatted: formattedTimestamp } = require("../time");
 const { isString, isArray, isObject } = require("./validations");
 
 module.exports = (param) => {
