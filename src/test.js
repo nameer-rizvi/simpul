@@ -81,7 +81,8 @@ const tests = {
   stringDiff: () => string.diff("asdf", " asdf aksjdf") === "  aksjdf",
   stringLengthChar: () => string.length.char("1234") === 4,
   stringLengthWords: () => string.length.words("1234 1234 1234") === 3,
-  stringRemoveSpaces: () => string.removeSpaces(" asd   asd") === "asdasd",
+  stringSpaceRemove: () => string.space.remove(" asd   asd") === "asdasd",
+  stringSpaceClean: () => string.space.clean(" asd   asd") === "asd asd",
   // misc...
   base64: () => {
     // string test
@@ -141,21 +142,6 @@ const tests = {
     testValidation(areObjectValuesAllStrings, [10]),
   areObjectValuesAllObjects: () =>
     testValidation(areObjectValuesAllObjects, []),
-  // capitalize: () => capitalize("asdf") === "Asdf",
-  // cleanString: () => {
-  //   const messyString =
-  //     "   this.   as as asd asd   !    is  an    example   . of a   ,    CLEAN  string";
-  //   return (
-  //     cleanString(messyString) ===
-  //     "This. As as asd asd! Is an example. Of a, CLEAN string"
-  //   );
-  // },
-  // formattedTimestamp: () => isDate(formattedTimestamp()),
-  // mysqlDate: () => isDate(mysqlDate()),
-  // objectFlat: () => objectFlat({ a: { b: { c: "hello" } } }).c === "hello",
-  // removeSpaces: () => removeSpaces("this is a string.") === "thisisastring.",
-  // stringLength_char: () => stringLength.char("this is a string.") === 17,
-  // stringLength_words: () => stringLength.words("this is a string.") === 4,
 };
 
 Object.keys(tests).forEach((test) => {

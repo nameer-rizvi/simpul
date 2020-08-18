@@ -1,13 +1,8 @@
-const { isStringValid } = require("../misc/validations");
+const space = require("./space");
 const capitalize = require("./capitalize");
-const safe = require("safe-regex");
 
 module.exports = (string) => {
-  string = isStringValid(string)
-    ? safe(string)
-      ? string.replace(/\s+/g, " ").trim()
-      : string.trim()
-    : string;
+  string = space.clean(string);
   string &&
     [
       { mark: "," },
