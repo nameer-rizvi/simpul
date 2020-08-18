@@ -1,16 +1,13 @@
 const { isString } = require("../misc/validations");
 const safe = require("safe-regex");
 
-exports.clean = (string) =>
+const space = (string, replace) =>
   isString(string)
     ? safe(string)
-      ? string.trim().replace(/\s+/g, " ")
+      ? string.trim().replace(/\s+/g, replace)
       : string.trim()
     : string;
 
-exports.remove = (string) =>
-  isString(string)
-    ? safe(string)
-      ? string.trim().replace(/\s+/g, "")
-      : string.trim()
-    : string;
+exports.clean = (string) => space(string, " ");
+
+exports.remove = (string) => space(string, "");
