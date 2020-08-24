@@ -68,6 +68,11 @@ const tests = {
   numberGeneralized: () => number.generalized("1923898") === "1.9m",
   // object...
   objectFlat: () => object.flat({ a: { b: { c: "hello" } } }).c === "hello",
+  objectRenameKey: () => {
+    const o = { key: "value" };
+    object.renameKey(o, { key: "newKey" });
+    return o.newKey === "value";
+  },
   // string...
   stringCapitalize: () => string.capitalize("asdf") === "Asdf",
   stringClean: () => {
