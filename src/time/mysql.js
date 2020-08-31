@@ -1,4 +1,4 @@
-const { isStringValid } = require("../misc/validations");
+const { isDate } = require("../misc/validations");
 
 module.exports = (date) =>
   new Date(isDate(date) ? date : new Date())
