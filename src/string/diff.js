@@ -3,8 +3,8 @@ module.exports = (stringA, stringB) => {
   if (firstOccurrence === -1) {
     return null;
   } else {
-    var stringALength = stringA.length;
-    var newString;
+    let stringALength = stringA.length;
+    let newString;
     if (firstOccurrence === 0) {
       newString = stringB.substring(stringALength);
     } else {

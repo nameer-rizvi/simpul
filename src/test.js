@@ -134,7 +134,7 @@ const tests = {
   isFunction: () => testValidation(isFunction, [7]),
   isJSON: () =>
     testValidation(isJSON, [5, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16]),
-  isJSONString: () => testValidation(isJSONString, []),
+  isJSONString: () => testValidation(isJSONString, [0, 1, 2, 8, 9, 15]),
   isNumber: () => testValidation(isNumber, [0, 8, 15]),
   isObject: () => testValidation(isObject, [6, 10]),
   isObjectValid: () => testValidation(isObjectValid, [10]),

@@ -19,7 +19,7 @@ module.exports = {
     return buffer && buffer.toString("base64");
   },
   decodeJSON: (base64) => {
-    var buffer = isBase64(base64) && Buffer.from(base64, "base64");
+    let buffer = isBase64(base64) && Buffer.from(base64, "base64");
     buffer = buffer && buffer.toString();
     return isJSONString(buffer) && JSON.parse(buffer);
   },

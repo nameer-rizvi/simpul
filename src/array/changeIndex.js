@@ -1,6 +1,6 @@
 module.exports = (arr = [], old_index = 0, new_index = 0) => {
   if (new_index >= arr.length) {
-    var k = new_index - arr.length + 1;
+    let k = new_index - arr.length + 1;
     while (k--) {
       arr.push(undefined);
     }

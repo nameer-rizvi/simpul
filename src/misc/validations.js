@@ -23,7 +23,7 @@ module.exports = {
     Boolean(test && module.exports.isStringValid(JSON.stringify(test))),
   isJSONString: (test) => {
     try {
-      JSON.parse(str);
+      JSON.parse(test);
       return true;
     } catch (e) {
       return false;
