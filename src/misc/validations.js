@@ -25,7 +25,7 @@ module.exports = {
     try {
       JSON.parse(test);
       return true;
-    } catch (e) {
+    } catch {
       return false;
     }
   },
