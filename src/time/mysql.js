@@ -1,7 +1,3 @@
-const { isDate } = require("../misc/validations");
+const timeFormatted = require("./formatted");
 
-module.exports = (date) =>
-  new Date(isDate(date) ? date : new Date())
-    .toISOString()
-    .slice(0, 19)
-    .replace("T", " ");
+module.exports = (date) => timeFormatted(date, "Y-M-D h:m:s");
