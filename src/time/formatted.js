@@ -8,7 +8,12 @@ module.exports = (timestamp, format, options) => {
     M: zeros(date.getMonth() + 1, noZero),
     D: zeros(date.getDate(), noZero),
     Y: date.getFullYear(),
-    h: zeros(date.getHours() % 12 || "12", noZero),
+    h: zeros(
+      options && options.fullHour
+        ? date.getHours()
+        : date.getHours() % 12 || "12",
+      noZero
+    ),
     m: zeros(date.getMinutes()),
     s: zeros(date.getSeconds()),
     p: date.getHours() > 11 ? "PM" : "AM",
