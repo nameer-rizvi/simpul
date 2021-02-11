@@ -1,4 +1,4 @@
-module.exports = (object, resolver) => {
+module.exports = (object, resolver) =>
   Object.keys(resolver).forEach((oldKey) => {
     Object.defineProperty(
       object,
@@ -7,4 +7,3 @@ module.exports = (object, resolver) => {
     );
     delete object[oldKey];
   });
-};

@@ -68,11 +68,16 @@ const tests = {
   numberGeneralized: () => number.generalized("1923898") === "1.9m",
   // object...
   objectFlat: () => object.flat({ a: { b: { c: "hello" } } }).c === "hello",
+  objectRemoveKeys: () =>
+    !Object.keys(
+      object.removeNullValues({ validKey: "validValue", invalidKey: null })
+    ).includes("invalidKey"),
   objectRenameKey: () => {
     const o = { key: "value" };
     object.renameKey(o, { key: "newKey" });
     return o.newKey === "value";
   },
+
   // string...
   stringCapitalize: () => string.capitalize("asdf") === "Asdf",
   stringClean: () => {
