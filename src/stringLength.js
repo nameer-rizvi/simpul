@@ -10,4 +10,6 @@ const wordLength = (string) =>
 // .split(/\s+\b/).length
 // .match(/\w+/g)
 
-module.exports = { char: charLength, word: wordLength };
+const stringLength = { char: charLength, word: wordLength };
+
+module.exports = stringLength;

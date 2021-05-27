@@ -1,5 +1,7 @@
 function mysql_timestamp(timestamp, callback) {
   try {
+    timestamp = timestamp === undefined ? new Date() : new Date(timestamp);
+
     const mysql = new Date(timestamp)
       .toISOString()
       .slice(0, 19)

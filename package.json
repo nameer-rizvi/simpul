@@ -1,7 +1,7 @@
 {
   "name": "simpul",
-  "version": "0.3.8",
-  "description": "Library of (mostly) simple functions I happen to use in a lot of projects...",
+  "version": "0.3.9",
+  "description": "Library of simple functions I happen to use in a lot of projects...",
   "main": "src/index.js",
   "scripts": {
     "lint": "eslint . --ext .js,.jsx; exit 0"

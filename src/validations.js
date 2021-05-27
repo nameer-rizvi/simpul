@@ -9,9 +9,11 @@ const isStringValid = (test) => Boolean(isString(test) && test.trim().length);
 // NUMBER
 
 const isNumber = (test) =>
-  test === 0 ||
-  (test && test.constructor === Number) ||
-  (isString(test) && !isNaN(test));
+  Boolean(
+    test === 0 ||
+      (test && test.constructor === Number) ||
+      (isString(test) && !isNaN(test))
+  );
 
 // BOOLEAN
 
