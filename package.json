@@ -4,8 +4,7 @@
   "description": "Library of (mostly) simple functions I happen to use in a lot of projects...",
   "main": "src/index.js",
   "scripts": {
-    "test": "node src/test.js",
-    "logger": "node src/logger.js"
+    "lint": "eslint . --ext .js,.jsx; exit 0"
   },
   "repository": {
     "type": "git",
@@ -19,5 +18,8 @@
   "homepage": "https://github.com/nameer-rizvi/simpul#readme",
   "dependencies": {
     "safe-regex": "^2.1.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.27.0"
   }
 }
