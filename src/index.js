@@ -3,6 +3,8 @@ const simpul = {
   capitalize: require("./capitalize"),
   cleanSpace: require("./cleanSpace"),
   clone: require("./clone"),
+  dateformat: require("./dateformat"),
+  flatten: require("./flatten"),
   generalizedCount: require("./generalizedCount"),
   mysql_timestamp: require("./mysql_timestamp"),
   removeNullValues: require("./removeNullValues"),

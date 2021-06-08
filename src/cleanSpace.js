@@ -1,7 +1,7 @@
 const { isString } = require("./validations");
 
-const cleanSpace = (dirty) =>
-  isString(dirty) ? dirty.replace(/\s+/g, " ").trim() : dirty;
+const cleanSpace = (dirty, delimiter = " ") =>
+  isString(dirty) ? dirty.replace(/\s+/g, delimiter).trim() : dirty;
 
 // ([!:;,.?])
 
