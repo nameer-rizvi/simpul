@@ -1,6 +1,7 @@
 const simpul = {
   base64: require("./base64"),
   capitalize: require("./capitalize"),
+  changeIndex: require("./changeIndex"),
   cleanSpace: require("./cleanSpace"),
   clone: require("./clone"),
   dateformat: require("./dateformat"),
