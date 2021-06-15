@@ -42,4 +42,6 @@ function decodeJSON(base64, callback) {
   }
 }
 
-module.exports = { encode, decode, encodeJSON, decodeJSON };
+const base64 = { encode, decode, encodeJSON, decodeJSON };
+
+module.exports = base64;
