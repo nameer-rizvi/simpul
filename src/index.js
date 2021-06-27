@@ -9,6 +9,7 @@ const simpul = {
   generalizedCount: require("./generalizedCount"),
   mysql_timestamp: require("./mysql_timestamp"),
   removeNullValues: require("./removeNullValues"),
+  removePunctuation: require("./removePunctuation"),
   stringLength: require("./stringLength"),
   timelog: require("./timelog"),
   ...require("./validations"),
