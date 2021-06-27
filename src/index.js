@@ -4,6 +4,7 @@ const simpul = {
   changeIndex: require("./changeIndex"),
   clone: require("./clone"),
   dateformat: require("./dateformat"),
+  escapeRegex: require("./escapeRegex"),
   flatten: require("./flatten"),
   generalizedCount: require("./generalizedCount"),
   mysql_timestamp: require("./mysql_timestamp"),
