@@ -2,7 +2,6 @@ const simpul = {
   base64: require("./base64"),
   capitalize: require("./capitalize"),
   changeIndex: require("./changeIndex"),
-  cleanSpace: require("./cleanSpace"),
   clone: require("./clone"),
   dateformat: require("./dateformat"),
   flatten: require("./flatten"),
@@ -12,6 +11,8 @@ const simpul = {
   removePunctuation: require("./removePunctuation"),
   stringLength: require("./stringLength"),
   timelog: require("./timelog"),
+  trim: require("./trim"),
+  trimPunctuation: require("./trimPunctuation"),
   ...require("./validations"),
 };
 
