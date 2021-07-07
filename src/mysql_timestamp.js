@@ -4,8 +4,8 @@ function mysql_timestamp(timestamp, callback) {
 
     const mysql = new Date(timestamp)
       .toISOString()
-      .slice(0, 19)
-      .replace("T", " ");
+      .replace("T", " ")
+      .replace("Z", "");
 
     if (callback) callback(null, mysql);
 
