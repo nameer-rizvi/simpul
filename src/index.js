@@ -13,6 +13,7 @@ const simpul = {
   stringLength: require("./stringLength"),
   timelog: require("./timelog"),
   trim: require("./trim"),
+  trimBoundary: require("./trimBoundary"),
   trimPunctuation: require("./trimPunctuation"),
   ...require("./validations"),
 };
