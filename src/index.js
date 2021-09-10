@@ -15,6 +15,7 @@ const simpul = {
   trim: require("./trim"),
   trimBoundary: require("./trimBoundary"),
   trimPunctuation: require("./trimPunctuation"),
+  urlBase64ToUint8Array: require("./urlBase64ToUint8Array"),
   ...require("./validations"),
 };
 
