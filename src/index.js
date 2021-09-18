@@ -4,14 +4,14 @@ const simpul = {
   changeIndex: require("./changeIndex"),
   clone: require("./clone"),
   dateformat: require("./dateformat"),
-  dotPath: {
-    generate: require("./dotPaths"),
-    extract: require("./dotExtraction"),
+  dotpath: {
+    diffs: require("./dotpath.diffs"),
+    generate: require("./dotpath.generate"),
+    extract: require("./dotpath.extract"),
   },
   escapeRegex: require("./escapeRegex"),
   flatten: require("./flatten"),
   generalizedCount: require("./generalizedCount"),
-  jsondiffs: require("./jsondiffs"),
   mysql_timestamp: require("./mysql_timestamp"),
   removeNullValues: require("./removeNullValues"),
   removePunctuation: require("./removePunctuation"),
