@@ -1,5 +1,7 @@
+const { inWindowDOM } = require("./validations");
+
 function urlBase64ToUint8Array(base64String) {
-  if (typeof window !== "undefined") {
+  if (inWindowDOM()) {
     const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
 
     const base64 = (base64String + padding)
