@@ -23,7 +23,7 @@
 //   },
 // };
 
-// function queryArrayObjects(array, option) {
+// function queryDocuments(array, option) {
 //   if (option) {
 //   } else return array;
 //   // try {
@@ -88,4 +88,4 @@
 //   // }
 // }
 
-// module.exports = queryArrayObjects;
+// module.exports = queryDocuments;

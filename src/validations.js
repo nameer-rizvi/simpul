@@ -82,14 +82,6 @@ const isArray = (test) => Boolean(test && test.constructor === Array);
 
 const isArrayValid = (test) => Boolean(isArray(test) && test.length);
 
-// UI
-
-const inWindow = (prop) =>
-  typeof window !== "undefined" && (prop ? prop in window : true);
-
-const inWindowDocument = (prop) =>
-  typeof document !== "undefined" && (prop ? prop in document : true);
-
 // INDEX
 
 const validations = {
@@ -108,8 +100,6 @@ const validations = {
   isObjectValid,
   isArray,
   isArrayValid,
-  inWindow,
-  inWindowDocument,
 };
 
 module.exports = validations;

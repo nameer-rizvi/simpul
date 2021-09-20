@@ -1,6 +1,8 @@
+const { isDate } = require("./validations");
+
 function mysql_timestamp(timestamp, callback) {
   try {
-    timestamp = timestamp === undefined ? new Date() : new Date(timestamp);
+    if (!isDate(timestamp)) timestamp = new Date();
 
     const mysql = new Date(timestamp)
       .toISOString()
