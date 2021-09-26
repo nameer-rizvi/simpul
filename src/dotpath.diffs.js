@@ -3,6 +3,8 @@ const dotpath = {
   extract: require("./dotpath.extract"),
 };
 
+const { isDate } = require("./validations");
+
 function dotpathDiffs(prev, curr, excludePaths) {
   const diffs = [];
 
@@ -11,7 +13,10 @@ function dotpathDiffs(prev, curr, excludePaths) {
   let pathsAll = [...dotpath.generate(prev), ...dotpath.generate(curr)];
 
   if (excludePaths)
-    pathsAll = pathsAll.filter((pathAll) => !excludePaths.includes(pathAll));
+    pathsAll = pathsAll.filter(
+      (pathAll) =>
+        !excludePaths.some((excludePath) => pathAll.startsWith(excludePath))
+    );
 
   const pathsUnique = [...new Set(pathsAll)].sort();
 
@@ -24,7 +29,10 @@ function dotpathDiffs(prev, curr, excludePaths) {
 
     let currValue = dotpath.extract(curr, path);
 
-    const isDiff = prevValue !== currValue;
+    const isDiff =
+      isDate(prevValue) && isDate(currValue)
+        ? new Date(prevValue).getTime() !== new Date(currValue).getTime()
+        : prevValue !== currValue;
 
     if (isDiff) {
       let diff = { path, currValue, prevValue, timestamp };
