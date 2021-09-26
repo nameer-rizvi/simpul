@@ -3,12 +3,15 @@ const dotpath = {
   extract: require("./dotpath.extract"),
 };
 
-function dotpathDiffs(prev, curr) {
+function dotpathDiffs(prev, curr, excludePaths) {
   const diffs = [];
 
   if (JSON.stringify(prev) === JSON.stringify(curr)) return diffs;
 
-  const pathsAll = [...dotpath.generate(prev), ...dotpath.generate(curr)];
+  let pathsAll = [...dotpath.generate(prev), ...dotpath.generate(curr)];
+
+  if (excludePaths)
+    pathsAll = pathsAll.filter((pathAll) => !excludePaths.includes(pathAll));
 
   const pathsUnique = [...new Set(pathsAll)].sort();
 
