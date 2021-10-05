@@ -52,8 +52,7 @@ const isRegex = (test) => Boolean(test && test.constructor === RegExp);
 
 function isJSON(test) {
   try {
-    test = JSON.stringify(test);
-    JSON.parse(test);
+    JSON.parse(JSON.stringify(test));
     return true;
   } catch {
     return false;
@@ -82,6 +81,22 @@ const isArray = (test) => Boolean(test && test.constructor === Array);
 
 const isArrayValid = (test) => Boolean(isArray(test) && test.length);
 
+// VALUE
+
+function isValid(test, testAll) {
+  let condition = Boolean(test !== undefined && test !== null);
+  if (testAll) {
+    if (isString(test)) {
+      condition = isStringValid(test);
+    } else if (isObject(test)) {
+      condition = isObjectValid(test);
+    } else if (isArray(test)) {
+      condition = isArrayValid(test);
+    }
+  }
+  return condition;
+}
+
 // INDEX
 
 const validations = {
@@ -100,6 +115,7 @@ const validations = {
   isObjectValid,
   isArray,
   isArrayValid,
+  isValid,
 };
 
 module.exports = validations;

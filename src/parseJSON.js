@@ -1,8 +1,10 @@
-function parseJSON(json) {
+function parseJSON(json, callback) {
   try {
     const parsed = JSON.parse(json);
+    if (callback) callback(null, parsed);
     return parsed;
-  } catch {
+  } catch (error) {
+    if (callback) callback(error);
     return;
   }
 }
