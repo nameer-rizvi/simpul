@@ -9,6 +9,7 @@ const simpul = {
   flatten: require("./flatten"),
   generalizedCount: require("./generalizedCount"),
   generateKey: require("./generateKey"),
+  generateNonce: require("./generateNonce"),
   math: require("./math"),
   mysql_timestamp: require("./mysql_timestamp"),
   objectKeyGroup: require("./objectKeyGroup"),
@@ -22,6 +23,7 @@ const simpul = {
   trim: require("./trim"),
   trimBoundary: require("./trimBoundary"),
   trimPunctuation: require("./trimPunctuation"),
+  tryCallback: require("./tryCallback"),
   urlBase64ToUint8Array: require("./urlBase64ToUint8Array"),
   ...require("./validations"),
 };

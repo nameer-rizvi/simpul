@@ -1,6 +1,6 @@
 const { isObject } = require("./validations");
 
-function flatten(object) {
+function flatten(object = {}) {
   const flattened = {};
 
   const keys = Object.keys(object);

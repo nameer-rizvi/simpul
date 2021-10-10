@@ -1,32 +1,30 @@
-function generalizedCount(count, callback, options = {}) {
-  try {
-    const {
-      lang = "en-US",
-      maximumFractionDigits = 1,
-      notation = "compact",
-      compactDisplay = "short",
-      upperCase,
-      ...restOptions
-    } = options;
+const tryCallback = require("./tryCallback");
 
-    let generalized = new Intl.NumberFormat(lang, {
-      maximumFractionDigits,
-      notation,
-      compactDisplay,
-      ...restOptions,
-    }).format(count);
+function generalizedCount(count, options = {}) {
+  const {
+    lang = "en-US",
+    maximumFractionDigits = 1,
+    notation = "compact",
+    compactDisplay = "short",
+    upperCase,
+    ...restOptions
+  } = options;
 
-    if (generalized === "NaN") return;
+  let generalized = new Intl.NumberFormat(lang, {
+    maximumFractionDigits,
+    notation,
+    compactDisplay,
+    ...restOptions,
+  }).format(count);
 
-    if (!upperCase && generalized) generalized = generalized.toLowerCase();
+  if (generalized === "NaN") return;
 
-    if (callback) callback(null, generalized);
+  if (!upperCase && generalized) generalized = generalized.toLowerCase();
 
-    return generalized;
-  } catch (err) {
-    if (callback) callback(err);
-    return;
-  }
+  return generalized;
 }
 
-module.exports = generalizedCount;
+const generalizedCountCallback = (count, options, callback) =>
+  tryCallback(() => generalizedCount(count, options), callback);
+
+module.exports = generalizedCountCallback;

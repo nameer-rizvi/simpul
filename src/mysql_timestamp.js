@@ -1,21 +1,20 @@
 const { isDate } = require("./validations");
+const tryCallback = require("./tryCallback");
 
-function mysql_timestamp(timestamp, callback) {
-  try {
-    if (!isDate(timestamp)) timestamp = new Date();
+function mysql_timestamp(timestamp) {
+  if (!isDate(timestamp)) {
+    timestamp = new Date();
+  } else timestamp = new Date(timestamp);
 
-    const mysql = new Date(timestamp)
-      .toISOString()
-      .replace("T", " ")
-      .replace("Z", "");
+  const translation = timestamp
+    .toISOString()
+    .replace("T", " ")
+    .replace("Z", "");
 
-    if (callback) callback(null, mysql);
-
-    return mysql;
-  } catch (err) {
-    if (callback) callback(err);
-    return;
-  }
+  return translation;
 }
 
-module.exports = mysql_timestamp;
+mysql_timestampCallback = (timestamp, callback) =>
+  tryCallback(() => mysql_timestamp(timestamp), callback);
+
+module.exports = mysql_timestampCallback;

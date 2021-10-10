@@ -1,7 +1,7 @@
-const { isArray } = require("./validations");
+const { isArray, isNumber } = require("./validations");
 
-function changeIndex(array, oldIndex, newIndex) {
-  if (isArray(array)) {
+function changeIndex(array = [], oldIndex, newIndex) {
+  if (isArray(array) && isNumber(oldIndex) && isNumber(newIndex)) {
     if (newIndex >= array.length) {
       let k = newIndex - array.length + 1;
 
@@ -11,7 +11,7 @@ function changeIndex(array, oldIndex, newIndex) {
     array.splice(newIndex, 0, array.splice(oldIndex, 1)[0]);
 
     return array;
-  }
+  } else return array;
 }
 
 module.exports = changeIndex;

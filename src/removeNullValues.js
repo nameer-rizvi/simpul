@@ -1,3 +1,5 @@
+const { isValid } = require("./validations");
+
 function removeNullValues(object = {}) {
   const keys = Object.keys(object);
 
@@ -6,7 +8,7 @@ function removeNullValues(object = {}) {
   for (let i = keys.length - 1; i >= 0; i--) {
     let key = keys[i];
     let value = object[key];
-    if (value !== null && value !== undefined) clean[key] = value;
+    if (isValid(value)) clean[key] = value;
   }
 
   return clean;

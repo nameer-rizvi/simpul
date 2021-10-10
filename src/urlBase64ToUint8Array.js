@@ -1,4 +1,5 @@
 const support = require("./support");
+const tryCallback = require("./tryCallback");
 
 function urlBase64ToUint8Array(base64String) {
   if (support.window()) {
@@ -20,4 +21,7 @@ function urlBase64ToUint8Array(base64String) {
   }
 }
 
-module.exports = urlBase64ToUint8Array;
+const urlBase64ToUint8ArrayCallback = (base64String, callback) =>
+  tryCallback(() => urlBase64ToUint8Array(base64String), callback);
+
+module.exports = urlBase64ToUint8ArrayCallback;

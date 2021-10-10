@@ -1,15 +1,21 @@
+const { isArray } = require("./validations");
+const clone = require("./clone");
+
 function removeArrayItems(array = [], finder, replaceWith = undefined) {
   const removed = [];
 
   const replaced = [];
 
-  for (var i = 0; i < array.length; i++) {
-    let item = array[i];
-    if (finder && finder(item, i)) {
-      replaced.push(replaceWith);
-    } else {
-      removed.push(item);
-      replaced.push(item);
+  if (isArray(array)) {
+    const arrayClone = clone(array);
+    for (var i = 0; i < arrayClone.length; i++) {
+      let item = arrayClone[i];
+      if (finder && finder(item, i)) {
+        replaced.push(replaceWith);
+      } else {
+        removed.push(item);
+        replaced.push(item);
+      }
     }
   }
 

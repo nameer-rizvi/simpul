@@ -1,12 +1,6 @@
-function _clone(json, callback) {
-  try {
-    const clone = JSON.parse(JSON.stringify(json));
-    if (callback) callback(null, clone);
-    return clone;
-  } catch (err) {
-    if (callback) callback(err);
-    return;
-  }
-}
+const tryCallback = require("./tryCallback");
 
-module.exports = _clone;
+const clone = (json, callback) =>
+  tryCallback(() => JSON.parse(JSON.stringify(json)), callback);
+
+module.exports = clone;

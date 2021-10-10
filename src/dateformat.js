@@ -1,4 +1,5 @@
 const { isDate, isNumber } = require("./validations");
+const tryCallback = require("./tryCallback");
 
 function dateformat(date, format, options = {}) {
   date = isDate(date) ? new Date(date) : new Date();
@@ -30,4 +31,7 @@ function dateformat(date, format, options = {}) {
   return timestamp;
 }
 
-module.exports = dateformat;
+const dateformatCallback = (date, format, options, callback) =>
+  tryCallback(() => dateformat(date, format, options), callback);
+
+module.exports = dateformatCallback;
