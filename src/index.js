@@ -14,6 +14,7 @@ const simpul = {
   log: require("./log"),
   math: require("./math"),
   mysql_timestamp: require("./mysql_timestamp"),
+  noop: require("./noop"),
   numberLabel: require("./numberLabel"),
   objectKeyGroup: require("./objectKeyGroup"),
   parseJSON: require("./parseJSON"),
