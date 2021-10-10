@@ -1,4 +1,4 @@
-const { isValid } = require("./validations");
+const { isNumber, isBoolean } = require("./validations");
 
 function objectKeyGroup({ object = {}, keyStartsWith = "", keyEndsWith = "" }) {
   const keys = Object.keys(object).filter((key) => {
@@ -6,7 +6,8 @@ function objectKeyGroup({ object = {}, keyStartsWith = "", keyEndsWith = "" }) {
       (keyStartsWith && key.startsWith(keyStartsWith)) ||
       (keyEndsWith && key.endsWith(keyEndsWith));
 
-    const keyHasValue = isValid(object[key]);
+    const keyHasValue =
+      object[key] || isNumber(object[key]) || isBoolean(object[key]);
 
     return isKeyMatch && keyHasValue;
   });
