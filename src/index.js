@@ -11,6 +11,7 @@ const simpul = {
   generalizedCount: require("./generalizedCount"),
   generateKey: require("./generateKey"),
   generateNonce: require("./generateNonce"),
+  isEnv: require("./isEnv"),
   log: require("./log"),
   math: require("./math"),
   mysql_timestamp: require("./mysql_timestamp"),
