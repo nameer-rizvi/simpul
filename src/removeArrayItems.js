@@ -8,7 +8,7 @@ function removeArrayItems(array = [], finder, replaceWith = undefined) {
 
   if (isArray(array)) {
     const arrayClone = clone(array);
-    for (var i = 0; i < arrayClone.length; i++) {
+    for (let i = 0; i < arrayClone.length; i++) {
       let item = arrayClone[i];
       if (finder && finder(item, i)) {
         replaced.push(replaceWith);

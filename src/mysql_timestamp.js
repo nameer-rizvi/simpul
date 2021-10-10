@@ -14,7 +14,7 @@ function mysql_timestamp(timestamp) {
   return translation;
 }
 
-mysql_timestampCallback = (timestamp, callback) =>
+const mysql_timestampCallback = (timestamp, callback) =>
   tryCallback(() => mysql_timestamp(timestamp), callback);
 
 module.exports = mysql_timestampCallback;
