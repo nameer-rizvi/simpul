@@ -10,7 +10,6 @@ const simpul = {
   flatten: require("./flatten"),
   generalizedCount: require("./generalizedCount"),
   generateKey: require("./generateKey"),
-  generateNonce: require("./generateNonce"),
   isEnv: require("./isEnv"),
   log: require("./log"),
   math: require("./math"),
