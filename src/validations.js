@@ -2,33 +2,29 @@ const safe = require("safe-regex");
 
 // STRING
 
-const isString = (test) => Boolean(test && test.constructor === String);
+const isString = (test) => typeof test === "string";
 
 const isStringValid = (test) => Boolean(isString(test) && test.trim().length);
 
 // NUMBER
 
 const isNumber = (test) =>
-  Boolean(
-    test === 0 ||
-      (test && test.constructor === Number) ||
-      (isString(test) && !isNaN(test))
-  );
+  isString(test) ? !isNaN(test) : typeof test === "number";
 
 // BOOLEAN
 
-const isBoolean = (test) =>
-  Boolean(test === false || (test && test.constructor === Boolean));
+const isBoolean = (test) => typeof test === "boolean";
 
-const isBooleanString = (test) => Boolean(test === "true" || test === "false");
+const isBooleanString = (test) => test === "true" || test === "false";
+
+const isBooleanNumber = (test) => test === 0 || test === 1;
 
 // DATE
 
 const isDate = (test) =>
-  Boolean(
-    (test && test.constructor === Date) ||
-      (isString(test) && new Date(test).toString() !== "Invalid Date")
-  );
+  isString(test)
+    ? new Date(test).toString() !== "Invalid Date"
+    : Boolean(test && test.constructor === Date);
 
 // FUNCTION
 
@@ -37,12 +33,10 @@ const isFunction = (test) => Boolean(test && test.constructor === Function);
 // BASE64
 
 const isBase64 = (test) =>
-  Boolean(
-    isString(test) &&
-      test.length % 4 === 0 &&
-      safe(test) &&
-      !/[^A-Z0-9+/=]/i.test(test)
-  );
+  isString(test) &&
+  test.length % 4 === 0 &&
+  safe(test) &&
+  !/[^A-Z0-9+/=]/i.test(test);
 
 // REGEX
 
@@ -84,7 +78,7 @@ const isArrayValid = (test) => Boolean(isArray(test) && test.length);
 // VALUE
 
 function isValid(test, testAll) {
-  let condition = Boolean(test !== undefined && test !== null);
+  let condition = test !== undefined && test !== null;
   if (testAll) {
     if (isString(test)) {
       condition = isStringValid(test);
@@ -105,6 +99,7 @@ const validations = {
   isNumber,
   isBoolean,
   isBooleanString,
+  isBooleanNumber,
   isDate,
   isFunction,
   isBase64,

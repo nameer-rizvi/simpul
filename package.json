@@ -1,6 +1,6 @@
 {
   "name": "simpul",
-  "version": "0.6.4",
+  "version": "0.6.5",
   "description": "Library of simple functions I happen to use in a lot of projects...",
   "main": "src/index.js",
   "scripts": {
