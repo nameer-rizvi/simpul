@@ -1,4 +1,4 @@
-const { isDate, isNumber } = require("./validations");
+const { isDate, isNumber } = require("./validate");
 const tryCallback = require("./tryCallback");
 
 function dateformat(date, format, options = {}) {

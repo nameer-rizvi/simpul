@@ -1,4 +1,4 @@
-const { isNumber, isString } = require("./validations");
+const { isNumber, isString } = require("./validate");
 const generalizedCount = require("./generalizedCount");
 
 function numberLabel(count, plural, showAlt) {

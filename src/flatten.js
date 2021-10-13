@@ -1,4 +1,4 @@
-const { isObject } = require("./validations");
+const { isObject } = require("./validate");
 
 function flatten(object = {}) {
   const flattened = {};

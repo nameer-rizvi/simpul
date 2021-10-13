@@ -1,4 +1,4 @@
-const { isArray } = require("./validations");
+const { isArray } = require("./validate");
 const clone = require("./clone");
 
 function removeArrayItems(array = [], finder, replaceWith = undefined) {

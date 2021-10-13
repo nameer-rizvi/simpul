@@ -1,4 +1,4 @@
-const { isDate } = require("./validations");
+const { isDate } = require("./validate");
 const tryCallback = require("./tryCallback");
 
 function mysql_timestamp(timestamp) {

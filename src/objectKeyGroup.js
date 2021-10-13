@@ -1,4 +1,4 @@
-const { isNumber, isBoolean } = require("./validations");
+const { isNumber, isBoolean } = require("./validate");
 
 function objectKeyGroup({ object = {}, keyStartsWith = "", keyEndsWith = "" }) {
   const keys = Object.keys(object).filter((key) => {

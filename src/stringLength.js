@@ -1,4 +1,4 @@
-const { isString } = require("./validations");
+const { isString } = require("./validate");
 
 const charLength = (string) => isString(string) && string.length;
 

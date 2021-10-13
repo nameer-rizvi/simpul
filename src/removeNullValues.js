@@ -1,4 +1,4 @@
-const { isValid } = require("./validations");
+const { isValid } = require("./validate");
 
 function removeNullValues(object = {}) {
   const keys = Object.keys(object);

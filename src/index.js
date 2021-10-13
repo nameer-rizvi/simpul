@@ -31,7 +31,7 @@ const simpul = {
   tryCallback: require("./tryCallback"),
   uniqueStrings: require("./uniqueStrings"),
   urlBase64ToUint8Array: require("./urlBase64ToUint8Array"),
-  ...require("./validations"),
+  ...require("./validate"),
 };
 
 module.exports = simpul;

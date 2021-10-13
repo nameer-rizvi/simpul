@@ -1,4 +1,4 @@
-const { isArray } = require("./validations");
+const { isArray } = require("./validate");
 
 const mean = (arr) =>
   isArray(arr) && arr.reduce((a, b) => a + b, 0) / arr.length;

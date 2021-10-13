@@ -1,4 +1,4 @@
-const { isArray, isNumber } = require("./validations");
+const { isArray, isNumber } = require("./validate");
 
 function changeIndex(array = [], oldIndex, newIndex) {
   if (isArray(array) && isNumber(oldIndex) && isNumber(newIndex)) {

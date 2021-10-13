@@ -1,4 +1,4 @@
-const { isString } = require("./validations");
+const { isString } = require("./validate");
 
 const escapeRegex = (dirty) =>
   isString(dirty) ? dirty.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") : dirty;

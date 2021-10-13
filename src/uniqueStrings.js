@@ -1,4 +1,4 @@
-const { isString, isArray } = require("./validations");
+const { isString, isArray } = require("./validate");
 const trim = require("./trim");
 
 function uniqueStrings(tokens, replaceWith) {

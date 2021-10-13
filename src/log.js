@@ -1,5 +1,5 @@
 const capitalize = require("./capitalize");
-const { isString, isNumber } = require("./validations");
+const { isString, isNumber } = require("./validate");
 const timelog = require("./timelog");
 
 function logGenerator({

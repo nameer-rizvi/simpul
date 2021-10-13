@@ -1,15 +1,24 @@
 const safe = require("safe-regex");
 
-// STRING
+// STRING (REQUIRED BY OTHER VALIDATIONS)
 
 const isString = (test) => typeof test === "string";
 
 const isStringValid = (test) => Boolean(isString(test) && test.trim().length);
 
-// NUMBER
+// ARRAY
 
-const isNumber = (test) =>
-  isString(test) ? !isNaN(test) : typeof test === "number";
+const isArray = (test) => Boolean(test && test.constructor === Array);
+
+const isArrayValid = (test) => Boolean(isArray(test) && test.length);
+
+// BASE64
+
+const isBase64 = (test) =>
+  isStringValid(test) &&
+  test.length % 4 === 0 &&
+  safe(test) &&
+  !/[^A-Z0-9+/=]/i.test(test);
 
 // BOOLEAN
 
@@ -22,25 +31,13 @@ const isBooleanNumber = (test) => test === 0 || test === 1;
 // DATE
 
 const isDate = (test) =>
-  isString(test)
+  isStringValid(test)
     ? new Date(test).toString() !== "Invalid Date"
     : Boolean(test && test.constructor === Date);
 
 // FUNCTION
 
 const isFunction = (test) => Boolean(test && test.constructor === Function);
-
-// BASE64
-
-const isBase64 = (test) =>
-  isString(test) &&
-  test.length % 4 === 0 &&
-  safe(test) &&
-  !/[^A-Z0-9+/=]/i.test(test);
-
-// REGEX
-
-const isRegex = (test) => Boolean(test && test.constructor === RegExp);
 
 // JSON
 
@@ -62,6 +59,11 @@ function isJSONString(test) {
   }
 }
 
+// NUMBER
+
+const isNumber = (test) =>
+  isStringValid(test) ? !isNaN(test) : typeof test === "number";
+
 // OBJECT
 
 const isObject = (test) => Boolean(test && test.constructor === Object);
@@ -69,11 +71,9 @@ const isObject = (test) => Boolean(test && test.constructor === Object);
 const isObjectValid = (test) =>
   Boolean(isObject(test) && Object.keys(test).length);
 
-// ARRAY
+// REGEX
 
-const isArray = (test) => Boolean(test && test.constructor === Array);
-
-const isArrayValid = (test) => Boolean(isArray(test) && test.length);
+const isRegex = (test) => Boolean(test && test.constructor === RegExp);
 
 // VALUE
 
@@ -93,24 +93,24 @@ function isValid(test, testAll) {
 
 // INDEX
 
-const validations = {
+const validate = {
   isString,
   isStringValid,
-  isNumber,
+  isArray,
+  isArrayValid,
+  isBase64,
   isBoolean,
   isBooleanString,
   isBooleanNumber,
   isDate,
   isFunction,
-  isBase64,
-  isRegex,
   isJSON,
   isJSONString,
+  isNumber,
   isObject,
   isObjectValid,
-  isArray,
-  isArrayValid,
+  isRegex,
   isValid,
 };
 
-module.exports = validations;
+module.exports = validate;
