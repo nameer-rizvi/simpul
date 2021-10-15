@@ -1,21 +1,20 @@
 const { isObject } = require("./validate");
 
-function flatten(object = {}) {
-  const flattened = {};
+// https://www.geeksforgeeks.org/flatten-javascript-objects-into-a-single-depth-object/
 
-  const keys = Object.keys(object);
+function flatten(object = {}, delimiter = "_") {
+  const result = {};
 
-  for (let i = 0; i < keys.length; i++) {
-    let key = keys[i];
-
-    let value = object[key];
-
-    if (isObject(value)) {
-      Object.assign(flattened, flatten(value));
-    } else flattened[key] = object[key];
+  for (const i in object) {
+    if (isObject(object[i])) {
+      const temp = flatten(object[i]);
+      for (const j in temp) {
+        result[i + delimiter + j] = temp[j];
+      }
+    } else result[i] = object[i];
   }
 
-  return flattened;
+  return result;
 }
 
 module.exports = flatten;

@@ -48,6 +48,7 @@ function logGenerator({
 const logResolver = (customConfigs = [], options = {}) =>
   [
     { key: "at", emoji: "➡️ " },
+    { key: "cronjob", emoji: "⏰" },
     { key: "error", emoji: "🚨" },
     { key: "express", emoji: "⚡", ignoreStringifiedNumber: true },
     { key: "fetch", emoji: "🐶" },
@@ -55,7 +56,9 @@ const logResolver = (customConfigs = [], options = {}) =>
     { key: "mail", emoji: "📬" },
     { key: "mongo", emoji: "🌿" },
     { key: "mysql", emoji: "🐬" },
+    { key: "pending", emoji: "⌛" },
     { key: "polyfill", emoji: "🔨" },
+    { key: "ratelimit", emoji: "🕒" },
     { key: "react", emoji: "⚛️ " },
     { key: "redis", emoji: "🔺" },
     { key: "route", emoji: "🚚" },
