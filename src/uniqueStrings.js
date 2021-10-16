@@ -1,7 +1,7 @@
 const { isString, isArray } = require("./validate");
 const trim = require("./trim");
 
-function uniqueStrings(tokens, replaceWith) {
+function uniqueStrings(tokens, replaceWith, charCase) {
   if (isString(tokens))
     tokens = tokens
       .trim(tokens)
@@ -17,7 +17,7 @@ function uniqueStrings(tokens, replaceWith) {
       let token = tokens[i];
       if (replaceWith) token = token.replace(replaceWith, "");
       token = trim(token, "");
-      if (token) cleans.push(token);
+      if (token) cleans.push(charCase ? token[charCase]() : token);
     }
 
     uniqueTokens = [...new Set(cleans)];
