@@ -1,5 +1,6 @@
 const simpul = {
   base64: require("./base64"),
+  callbackTimeout: require("./callbackTimeout"),
   capitalize: require("./capitalize"),
   changeIndex: require("./changeIndex"),
   clone: require("./clone"),
