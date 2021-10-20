@@ -4,8 +4,10 @@ exports.window = (prop) =>
 exports.document = (prop) =>
   typeof document !== "undefined" && (prop ? prop in document : true);
 
-exports.serviceWorker = () =>
-  exports.window("navigator") && "serviceWorker" in window.navigator;
+exports.navigator = (prop) =>
+  exports.window("navigator") && (prop ? prop in window.navigator : true);
+
+exports.serviceWorker = () => exports.navigator("serviceWorker");
 
 exports.Notification = () => exports.window("Notification");
 
