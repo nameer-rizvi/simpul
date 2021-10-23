@@ -3,7 +3,7 @@ const { isString } = require("./validate");
 const charLength = (string) => isString(string) && string.length;
 
 const wordLength = (string) =>
-  isString(string) && string.match(/[\w\d’'-]+/gi).length;
+  charLength(string) && string.match(/[\w\d’'-]+/gi).length;
 
 // Other wordLength options...
 //
