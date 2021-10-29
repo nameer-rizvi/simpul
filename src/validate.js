@@ -62,7 +62,7 @@ function isJSONString(test) {
 // NUMBER
 
 const isNumber = (test) =>
-  isStringValid(test) ? !isNaN(test) : typeof test === "number";
+  isStringValid(test) ? !isNaN(test) : typeof test === "number" && !isNaN(test);
 
 // OBJECT
 
