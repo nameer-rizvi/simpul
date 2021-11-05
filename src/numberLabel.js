@@ -5,7 +5,7 @@ function numberLabel(count, plural, showAlt) {
   const number = isNumber(count)
     ? showAlt
       ? count.toLocaleString()
-      : generalizedCount(count).toString()
+      : generalizedCount(count) || "0"
     : "0";
 
   const label = isString(plural)
