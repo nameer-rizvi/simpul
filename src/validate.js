@@ -1,4 +1,5 @@
 const safe = require("safe-regex");
+const jwt = require("./jwt");
 
 // STRING (REQUIRED BY OTHER VALIDATIONS)
 
@@ -59,6 +60,10 @@ function isJSONString(test) {
   }
 }
 
+// JWT
+
+const isJWT = (test) => isStringValid(test) && Boolean(jwt.decode(test));
+
 // NUMBER
 
 const isNumber = (test) =>
@@ -106,6 +111,7 @@ const validate = {
   isFunction,
   isJSON,
   isJSONString,
+  isJWT,
   isNumber,
   isObject,
   isObjectValid,
