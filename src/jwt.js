@@ -18,7 +18,7 @@ const decode = (token, callback) =>
   );
 
 const decodeJSON = (token, callback) =>
-  tryCallback(() => JSON.parse(decode(token, callback)), callback);
+  tryCallback(() => JSON.parse(decode(token)), callback);
 
 const jwt = { decode, decodeJSON };
 
