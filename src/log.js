@@ -9,6 +9,7 @@ function logGenerator({
   self,
   emoji,
   ignoreNonCriticalLogs,
+  ignoreEnvironment,
 }) {
   message = capitalize(message && message.toString());
 
@@ -46,8 +47,8 @@ function logGenerator({
       key.startsWith("warning") ||
       key.startsWith("at");
 
-    if (isCriticalLog) timelog(full);
-  } else timelog(full);
+    if (isCriticalLog) timelog(full, ignoreEnvironment);
+  } else timelog(full, ignoreEnvironment);
 }
 
 const logResolver = (customConfigs = [], options = {}) =>

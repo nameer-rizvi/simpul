@@ -1,9 +1,10 @@
 const dateformat = require("./dateformat");
 
-function timelog(log = "") {
+function timelog(log = "", ignoreEnvironment) {
   if (log && log.toString) log = log.toString();
 
-  if (process.env.NODE_ENV) log = `[${process.env.NODE_ENV}] ${log}`;
+  if (ignoreEnvironment !== true && process.env.NODE_ENV)
+    log = `[${process.env.NODE_ENV}] ${log}`;
 
   log = `[${dateformat()}] ${log}`;
 
