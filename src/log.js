@@ -8,6 +8,7 @@ function logGenerator({
   key,
   self,
   emoji,
+  isCritical,
   ignoreNonCriticalLogs,
   ignoreEnvironment,
 }) {
@@ -43,6 +44,7 @@ function logGenerator({
 
   if (ignoreNonCriticalLogs) {
     const isCriticalLog =
+      isCritical ||
       key.startsWith("error") ||
       key.startsWith("warning") ||
       key.startsWith("at");
@@ -234,8 +236,15 @@ const logResolver = (customConfigs = [], options = {}) =>
   ].reduce(
     (reducer, config, index, self) => ({
       ...reducer,
-      [config.key]: (message) =>
-        logGenerator({ ...options, ...config, index, self, message }),
+      [config.key]: (message, options2) =>
+        logGenerator({
+          ...options,
+          ...options2,
+          ...config,
+          index,
+          self,
+          message,
+        }),
     }),
     {}
   );
