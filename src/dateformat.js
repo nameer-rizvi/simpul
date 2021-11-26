@@ -1,10 +1,10 @@
 const { isDate, isNumber } = require("./validate");
 const tryCallback = require("./tryCallback");
 
-function dateformat(date, format, options = {}) {
+function dateformat(date, format, option = {}) {
   date = isDate(date) ? new Date(date) : new Date();
 
-  const { excludeZero, military } = options;
+  const { excludeZero, military } = option;
 
   const withZero = (num, ignore) =>
     (ignore || !excludeZero) && num < 10 ? "0" + num : num;
@@ -31,7 +31,7 @@ function dateformat(date, format, options = {}) {
   return timestamp;
 }
 
-const dateformatCallback = (date, format, options, callback) =>
-  tryCallback(() => dateformat(date, format, options), callback);
+const dateformatCallback = (date, format, option, callback) =>
+  tryCallback(() => dateformat(date, format, option), callback);
 
 module.exports = dateformatCallback;

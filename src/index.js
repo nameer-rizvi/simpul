@@ -24,7 +24,7 @@ const simpul = {
   removePunctuation: require("./removePunctuation"),
   stringLength: require("./stringLength"),
   support: require("./support"),
-  timelog: require("./timelog"),
+  timenvlog: require("./timenvlog"),
   testString: require("./testString"),
   trim: require("./trim"),
   trimBoundary: require("./trimBoundary"),

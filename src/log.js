@@ -1,56 +1,71 @@
 const capitalize = require("./capitalize");
 const { isString, isNumber } = require("./validate");
-const timelog = require("./timelog");
+const timenvlog = require("./timenvlog");
+
+// TESTER/SAMPLE:
+//
+// logResolver(undefined, {
+//   // ignoreStringifiedNumber: true,
+//   // ignoreKeyPrefix: true,
+//   // ignoreDots: true,
+//   // ignoreNonCriticalLogs: true,
+//   // flags: ["minimal"],
+//   // ignoreEnvironment: true,
+//   // ignoreTimestamp: true,
+//   // date: new Date("7/27/1996 1:00 PM"),
+//   // date_format: "M.D.Y",
+//   // date_option: { excludeZero: true, military: true },
+// }).yen("dude it's 123123123123", { flag: "minimal" });
 
 function logGenerator({
-  message,
+  log,
   ignoreStringifiedNumber,
+  ignoreKeyPrefix,
   key,
+  ignoreDots,
   self,
   emoji,
-  isCritical,
   ignoreNonCriticalLogs,
-  ignoreEnvironment,
+  isCritical,
+  flags = [],
+  flag = "",
+  ...timenvlogOption
 }) {
-  message = capitalize(message && message.toString());
+  const isError = log instanceof Error;
 
-  if (isString(message)) {
+  log = capitalize(log && log.toString && log.toString());
+
+  if (isString(log)) {
     if (!ignoreStringifiedNumber)
-      message = message
+      log = log
         .split(" ")
         .map((token) =>
           isNumber(token) ? Number(token).toLocaleString() : token
         )
         .join(" ");
 
-    if (message.charAt(message.length - 1).match(/[a-z0-9)]/i)) message += ".";
+    if (log.charAt(log.length - 1).match(/[a-z0-9)]/i)) log += ".";
   }
 
-  let keyPrefix = capitalize(key).replace(/[0-9]/g, ".");
+  let keyPrefix;
 
-  const maxKeyLength = self
-    .map(({ key }) => key.replace(/[0-9]/g, "."))
-    .sort((a, b) => b.length - a.length)[0].length;
-
-  const dots = maxKeyLength - key.length;
-
-  for (let i = 0; i < dots; i++) {
-    keyPrefix += ".";
+  if (!ignoreKeyPrefix) {
+    keyPrefix = capitalize(key).replace(/[0-9]/g, "");
+    if (!ignoreDots) {
+      const maxKeyLength = self
+        .map(({ key }) => key.replace(/[0-9]/g, ""))
+        .sort((a, b) => b.length - a.length)[0].length;
+      for (let i = 0; i < maxKeyLength - key.length; i++) keyPrefix += ".";
+    }
+    keyPrefix += ":";
   }
 
-  keyPrefix += ":";
-
-  const full = [emoji, keyPrefix, message].filter(Boolean).join(" ");
+  const full = [emoji, keyPrefix, log].filter(Boolean).join(" ");
 
   if (ignoreNonCriticalLogs) {
-    const isCriticalLog =
-      isCritical ||
-      key.startsWith("error") ||
-      key.startsWith("warning") ||
-      key.startsWith("at");
-
-    if (isCriticalLog) timelog(full, ignoreEnvironment);
-  } else timelog(full, ignoreEnvironment);
+    const isCriticalLog = isError || isCritical || flags.includes(flag);
+    if (isCriticalLog) timenvlog(full, timenvlogOption);
+  } else timenvlog(full, timenvlogOption);
 }
 
 const logResolver = (customConfigs = [], options = {}) =>
@@ -236,14 +251,14 @@ const logResolver = (customConfigs = [], options = {}) =>
   ].reduce(
     (reducer, config, index, self) => ({
       ...reducer,
-      [config.key]: (message, options2) =>
+      [config.key]: (log, options2) =>
         logGenerator({
           ...options,
           ...options2,
           ...config,
           index,
           self,
-          message,
+          log,
         }),
     }),
     {}
