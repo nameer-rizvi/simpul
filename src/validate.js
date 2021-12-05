@@ -13,6 +13,8 @@ const isArray = (test) => Boolean(test && test.constructor === Array);
 
 const isArrayValid = (test) => Boolean(isArray(test) && test.length);
 
+const isStringOrArray = (test) => isString(test) || isArray(test);
+
 // BASE64
 
 const isBase64 = (test) =>
@@ -103,6 +105,7 @@ const validate = {
   isStringValid,
   isArray,
   isArrayValid,
+  isStringOrArray,
   isBase64,
   isBoolean,
   isBooleanString,
