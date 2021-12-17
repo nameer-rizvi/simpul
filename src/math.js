@@ -1,4 +1,12 @@
-const { isArray } = require("./validate");
+const { isNumber, isArray } = require("./validate");
+
+const changeNum = (num1, num2) =>
+  isNumber(num1) && isNumber(num2) && +(num2 - num1).toFixed(2);
+
+const changePercent = (num1, num2) =>
+  isNumber(num1) &&
+  isNumber(num2) &&
+  +(((num1 - num2) / num1) * -100).toFixed(2);
 
 const mean = (arr) =>
   isArray(arr) && arr.reduce((a, b) => a + b, 0) / arr.length;
@@ -22,4 +30,4 @@ const mode = (arr) =>
     })
     .pop();
 
-module.exports = { mean, median, mode };
+module.exports = { changeNum, changePercent, mean, median, mode };
