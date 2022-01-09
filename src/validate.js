@@ -31,6 +31,9 @@ const isBooleanString = (test) => test === "true" || test === "false";
 
 const isBooleanNumber = (test) => test === 0 || test === 1;
 
+const isBooleanAny = (test) =>
+  isBoolean(test) || isBooleanString(test) || isBooleanNumber(test);
+
 // DATE
 
 const isDate = (test) =>
@@ -110,6 +113,7 @@ const validate = {
   isBoolean,
   isBooleanString,
   isBooleanNumber,
+  isBooleanAny,
   isDate,
   isFunction,
   isJSON,
