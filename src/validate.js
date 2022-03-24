@@ -9,7 +9,7 @@ const isStringValid = (test) => Boolean(isString(test) && test.trim().length);
 
 // ARRAY
 
-const isArray = (test) => Boolean(test && test.constructor === Array);
+const isArray = (test) => Boolean(test?.constructor === Array);
 
 const isArrayValid = (test) => Boolean(isArray(test) && test.length);
 
@@ -39,11 +39,11 @@ const isBooleanAny = (test) =>
 const isDate = (test) =>
   isStringValid(test)
     ? new Date(test).toString() !== "Invalid Date"
-    : Boolean(test && test.constructor === Date);
+    : Boolean(test?.constructor === Date);
 
 // FUNCTION
 
-const isFunction = (test) => Boolean(test && test.constructor === Function);
+const isFunction = (test) => Boolean(test?.constructor === Function);
 
 // JSON
 
@@ -76,14 +76,14 @@ const isNumber = (test) =>
 
 // OBJECT
 
-const isObject = (test) => Boolean(test && test.constructor === Object);
+const isObject = (test) => Boolean(test?.constructor === Object);
 
 const isObjectValid = (test) =>
   Boolean(isObject(test) && Object.keys(test).length);
 
 // REGEX
 
-const isRegex = (test) => Boolean(test && test.constructor === RegExp);
+const isRegex = (test) => Boolean(test?.constructor === RegExp);
 
 // VALUE
 

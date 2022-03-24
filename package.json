@@ -1,6 +1,6 @@
 {
   "name": "simpul",
-  "version": "0.8.3",
+  "version": "0.8.4",
   "description": "Library of simple functions I happen to use in a lot of projects...",
   "main": "src/index.js",
   "scripts": {
@@ -16,10 +16,8 @@
     "url": "https://github.com/nameer-rizvi/simpul/issues"
   },
   "homepage": "https://github.com/nameer-rizvi/simpul#readme",
-  "devDependencies": {
-    "eslint": "^7.27.0"
-  },
   "dependencies": {
+    "eslint": "^8.11.0",
     "safe-regex": "^2.1.1"
   }
 }

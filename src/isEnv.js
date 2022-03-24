@@ -9,11 +9,14 @@ const isEnvProduction =
 
 const isEnvLive = isEnvStaging || isEnvProduction;
 
+const isEnvName = process.env.NODE_ENV;
+
 const isEnv = {
   development: isEnvDevelopment,
   staging: isEnvStaging,
   production: isEnvProduction,
   live: isEnvLive,
+  name: isEnvName,
 };
 
 module.exports = isEnv;
