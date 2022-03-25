@@ -45,6 +45,11 @@ const isDate = (test) =>
 
 const isFunction = (test) => Boolean(test?.constructor === Function);
 
+// HTTP
+
+const isHTTP = (test) =>
+  isString(test) && (test.startsWith("http://") || test.startsWith("https://"));
+
 // JSON
 
 function isJSON(test) {
@@ -116,6 +121,7 @@ const validate = {
   isBooleanAny,
   isDate,
   isFunction,
+  isHTTP,
   isJSON,
   isJSONString,
   isJWT,
