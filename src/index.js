@@ -18,6 +18,7 @@ const simpul = {
   noop: require("./noop"),
   numberLabel: require("./numberLabel"),
   objectKeyGroup: require("./objectKeyGroup"),
+  ordinalized: require("./ordinalized"),
   parseJSON: require("./parseJSON"),
   removeArrayItems: require("./removeArrayItems"),
   removeNullValues: require("./removeNullValues"),
