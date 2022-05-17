@@ -1,10 +1,10 @@
 const { isString } = require("./validate");
 
 const escapeRegex = (dirty) =>
-  isString(dirty) ? dirty.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") : dirty;
+  isString(dirty) ? dirty.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") : "";
 
 module.exports = escapeRegex;
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#escaping
 
-// Alternate: /[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&"
+// Alternate: dirty.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&")

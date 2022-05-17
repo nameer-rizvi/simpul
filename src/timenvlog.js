@@ -2,7 +2,7 @@ const { isString } = require("./validate");
 const dateformat = require("./dateformat");
 
 function timenvlog(log = "", option = {}) {
-  if (!isString(log) && log && log.toString) log = log.toString();
+  if (!isString(log)) log = log?.toString?.() || "";
 
   const environment =
     process.env.NODE_ENV ||
@@ -10,8 +10,7 @@ function timenvlog(log = "", option = {}) {
     process.env.NODE_ENVIRONMENT ||
     process.env.ENVIRONMENT;
 
-  if (!option.ignoreEnvironment && isString(environment))
-    log = `[${environment}] ${log}`;
+  if (!option.ignoreEnvironment && environment) log = `[${environment}] ${log}`;
 
   if (!option.ignoreTimestamp)
     log = `[${dateformat(

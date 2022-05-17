@@ -30,4 +30,9 @@ const mode = (arr) =>
     })
     .pop();
 
-module.exports = { changeNum, changePercent, mean, median, mode };
+module.exports = {
+  change: { num: changeNum, percent: changePercent },
+  mean,
+  median,
+  mode,
+};

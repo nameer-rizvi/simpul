@@ -5,16 +5,16 @@ const timenvlog = require("./timenvlog");
 // TESTER/SAMPLE:
 //
 // logResolver(undefined, {
-//   // ignoreStringifiedNumber: true,
-//   // ignoreKeyPrefix: true,
-//   // ignoreDots: true,
-//   // ignoreNonCriticalLogs: true,
-//   // flags: ["minimal"],
-//   // ignoreEnvironment: true,
-//   // ignoreTimestamp: true,
-//   // date: new Date("7/27/1996 1:00 PM"),
-//   // date_format: "M.D.Y",
-//   // date_option: { excludeZero: true, military: true },
+//   ignoreStringifiedNumber: true,
+//   ignoreKeyPrefix: true,
+//   ignoreDots: true,
+//   ignoreNonCriticalLogs: true,
+//   flags: ["minimal"],
+//   ignoreEnvironment: true,
+//   ignoreTimestamp: true,
+//   date: new Date("7/27/1996 1:00 PM"),
+//   date_format: "M.D.Y",
+//   date_option: { excludeZero: true, military: true },
 // }).yen("dude it's 123123123123", { flag: "minimal" });
 
 function logGenerator({
@@ -31,9 +31,7 @@ function logGenerator({
   flag = "",
   ...timenvlogOption
 }) {
-  const isError = log instanceof Error;
-
-  log = capitalize(log && log.toString && log.toString());
+  log = capitalize(log?.toString?.());
 
   if (isString(log)) {
     if (!ignoreStringifiedNumber)
@@ -63,12 +61,12 @@ function logGenerator({
   const full = [emoji, keyPrefix, log].filter(Boolean).join(" ");
 
   if (ignoreNonCriticalLogs) {
-    const isCriticalLog = isError || isCritical || flags.includes(flag);
-    if (isCriticalLog) timenvlog(full, timenvlogOption);
+    if (log instanceof Error || isCritical || flags.includes(flag))
+      timenvlog(full, timenvlogOption);
   } else timenvlog(full, timenvlogOption);
 }
 
-const logResolver = (customConfigs = [], options = {}) =>
+const logResolver = (customConfigs = [], option = {}) =>
   [
     { key: "abacus", emoji: "🧮" },
     { key: "announcing", emoji: "📣" },
@@ -251,10 +249,10 @@ const logResolver = (customConfigs = [], options = {}) =>
   ].reduce(
     (reducer, config, index, self) => ({
       ...reducer,
-      [config.key]: (log, options2) =>
+      [config.key]: (log, option2) =>
         logGenerator({
-          ...options,
-          ...options2,
+          ...option,
+          ...option2,
           ...config,
           index,
           self,

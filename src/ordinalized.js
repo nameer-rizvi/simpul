@@ -6,11 +6,9 @@ function ordinalized(number) {
   if (isNumber(number)) {
     if (isString(number)) number = +number;
 
-    const ordinals = ["", "st", "nd", "rd"];
-
     const index = (number / 10) % 10 ^ 1 && number % 10;
 
-    return number.toLocaleString() + (ordinals[index] || "th");
+    return number.toLocaleString() + (["", "st", "nd", "rd"][index] || "th");
   }
 }
 

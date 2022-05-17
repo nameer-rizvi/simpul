@@ -1,23 +1,21 @@
-const support = require("./support");
 const tryCallback = require("./tryCallback");
+const support = require("./support");
 
-function copy(text) {
-  if (support.document()) {
-    const element = document.createElement("textarea");
+const copyText = (text, callback) =>
+  tryCallback(() => {
+    if (support.document()) {
+      const element = document.createElement("textarea");
 
-    element.value = text;
+      element.value = text;
 
-    document.body.appendChild(element);
+      document.body.appendChild(element);
 
-    element.select();
+      element.select();
 
-    document.execCommand("copy");
+      document.execCommand("copy");
 
-    document.body.removeChild(element);
-  }
-}
+      document.body.removeChild(element);
+    } else throw new Error("Document is undefined.");
+  }, callback);
 
-const copyCallback = (text, callback) =>
-  tryCallback(() => copy(text), callback);
-
-module.exports = copyCallback;
+module.exports = copyText;

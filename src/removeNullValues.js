@@ -3,7 +3,7 @@ const { isValid } = require("./validate");
 function removeNullValues(object = {}) {
   const keys = Object.keys(object);
 
-  let clean = {};
+  const clean = {};
 
   for (let i = keys.length - 1; i >= 0; i--) {
     let key = keys[i];

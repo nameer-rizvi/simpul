@@ -1,37 +1,33 @@
-const { isDate, isNumber } = require("./validate");
+const { isDate } = require("./validate");
 const tryCallback = require("./tryCallback");
 
-function dateformat(date, format, option = {}) {
-  date = isDate(date) ? new Date(date) : new Date();
+const dateformat = (date, format, option = {}, callback) =>
+  tryCallback(() => {
+    date = isDate(date) ? new Date(date) : new Date();
 
-  const { excludeZero, military } = option;
+    const { excludeZero, military } = option;
 
-  const withZero = (num, ignore) =>
-    (ignore || !excludeZero) && num < 10 ? "0" + num : num;
+    const withZero = (num, force) =>
+      num === 0 ? "00" : (force || !excludeZero) && num < 10 ? "0" + num : num;
 
-  const resolver = {
-    M: withZero(date.getMonth() + 1),
-    D: withZero(date.getDate()),
-    Y: date.getFullYear(),
-    h: withZero(military ? date.getHours() : date.getHours() % 12 || "12"),
-    m: withZero(date.getMinutes(), "ignore"),
-    s: withZero(date.getSeconds(), "ignore"),
-    p: date.getHours() > 11 ? "PM" : "AM",
-  };
+    const resolver = {
+      M: withZero(date.getMonth() + 1),
+      D: withZero(date.getDate()),
+      Y: date.getFullYear(),
+      h: withZero(military ? date.getHours() : date.getHours() % 12 || 12),
+      m: withZero(date.getMinutes(), "force"),
+      s: withZero(date.getSeconds(), "force"),
+      p: date.getHours() > 11 ? "PM" : "AM",
+    };
 
-  const { M, D, Y, h, m, s, p } = resolver;
+    if (!format) format = "M/D/Y h:m:s p";
 
-  const timestamp = format
-    ? format
-        .split("")
-        .map((i) => (isNumber(resolver[i]) ? resolver[i] : i))
-        .join("")
-    : `${M}/${D}/${Y} ${h}:${m}:${s} ${p}`;
+    const timestamp = format
+      .split("")
+      .map((i) => (Object.keys(resolver).includes(i) ? resolver[i] : i))
+      .join("");
 
-  return timestamp;
-}
+    return timestamp;
+  }, callback);
 
-const dateformatCallback = (date, format, option, callback) =>
-  tryCallback(() => dateformat(date, format, option), callback);
-
-module.exports = dateformatCallback;
+module.exports = dateformat;

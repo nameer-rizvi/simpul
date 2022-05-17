@@ -1,16 +1,12 @@
 const { isNumber, isBoolean } = require("./validate");
 
 function objectKeyGroup({ object = {}, keyStartsWith = "", keyEndsWith = "" }) {
-  const keys = Object.keys(object).filter((key) => {
-    const isKeyMatch =
-      (keyStartsWith && key.startsWith(keyStartsWith)) ||
-      (keyEndsWith && key.endsWith(keyEndsWith));
-
-    const keyHasValue =
-      object[key] || isNumber(object[key]) || isBoolean(object[key]);
-
-    return isKeyMatch && keyHasValue;
-  });
+  const keys = Object.keys(object).filter(
+    (key) =>
+      ((keyStartsWith && key.startsWith(keyStartsWith)) ||
+        (keyEndsWith && key.endsWith(keyEndsWith))) &&
+      (object[key] || isNumber(object[key]) || isBoolean(object[key]))
+  );
 
   const extracted = keys.reduce(
     (reducer, key) => ({ ...reducer, [key]: object[key] }),

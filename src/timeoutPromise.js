@@ -1,4 +1,6 @@
-const callbackTimeout = (callback, timeout = 500) =>
+// Previous name: "callbackTimeout"
+
+const timeoutPromise = (callback, timeout = 500) =>
   new Promise((resolve, reject) =>
     setTimeout(() => {
       try {
@@ -10,4 +12,4 @@ const callbackTimeout = (callback, timeout = 500) =>
     }, timeout)
   );
 
-module.exports = callbackTimeout;
+module.exports = timeoutPromise;
