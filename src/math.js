@@ -8,6 +8,8 @@ const changePercent = (num1, num2) =>
   isNumber(num2) &&
   +(((num1 - num2) / num1) * -100).toFixed(2);
 
+const changePercentString = (num1, num2) => changePercent(num1, num2) + "%";
+
 const mean = (arr) =>
   isArray(arr) && arr.reduce((a, b) => a + b, 0) / arr.length;
 
@@ -31,7 +33,11 @@ const mode = (arr) =>
     .pop();
 
 module.exports = {
-  change: { num: changeNum, percent: changePercent },
+  change: {
+    num: changeNum,
+    percent: changePercent,
+    percentString: changePercentString,
+  },
   mean,
   median,
   mode,
