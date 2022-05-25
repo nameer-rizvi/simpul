@@ -32,6 +32,13 @@ const mode = (arr) =>
     })
     .pop();
 
+const percent = (num1, num2) =>
+  isNumber(num1) && isNumber(num2)
+    ? ((+num1 / +num2) * 100).toFixed(2) + "%"
+    : "0%";
+
+console.log(percent(50, "123"));
+
 module.exports = {
   change: {
     num: changeNum,
@@ -41,4 +48,5 @@ module.exports = {
   mean,
   median,
   mode,
+  percent,
 };
