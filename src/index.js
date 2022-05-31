@@ -20,6 +20,7 @@ const simpul = {
   objectKeyGroup: require("./objectKeyGroup"),
   ordinalized: require("./ordinalized"),
   parseJSON: require("./parseJSON"),
+  propertyRecursion: require("./propertyRecursion"),
   removeArrayItems: require("./removeArrayItems"),
   removeNullValues: require("./removeNullValues"),
   removePunctuation: require("./removePunctuation"),
