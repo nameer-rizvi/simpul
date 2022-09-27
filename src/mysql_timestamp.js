@@ -1,5 +1,5 @@
-const { isDate } = require("./validate");
 const tryCallback = require("./tryCallback");
+const { isDate } = require("./validate");
 
 const mysql_timestamp = (timestamp, callback) =>
   tryCallback(() => {

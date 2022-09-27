@@ -5,6 +5,6 @@ const escapeRegex = (dirty) =>
 
 module.exports = escapeRegex;
 
-// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#escaping
+// Alternate RegEx: dirty.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&")
 
-// Alternate: dirty.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&")
+// Source: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#escaping

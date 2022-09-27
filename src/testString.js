@@ -1,6 +1,3 @@
-// https://en.wikipedia.org/wiki/List_of_Unicode_characters
-// https://dev.w3.org/html5/html-author/charref
-
 const testString = {
   arabic: "سم",
   emoji: "❤️🚨⚡🐬➡️🔨🔺🚚📫👷🚧",
@@ -9,3 +6,6 @@ const testString = {
 };
 
 module.exports = testString;
+
+// Source: https://en.wikipedia.org/wiki/List_of_Unicode_characters
+//         https://dev.w3.org/html5/html-author/charref

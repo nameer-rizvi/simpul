@@ -37,6 +37,12 @@ const percent = (num1, num2) =>
     ? ((+num1 / +num2) * 100).toFixed(2) + "%"
     : "0%";
 
+const standardDeviation = (array) =>
+  Math.sqrt(
+    array.map((x) => Math.pow(x - mean(array), 2)).reduce((a, b) => a + b) /
+      array.length
+  );
+
 module.exports = {
   change: {
     num: changeNum,
@@ -47,4 +53,5 @@ module.exports = {
   median,
   mode,
   percent,
+  standardDeviation,
 };

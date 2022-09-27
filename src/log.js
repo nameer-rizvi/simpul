@@ -48,7 +48,7 @@ function logGenerator({
   let keyPrefix;
 
   if (!ignoreKeyPrefix) {
-    keyPrefix = capitalize(key).replace(/[0-9]/g, "");
+    keyPrefix = capitalize(key).replace(/[0-9]/g, ".");
     if (!ignoreDots) {
       const maxKeyLength = self
         .map(({ key }) => key.replace(/[0-9]/g, ""))
@@ -100,6 +100,7 @@ const logResolver = (customConfigs = [], option = {}) =>
     { key: "cloud", emoji: "☁️ " },
     { key: "comment", emoji: "💬" },
     { key: "comment2", emoji: "💭" },
+    { key: "console", emoji: "📟" },
     { key: "controller", emoji: "🎛️ " },
     { key: "controls", emoji: "🎛️ " },
     { key: "cronjob", emoji: "⏰" },
@@ -170,6 +171,7 @@ const logResolver = (customConfigs = [], option = {}) =>
     { key: "news", emoji: "📰" },
     { key: "newspaper", emoji: "📰" },
     { key: "notebook", emoji: "📓" },
+    { key: "notification", emoji: "🔔" },
     { key: "ok", emoji: "🆗" },
     { key: "ok2", emoji: "👌" },
     { key: "outbox", emoji: "📤" },
@@ -179,6 +181,7 @@ const logResolver = (customConfigs = [], option = {}) =>
     { key: "password", emoji: "🔑" },
     { key: "payload", emoji: "📦" },
     { key: "pending", emoji: "⌛" },
+    { key: "performance", emoji: "⏱️ " },
     { key: "pinned", emoji: "📌" },
     { key: "plug", emoji: "🔌" },
     { key: "polyfill", emoji: "🔨" },
@@ -226,6 +229,7 @@ const logResolver = (customConfigs = [], option = {}) =>
     { key: "thought", emoji: "💡" },
     { key: "trashed", emoji: "🗑️ " },
     { key: "tv", emoji: "📺" },
+    { key: "twitter", emoji: "🐦" },
     { key: "unlocked", emoji: "🔓" },
     { key: "user", emoji: "👤" },
     { key: "user2", emoji: "🙂" },

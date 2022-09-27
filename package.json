@@ -18,6 +18,7 @@
   "homepage": "https://github.com/nameer-rizvi/simpul#readme",
   "dependencies": {
     "eslint": "^8.15.0",
+    "lodash.clonedeep": "^4.5.0",
     "safe-regex": "^2.1.1"
   }
 }

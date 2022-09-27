@@ -1,7 +1,5 @@
 const { isNumber, isString } = require("./validate");
 
-// https://stackoverflow.com/a/39466341
-
 function ordinalized(number) {
   if (isNumber(number)) {
     if (isString(number)) number = +number;
@@ -13,3 +11,5 @@ function ordinalized(number) {
 }
 
 module.exports = ordinalized;
+
+// Source: https://stackoverflow.com/a/39466341

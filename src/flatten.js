@@ -1,7 +1,5 @@
 const { isObject } = require("./validate");
 
-// https://www.geeksforgeeks.org/flatten-javascript-objects-into-a-single-depth-object/
-
 function flatten(object = {}, delimiter = "_") {
   const result = {};
 
@@ -15,3 +13,5 @@ function flatten(object = {}, delimiter = "_") {
 }
 
 module.exports = flatten;
+
+// Source: https://www.geeksforgeeks.org/flatten-javascript-objects-into-a-single-depth-object/
