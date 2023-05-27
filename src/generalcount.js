@@ -1,4 +1,4 @@
-function generalizedCount(count, option = {}) {
+function generalcount(count, option = {}) {
   const { lang = "en-US", upperCase, ...rest } = option;
 
   let generalized = new Intl.NumberFormat(lang, {
@@ -15,4 +15,4 @@ function generalizedCount(count, option = {}) {
   return generalized;
 }
 
-module.exports = generalizedCount;
+module.exports = generalcount;

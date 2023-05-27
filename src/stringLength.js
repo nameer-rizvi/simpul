@@ -1,12 +1,12 @@
 const validate = require("./validate");
 
-function charLength(string) {
+function charlength(string) {
   if (validate.isString(string)) {
     return string.length;
   }
 }
 
-function wordLength(string) {
+function wordlength(string) {
   if (validate.isStringValid(string)) {
     return string.match(/[\w\d’'-]+/gi).length;
   }
@@ -15,6 +15,6 @@ function wordLength(string) {
 // [1] Alternate: string.split(/\s+\b/).length
 // [2] Alternate: string.match(/\w+/g).length
 
-const stringLength = { char: charLength, word: wordLength };
+const stringlength = { char: charlength, word: wordlength };
 
-module.exports = stringLength;
+module.exports = stringlength;

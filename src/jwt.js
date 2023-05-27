@@ -1,4 +1,4 @@
-const tryCallback = require("./tryCallback");
+const trycallback = require("./trycallback");
 
 function decode(token, callback) {
   const t = token
@@ -13,7 +13,7 @@ function decode(token, callback) {
 }
 
 function decodeJSON(token, callback) {
-  return tryCallback(() => JSON.parse(decode(token)), callback);
+  return trycallback(() => JSON.parse(decode(token)), callback);
 }
 
 const jwt = { decode, decodeJSON };

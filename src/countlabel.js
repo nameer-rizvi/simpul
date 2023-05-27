@@ -1,7 +1,7 @@
 const validate = require("./validate");
 const generalizedCount = require("./generalizedCount");
 
-function numberLabel(count, plural, fullCount) {
+function countlabel(count, plural, fullCount) {
   const number = validate.isNumber(count)
     ? fullCount
       ? count.toLocaleString()
@@ -29,4 +29,4 @@ function numberLabel(count, plural, fullCount) {
   return { full, number, label };
 }
 
-module.exports = numberLabel;
+module.exports = countlabel;

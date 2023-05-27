@@ -1,6 +1,6 @@
 const support = require("./support");
 
-function copyText(text) {
+function copytext(text) {
   if (support.document()) {
     const element = document.createElement("textarea");
 
@@ -16,4 +16,4 @@ function copyText(text) {
   }
 }
 
-module.exports = copyText;
+module.exports = copytext;

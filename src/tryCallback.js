@@ -1,4 +1,4 @@
-function tryCallback(f, c) {
+function trycallback(f, c) {
   try {
     const r = f();
     if (c) c(null, r);
@@ -9,4 +9,4 @@ function tryCallback(f, c) {
   }
 }
 
-module.exports = tryCallback;
+module.exports = trycallback;

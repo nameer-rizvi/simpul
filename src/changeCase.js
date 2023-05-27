@@ -1,3 +1,3 @@
-const changeCase = require("change-case");
+const changecase = require("change-case");
 
-module.exports = changeCase;
+module.exports = changecase;

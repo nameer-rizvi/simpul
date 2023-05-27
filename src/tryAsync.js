@@ -1,4 +1,4 @@
-async function tryAsync(f, c) {
+async function tryasync(f, c) {
   try {
     const r = await f();
     if (c) c(null, r);
@@ -9,4 +9,4 @@ async function tryAsync(f, c) {
   }
 }
 
-module.exports = tryAsync;
+module.exports = tryasync;
