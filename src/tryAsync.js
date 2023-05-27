@@ -1,10 +1,10 @@
-async function tryAsync(_function, callback) {
+async function tryAsync(f, c) {
   try {
-    const result = await _function();
-    if (callback) callback(null, result);
-    return result;
-  } catch (error) {
-    if (callback) callback(error);
+    const r = await f();
+    if (c) c(null, r);
+    return r;
+  } catch (e) {
+    if (c) c(e);
     return;
   }
 }

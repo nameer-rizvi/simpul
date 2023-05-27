@@ -1,4 +1,4 @@
-const { isArray } = require("./validate");
+const validate = require("./validate");
 const clone = require("./clone");
 
 function removeArrayItems(array = [], finder, replaceWith = undefined) {
@@ -6,7 +6,7 @@ function removeArrayItems(array = [], finder, replaceWith = undefined) {
 
   const replaced = [];
 
-  if (isArray(array)) {
+  if (validate.isArray(array)) {
     const arrayClone = clone(array);
     for (let i = 0; i < arrayClone.length; i++) {
       let item = arrayClone[i];

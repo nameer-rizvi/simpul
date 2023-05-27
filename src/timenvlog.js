@@ -1,25 +1,27 @@
-const { isString } = require("./validate");
+const validate = require("./validate");
 const dateformat = require("./dateformat");
 
-function timenvlog(log = "", option = {}) {
-  if (!isString(log)) log = log?.toString?.() || "";
+function timenvlog(log, option = {}) {
+  if (!validate.isString(log)) log = log?.toString?.() || "";
 
-  const environment =
-    process.env.NODE_ENV ||
-    process.env.ENV ||
-    process.env.NODE_ENVIRONMENT ||
-    process.env.ENVIRONMENT;
-
-  if (!option.ignoreEnvironment && environment) log = `[${environment}] ${log}`;
+  let datetime, environment;
 
   if (!option.ignoreTimestamp)
-    log = `[${dateformat(
-      option.date,
-      option.date_format,
-      option.date_option
-    )}] ${log}`;
+    datetime = dateformat(option.date, option.date_format, option.date_option);
 
-  console.log(log);
+  if (!option.ignoreEnvironment)
+    environment = (
+      process.env.NODE_ENV ||
+      process.env.ENV ||
+      process.env.NODE_ENVIRONMENT ||
+      process.env.ENVIRONMENT
+    )?.toUpperCase();
+
+  const timeenv = [datetime, environment].filter(Boolean).join(" @ ");
+
+  if (timeenv && log) {
+    console.log(`[${timeenv}] ${log}`);
+  } else if (log) console.log(log);
 }
 
 module.exports = timenvlog;

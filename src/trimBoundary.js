@@ -5,7 +5,6 @@ function trimBoundary(dirty, boundary, delimiter = " ") {
 
   if (clean) {
     if (!boundary) boundary = clean.charAt(0);
-
     if (clean.startsWith(boundary) && clean.endsWith(boundary))
       clean = clean.substring(1, clean.length - 1).trim();
   }

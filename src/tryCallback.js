@@ -1,10 +1,10 @@
-function tryCallback(_function, callback) {
+function tryCallback(f, c) {
   try {
-    const result = _function();
-    if (callback) callback(null, result);
-    return result;
-  } catch (error) {
-    if (callback) callback(error);
+    const r = f();
+    if (c) c(null, r);
+    return r;
+  } catch (e) {
+    if (c) c(e);
     return;
   }
 }

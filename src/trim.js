@@ -1,6 +1,9 @@
-const { isString } = require("./validate");
+const validate = require("./validate");
 
-const trim = (dirty, delimiter = " ") =>
-  isString(dirty) ? dirty.replace(/\s+/g, delimiter).trim() : dirty;
+function trim(dirty, delimiter = " ") {
+  if (validate.isString(dirty)) {
+    return dirty.replace(/\s+/g, delimiter).trim();
+  }
+}
 
 module.exports = trim;

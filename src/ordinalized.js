@@ -1,8 +1,8 @@
-const { isNumber, isString } = require("./validate");
+const validate = require("./validate");
 
 function ordinalized(number) {
-  if (isNumber(number)) {
-    if (isString(number)) number = +number;
+  if (validate.isNumber(number)) {
+    if (validate.isString(number)) number = +number;
 
     const index = (number / 10) % 10 ^ 1 && number % 10;
 

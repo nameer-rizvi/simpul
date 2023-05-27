@@ -1,15 +1,15 @@
-const { isNumber, isString } = require("./validate");
+const validate = require("./validate");
 const generalizedCount = require("./generalizedCount");
 
-function numberLabel(count, plural, showAlt) {
-  const number = isNumber(count)
-    ? showAlt
+function numberLabel(count, plural, fullCount) {
+  const number = validate.isNumber(count)
+    ? fullCount
       ? count.toLocaleString()
       : generalizedCount(count) || "0"
-    : "0";
+    : "";
 
-  const label = isString(plural)
-    ? isNumber(count)
+  const label = validate.isString(plural)
+    ? validate.isNumber(count)
       ? count === 1
         ? plural.endsWith("ies")
           ? plural.replace("ies", "y")

@@ -1,20 +1,26 @@
-const { isNumber, isArray } = require("./validate");
+const validate = require("./validate");
 
-const changeNum = (num1, num2) =>
-  isNumber(num1) && isNumber(num2) && +(num2 - num1).toFixed(2);
+function changeNum(num1, num2) {
+  if (validate.isNumber(num1) && validate.isNumber(num2)) {
+    return +(num2 - num1).toFixed(2);
+  }
+}
 
-const changePercent = (num1, num2) =>
-  isNumber(num1) &&
-  isNumber(num2) &&
-  +(((num1 - num2) / num1) * -100).toFixed(2);
+function changePercent(num1, num2) {
+  if (validate.isNumber(num1) && validate.isNumber(num2)) {
+    return +(((num1 - num2) / num1) * -100).toFixed(2);
+  }
+}
 
-const changePercentString = (num1, num2) => changePercent(num1, num2) + "%";
-
-const mean = (arr) =>
-  isArray(arr) && arr.reduce((a, b) => a + b, 0) / arr.length;
+function mean(arr) {
+  if (validate.isArray(arr)) {
+    return arr.reduce((a, b) => a + b, 0) / arr.length;
+  }
+}
 
 function median(arr) {
-  if (isArray(arr)) {
+  if (validate.isArray(arr)) {
+    arr = arr.filter(validate.isNumber);
     arr.sort();
     const half = Math.floor(arr.length / 2);
     if (arr.length % 2) return arr[half];
@@ -22,36 +28,46 @@ function median(arr) {
   }
 }
 
-const mode = (arr) =>
-  isArray(arr) &&
-  arr
-    .sort((a, b) => {
+function mode(arr) {
+  if (validate.isArray(arr)) {
+    arr = arr.filter(validate.isNumber);
+    arr.sort((a, b) => {
       const aLength = arr.filter((v) => v === a).length;
       const bLength = arr.filter((v) => v === b).length;
       return aLength - bLength;
-    })
-    .pop();
+    });
+    return arr.pop();
+  }
+}
 
-const percent = (num1, num2) =>
-  isNumber(num1) && isNumber(num2)
-    ? ((+num1 / +num2) * 100).toFixed(2) + "%"
-    : "0%";
+function standardDeviation(arr) {
+  if (validate.isArray(arr)) {
+    arr = arr.filter(validate.isNumber);
+    const me = mean(arr);
+    const sq = arr.map((nu) => Math.pow(nu - me, 2));
+    const su = sq.reduce((a, b) => a + b);
+    const di = su / arr.length;
+    const sd = Math.sqrt(di);
+    return sd;
+  }
+}
 
-const standardDeviation = (array) =>
-  Math.sqrt(
-    array.map((x) => Math.pow(x - mean(array), 2)).reduce((a, b) => a + b) /
-      array.length
-  );
+function percent(num1, num2) {
+  if (validate.isNumber(num1) && validate.isNumber(num2)) {
+    return +((+num1 / +num2) * 100).toFixed(2);
+  }
+}
 
-module.exports = {
+const math = {
   change: {
     num: changeNum,
     percent: changePercent,
-    percentString: changePercentString,
   },
   mean,
   median,
   mode,
-  percent,
   standardDeviation,
+  percent,
 };
+
+module.exports = math;

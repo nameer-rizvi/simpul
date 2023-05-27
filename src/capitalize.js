@@ -1,11 +1,10 @@
-const { isString } = require("./validate");
+const validate = require("./validate");
 
-const capitalize = (string) =>
-  isString(string)
-    ? string
-        .trim()
-        .charAt(0)
-        .toUpperCase() + string.trim().slice(1)
-    : string;
+function capitalize(string) {
+  if (validate.isString(string)) {
+    const trimmed = string.trim();
+    return trimmed.charAt(0).toUpperCase() + trimmed.slice(1);
+  }
+}
 
 module.exports = capitalize;

@@ -1,11 +1,10 @@
-const { isString } = require("./validate");
+const validate = require("./validate");
 
-const removeStrings = (string, removes) =>
-  isString(string)
-    ? removes.reduce(
-        (reducer, remove) => reducer.replace(new RegExp(remove, "gi"), ""),
-        string
-      )
-    : "";
+function removeStrings(string, removes = []) {
+  if (validate.isString(string))
+    return removes.reduce((reducer, remove) => {
+      return reducer.replace(new RegExp(remove, "gi"), "");
+    }, string);
+}
 
 module.exports = removeStrings;

@@ -1,27 +1,25 @@
-const { isNumber, isBoolean } = require("./validate");
+const validate = require("./validate");
 
-function objectKeyGroup({ object = {}, keyStartsWith = "", keyEndsWith = "" }) {
-  const keys = Object.keys(object).filter(
-    (key) =>
-      ((keyStartsWith && key.startsWith(keyStartsWith)) ||
-        (keyEndsWith && key.endsWith(keyEndsWith))) &&
-      (object[key] || isNumber(object[key]) || isBoolean(object[key]))
-  );
+function objectKeyGroup(object = {}, keyStartsWith, keyEndsWith) {
+  const keys = Object.keys(object).filter((key) => {
+    const startsWith = keyStartsWith && key.startsWith(keyStartsWith);
+    const endsWith = keyEndsWith && key.endsWith(keyEndsWith);
+    const isValid = validate.isValid(object[key]);
+    return (startsWith || endsWith) && isValid;
+  });
 
-  const extracted = keys.reduce(
-    (reducer, key) => ({ ...reducer, [key]: object[key] }),
-    {}
-  );
+  const extracted = keys.reduce((reducer, key) => {
+    return { ...reducer, [key]: object[key] };
+  }, {});
 
-  const keysWithoutId = keys.map((key) =>
-    key.replace(keyStartsWith || keyEndsWith || "", "")
-  );
+  const keysWithoutId = keys.map((key) => {
+    return key.replace(keyStartsWith || keyEndsWith, "");
+  });
 
   const extractedWithoutId = keysWithoutId.reduce(
-    (reducer, keyWithoutId, index) => ({
-      ...reducer,
-      [keyWithoutId]: object[keys[index]],
-    }),
+    (reducer, keyWithoutId, index) => {
+      return { ...reducer, [keyWithoutId]: object[keys[index]] };
+    },
     {}
   );
 

@@ -1,7 +1,8 @@
-const tryCallback = require("./tryCallback");
+const validate = require("./validate");
+const support = require("./support");
 
-const urlBase64ToUint8ArrayCallback = (base64String = "", callback) =>
-  tryCallback(() => {
+function urlBase64ToUint8Array(base64String) {
+  if (validate.isBase64(base64String) && support.window()) {
     const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
 
     const base64 = (base64String + padding)
@@ -16,6 +17,7 @@ const urlBase64ToUint8ArrayCallback = (base64String = "", callback) =>
       outputArray[i] = rawData.charCodeAt(i);
 
     return outputArray;
-  }, callback);
+  }
+}
 
-module.exports = urlBase64ToUint8ArrayCallback;
+module.exports = urlBase64ToUint8Array;

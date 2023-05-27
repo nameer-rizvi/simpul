@@ -1,6 +1,7 @@
 const tryCallback = require("./tryCallback");
 
-const parseJSON = (json, callback) =>
-  tryCallback(() => JSON.parse(json), callback);
+function parseJSON(json, callback) {
+  return tryCallback(() => JSON.parse(json), callback);
+}
 
 module.exports = parseJSON;

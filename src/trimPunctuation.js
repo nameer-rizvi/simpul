@@ -1,8 +1,9 @@
 const trim = require("./trim");
 const removePunctuation = require("./removePunctuation");
 
-const trimPunctuation = (dirty, delimiter) =>
-  trim(removePunctuation(dirty), delimiter);
+function trimPunctuation(dirty, delimiter) {
+  return trim(removePunctuation(dirty), delimiter);
+}
 
 module.exports = trimPunctuation;
 

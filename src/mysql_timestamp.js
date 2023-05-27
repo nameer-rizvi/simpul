@@ -1,16 +1,14 @@
-const tryCallback = require("./tryCallback");
-const { isDate } = require("./validate");
+const validate = require("./validate");
 
-const mysql_timestamp = (timestamp, callback) =>
-  tryCallback(() => {
-    timestamp = isDate(timestamp) ? new Date(timestamp) : new Date();
+function mysql_timestamp(timestamp) {
+  timestamp = validate.isDate(timestamp) ? new Date(timestamp) : new Date();
 
-    const mysqlTimestamp = timestamp
-      .toISOString()
-      .replace("T", " ")
-      .replace("Z", "");
+  const mysqlTimestamp = timestamp
+    .toISOString()
+    .replace("T", " ")
+    .replace("Z", "");
 
-    return mysqlTimestamp;
-  }, callback);
+  return mysqlTimestamp;
+}
 
 module.exports = mysql_timestamp;

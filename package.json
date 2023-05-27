@@ -1,10 +1,10 @@
 {
   "name": "simpul",
-  "version": "0.9.2",
+  "version": "0.9.3",
   "description": "Library of simple functions I happen to use in a lot of projects...",
   "main": "src/index.js",
   "scripts": {
-    "lint": "eslint . --ext .js,.jsx; exit 0"
+    "lint": "eslint . --ext .js,.jsx"
   },
   "repository": {
     "type": "git",
@@ -17,7 +17,8 @@
   },
   "homepage": "https://github.com/nameer-rizvi/simpul#readme",
   "dependencies": {
-    "eslint": "^8.15.0",
+    "change-case": "^4.1.2",
+    "eslint": "^8.41.0",
     "lodash.clonedeep": "^4.5.0",
     "safe-regex": "^2.1.1"
   }

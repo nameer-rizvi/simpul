@@ -1,14 +1,11 @@
-const { isValid } = require("./validate");
+const validate = require("./validate");
 
 function removeNullValues(object = {}) {
-  const keys = Object.keys(object);
-
   const clean = {};
 
-  for (let i = keys.length - 1; i >= 0; i--) {
-    let key = keys[i];
+  for (let key of Object.keys(object)) {
     let value = object[key];
-    if (isValid(value)) clean[key] = value;
+    if (validate.isValid(value)) clean[key] = value;
   }
 
   return clean;

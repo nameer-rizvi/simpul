@@ -3,52 +3,78 @@ const jwt = require("./jwt");
 
 // STRING (REQUIRED BY OTHER VALIDATIONS)
 
-const isString = (test) => typeof test === "string";
+function isString(test) {
+  return typeof test === "string";
+}
 
-const isStringValid = (test) => Boolean(isString(test) && test.trim().length);
+function isStringValid(test) {
+  return isString(test) && Boolean(test.trim().length);
+}
 
 // ARRAY
 
-const isArray = (test) => Boolean(test?.constructor === Array);
+function isArray(test) {
+  return Array.isArray(test);
+}
 
-const isArrayValid = (test) => Boolean(isArray(test) && test.length);
+function isArrayValid(test) {
+  return isArray(test) && Boolean(test.length);
+}
 
-const isStringOrArray = (test) => isString(test) || isArray(test);
+function isStringOrArray(test) {
+  return isString(test) || isArray(test);
+}
 
 // BASE64
 
-const isBase64 = (test) =>
-  isStringValid(test) &&
-  test.length % 4 === 0 &&
-  safe(test) &&
-  !/[^A-Z0-9+/=]/i.test(test);
+function isBase64(test) {
+  return (
+    isStringValid(test) &&
+    test.length % 4 === 0 &&
+    safe(test) &&
+    !/[^A-Z0-9+/=]/i.test(test)
+  );
+}
 
 // BOOLEAN
 
-const isBoolean = (test) => typeof test === "boolean";
+function isBoolean(test) {
+  return typeof test === "boolean";
+}
 
-const isBooleanString = (test) => test === "true" || test === "false";
+function isBooleanString(test) {
+  return test === "true" || test === "false";
+}
 
-const isBooleanNumber = (test) => test === 0 || test === 1;
+function isBooleanNumber(test) {
+  return test === 0 || test === 1;
+}
 
-const isBooleanAny = (test) =>
-  isBoolean(test) || isBooleanString(test) || isBooleanNumber(test);
+function isBooleanAny(test) {
+  return isBoolean(test) || isBooleanString(test) || isBooleanNumber(test);
+}
 
 // DATE
 
-const isDate = (test) =>
-  isStringValid(test)
-    ? new Date(test).toString() !== "Invalid Date"
-    : Boolean(test?.constructor === Date);
+function isDate(test) {
+  if (isStringValid(test)) {
+    return new Date(test).toString() !== "Invalid Date";
+  } else return test instanceof Date && !isNaN(test);
+}
 
 // FUNCTION
 
-const isFunction = (test) => Boolean(test?.constructor === Function);
+function isFunction(test) {
+  return test instanceof Function;
+}
 
 // HTTP
 
-const isHTTP = (test) =>
-  isString(test) && (test.startsWith("http://") || test.startsWith("https://"));
+function isHTTP(test) {
+  const http = "http://";
+  const https = "https://";
+  return isString(test) && (test.startsWith(http) || test.startsWith(https));
+}
 
 // JSON
 
@@ -72,23 +98,33 @@ function isJSONString(test) {
 
 // JWT
 
-const isJWT = (test) => isStringValid(test) && Boolean(jwt.decode(test));
+function isJWT(test) {
+  return isStringValid(jwt.decode(test));
+}
 
 // NUMBER
 
-const isNumber = (test) =>
-  isStringValid(test) ? !isNaN(test) : typeof test === "number" && !isNaN(test);
+function isNumber(test) {
+  if (isStringValid(test)) {
+    return !isNaN(test);
+  } else return typeof test === "number" && !isNaN(test);
+}
 
 // OBJECT
 
-const isObject = (test) => Boolean(test?.constructor === Object);
+function isObject(test) {
+  return Boolean(test?.constructor === Object);
+}
 
-const isObjectValid = (test) =>
-  Boolean(isObject(test) && Object.keys(test).length);
+function isObjectValid(test) {
+  return isObject(test) && Boolean(Object.keys(test).length);
+}
 
 // REGEX
 
-const isRegex = (test) => Boolean(test?.constructor === RegExp);
+function isRegex(test) {
+  return test instanceof RegExp;
+}
 
 // VALUE
 

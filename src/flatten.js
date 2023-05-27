@@ -1,12 +1,12 @@
-const { isObject } = require("./validate");
+const validate = require("./validate");
 
 function flatten(object = {}, delimiter = "_") {
   const result = {};
 
-  for (const i in object)
-    if (isObject(object[i])) {
-      const temp = flatten(object[i]);
-      for (const j in temp) result[i + delimiter + j] = temp[j];
+  for (let i in object)
+    if (validate.isObject(object[i])) {
+      let temp = flatten(object[i]);
+      for (let j in temp) result[[i, j].join(delimiter)] = temp[j];
     } else result[i] = object[i];
 
   return result;

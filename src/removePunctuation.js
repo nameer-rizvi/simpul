@@ -1,8 +1,9 @@
-const { isString } = require("./validate");
+const validate = require("./validate");
 
-const removePunctuation = (dirty, delimiter = "") =>
-  isString(dirty)
-    ? dirty.replace(/[`~!@#$%^&*()\-_=+[{\]}\\|;:'",<.>/?]/gi, delimiter)
-    : dirty;
+function removePunctuation(dirty, delimiter = "") {
+  if (validate.isString(dirty)) {
+    return dirty.replace(/[`~!@#$%^&*()\-_=+[{\]}\\|;:'",<.>/?]/gi, delimiter);
+  }
+}
 
 module.exports = removePunctuation;
