@@ -1,5 +1,5 @@
 const validate = require("./validate");
-const dateformat = require("./dateformat");
+const datestring = require("./datestring");
 
 function timenvlog(log, option = {}) {
   if (!validate.isString(log)) log = log?.toString?.() || "";
@@ -7,7 +7,7 @@ function timenvlog(log, option = {}) {
   let datetime, environment;
 
   if (!option.ignoreTimestamp)
-    datetime = dateformat(option.date, option.date_format, option.date_option);
+    datetime = datestring(option.date, option.date_format, option.date_option);
 
   if (!option.ignoreEnvironment)
     environment = (

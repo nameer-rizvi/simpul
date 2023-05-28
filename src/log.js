@@ -2,21 +2,6 @@ const capitalize = require("./capitalize");
 const validate = require("./validate");
 const timenvlog = require("./timenvlog");
 
-// TESTER/SAMPLE:
-//
-// logResolver(undefined, {
-//   ignoreStringifiedNumber: true,
-//   ignoreKeyPrefix: true,
-//   ignoreDots: true,
-//   ignoreNonCriticalLogs: true,
-//   flags: ["minimal"],
-//   ignoreEnvironment: true,
-//   ignoreTimestamp: true,
-//   date: new Date("7/27/1996 1:00 PM"),
-//   date_format: "M.D.Y",
-//   date_option: { military: true },
-// }).yen("dude it's 123123123123", { flag: "minimal" });
-
 function logGenerator({
   log,
   ignoreStringifiedNumber,
@@ -137,3 +122,18 @@ const logResolver = (customConfigs = [], option = {}) =>
   }, {});
 
 module.exports = logResolver;
+
+// TESTER/SAMPLE:
+//
+// logResolver(undefined, {
+//   ignoreStringifiedNumber: true,
+//   ignoreKeyPrefix: true,
+//   ignoreDots: true,
+//   ignoreNonCriticalLogs: true,
+//   flags: ["minimal"],
+//   ignoreEnvironment: true,
+//   ignoreTimestamp: true,
+//   date: new Date("7/27/1996 1:00 PM"),
+//   date_format: "M.D.Y",
+//   date_option: { military: true },
+// }).yen("dude it's 123123123123", { flag: "minimal" });

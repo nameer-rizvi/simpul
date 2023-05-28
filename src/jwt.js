@@ -16,6 +16,4 @@ function decodeJSON(token, callback) {
   return trycallback(() => JSON.parse(decode(token)), callback);
 }
 
-const jwt = { decode, decodeJSON };
-
-module.exports = jwt;
+module.exports = { decode, decodeJSON };

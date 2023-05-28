@@ -15,6 +15,4 @@ function wordlength(string) {
 // [1] Alternate: string.split(/\s+\b/).length
 // [2] Alternate: string.match(/\w+/g).length
 
-const stringlength = { char: charlength, word: wordlength };
-
-module.exports = stringlength;
+module.exports = { char: charlength, word: wordlength };

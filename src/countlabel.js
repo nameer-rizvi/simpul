@@ -1,11 +1,11 @@
 const validate = require("./validate");
-const generalizedCount = require("./generalizedCount");
+const generalcount = require("./generalcount");
 
 function countlabel(count, plural, fullCount) {
   const number = validate.isNumber(count)
     ? fullCount
       ? count.toLocaleString()
-      : generalizedCount(count) || "0"
+      : generalcount(count) || "0"
     : "";
 
   const label = validate.isString(plural)

@@ -1,6 +1,6 @@
 const validate = require("./validate");
 
-function dateformat(date, format, option = {}) {
+function datestring(date, format, option = {}) {
   date = validate.isDate(date) ? new Date(date) : new Date();
 
   const resolver = {
@@ -23,8 +23,6 @@ function dateformat(date, format, option = {}) {
   return timestamp;
 }
 
-module.exports = dateformat;
-
 function zeroify(num) {
   if (num === 0) {
     return "00";
@@ -34,3 +32,5 @@ function zeroify(num) {
     return num;
   }
 }
+
+module.exports = datestring;

@@ -144,7 +144,7 @@ function isValid(test, testAll) {
 
 // INDEX
 
-const validate = {
+module.exports = {
   isString,
   isStringValid,
   isArray,
@@ -167,5 +167,3 @@ const validate = {
   isRegex,
   isValid,
 };
-
-module.exports = validate;

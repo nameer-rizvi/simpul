@@ -40,7 +40,7 @@ function mode(arr) {
   }
 }
 
-function standardDeviation(arr) {
+function standarddeviation(arr) {
   if (validate.isArray(arr)) {
     arr = arr.filter(validate.isNumber);
     const me = mean(arr);
@@ -58,7 +58,7 @@ function percent(num1, num2) {
   }
 }
 
-const math = {
+module.exports = {
   change: {
     num: changeNum,
     percent: changePercent,
@@ -66,8 +66,6 @@ const math = {
   mean,
   median,
   mode,
-  standardDeviation,
+  standarddeviation,
   percent,
 };
-
-module.exports = math;
