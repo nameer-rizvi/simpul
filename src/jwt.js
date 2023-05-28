@@ -1,6 +1,6 @@
 const trycallback = require("./trycallback");
 
-function decode(token, callback) {
+function decode(token) {
   const t = token
     .split(".")[1]
     .replace(/-/g, "+")
