@@ -35,13 +35,13 @@ function month(date) {
   return months[date.getMonth()];
 }
 
-function datewithaddeddays(add = 0, date, constant) {
+function withaddeddays(add = 0, date, constant) {
   date = validate.isDate(date) ? new Date(date) : new Date();
   date.setDate(date.getDate() + add);
   return constant === "STRING" ? date.toLocaleDateString() : date;
 }
 
-function datewithaddedseconds(add = 0, date, constant) {
+function withaddedseconds(add = 0, date, constant) {
   date = validate.isDate(date) ? new Date(date) : new Date();
   date.setSeconds(date.getSeconds() + add);
   return constant === "STRING" ? date.toLocaleDateString() : date;
@@ -76,7 +76,7 @@ function mostrecentworkdate(date, method) {
   date = validate.isDate(date) ? new Date(date) : new Date();
   const day = date.getDay();
   const daysAgo = day === 6 ? -1 : day === 0 ? -2 : 0;
-  return datewithaddeddays(daysAgo, date, method);
+  return withaddeddays(daysAgo, date, method);
 }
 
 function mysql(date) {
@@ -93,8 +93,8 @@ module.exports = {
   months,
   weekday,
   month,
-  datewithaddeddays,
-  datewithaddedseconds,
+  withaddeddays,
+  withaddedseconds,
   daystill,
   isday,
   isfuture,

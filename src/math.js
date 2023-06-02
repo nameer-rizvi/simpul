@@ -58,6 +58,10 @@ function percent(num1, num2) {
   }
 }
 
+function sum(array) {
+  return array.reduce((r, p) => (validate.isNumber(p) ? r + p : r), 0);
+}
+
 module.exports = {
   change: {
     num: changeNum,
@@ -68,4 +72,5 @@ module.exports = {
   mode,
   standarddeviation,
   percent,
+  sum,
 };
