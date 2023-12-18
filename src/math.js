@@ -1,21 +1,54 @@
 const validate = require("./validate");
 
+function simplify(num) {
+  // Readable number.
+  if (validate.isNumber(num)) {
+    if (num > -0.001 && num < 0.001) {
+      return +num.toFixed(6);
+    } else if (num > -1 && num < 1) {
+      return +num.toFixed(4);
+    } else if (num > -1000 && num < 1000) {
+      return +num.toFixed(2);
+    } else {
+      return +num.toFixed(0);
+    }
+  }
+}
+
 function changeNum(num1, num2) {
   if (validate.isNumber(num1) && validate.isNumber(num2)) {
-    return +(num2 - num1).toFixed(2);
+    return simplify(num2 - num1);
   }
 }
 
 function changePercent(num1, num2) {
   if (validate.isNumber(num1) && validate.isNumber(num2)) {
-    return +(((num1 - num2) / num1) * -100).toFixed(2);
+    return simplify(changeNum(num1, num2) / num1);
+  }
+}
+
+function percent(num1, num2) {
+  if (validate.isNumber(num1) && validate.isNumber(num2)) {
+    return simplify((num1 / num2) * 100);
+  }
+}
+
+function discrepancy(num1, num2) {
+  if (validate.isNumber(num1) && validate.isNumber(num2)) {
+    return simplify(Math.abs(num1 - num2));
+  }
+}
+
+function sum(arr) {
+  if (validate.isArray(arr)) {
+    arr = arr.filter(validate.isNumber);
+    return simplify(arr.reduce((r, p) => r + p, 0));
   }
 }
 
 function mean(arr) {
-  if (validate.isArray(arr)) {
-    return arr.reduce((a, b) => a + b, 0) / arr.length;
-  }
+  const sum2 = sum(arr);
+  if (validate.isNumber(sum2)) return simplify(sum2 / arr.length);
 }
 
 function median(arr) {
@@ -24,7 +57,7 @@ function median(arr) {
     arr.sort();
     const half = Math.floor(arr.length / 2);
     if (arr.length % 2) return arr[half];
-    return (arr[half - 1] + arr[half]) / 2;
+    return simplify((arr[half - 1] + arr[half]) / 2);
   }
 }
 
@@ -45,32 +78,24 @@ function standarddeviation(arr) {
     arr = arr.filter(validate.isNumber);
     const me = mean(arr);
     const sq = arr.map((nu) => Math.pow(nu - me, 2));
-    const su = sq.reduce((a, b) => a + b);
+    const su = sq.reduce((a, b) => a + b, 0);
     const di = su / arr.length;
     const sd = Math.sqrt(di);
-    return sd;
+    return simplify(sd);
   }
-}
-
-function percent(num1, num2) {
-  if (validate.isNumber(num1) && validate.isNumber(num2)) {
-    return +((+num1 / +num2) * 100).toFixed(2);
-  }
-}
-
-function sum(array) {
-  return array.reduce((r, p) => (validate.isNumber(p) ? r + p : r), 0);
 }
 
 module.exports = {
+  num: simplify,
   change: {
     num: changeNum,
     percent: changePercent,
   },
+  percent,
+  discrepancy,
+  sum,
   mean,
   median,
   mode,
   standarddeviation,
-  percent,
-  sum,
 };

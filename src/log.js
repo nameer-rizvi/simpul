@@ -19,14 +19,7 @@ function logGenerator({
   log = capitalize(log?.toString?.());
 
   if (validate.isString(log)) {
-    if (!ignoreStringifiedNumber)
-      log = log
-        .split(" ")
-        .map((token) =>
-          validate.isNumber(token) ? Number(token).toLocaleString() : token
-        )
-        .join(" ");
-
+    if (!ignoreStringifiedNumber) log = log.split(" ").map(map).join(" ");
     if (log.charAt(log.length - 1).match(/[a-z0-9)]/i)) log += ".";
   }
 
@@ -53,11 +46,13 @@ function logGenerator({
 
 const logResolver = (customConfigs = [], option = {}) =>
   [
+    { key: "algo", emoji: "🤖" },
     { key: "at", emoji: "➡️ " },
     { key: "aws", emoji: "☁️ " },
     { key: "bank", emoji: "🏦" },
     { key: "bot", emoji: "🤖" },
     { key: "cart", emoji: "🛒" },
+    { key: "cleaner", emoji: "🧹" },
     { key: "cloud", emoji: "☁️ " },
     { key: "comment", emoji: "💬" },
     { key: "console", emoji: "📟" },
@@ -93,6 +88,7 @@ const logResolver = (customConfigs = [], option = {}) =>
     { key: "sendgrid", emoji: "📫" },
     { key: "shop", emoji: "🛒" },
     { key: "signal", emoji: "📡" },
+    { key: "strapi", emoji: "☂️ " },
     { key: "stripe", emoji: "💳" },
     { key: "success", emoji: "✅" },
     { key: "sw", emoji: "👷" },
@@ -120,6 +116,10 @@ const logResolver = (customConfigs = [], option = {}) =>
         }),
     };
   }, {});
+
+function map(token) {
+  return validate.isNumber(token) ? Number(token).toLocaleString() : token;
+}
 
 module.exports = logResolver;
 

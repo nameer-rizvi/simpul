@@ -20,7 +20,7 @@ function objectKeyGroup(object = {}, keyStartsWith, keyEndsWith) {
     (reducer, keyWithoutId, index) => {
       return { ...reducer, [keyWithoutId]: object[keys[index]] };
     },
-    {}
+    {},
   );
 
   return { keys, keysWithoutId, extracted, extractedWithoutId };

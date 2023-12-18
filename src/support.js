@@ -1,15 +1,22 @@
-exports.window = (prop) =>
-  typeof window !== "undefined" && (prop ? prop in window : true);
+exports.window = typeof window !== "undefined";
 
-exports.document = (prop) =>
-  typeof document !== "undefined" && (prop ? prop in document : true);
+exports.document = typeof document !== "undefined";
 
-exports.navigator = (prop) =>
-  exports.window("navigator") && (prop ? prop in window.navigator : true);
+exports.inWindow = (property) => exports.window && property in window;
 
-exports.serviceWorker = () => exports.navigator("serviceWorker");
+exports.serviceWorker =
+  exports.inWindow("navigator") && "serviceWorker" in window.navigator;
 
-exports.Notification = () => exports.window("Notification");
+exports.NotificationGranted =
+  exports.inWindow("Notification") &&
+  window.Notification.permission === "granted";
 
-exports.NotificationPermission = (permission = "granted") =>
-  exports.Notification() && window.Notification.permission === permission;
+exports.localhost =
+  exports.inWindow("location") &&
+  (window.location.hostname === "localhost" ||
+    // [::1] is the IPv6 localhost address.
+    window.location.hostname === "[::1]" ||
+    // 127.0.0.1/8 is considered localhost for IPv4.
+    window.location.hostname.match(
+      /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/,
+    ));

@@ -81,10 +81,7 @@ function mostrecentworkdate(date, method) {
 
 function mysql(date) {
   date = validate.isDate(date) ? new Date(date) : new Date();
-  const mysqldate = date
-    .toISOString()
-    .replace("T", " ")
-    .replace("Z", "");
+  const mysqldate = date.toISOString().replace("T", " ").replace("Z", "");
   return mysqldate;
 }
 

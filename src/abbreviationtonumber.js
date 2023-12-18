@@ -1,16 +1,13 @@
 const validate = require("./validate");
 
-function abbreviationtonumber(abbreviation) {
+function abbreviationToNumber(abbreviation) {
   if (validate.isString(abbreviation)) {
     const key = abbreviation.slice(-1).toLowerCase();
 
     const digits = { t: 12, b: 9, m: 6, k: 3 }[key];
 
     if (digits) {
-      const splits = abbreviation
-        .replace(/ /, "")
-        .slice(0, -1)
-        .split(".");
+      const splits = abbreviation.replace(/ /, "").slice(0, -1).split(".");
 
       let stringified = splits[0];
 
@@ -18,7 +15,9 @@ function abbreviationtonumber(abbreviation) {
 
       return Number(stringified);
     }
+
+    return Number(abbreviation);
   }
 }
 
-module.exports = abbreviationtonumber;
+module.exports = abbreviationToNumber;

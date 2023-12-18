@@ -1,11 +1,9 @@
 const validate = require("./validate");
-const trim = require("./trim");
+const trimPunctuation = require("./trimPunctuation");
 
 function tokenize(string) {
   const tokens = validate.isString(string)
-    ? trim(string)
-        .split(" ")
-        .filter(Boolean)
+    ? trimPunctuation(string).split(" ").filter(Boolean)
     : [];
 
   return { tokens, set: [...new Set(tokens)] };
