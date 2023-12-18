@@ -7,7 +7,7 @@ function charlength(string) {
 }
 
 function wordlength(string) {
-  if (validate.isStringValid(string)) {
+  if (validate.isString(string)) {
     return string.match(/[\w\d’'-]+/gi).length;
   }
 }
