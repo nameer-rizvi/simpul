@@ -1,29 +1,31 @@
-function pricehistorydate(keymap, curr, candle) {
-  let date = new Date(curr[keymap.datetime]);
+function pricehistorydate(option, curr, candle) {
+  let date = new Date(curr[option.datetime]);
 
   candle.dateString = date.toLocaleString();
 
   candle.dateObject = date;
 
-  candle.dateYear = date.getFullYear();
+  if (option.date === true) {
+    candle.dateYear = date.getFullYear();
 
-  candle.dateQuarter = Math.floor((date.getMonth() + 3) / 3);
+    candle.dateQuarter = Math.floor((date.getMonth() + 3) / 3);
 
-  candle.dateMonth = date.getMonth() + 1;
+    candle.dateMonth = date.getMonth() + 1;
 
-  candle.dateMonthName = date.toLocaleString("default", { month: "long" });
+    candle.dateMonthName = date.toLocaleString("default", { month: "long" });
 
-  candle.dateDate = date.getDate();
+    candle.dateDate = date.getDate();
 
-  candle.dateWeekday = date.getDay();
+    candle.dateWeekday = date.getDay();
 
-  candle.dateWeekdayName = date.toLocaleDateString("default", {
-    weekday: "long",
-  });
+    candle.dateWeekdayName = date.toLocaleDateString("default", {
+      weekday: "long",
+    });
 
-  candle.dateHour = date.getHours();
+    candle.dateHour = date.getHours();
 
-  candle.dateMinute = date.getMinutes();
+    candle.dateMinute = date.getMinutes();
+  }
 }
 
 module.exports = pricehistorydate;

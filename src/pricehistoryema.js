@@ -1,20 +1,22 @@
 const math = require("./math");
 
-function pricehistoryema(candle, series) {
-  ema(9, series, candle);
+function pricehistoryema(option, candle, series) {
+  if (option.ema === true) {
+    ema(9, series, candle);
 
-  ema(12, series, candle);
+    ema(12, series, candle);
 
-  ema(26, series, candle);
+    ema(26, series, candle);
+  }
 }
 
-function ema(period, series, candle, numKey = "priceLast") {
+function ema(period, series, candle, numKey = "priceClose") {
   if (series.length > period) {
     let prev = series[series.length - 2];
 
     let key = `ema${period}`;
 
-    if (numKey !== "priceLast") key += numKey;
+    if (numKey !== "priceClose") key += numKey;
 
     let prevEMA = prev[key];
 

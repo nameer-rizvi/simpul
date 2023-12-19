@@ -2,7 +2,7 @@ const pricehistorytrendprops = [
   "priceOpen",
   "priceHigh",
   "priceLow",
-  "priceLast",
+  "priceClose",
   "priceChange",
   "priceRange",
   "volume",

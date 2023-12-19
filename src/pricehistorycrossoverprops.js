@@ -2,7 +2,7 @@ const pricehistorycrossoverprops = [
   "priceOpen",
   "priceHigh",
   "priceLow",
-  "priceLast",
+  "priceClose",
   "vwap",
   "ema9",
   "ema12",

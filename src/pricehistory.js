@@ -8,77 +8,91 @@ const pricehistorycolor = require("./pricehistorycolor");
 const pricehistorysma = require("./pricehistorysma");
 const pricehistorytrend = require("./pricehistorytrend");
 const pricehistorycrossover = require("./pricehistorycrossover");
+const pricehistoryanchor = require("./pricehistoryanchor");
+const pricehistoryvwapdisc = require("./pricehistoryvwapdisc");
 
-function pricehistory(datas, keymap = {}) {
-  if (!keymap.open) keymap.open = "open";
+function pricehistory(datas, option) {
+  option = {
+    open: "open",
+    high: "high",
+    low: "low",
+    close: "close",
+    volume: "volume",
+    datetime: "datetime",
+    periods: [5, 10, 20, 50, 100, 200],
+    valueCapAt: 100,
+    date: false,
+    price: true,
+    vwap: true,
+    rsi: true,
+    ema: true,
+    macd: true,
+    color: true,
+    sma: true,
+    trend: false,
+    crossover: false,
+    anchor: false,
+    vwapdisc: false,
+    ...option,
+  };
 
-  if (!keymap.high) keymap.high = "high";
-
-  if (!keymap.low) keymap.low = "low";
-
-  if (!keymap.close) keymap.close = "close";
-
-  if (!keymap.volume) keymap.volume = "volume";
-
-  if (!keymap.datetime) keymap.datetime = "datetime";
+  if (!option.basePrice) option.basePrice = datas[0][option.open];
 
   const candles = [];
-
-  const basePrice = datas[0][keymap.open];
-
-  const periods = [5, 10, 20, 50, 100, 200];
 
   for (let i = 0; i < datas.length; i++) {
     let curr = datas[i];
 
     let candle = {};
 
-    pricehistorydate(keymap, curr, candle);
+    pricehistorydate(option, curr, candle);
 
-    pricehistoryprice(keymap, curr, candle, basePrice);
+    pricehistoryprice(option, curr, candle);
 
     let series = [...candles, candle];
 
-    pricehistoryvwap(candle, series);
+    pricehistoryvwap(option, candle, series);
 
-    pricehistoryvwap(candle, series.slice(-1), 1);
+    pricehistoryvwap(option, candle, series.slice(-1), 1);
 
-    pricehistoryrsi(candle, series);
+    pricehistoryrsi(option, candle, series);
 
-    pricehistoryema(candle, series);
+    pricehistoryema(option, candle, series);
 
-    pricehistorymacd(candle, series);
+    pricehistorymacd(option, candle, series);
 
-    pricehistorycolor(candle, series);
+    pricehistorycolor(option, candle, series);
 
-    for (let period of periods) {
+    for (let period of option.periods) {
       if (series.length >= period) {
         let seriesSlice = series.slice(-period);
 
-        pricehistorysma(candle, seriesSlice, period);
+        pricehistorysma(option, candle, seriesSlice, period);
 
-        pricehistoryvwap(candle, seriesSlice, period);
+        pricehistoryvwap(option, candle, seriesSlice, period);
 
-        pricehistorycolor(candle, seriesSlice, period);
+        pricehistorycolor(option, candle, seriesSlice, period);
       }
     }
 
-    pricehistorytrend(candle, series);
+    pricehistorytrend(option, candle, series);
 
-    pricehistorycrossover(candle, series);
+    pricehistorycrossover(option, candle, series);
+
+    pricehistoryanchor(option, candle);
 
     candles.push(candle);
   }
 
-  const today = candles[candles.length - 1];
+  pricehistoryvwapdisc(option, candles);
 
-  const yesterday = candles[candles.length - 2];
+  const curr = candles[candles.length - 1];
 
-  const valueCap = keymap.valueCapAt
-    ? yesterday.sma5VwapValue * keymap.valueCapAt
-    : yesterday.sma5VwapValue;
+  const prev = candles[candles.length - 2];
 
-  return { candles, today, yesterday, valueCap };
+  const valueCap = prev.sma5VwapValue * option.valueCapAt;
+
+  return { candles, curr, prev, valueCap };
 }
 
 module.exports = pricehistory;

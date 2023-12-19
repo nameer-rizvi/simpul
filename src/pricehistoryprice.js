@@ -1,19 +1,27 @@
 const math = require("./math");
 
-function pricehistoryprice(keymap, curr, candle, basePrice) {
-  candle.priceOpen = curr[keymap.open];
+function pricehistoryprice(option, curr, candle) {
+  candle.priceOpen = curr[option.open];
 
-  candle.priceHigh = curr[keymap.high];
+  candle.priceHigh = curr[option.high];
 
-  candle.priceLow = curr[keymap.low];
+  candle.priceLow = curr[option.low];
 
-  candle.priceLast = curr[keymap.close];
+  candle.priceClose = curr[option.close];
 
-  candle.priceChange = math.change.percent(basePrice, candle.priceLast);
+  if (option.price === true) {
+    candle.priceChange = math.num(
+      math.change.percent(option.basePrice, candle.priceClose) * 100,
+    );
 
-  candle.priceRange = math.discrepancy(candle.priceLow, candle.priceHigh);
+    candle.priceRange = math.discrepancy(candle.priceLow, candle.priceHigh);
+  }
 
-  candle.volume = curr[keymap.volume];
+  candle.volume = curr[option.volume];
+
+  if (option.vwapdisc === true) {
+    candle.volumeScale = candle.volume;
+  }
 }
 
 module.exports = pricehistoryprice;

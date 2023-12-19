@@ -1,50 +1,56 @@
 const math = require("./math");
 
-function pricehistoryvwap(candle, series, period) {
-  let price = 0;
+function pricehistoryvwap(option, candle, series, period) {
+  if (option.vwap === true) {
+    let price = 0;
 
-  let pv = 0;
+    let pv = 0;
 
-  let v = 0;
+    let v = 0;
 
-  for (let s of series) {
-    let isValid =
-      typeof s.priceHigh === "number" &&
-      typeof s.priceLow === "number" &&
-      typeof s.priceLast === "number" &&
-      typeof s.volume === "number";
+    for (let s of series) {
+      let isValid =
+        typeof s.priceHigh === "number" &&
+        typeof s.priceLow === "number" &&
+        typeof s.priceClose === "number" &&
+        typeof s.volume === "number";
 
-    if (isValid) {
-      price = (s.priceHigh + s.priceLow + s.priceLast) / 3;
+      if (isValid) {
+        price = (s.priceHigh + s.priceLow + s.priceClose) / 3;
 
-      pv += price * s.volume;
+        pv += price * s.volume;
 
-      v += s.volume;
+        v += s.volume;
+      }
     }
-  }
 
-  let vwap = pv / v;
+    let vwap = pv / v;
 
-  let vwapSignal = -math.change.percent(price, vwap) * 100;
+    let vwapSignal = math.change.percent(vwap, price) * 100;
 
-  let vwapValue = pv;
+    let vwapValue = pv;
 
-  if (period) {
-    candle[`sma${period}Vwap`] = math.num(vwap);
+    if (option.sma === true && period) {
+      candle[`sma${period}Vwap`] = math.num(vwap);
 
-    candle[`sma${period}VwapSignal`] = math.num(vwapSignal);
+      candle[`sma${period}VwapSignal`] = math.num(vwapSignal);
 
-    candle[`sma${period}VwapValue`] = math.num(vwapValue / period);
-  } else {
-    candle.vwap = math.num(vwap);
+      candle[`sma${period}VwapValue`] = math.num(vwapValue / period);
 
-    candle.vwapSignal = math.num(vwapSignal);
+      if (option.vwapdisc === true && period === 1) {
+        candle.vwapValueScale = candle[`sma${period}VwapValue`];
+      }
+    } else {
+      candle.vwap = math.num(vwap);
 
-    candle.vwapValue = math.num(vwapValue);
+      candle.vwapSignal = math.num(vwapSignal);
 
-    candle.volumeTotal = math.num(v);
+      candle.vwapValue = math.num(vwapValue);
 
-    candle.volumeValue = math.num(price * candle.volume);
+      candle.volumeTotal = math.num(v);
+
+      candle.volumeValue = math.num(price * candle.volume);
+    }
   }
 }
 
