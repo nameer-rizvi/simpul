@@ -9,9 +9,9 @@ const pricehistorysma = require("./pricehistorysma");
 const pricehistorytrend = require("./pricehistorytrend");
 const pricehistorycrossover = require("./pricehistorycrossover");
 const pricehistoryanchor = require("./pricehistoryanchor");
-const pricehistoryvwapdisc = require("./pricehistoryvwapdisc");
+const pricehistoryscales = require("./pricehistoryscales");
 
-function pricehistory(datas, option) {
+function pricehistory(datas = [], option) {
   option = {
     open: "open",
     high: "high",
@@ -32,11 +32,11 @@ function pricehistory(datas, option) {
     trend: false,
     crossover: false,
     anchor: false,
-    vwapdisc: false,
+    scales: [],
     ...option,
   };
 
-  if (!option.basePrice) option.basePrice = datas[0][option.open];
+  if (!option.basePrice) option.basePrice = datas[0]?.[option.open];
 
   const candles = [];
 
@@ -84,13 +84,19 @@ function pricehistory(datas, option) {
     candles.push(candle);
   }
 
-  pricehistoryvwapdisc(option, candles);
+  pricehistoryscales(option, candles);
 
   const curr = candles[candles.length - 1];
 
   const prev = candles[candles.length - 2];
 
-  const valueCap = prev.sma5VwapValue * option.valueCapAt;
+  const valueCap = prev?.sma5VwapValue
+    ? prev?.sma5VwapValue * (option.valueCapAt / 100)
+    : prev?.sma1VwapValue
+    ? prev?.sma1VwapValue * (option.valueCapAt / 100)
+    : prev?.vwapValue
+    ? prev?.vwapValue * (option.valueCapAt / 100)
+    : undefined;
 
   return { candles, curr, prev, valueCap };
 }

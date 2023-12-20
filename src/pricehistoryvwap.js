@@ -36,10 +36,6 @@ function pricehistoryvwap(option, candle, series, period) {
       candle[`sma${period}VwapSignal`] = math.num(vwapSignal);
 
       candle[`sma${period}VwapValue`] = math.num(vwapValue / period);
-
-      if (option.vwapdisc === true && period === 1) {
-        candle.vwapValueScale = candle[`sma${period}VwapValue`];
-      }
     } else {
       candle.vwap = math.num(vwap);
 

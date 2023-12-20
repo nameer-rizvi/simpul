@@ -7,8 +7,9 @@ function pricehistorysma(option, candle, series, period) {
 
       candle[`sma${period}`] = sma;
 
-      candle[`sma${period}Signal`] =
-        math.change.percent(sma, candle.priceClose) * 100;
+      candle[`sma${period}Signal`] = math.num(
+        math.change.percent(sma, candle.priceClose) * 100,
+      );
     }
 
     if (option.rsi === true && candle.rsi) {

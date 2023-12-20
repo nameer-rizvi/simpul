@@ -18,10 +18,6 @@ function pricehistoryprice(option, curr, candle) {
   }
 
   candle.volume = curr[option.volume];
-
-  if (option.vwapdisc === true) {
-    candle.volumeScale = candle.volume;
-  }
 }
 
 module.exports = pricehistoryprice;

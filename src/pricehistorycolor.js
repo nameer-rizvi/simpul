@@ -1,11 +1,23 @@
 const math = require("./math");
 
 function pricehistorycolor(option, candle, series, period) {
+  let countColor = { green: 0, red: 0, gray: 0, total: 0 };
+
+  let countVolume = { green: 0, red: 0, gray: 0, total: 0 };
+
+  function getColor(a, b) {
+    return a > b ? "green" : a < b ? "red" : "gray";
+  }
+
+  function getPercent(num) {
+    return math.percent(num, countColor.total);
+  }
+
+  function getPercent2(num) {
+    return math.percent(num, countVolume.total);
+  }
+
   if (option.color === true) {
-    let countColor = { green: 0, red: 0, gray: 0, total: 0 };
-
-    let countVolume = { green: 0, red: 0, gray: 0, total: 0 };
-
     for (let s of series) {
       if (s.priceOpen && s.priceClose) {
         let color = getColor(s.priceClose, s.priceOpen);
@@ -20,18 +32,6 @@ function pricehistorycolor(option, candle, series, period) {
           countVolume.total += s.volume;
         }
       }
-    }
-
-    function getColor(a, b) {
-      return a > b ? "green" : a < b ? "red" : "gray";
-    }
-
-    function getPercent(num) {
-      return math.percent(num, countColor.total);
-    }
-
-    function getPercent2(num) {
-      return math.percent(num, countVolume.total);
     }
 
     if (option.sma === true && period) {
