@@ -7,7 +7,7 @@ function pricehistoryscales(option, candles) {
       for (let key of option.scales) {
         if (key === "vwapdisc") {
           candle.volumeScale = candle.volume;
-          candle.sma5VwapValueScale = candle.sma5VwapValue;
+          candle.sma1VwapValueScale = candle.sma1VwapValue;
         } else {
           candle[`${key}Scale`] = candle[key];
         }
@@ -17,7 +17,7 @@ function pricehistoryscales(option, candles) {
     for (let key of option.scales) {
       if (key === "vwapdisc") {
         scale(candles, "volumeScale");
-        scale(candles, "sma5VwapValueScale");
+        scale(candles, "sma1VwapValueScale");
       } else {
         scale(candles, `${key}Scale`);
       }
@@ -27,7 +27,7 @@ function pricehistoryscales(option, candles) {
       for (let candle of candles) {
         candle.volumeVwapValueDiscrepancy = math.change.num(
           candle.volumeScale,
-          candle.sma5VwapValueScale,
+          candle.sma1VwapValueScale,
         );
       }
     }
