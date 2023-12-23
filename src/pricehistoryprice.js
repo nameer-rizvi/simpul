@@ -15,6 +15,10 @@ function pricehistoryprice(option, curr, candle) {
     );
 
     candle.priceRange = math.discrepancy(candle.priceLow, candle.priceHigh);
+
+    candle.priceRangeDiff = math.num(
+      math.change.percent(candle.priceLow, candle.priceHigh) * 100,
+    );
   }
 
   candle.volume = curr[option.volume];
