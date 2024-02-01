@@ -20,8 +20,6 @@ function pricehistoryprice(option, curr, candle) {
       math.change.percent(candle.priceLow, candle.priceHigh) * 100,
     );
   }
-
-  candle.volume = curr[option.volume];
 }
 
 module.exports = pricehistoryprice;

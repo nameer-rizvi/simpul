@@ -50,7 +50,7 @@ function pricehistoryscales(option, candles) {
           let prop =
             key === "vwapdisc"
               ? "volumeVwapValueDiscrepancy"
-              : "vvcvg"
+              : key === "vvcvg"
               ? "vvcvg"
               : `${key}Scale`;
           if (curr[prop] > prev?.[prop]) {

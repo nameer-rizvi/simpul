@@ -45,6 +45,7 @@ const simpul = {
   pricehistorysma: require("./pricehistorysma"),
   pricehistorytrend: require("./pricehistorytrend"),
   pricehistorytrendprops: require("./pricehistorytrendprops"),
+  pricehistoryvolume: require("./pricehistoryvolume"),
   pricelimit: require("./pricelimit"),
   recursively: require("./recursively"),
   reduceobject: require("./reduceobject"),

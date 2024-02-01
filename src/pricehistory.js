@@ -1,5 +1,6 @@
 const pricehistorydate = require("./pricehistorydate");
 const pricehistoryprice = require("./pricehistoryprice");
+const pricehistoryvolume = require("./pricehistoryvolume");
 const pricehistoryvwap = require("./pricehistoryvwap");
 const pricehistoryrsi = require("./pricehistoryrsi");
 const { pricehistoryema } = require("./pricehistoryema");
@@ -23,6 +24,9 @@ function pricehistory(datas = [], option) {
     valueCapAt: 100,
     date: false,
     price: true,
+    volumefill: false,
+    volumefillperiod: undefined,
+    obv: false,
     vwap: true,
     rsi: true,
     ema: true,
@@ -50,6 +54,8 @@ function pricehistory(datas = [], option) {
     pricehistoryprice(option, curr, candle);
 
     let series = [...candles, candle];
+
+    pricehistoryvolume(option, curr, candle, series);
 
     pricehistoryvwap(option, candle, series);
 
