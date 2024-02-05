@@ -31,6 +31,7 @@ const simpul = {
   paginationProps: require("./paginationProps"),
   parseCommafiedNumber: require("./parseCommafiedNumber"),
   parsejson: require("./parsejson"),
+  peaks: require("./peaks"),
   pricehistory: require("./pricehistory"),
   pricehistoryanchor: require("./pricehistoryanchor"),
   pricehistorycolor: require("./pricehistorycolor"),
