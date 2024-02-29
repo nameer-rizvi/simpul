@@ -3,7 +3,7 @@ const math = require("./math");
 function pricehistorysma(option, candle, series, period) {
   if (option.sma === true) {
     if (!candle[`sma${period}`] && candle.priceClose) {
-      const sma = math.mean(series.map((c) => c.priceClose));
+      let sma = math.mean(series.map((c) => c.priceClose));
 
       candle[`sma${period}`] = sma;
 

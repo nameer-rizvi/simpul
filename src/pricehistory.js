@@ -24,6 +24,7 @@ function pricehistory(datas = [], option) {
     valueCapAt: 100,
     date: false,
     price: true,
+    leverage: false,
     volumefill: false,
     volumefillperiod: undefined,
     obv: false,
@@ -51,7 +52,7 @@ function pricehistory(datas = [], option) {
 
     pricehistorydate(option, curr, candle);
 
-    pricehistoryprice(option, curr, candle);
+    pricehistoryprice(option, curr, candle, candles[candles.length - 1]);
 
     let series = [...candles, candle];
 
