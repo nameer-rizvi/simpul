@@ -1,8 +1,7 @@
 const validate = require("./validate");
+const math = require("./math");
 
-// Format: "[[position, number, type]]"
-
-function peaks(array) {
+function peaks(array, rank = false) {
   const results = [];
 
   if (validate.isArray(array)) {
@@ -15,17 +14,22 @@ function peaks(array) {
         validate.isNumber(b) &&
         validate.isNumber(c)
       ) {
-        if (Math.abs(a) < Math.abs(b) && Math.abs(b) >= Math.abs(c)) {
-          if (b > 0) results.push([i, b, "top"]);
-          if (b < 0) results.push([i, b, "bottom"]);
-        }
-      } else if (validate.isNumber(a) && validate.isNumber(b)) {
-        if (Math.abs(a) < Math.abs(b)) {
-          if (b > 0) results.push([i, b, "top"]);
-          if (b < 0) results.push([i, b, "bottom"]);
+        let type;
+        if (b > a && b >= c) type = "top";
+        if (b < a && b <= c) type = "bottom";
+        if (type) {
+          let last = results[results.length - 1];
+          let changeNum = Math.abs(math.change.num(last?.value, b)) || 0;
+          results.push({ index: i, value: b, type, changeNum });
         }
       }
     }
+  }
+
+  if (rank) {
+    results.sort((a, b) => b.changeNum - a.changeNum);
+    for (let i = 0; i < results.length; i++) results[i].changeRank = i + 1;
+    results.sort((a, b) => a.index - b.index);
   }
 
   return results;
