@@ -59,6 +59,7 @@ const simpul = {
   scale: require("./scale"),
   sentimentemoji: require("./sentimentemoji"),
   shuffle: require("./shuffle"),
+  slug: require("./slug"),
   stringlength: require("./stringlength"),
   stringnumber: require("./stringnumber"),
   stringtest: require("./stringtest"),
