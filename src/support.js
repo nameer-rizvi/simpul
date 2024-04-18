@@ -20,3 +20,10 @@ exports.localhost =
     window.location.hostname.match(
       /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/,
     ));
+
+exports.module = function isModuleSupported(name) {
+  try {
+    if (require.resolve(name)) return true;
+  } catch {}
+  return false;
+};
