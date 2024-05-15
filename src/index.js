@@ -3,6 +3,7 @@ const simpul = {
   applyValueToNumber: require("./applyValueToNumber"),
   base64: require("./base64"),
   batchify: require("./batchify"),
+  bubblesort: require("./bubblesort"),
   capitalize: require("./capitalize"),
   changecase: require("./changecase"),
   changeindex: require("./changeindex"),

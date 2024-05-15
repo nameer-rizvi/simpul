@@ -1,3 +1,4 @@
+const pricehistoryvolumerate = require("./pricehistoryvolumerate");
 const pricehistorydate = require("./pricehistorydate");
 const pricehistoryprice = require("./pricehistoryprice");
 const pricehistoryvolume = require("./pricehistoryvolume");
@@ -45,6 +46,8 @@ function pricehistory(datas = [], option) {
 
   const candles = [];
 
+  const volumerate = pricehistoryvolumerate(datas, option);
+
   for (let i = 0; i < datas.length; i++) {
     let curr = datas[i];
 
@@ -56,7 +59,7 @@ function pricehistory(datas = [], option) {
 
     let series = [...candles, candle];
 
-    pricehistoryvolume(option, curr, candle, series);
+    pricehistoryvolume(option, curr, candle, series, volumerate);
 
     pricehistoryvwap(option, candle, series);
 
