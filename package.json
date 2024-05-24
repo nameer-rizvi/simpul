@@ -6,7 +6,10 @@
   "scripts": {
     "lint": "npx eslint src/**; exit 0"
   },
-  "repository": "git+https://github.com/nameer-rizvi/simpul.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nameer-rizvi/simpul.git"
+  },
   "author": "Nameer Rizvi (https://github.com/nameer-rizvi)",
   "license": "ISC",
   "bugs": "https://github.com/nameer-rizvi/simpul/issues",
