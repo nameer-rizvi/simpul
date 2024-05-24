@@ -2,7 +2,7 @@
 
 // TODO
 
-function copy(string) {
+function copy() {
   // if (support.module("child_process")) {
   //   const proc = require("child_process").spawn("pbcopy");
   //   proc.stdin.write(string);

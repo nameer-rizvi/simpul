@@ -1,27 +1,26 @@
 {
   "name": "simpul",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Library of utility functions for personal use.",
   "main": "src/index.js",
   "scripts": {
-    "lint": "eslint . --ext .js,.jsx; exit 0"
+    "lint": "npx eslint src/**; exit 0"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nameer-rizvi/simpul.git"
-  },
+  "repository": "git+https://github.com/nameer-rizvi/simpul.git",
   "author": "Nameer Rizvi (https://github.com/nameer-rizvi)",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/nameer-rizvi/simpul/issues"
-  },
+  "bugs": "https://github.com/nameer-rizvi/simpul/issues",
   "homepage": "https://github.com/nameer-rizvi/simpul#readme",
   "dependencies": {
     "change-case": "4.1.2",
-    "eslint": "^8.56.0",
     "he": "^1.2.0",
     "lodash.clonedeep": "^4.5.0",
     "safe-regex": "^2.1.1",
     "string-strip-html": "8.5.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.3.0",
+    "eslint": "^9.3.0",
+    "globals": "^15.3.0"
   }
 }
