@@ -20,7 +20,7 @@ const simpul = {
   escaper: require("./escaper"),
   flatten: require("./flatten"),
   generalcount: require("./generalcount"),
-  isEnv: require("./isEnv"),
+  isEnv: require("./isEnv"), // chatgpt bookmark
   jwt: require("./jwt"),
   keychange: require("./keychange"),
   log: require("./log"),
