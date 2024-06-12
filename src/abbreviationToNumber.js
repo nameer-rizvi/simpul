@@ -1,23 +1,27 @@
 const validate = require("./validate");
 
 function abbreviationToNumber(abbreviation) {
-  if (validate.isString(abbreviation)) {
-    const key = abbreviation.slice(-1).toLowerCase();
+  if (validate.isNumber(abbreviation)) return Number(abbreviation);
 
-    const digits = { t: 12, b: 9, m: 6, k: 3 }[key];
+  if (!validate.isString(abbreviation)) return;
 
-    if (digits) {
-      const splits = abbreviation.replace(/ /, "").slice(0, -1).split(".");
+  abbreviation = abbreviation.replace(/ /g, "");
 
-      let stringified = splits[0];
+  const key = abbreviation.slice(-1).toLowerCase();
 
-      for (let i = 0; i < digits; i++) stringified += splits[1]?.[i] ?? "0";
+  const digits = { t: 12, b: 9, m: 6, k: 3 }[key];
 
-      return Number(stringified);
-    }
+  if (!digits) return Number(abbreviation);
 
-    return Number(abbreviation);
-  }
+  const parts = abbreviation.slice(0, -1).split(".");
+
+  let numberString = parts[0];
+
+  if (parts[1]) numberString += parts[1].slice(0, digits);
+
+  numberString = numberString.padEnd(parts[0].length + digits, "0");
+
+  return Number(numberString);
 }
 
 module.exports = abbreviationToNumber;

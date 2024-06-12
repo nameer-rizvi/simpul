@@ -10,8 +10,7 @@ function changeindex(array = [], oldIndex, newIndex) {
   }
 
   if (newIndex >= array.length) {
-    let k = newIndex - array.length + 1;
-    while (k--) array.push(undefined);
+    array.length = newIndex + 1; // Extend array length if necessary
   }
 
   array.splice(newIndex, 0, array.splice(oldIndex, 1)[0]);

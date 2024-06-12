@@ -1,22 +1,11 @@
 const validate = require("./validate");
-const stringStripHtml = require("string-strip-html");
 const trim = require("./trim");
 const he = require("he");
+const stringStripHtml = require("string-strip-html");
 
 function cleanstring(string) {
-  if (validate.isString(string)) {
-    let clean = string;
-
-    clean = stringStripHtml.stripHtml(clean).result;
-
-    clean = he.decode(clean);
-
-    clean = trim(clean);
-
-    return clean;
-  }
-
-  return string;
+  if (!validate.isString(string)) return string;
+  return trim(he.decode(stringStripHtml.stripHtml(string).result));
 }
 
 module.exports = cleanstring;

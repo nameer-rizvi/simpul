@@ -1,6 +1,8 @@
 function generalcount(count, option = {}) {
   const { lang = "en-US", upperCase, ...rest } = option;
 
+  if (typeof count !== "number") return;
+
   let generalized = new Intl.NumberFormat(lang, {
     maximumFractionDigits: 1,
     notation: "compact",

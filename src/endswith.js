@@ -1,63 +1,44 @@
 function endswith(string = "") {
   string = string.trim();
 
-  const period = string.endsWith(".");
+  const lastChar = string[string.length - 1];
 
-  const question = string.endsWith("?");
-
-  const exclamation = string.endsWith("!");
-
-  const comma = string.endsWith(",");
-
-  const colon = string.endsWith(":");
-
-  const semicolon = string.endsWith(";");
-
-  const dash = string.endsWith("-");
-
-  const hyphen = string.endsWith("—");
-
-  const bracket = string.endsWith("]");
-
-  const brace = string.endsWith("}");
-
-  const parenthesis = string.endsWith(")");
-
-  const apostraphe = string.endsWith("'");
-
-  const quotation = string.endsWith('"');
-
-  const ellipsis = string.endsWith("...") || string.endsWith("…");
-
-  const sentence = period || question || exclamation;
-
-  const incomplete1 = comma || colon || semicolon;
-
-  const incomplete2 = dash || hyphen;
-
-  const incomplete3 =
-    bracket || brace || parenthesis || apostraphe || quotation;
-
-  return {
-    period,
-    question,
-    exclamation,
-    comma,
-    colon,
-    semicolon,
-    dash,
-    hyphen,
-    bracket,
-    brace,
-    parenthesis,
-    apostraphe,
-    quotation,
-    ellipsis,
-    sentence,
-    incomplete1,
-    incomplete2,
-    incomplete3,
+  const punctuation = {
+    period: lastChar === ".",
+    question: lastChar === "?",
+    exclamation: lastChar === "!",
+    comma: lastChar === ",",
+    colon: lastChar === ":",
+    semicolon: lastChar === ";",
+    dash: lastChar === "-",
+    hyphen: lastChar === "—" || lastChar === "-",
+    bracket: lastChar === "]",
+    brace: lastChar === "}",
+    parenthesis: lastChar === ")",
+    apostraphe: lastChar === "'",
+    quotation: lastChar === '"',
+    ellipsis: string.endsWith("...") || string.endsWith("…"),
   };
+
+  punctuation.sentence =
+    punctuation.period ||
+    punctuation.question ||
+    punctuation.exclamation ||
+    punctuation.ellipsis;
+
+  punctuation.incomplete1 =
+    punctuation.comma || punctuation.colon || punctuation.semicolon;
+
+  punctuation.incomplete2 = punctuation.dash || punctuation.hyphen;
+
+  punctuation.incomplete3 =
+    punctuation.bracket ||
+    punctuation.brace ||
+    punctuation.parenthesis ||
+    punctuation.apostraphe ||
+    punctuation.quotation;
+
+  return punctuation;
 }
 
 module.exports = endswith;
