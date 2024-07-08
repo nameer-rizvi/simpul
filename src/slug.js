@@ -2,8 +2,7 @@ const validate = require("./validate");
 const cleanstring = require("./cleanstring");
 const trimPunctuation = require("./trimPunctuation");
 
-// Order of operations is important.
-
+// Generate URL-friendly slug. Order of operations is important.
 function slug(input, maxlength = 2000) {
   if (!validate.isString(input)) return "";
 

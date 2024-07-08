@@ -8,17 +8,15 @@ function isString(test) {
 }
 
 function isStringValid(test) {
-  return isString(test) && Boolean(test.trim().length);
+  return isString(test) && test.trim().length > 0;
 }
 
 // ARRAY
 
-function isArray(test) {
-  return Array.isArray(test);
-}
+const isArray = Array.isArray;
 
 function isArrayValid(test) {
-  return isArray(test) && Boolean(test.length);
+  return isArray(test) && test.length > 0;
 }
 
 function isStringOrArray(test) {
@@ -113,11 +111,11 @@ function isNumber(test) {
 // OBJECT
 
 function isObject(test) {
-  return Boolean(test?.constructor === Object);
+  return test?.constructor === Object;
 }
 
 function isObjectValid(test) {
-  return isObject(test) && Boolean(Object.keys(test).length);
+  return isObject(test) && Object.keys(test).length > 0;
 }
 
 // REGEX

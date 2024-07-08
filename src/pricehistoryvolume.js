@@ -7,7 +7,7 @@ function pricehistoryvolume(option, curr, candle, series, volumerate) {
   }
 
   if (option.obv === true) {
-    let prev = series[series.length - 2];
+    const prev = series[series.length - 2];
     if (candle.priceClose > prev?.priceClose) {
       candle.obv = prev.obv + candle.volume;
     } else if (candle.priceClose < prev?.priceClose) {

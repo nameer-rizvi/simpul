@@ -44,9 +44,9 @@ function withaddeddays(add = 0, date, constant) {
 function withaddedworkdays(add = 0, date, constant) {
   add = Math.abs(add);
   date = validate.isDate(date) ? new Date(date) : new Date();
-  let dir = add < 0 ? -1 : 1;
+  const dir = add < 0 ? -1 : 1;
   while (add) {
-    let utc = date.getUTCDay(date.setUTCDate(date.getUTCDate() + dir));
+    const utc = date.getUTCDay(date.setUTCDate(date.getUTCDate() + dir));
     if (![6, 0].includes(utc)) add--;
   }
   return constant === "STRING" ? date.toLocaleDateString() : date;

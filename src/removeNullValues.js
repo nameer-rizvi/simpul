@@ -3,8 +3,8 @@ const validate = require("./validate");
 function removeNullValues(object = {}) {
   const clean = {};
 
-  for (let key of Object.keys(object)) {
-    let value = object[key];
+  for (const key of Object.keys(object)) {
+    const value = object[key];
     if (validate.isValid(value)) clean[key] = value;
   }
 

@@ -1,9 +1,11 @@
 {
   "name": "simpul",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Library of utility functions for personal use.",
   "main": "src/index.js",
-  "scripts": {},
+  "scripts": {
+    "lint": "npx eslint; exit 0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nameer-rizvi/simpul.git"
