@@ -1,18 +1,26 @@
-const trycallback = require("./trycallback");
+function decode(jwt) {
+  if (typeof jwt !== "string") return;
 
-function decode(token) {
-  const t = token.split(".")[1].replace(/-/g, "+").replace(/_/g, "/");
+  try {
+    const token = jwt.split(".")[1].replace(/-/g, "+").replace(/_/g, "/");
 
-  const a = atob(t)
-    .split("")
-    .map((c) => "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2))
-    .join("");
+    const decodedString = atob(token)
+      .split("")
+      .map((c) => `%${("00" + c.charCodeAt(0).toString(16)).slice(-2)}`)
+      .join("");
 
-  return decodeURIComponent(a);
+    return decodeURIComponent(decodedString);
+  } catch {
+    return;
+  }
 }
 
-function decodeJSON(token, callback) {
-  return trycallback(() => JSON.parse(decode(token)), callback);
+function decodeJSON(jwt) {
+  try {
+    return JSON.parse(decode(jwt));
+  } catch {
+    return;
+  }
 }
 
 module.exports = { decode, decodeJSON };

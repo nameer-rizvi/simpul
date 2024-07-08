@@ -1,7 +1,7 @@
 const support = require("./support");
 
 function copytext(text) {
-  if (support.document()) {
+  if (support.document) {
     const element = document.createElement("textarea");
 
     element.value = text;

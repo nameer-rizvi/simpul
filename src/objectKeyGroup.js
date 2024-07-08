@@ -8,20 +8,17 @@ function objectKeyGroup(object = {}, keyStartsWith, keyEndsWith) {
     return (startsWith || endsWith) && isValid;
   });
 
-  const extracted = keys.reduce((reducer, key) => {
-    return { ...reducer, [key]: object[key] };
+  const extracted = keys.reduce((r, k) => {
+    return { ...r, [k]: object[k] };
   }, {});
 
-  const keysWithoutId = keys.map((key) => {
-    return key.replace(keyStartsWith || keyEndsWith, "");
+  const keysWithoutId = keys.map((k) => {
+    return k.replace(keyStartsWith || keyEndsWith, "");
   });
 
-  const extractedWithoutId = keysWithoutId.reduce(
-    (reducer, keyWithoutId, index) => {
-      return { ...reducer, [keyWithoutId]: object[keys[index]] };
-    },
-    {},
-  );
+  const extractedWithoutId = keysWithoutId.reduce((r, k, i) => {
+    return { ...r, [k]: object[keys[i]] };
+  }, {});
 
   return { keys, keysWithoutId, extracted, extractedWithoutId };
 }

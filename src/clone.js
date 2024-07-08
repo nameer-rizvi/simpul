@@ -1,16 +1,10 @@
-function clone(json, callback) {
-  let result;
+// shallow clone.
+function clone(json) {
+  if (json === null || typeof json !== "object") return json;
 
-  try {
-    result = JSON.parse(JSON.stringify(json));
-  } catch (error) {
-    if (callback) callback(error);
-    return;
-  }
+  if (Array.isArray(json)) return [...json];
 
-  if (callback) callback(null, result);
-
-  return result;
+  return { ...json };
 }
 
 module.exports = clone;

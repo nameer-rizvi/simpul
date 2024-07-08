@@ -1,8 +1,6 @@
 const validate = require("./validate");
 const math = require("./math");
 
-// num1 === "current number", num2 === "previous number"
-
 function keychange(obj, name, ...args) {
   if (validate.isObject(obj)) {
     Object.assign(obj, {

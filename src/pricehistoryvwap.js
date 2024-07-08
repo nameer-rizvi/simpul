@@ -8,8 +8,8 @@ function pricehistoryvwap(option, candle, series, period) {
 
     let v = 0;
 
-    for (let s of series) {
-      let isValid =
+    for (const s of series) {
+      const isValid =
         typeof s.priceHigh === "number" &&
         typeof s.priceLow === "number" &&
         typeof s.priceClose === "number" &&
@@ -24,11 +24,11 @@ function pricehistoryvwap(option, candle, series, period) {
       }
     }
 
-    let vwap = pv / v;
+    const vwap = pv / v;
 
-    let vwapSignal = math.change.percent(vwap, price) * 100;
+    const vwapSignal = math.change.percent(vwap, price) * 100;
 
-    let vwapValue = pv;
+    const vwapValue = pv;
 
     if (option.sma === true && period) {
       candle[`sma${period}Vwap`] = math.num(vwap);

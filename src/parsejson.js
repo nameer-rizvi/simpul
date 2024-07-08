@@ -1,7 +1,7 @@
-const trycallback = require("./trycallback");
-
-function parsejson(json, callback) {
-  return trycallback(() => JSON.parse(json), callback);
+function parsejson(json) {
+  try {
+    return JSON.parse(json);
+  } catch {}
 }
 
 module.exports = parsejson;

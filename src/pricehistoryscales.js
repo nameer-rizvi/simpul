@@ -3,8 +3,8 @@ const math = require("./math");
 
 function pricehistoryscales(option, candles) {
   if (option.scales?.length) {
-    for (let candle of candles) {
-      for (let key of option.scales) {
+    for (const candle of candles) {
+      for (const key of option.scales) {
         if (key === "vwapdisc") {
           candle.volumeScale = candle.volume;
           candle.sma1VwapValueScale = candle.sma1VwapValue;
@@ -16,7 +16,7 @@ function pricehistoryscales(option, candles) {
       }
     }
 
-    for (let key of option.scales) {
+    for (const key of option.scales) {
       if (key === "vwapdisc") {
         scale(candles, "volumeScale");
         scale(candles, "sma1VwapValueScale");
@@ -28,7 +28,7 @@ function pricehistoryscales(option, candles) {
     }
 
     if (option.scales.includes("vwapdisc") || option.scales.includes("vvcvg")) {
-      for (let candle of candles) {
+      for (const candle of candles) {
         if (option.scales.includes("vwapdisc")) {
           candle.volumeVwapValueDiscrepancy = math.change.num(
             candle.volumeScale,
@@ -36,7 +36,7 @@ function pricehistoryscales(option, candles) {
           );
         }
         if (option.scales.includes("vvcvg")) {
-          let vvcvg = candle.sma5VwapValueScale + candle.sma5ColorVolumeGreen;
+          const vvcvg = candle.sma5VwapValueScale + candle.sma5ColorVolumeGreen;
           candle.vvcvg = math.num(vvcvg / 2);
         }
       }
@@ -44,10 +44,10 @@ function pricehistoryscales(option, candles) {
 
     if (option.trend === true) {
       for (let i = 0; i < candles.length; i++) {
-        let curr = candles[i];
-        let prev = candles[i - 1];
-        for (let key of option.scales) {
-          let prop =
+        const curr = candles[i];
+        const prev = candles[i - 1];
+        for (const key of option.scales) {
+          const prop =
             key === "vwapdisc"
               ? "volumeVwapValueDiscrepancy"
               : key === "vvcvg"

@@ -1,3 +1,4 @@
+const validate = require("./validate");
 const math = require("./math");
 
 function pricehistoryprice(option, curr, candle, last) {
@@ -9,8 +10,8 @@ function pricehistoryprice(option, curr, candle, last) {
 
   candle.priceClose = curr[option.close];
 
-  if (option.leverage > 1) {
-    let leveraged = {};
+  if (validate.isNumber(option.leverage)) {
+    const leveraged = {};
 
     leveraged.priceOpen = last?.priceClose2
       ? calcLeverage(

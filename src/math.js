@@ -85,6 +85,22 @@ function standarddeviation(arr) {
   }
 }
 
+function efficiency(arr) {
+  if (validate.isArray(arr)) {
+    const total = sum(arr);
+    const distance = sum(arr.map((i) => Math.abs(i)));
+    const efficiency = simplify((Math.abs(total) / distance) * 100);
+    if (isNaN(efficiency) || efficiency === Infinity) return -1;
+    return efficiency;
+  }
+}
+
+function rate(start, end, periods = 1) {
+  if (validate.isNumber(start) && validate.isNumber(end)) {
+    return simplify((Math.pow(end / start, 1 / periods) - 1) * 100);
+  }
+}
+
 module.exports = {
   num: simplify,
   change: {
@@ -98,4 +114,6 @@ module.exports = {
   median,
   mode,
   standarddeviation,
+  efficiency,
+  rate,
 };

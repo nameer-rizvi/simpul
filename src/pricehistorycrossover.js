@@ -3,19 +3,19 @@ const validate = require("./validate");
 
 function pricehistorycrossover(option, candle, series) {
   if (option.crossover === true) {
-    let prev = series[series.length - 2];
+    const prev = series[series.length - 2];
 
     if (prev) {
-      for (let prop1 of pricehistorycrossoverprops) {
-        for (let prop2 of pricehistorycrossoverprops) {
+      for (const prop1 of pricehistorycrossoverprops) {
+        for (const prop2 of pricehistorycrossoverprops) {
           if (prop1 !== prop2) {
-            let prevProp1 = prev[prop1];
+            const prevProp1 = prev[prop1];
 
-            let prevProp2 = prev[prop2];
+            const prevProp2 = prev[prop2];
 
-            let currProp1 = candle[prop1];
+            const currProp1 = candle[prop1];
 
-            let currProp2 = candle[prop2];
+            const currProp2 = candle[prop2];
 
             if (validate.isNumber(currProp1) && validate.isNumber(currProp2)) {
               let state = "";

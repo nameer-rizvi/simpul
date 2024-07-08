@@ -1,5 +1,5 @@
-const { ema } = require("./pricehistoryema");
 const math = require("./math");
+const { ema } = require("./pricehistoryema");
 
 function pricehistorymacd(option, candle, series) {
   if (option.macd === true) {

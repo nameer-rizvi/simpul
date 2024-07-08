@@ -1,5 +1,5 @@
 function pricehistorydate(option, curr, candle) {
-  let date = new Date(curr[option.datetime]);
+  const date = new Date(curr[option.datetime]);
 
   candle.dateString = date.toLocaleString();
 

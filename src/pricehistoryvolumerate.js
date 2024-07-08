@@ -8,7 +8,7 @@ function pricehistoryvolumerate(datas, option) {
 
   let range = 0;
 
-  for (let data of datas) {
+  for (const data of datas) {
     if (!validate.isNumber(data[option.volume])) continue;
 
     if (!validate.isNumber(data[option.high])) continue;

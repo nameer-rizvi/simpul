@@ -1,7 +1,5 @@
-// const support = require("./support");
-
 // TODO
-
+// const support = require("./support");
 function copy() {
   // if (support.module("child_process")) {
   //   const proc = require("child_process").spawn("pbcopy");

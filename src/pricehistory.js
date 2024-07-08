@@ -22,42 +22,48 @@ function pricehistory(datas = [], option) {
     volume: "volume",
     datetime: "datetime",
     periods: [5, 10, 20, 50, 100, 200],
-    valueCapAt: 100,
-    date: false,
-    price: true,
-    leverage: false,
     volumefill: false,
-    volumefillperiod: undefined,
+    date: false,
+    price: false,
+    leverage: false,
     obv: false,
-    vwap: true,
-    rsi: true,
-    ema: true,
-    macd: true,
-    color: true,
-    sma: true,
+    vwap: false,
+    sma: false,
+    rsi: false,
+    ema: false,
+    macd: false,
+    color: false,
     trend: false,
     crossover: false,
     anchor: false,
     scales: [],
+    valueCapAt: 100,
     ...option,
   };
 
-  if (!option.basePrice) option.basePrice = datas[0]?.[option.open];
+  if (!option.basePrice) {
+    for (const data of datas) {
+      if (data[option.open]) {
+        option.basePrice = data[option.open];
+        break;
+      }
+    }
+  }
 
   const candles = [];
 
   const volumerate = pricehistoryvolumerate(datas, option);
 
   for (let i = 0; i < datas.length; i++) {
-    let curr = datas[i];
+    const curr = datas[i];
 
-    let candle = {};
+    const candle = {};
 
     pricehistorydate(option, curr, candle);
 
     pricehistoryprice(option, curr, candle, candles[candles.length - 1]);
 
-    let series = [...candles, candle];
+    const series = [...candles, candle];
 
     pricehistoryvolume(option, curr, candle, series, volumerate);
 
@@ -73,9 +79,9 @@ function pricehistory(datas = [], option) {
 
     pricehistorycolor(option, candle, series);
 
-    for (let period of option.periods) {
+    for (const period of option.periods) {
       if (series.length >= period) {
-        let seriesSlice = series.slice(-period);
+        const seriesSlice = series.slice(-period);
 
         pricehistorysma(option, candle, seriesSlice, period);
 
@@ -100,13 +106,15 @@ function pricehistory(datas = [], option) {
 
   const prev = candles[candles.length - 2];
 
-  const valueCap = prev?.sma5VwapValue
-    ? prev?.sma5VwapValue * (option.valueCapAt / 100)
-    : prev?.sma1VwapValue
-    ? prev?.sma1VwapValue * (option.valueCapAt / 100)
-    : prev?.vwapValue
-    ? prev?.vwapValue * (option.valueCapAt / 100)
-    : undefined;
+  const valueCap =
+    option.valueCapAt > 0 &&
+    (prev?.sma5VwapValue
+      ? prev?.sma5VwapValue * (option.valueCapAt / 100)
+      : prev?.sma1VwapValue
+      ? prev?.sma1VwapValue * (option.valueCapAt / 100)
+      : prev?.vwapValue
+      ? prev?.vwapValue * (option.valueCapAt / 100)
+      : undefined);
 
   return { candles, curr, prev, valueCap };
 }

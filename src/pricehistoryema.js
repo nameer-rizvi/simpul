@@ -12,7 +12,7 @@ function pricehistoryema(option, candle, series) {
 
 function ema(period, series, candle, numKey = "priceClose") {
   if (series.length > period) {
-    let prev = series[series.length - 2];
+    const prev = series[series.length - 2];
 
     let key = `ema${period}`;
 
@@ -21,12 +21,12 @@ function ema(period, series, candle, numKey = "priceClose") {
     let prevEMA = prev[key];
 
     if (!prevEMA) {
-      let nums = series.slice(-(period + 1), -1).map((r) => r[numKey]); // Exclude current candle.
+      const nums = series.slice(-period - 1, -1).map((r) => r[numKey]);
       if (nums.length === period) prevEMA = math.mean(nums);
     }
 
     if (prevEMA) {
-      let k = 2 / (period + 1);
+      const k = 2 / (period + 1);
       candle[key] = math.num(candle[numKey] * k + prevEMA * (1 - k));
     }
   }

@@ -1,8 +1,22 @@
 const validate = require("./validate");
 const generalcount = require("./generalcount");
 
-function replacer(string, oldPart, newPart) {
-  return string.substring(0, string.lastIndexOf(oldPart)) + newPart;
+function countlabel(count, plural, fullCount) {
+  const number = validate.isNumber(count)
+    ? fullCount
+      ? count.toLocaleString()
+      : generalcount(count) || "0"
+    : "";
+
+  const label = validate.isString(plural)
+    ? number
+      ? pluralize(plural, count)
+      : plural
+    : "";
+
+  const full = [number, label].filter(Boolean).join(" ");
+
+  return { full, number, label };
 }
 
 function pluralize(label, count) {
@@ -29,22 +43,8 @@ function pluralize(label, count) {
   }
 }
 
-function countlabel(count, plural, fullCount) {
-  const number = validate.isNumber(count)
-    ? fullCount
-      ? count.toLocaleString()
-      : generalcount(count) || "0"
-    : "";
-
-  const label = validate.isString(plural)
-    ? number
-      ? pluralize(plural, count)
-      : plural
-    : "";
-
-  const full = [number, label].filter(Boolean).join(" ");
-
-  return { full, number, label };
+function replacer(string, oldPart, newPart) {
+  return string.substring(0, string.lastIndexOf(oldPart)) + newPart;
 }
 
 module.exports = countlabel;

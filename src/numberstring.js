@@ -1,4 +1,5 @@
 const validate = require("./validate");
+const math = require("./math");
 
 const currency = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -9,15 +10,21 @@ const currency = new Intl.NumberFormat("en-US", {
 
 function numberstring(number, types = []) {
   if (validate.isNumber(number)) {
-    let string = types.includes("$")
-      ? currency.format(number)
-      : number.toLocaleString({ maximumFractionDigits: 2 });
+    let string = math.num(number).toLocaleString();
 
-    if (types.includes("+")) if (number > 0) string = "+" + string;
+    if (types.includes("$")) {
+      string = currency.format(number);
+    } else if (types.includes("#")) {
+      string = `#${string}`;
+    } else if (types.includes("%")) {
+      string += "%";
+    } else if (types.includes("x")) {
+      string += "x";
+    }
 
-    if (types.includes("%")) string += "%";
-
-    if (types.includes("x")) string += "x";
+    if (types.includes("+") && number > 0) {
+      string = "+" + string;
+    }
 
     return string;
   }

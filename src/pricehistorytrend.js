@@ -3,9 +3,9 @@ const validate = require("./validate");
 
 function pricehistorytrend(option, candle, series) {
   if (option.trend === true) {
-    let prev = series[series.length - 2];
+    const prev = series[series.length - 2];
 
-    for (let prop of pricehistorytrendprops) {
+    for (const prop of pricehistorytrendprops) {
       if (validate.isNumber(candle[prop]) && validate.isNumber(prev?.[prop])) {
         if (candle[prop] > prev[prop]) {
           candle[`${prop}Trend`] = "up";

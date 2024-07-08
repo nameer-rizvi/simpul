@@ -1,9 +1,9 @@
 const math = require("./math");
 
 function pricehistorycolor(option, candle, series, period) {
-  let countColor = { green: 0, red: 0, gray: 0, total: 0 };
+  const countColor = { green: 0, red: 0, gray: 0, total: 0 };
 
-  let countVolume = { green: 0, red: 0, gray: 0, total: 0 };
+  const countVolume = { green: 0, red: 0, gray: 0, total: 0 };
 
   function getColor(a, b) {
     return a > b ? "green" : a < b ? "red" : "gray";
@@ -18,9 +18,9 @@ function pricehistorycolor(option, candle, series, period) {
   }
 
   if (option.color === true) {
-    for (let s of series) {
+    for (const s of series) {
       if (s.priceOpen && s.priceClose) {
-        let color = getColor(s.priceClose, s.priceOpen);
+        const color = getColor(s.priceClose, s.priceOpen);
 
         countColor[color]++;
 
@@ -35,9 +35,9 @@ function pricehistorycolor(option, candle, series, period) {
     }
 
     if (option.sma === true && period) {
-      let seriesPriceOpen = series[0]?.priceOpen;
+      const seriesPriceOpen = series[0]?.priceOpen;
 
-      let seriespriceClose = series[series.length - 1]?.priceClose;
+      const seriespriceClose = series[series.length - 1]?.priceClose;
 
       candle[`sma${period}Color`] = getColor(seriesPriceOpen, seriespriceClose);
 

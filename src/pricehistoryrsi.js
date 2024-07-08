@@ -2,7 +2,7 @@ const math = require("./math");
 
 function pricehistoryrsi(option, candle, series) {
   if (option.rsi === true) {
-    let prev = series[series.length - 2];
+    const prev = series[series.length - 2];
 
     if (series.length === 15) {
       let gain = 0;
@@ -10,22 +10,22 @@ function pricehistoryrsi(option, candle, series) {
       let loss = 0;
 
       for (let i = 0; i < series.length; i++) {
-        let currPrice = series[i]?.priceClose;
+        const currPrice = series[i]?.priceClose;
 
-        let prevPrice = series[i - 1]?.priceClose;
+        const prevPrice = series[i - 1]?.priceClose;
 
-        let change = currPrice - prevPrice;
+        const change = currPrice - prevPrice;
 
         if (change > 0) gain += change;
 
         if (change < 0) loss += Math.abs(change);
       }
 
-      let averageGain = gain / 14;
+      const averageGain = gain / 14;
 
-      let averageLoss = loss / 14;
+      const averageLoss = loss / 14;
 
-      let rsi = 100 - 100 / (1 + averageGain / averageLoss);
+      const rsi = 100 - 100 / (1 + averageGain / averageLoss);
 
       candle.averageGain = math.num(averageGain);
 
@@ -37,17 +37,17 @@ function pricehistoryrsi(option, candle, series) {
 
       let loss = prev.averageLoss * 13;
 
-      let change = candle.priceClose - prev.priceClose;
+      const change = candle.priceClose - prev.priceClose;
 
       if (change > 0) gain += change;
 
       if (change < 0) loss += Math.abs(change);
 
-      let averageGain = gain / 14;
+      const averageGain = gain / 14;
 
-      let averageLoss = loss / 14;
+      const averageLoss = loss / 14;
 
-      let rsi = 100 - 100 / (1 + averageGain / averageLoss);
+      const rsi = 100 - 100 / (1 + averageGain / averageLoss);
 
       candle.averageGain = math.num(averageGain);
 
