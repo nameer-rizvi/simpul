@@ -105,7 +105,7 @@ function isJWT(test) {
 function isNumber(test) {
   if (isStringValid(test)) {
     return !isNaN(test);
-  } else return typeof test === "number" && !isNaN(test);
+  } else return typeof test === "number" && !isNaN(test) && isFinite(test);
 }
 
 // OBJECT

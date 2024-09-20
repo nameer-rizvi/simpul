@@ -2,17 +2,15 @@ const validate = require("./validate");
 
 function simplify(num) {
   // Readable number.
-  if (validate.isNumber(num)) {
-    if (num > -0.001 && num < 0.001) {
-      return +num.toFixed(6);
-    } else if (num > -1 && num < 1) {
-      return +num.toFixed(4);
-    } else if (num > -1000 && num < 1000) {
-      return +num.toFixed(2);
-    } else {
-      return +num.toFixed(0);
-    }
-  }
+  if (!validate.isNumber(num)) {
+    return undefined;
+  } else if (Math.abs(num) < 0.001) {
+    return +num.toFixed(6);
+  } else if (Math.abs(num) < 1) {
+    return +num.toFixed(4);
+  } else if (Math.abs(num) < 1000) {
+    return +num.toFixed(2);
+  } else return +num.toFixed(0);
 }
 
 function changeNum(num1, num2) {
@@ -22,13 +20,13 @@ function changeNum(num1, num2) {
 }
 
 function changePercent(num1, num2) {
-  if (validate.isNumber(num1) && validate.isNumber(num2)) {
+  if (validate.isNumber(num1) && validate.isNumber(num2) && num1 !== 0) {
     return simplify(changeNum(num1, num2) / num1);
   }
 }
 
 function percent(num1, num2) {
-  if (validate.isNumber(num1) && validate.isNumber(num2)) {
+  if (validate.isNumber(num1) && validate.isNumber(num2) && num2 !== 0) {
     return simplify((num1 / num2) * 100);
   }
 }
@@ -40,65 +38,87 @@ function discrepancy(num1, num2) {
 }
 
 function sum(arr) {
-  if (validate.isArray(arr)) {
-    arr = arr.filter(validate.isNumber);
-    return simplify(arr.reduce((r, p) => r + p, 0));
-  }
+  if (!validate.isArray(arr)) return;
+  let total = 0;
+  for (const n of arr) if (validate.isNumber(n)) total += n;
+  return simplify(total);
 }
 
 function mean(arr) {
-  const sum2 = sum(arr);
-  if (validate.isNumber(sum2)) return simplify(sum2 / arr.length);
+  const total = sum(arr);
+  if (validate.isNumber(total)) return simplify(total / arr.length);
 }
 
 function median(arr) {
-  if (validate.isArray(arr)) {
-    arr = arr.filter(validate.isNumber);
-    arr.sort();
-    const half = Math.floor(arr.length / 2);
-    if (arr.length % 2) return arr[half];
-    return simplify((arr[half - 1] + arr[half]) / 2);
-  }
+  if (!validate.isArray(arr)) return;
+  const numbers = arr.filter(validate.isNumber).sort((a, b) => a - b);
+  if (!numbers.length) return;
+  const mid = Math.floor(numbers.length / 2);
+  if (numbers.length % 2) return numbers[mid];
+  return simplify((numbers[mid - 1] + numbers[mid]) / 2);
 }
 
 function mode(arr) {
-  if (validate.isArray(arr)) {
-    arr = arr.filter(validate.isNumber);
-    arr.sort((a, b) => {
-      const aLength = arr.filter((v) => v === a).length;
-      const bLength = arr.filter((v) => v === b).length;
-      return aLength - bLength;
-    });
-    return arr.pop();
+  if (!validate.isArray(arr)) return;
+  const numbers = arr.filter(validate.isNumber);
+  if (!numbers.length) return;
+  const frequency = {};
+  for (const num of numbers) {
+    frequency[num] = (frequency[num] || 0) + 1;
   }
+  let res = ["", 0];
+  for (const key of Object.keys(frequency)) {
+    if (frequency[key] > res[1]) res = [key, frequency[key]];
+  }
+  return simplify(+res[0]);
 }
 
 function standarddeviation(arr) {
-  if (validate.isArray(arr)) {
-    arr = arr.filter(validate.isNumber);
-    const me = mean(arr);
-    const sq = arr.map((nu) => Math.pow(nu - me, 2));
-    const su = sq.reduce((a, b) => a + b, 0);
-    const di = su / arr.length;
-    const sd = Math.sqrt(di);
-    return simplify(sd);
-  }
+  if (!validate.isArray(arr)) return;
+  const numbers = arr.filter(validate.isNumber);
+  if (!numbers.length) return;
+  const me = mean(numbers);
+  const va = numbers.reduce((r, n) => r + Math.pow(n - me, 2), 0);
+  const sq = Math.sqrt(va / numbers.length);
+  return simplify(sq);
 }
 
 function efficiency(arr) {
-  if (validate.isArray(arr)) {
-    const total = sum(arr);
-    const distance = sum(arr.map((i) => Math.abs(i)));
-    const efficiency = simplify((Math.abs(total) / distance) * 100);
-    if (isNaN(efficiency) || efficiency === Infinity) return -1;
-    return efficiency;
-  }
+  if (!validate.isArray(arr)) return;
+  const total = sum(arr);
+  if (!validate.isNumber(total)) return;
+  const distance = sum(arr.map(Math.abs));
+  const efficiency = simplify((Math.abs(total) / distance) * 100);
+  if (!validate.isNumber(efficiency)) return -1;
+  return efficiency;
 }
 
 function rate(start, end, periods = 1) {
   if (validate.isNumber(start) && validate.isNumber(end)) {
     return simplify((Math.pow(end / start, 1 / periods) - 1) * 100);
   }
+}
+
+function normalize(arr = []) {
+  if (!validate.isArray(arr)) return;
+  const numbers = [];
+  let min = Infinity;
+  let max = -Infinity;
+  for (const v of arr) {
+    if (validate.isNumber(v)) {
+      if (v < min) {
+        min = v;
+      } else if (v > max) {
+        max = v;
+      }
+      numbers.push(v);
+    }
+  }
+  const range = max - min;
+  if (range === 0) return numbers.map(() => 0);
+  const numbers2 = [];
+  for (const n of numbers) numbers2.push((n - min) / range);
+  return numbers2;
 }
 
 module.exports = {
@@ -116,4 +136,5 @@ module.exports = {
   standarddeviation,
   efficiency,
   rate,
+  normalize,
 };

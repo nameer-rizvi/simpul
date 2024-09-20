@@ -9,6 +9,7 @@ const simpul = {
   cleanstring: require("./cleanstring"),
   clone: require("./clone"),
   clonedeep: require("./clonedeep"),
+  compare: require("./compare"),
   copy: require("./copy"),
   copytext: require("./copytext"),
   countlabel: require("./countlabel"),
