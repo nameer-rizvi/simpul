@@ -59,10 +59,12 @@ function withaddedseconds(add = 0, date, constant) {
 }
 
 function daystill(date) {
+  return Math.abs(daystill2(date));
+}
+
+function daystill2(date) {
   date = validate.isDate(date) ? new Date(date) : new Date();
-  const today = new Date();
-  const day = 1000 * 60 * 60 * 24;
-  return Math.round(Math.abs((today - new Date(date)) / day));
+  return Math.ceil((date - new Date()) / (1000 * 60 * 60 * 24));
 }
 
 function isday(date, option = {}) {
@@ -105,6 +107,7 @@ module.exports = {
   withaddedworkdays,
   withaddedseconds,
   daystill,
+  daystill2,
   isday,
   isfuture,
   mostrecentworkdate,
