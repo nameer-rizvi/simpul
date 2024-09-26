@@ -1,3 +1,3 @@
 # simpul
 
-Library of utility functions for personal use.
+Library of common utilities for personal use.

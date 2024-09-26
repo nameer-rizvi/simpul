@@ -1,27 +1,37 @@
 {
   "name": "simpul",
   "version": "1.1.4",
-  "description": "Library of utility functions for personal use.",
-  "main": "src/index.js",
+  "description": "Library of common utilities for personal use.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "lint": "npx eslint; exit 0"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "test-js": "yarn build && node test-js",
+    "test-ts": "cd ./test-ts && yarn test-ts"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nameer-rizvi/simpul.git"
   },
-  "keywords": [],
+  "keywords": [
+    "utils",
+    "functions",
+    "javascript",
+    "typescript",
+    "commonjs",
+    "esm"
+  ],
   "author": "Nameer Rizvi (https://github.com/nameer-rizvi)",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/nameer-rizvi/simpul/issues"
   },
   "homepage": "https://github.com/nameer-rizvi/simpul#readme",
-  "dependencies": {
-    "change-case": "4.1.2",
-    "he": "^1.2.0",
-    "lodash.clonedeep": "^4.5.0",
-    "safe-regex": "^2.1.1",
-    "string-strip-html": "8.5.0"
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^22.7.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.2"
   }
 }
