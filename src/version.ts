@@ -1,21 +1,34 @@
-const validate = require("./validate");
+import * as validate from "./validate";
 
-function version(versions = []) {
+type VersionResult = {
+  isSupported: boolean;
+  string?: string;
+  major?: number;
+  minor?: number;
+  patch?: number;
+};
+
+interface VersionOptions {
+  min?: string;
+  max?: string;
+}
+
+function version(versions: string[] = []) {
   const SUPPORTED_VERSIONS = versions.sort();
 
   const SUPPORTED_VERSION_LATEST =
     SUPPORTED_VERSIONS[SUPPORTED_VERSIONS.length - 1];
 
-  function isMaxVersion(v, m) {
+  function isMaxVersion(v: string, m: string): boolean {
     return parse(v, { max: m }).isSupported;
   }
 
-  function isMinVersion(v, m) {
+  function isMinVersion(v: string, m: string): boolean {
     return parse(v, { min: m }).isSupported;
   }
 
-  function parse(v, o = {}) {
-    const result = { isSupported: false };
+  function parse(v: string, o: VersionOptions = {}): VersionResult {
+    const result: VersionResult = { isSupported: false };
 
     if (validate.isString(v)) {
       result.string = v;
@@ -57,4 +70,4 @@ function version(versions = []) {
   };
 }
 
-module.exports = version;
+export default version;
