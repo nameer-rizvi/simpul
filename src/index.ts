@@ -1,6 +1,8 @@
+import datestring from "./datestring";
 import jwt from "./jwt";
 import removePunctuation from "./removePunctuation";
 import support from "./support";
+import tokenize from "./tokenize";
 import trim from "./trim";
 import trimBoundary from "./trimBoundary";
 import trimPunctuation from "./trimPunctuation";
@@ -12,9 +14,11 @@ import version from "./version";
 import validate from "./validate";
 
 interface Simpul {
+  datestring: typeof datestring;
   jwt: typeof jwt;
   removePunctuation: typeof removePunctuation;
   support: typeof support;
+  tokenize: typeof tokenize;
   trim: typeof trim;
   trimBoundary: typeof trimBoundary;
   trimPunctuation: typeof trimPunctuation;
@@ -27,9 +31,11 @@ interface Simpul {
 }
 
 const simpul: Simpul = {
+  datestring,
   jwt,
   removePunctuation,
   support,
+  tokenize,
   trim,
   trimBoundary,
   trimPunctuation,

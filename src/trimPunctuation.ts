@@ -1,7 +1,10 @@
 import trim from "./trim";
 import removePunctuation from "./removePunctuation";
 
-function trimPunctuation(dirty: string, delimiter: string): string | undefined {
+function trimPunctuation(
+  dirty: string,
+  delimiter?: string
+): string | undefined {
   const withoutPunctuation = removePunctuation(dirty);
   if (withoutPunctuation) {
     return trim(withoutPunctuation, delimiter);

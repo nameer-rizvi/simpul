@@ -3,9 +3,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const datestring_1 = __importDefault(require("./datestring"));
 const jwt_1 = __importDefault(require("./jwt"));
 const removePunctuation_1 = __importDefault(require("./removePunctuation"));
 const support_1 = __importDefault(require("./support"));
+const tokenize_1 = __importDefault(require("./tokenize"));
 const trim_1 = __importDefault(require("./trim"));
 const trimBoundary_1 = __importDefault(require("./trimBoundary"));
 const trimPunctuation_1 = __importDefault(require("./trimPunctuation"));
@@ -15,9 +17,11 @@ const uid_1 = __importDefault(require("./uid"));
 const urlBase64ToUint8Array_1 = __importDefault(require("./urlBase64ToUint8Array"));
 const version_1 = __importDefault(require("./version"));
 const validate_1 = __importDefault(require("./validate"));
-const simpul = Object.assign({ jwt: jwt_1.default,
+const simpul = Object.assign({ datestring: datestring_1.default,
+    jwt: jwt_1.default,
     removePunctuation: removePunctuation_1.default,
     support: support_1.default,
+    tokenize: tokenize_1.default,
     trim: trim_1.default,
     trimBoundary: trimBoundary_1.default,
     trimPunctuation: trimPunctuation_1.default,
