@@ -1,2 +1,2 @@
 const simpul = require("../dist");
-console.log(simpul);
+console.log(simpul.default);
