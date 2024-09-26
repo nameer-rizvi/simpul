@@ -3,30 +3,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isArray = void 0;
-exports.isString = isString;
-exports.isStringValid = isStringValid;
-exports.isArrayValid = isArrayValid;
-exports.isStringOrArray = isStringOrArray;
-exports.isBase64 = isBase64;
-exports.isBoolean = isBoolean;
-exports.isBooleanString = isBooleanString;
-exports.isBooleanNumber = isBooleanNumber;
-exports.isBooleanAny = isBooleanAny;
-exports.isCreditCardNumber = isCreditCardNumber;
-exports.isDate = isDate;
-exports.isEmail = isEmail;
-exports.isFunction = isFunction;
-exports.isHTTP = isHTTP;
-exports.isJSON = isJSON;
-exports.isJSONString = isJSONString;
-exports.isJWT = isJWT;
-exports.isNumber = isNumber;
-exports.isObject = isObject;
-exports.isObjectValid = isObjectValid;
-exports.isRegex = isRegex;
-exports.isURL = isURL;
-exports.isValid = isValid;
 const safe_regex_1 = __importDefault(require("safe-regex"));
 const jwt_1 = __importDefault(require("./jwt"));
 // STRING (REQUIRED BY OTHER VALIDATIONS)
@@ -38,7 +14,6 @@ function isStringValid(test) {
 }
 // ARRAY
 const isArray = Array.isArray;
-exports.isArray = isArray;
 function isArrayValid(test) {
     return isArray(test) && test.length > 0;
 }
@@ -158,3 +133,30 @@ function isValid(test, testAll = false) {
     }
     return true;
 }
+// EXPORT
+exports.default = {
+    isString,
+    isStringValid,
+    isArray,
+    isArrayValid,
+    isStringOrArray,
+    isBase64,
+    isBoolean,
+    isBooleanString,
+    isBooleanNumber,
+    isBooleanAny,
+    isCreditCardNumber,
+    isDate,
+    isEmail,
+    isFunction,
+    isHTTP,
+    isJSON,
+    isJSONString,
+    isJWT,
+    isNumber,
+    isObject,
+    isObjectValid,
+    isRegex,
+    isURL,
+    isValid,
+};

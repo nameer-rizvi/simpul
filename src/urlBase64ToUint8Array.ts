@@ -1,7 +1,7 @@
-const validate = require("./validate");
-const support = require("./support");
+import validate from "./validate";
+import support from "./support";
 
-function urlBase64ToUint8Array(base64String) {
+function urlBase64ToUint8Array(base64String: string): Uint8Array | undefined {
   if (validate.isBase64(base64String) && support.window) {
     const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
 
@@ -21,6 +21,6 @@ function urlBase64ToUint8Array(base64String) {
   }
 }
 
-module.exports = urlBase64ToUint8Array;
+export default urlBase64ToUint8Array;
 
 // Source: https://gist.github.com/Klerith/80abd742d726dd587f4bd5d6a0ab26b6

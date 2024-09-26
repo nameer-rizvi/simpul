@@ -1,4 +1,4 @@
-import * as validate from "./validate";
+import validate from "./validate";
 
 type VersionResult = {
   isSupported: boolean;

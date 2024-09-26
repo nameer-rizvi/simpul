@@ -171,7 +171,7 @@ function isValid(test: unknown, testAll: boolean = false): boolean {
 
 // EXPORT
 
-export {
+export default {
   isString,
   isStringValid,
   isArray,
@@ -193,6 +193,7 @@ export {
   isNumber,
   isObject,
   isObjectValid,
+  isPhoneNumber,
   isRegex,
   isURL,
   isValid,
