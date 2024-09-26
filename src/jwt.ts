@@ -1,22 +1,30 @@
 function decode(jwt: string): string | undefined {
   if (typeof jwt !== "string") return;
 
-  const token = jwt.split(".")[1].replace(/-/g, "+").replace(/_/g, "/");
+  try {
+    const token = jwt.split(".")[1].replace(/-/g, "+").replace(/_/g, "/");
 
-  const decodedSplit = atob(token).split("");
+    const decodedString = atob(token);
 
-  const decodedJoined = decodedSplit
-    .map((c) => `%${("00" + c.charCodeAt(0).toString(16)).slice(-2)}`)
-    .join("");
+    const decodedArray = Array.from(decodedString).map((c) => {
+      return `%${("00" + c.charCodeAt(0).toString(16)).slice(-2)}`;
+    });
 
-  const decoded = decodeURIComponent(decodedJoined);
+    const decoded = decodeURIComponent(decodedArray.join(""));
 
-  return decoded;
+    return decoded;
+  } catch {
+    return;
+  }
 }
 
 function decodeJSON(jwt: string): any {
+  const decoded = decode(jwt);
+
+  if (!decoded) return;
+
   try {
-    return JSON.parse(decode(jwt) || "");
+    return JSON.parse(decoded);
   } catch {
     return;
   }
