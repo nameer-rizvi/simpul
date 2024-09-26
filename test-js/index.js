@@ -1,3 +1,2 @@
-const { greet } = require("../dist");
-
-console.log(greet("World")); // Output: "Hello, World!"
+const simpul = require("../dist");
+console.log(simpul);

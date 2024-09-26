@@ -7,8 +7,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "test-js": "yarn build && node test-js",
-    "test-ts": "cd ./test-ts && yarn test-ts"
+    "test-js": "yarn build && cd ./test-js && yarn start",
+    "test-ts": "yarn build && cd ./test-ts && yarn start"
   },
   "repository": {
     "type": "git",

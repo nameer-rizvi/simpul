@@ -1,3 +1,2 @@
-import { greet } from "../dist/index";
-
-console.log(greet("TypeScript")); // Output: "Hello, TypeScript!"
+import simpul from "../dist/index.js";
+console.log(simpul);
