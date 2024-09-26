@@ -18,6 +18,7 @@ declare function isJWT(test: unknown): boolean;
 declare function isNumber(test: unknown): boolean;
 declare function isObject(test: unknown): test is Record<string, unknown>;
 declare function isObjectValid(test: unknown): boolean;
+declare function isPhoneNumber(test: unknown): boolean;
 declare function isRegex(test: unknown): test is RegExp;
 declare function isURL(test: unknown): boolean;
 declare function isValid(test: unknown, testAll?: boolean): boolean;
@@ -43,6 +44,7 @@ declare const _default: {
     isNumber: typeof isNumber;
     isObject: typeof isObject;
     isObjectValid: typeof isObjectValid;
+    isPhoneNumber: typeof isPhoneNumber;
     isRegex: typeof isRegex;
     isURL: typeof isURL;
     isValid: typeof isValid;

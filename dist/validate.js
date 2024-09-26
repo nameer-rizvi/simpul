@@ -156,6 +156,7 @@ exports.default = {
     isNumber,
     isObject,
     isObjectValid,
+    isPhoneNumber,
     isRegex,
     isURL,
     isValid,

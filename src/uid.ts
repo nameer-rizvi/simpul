@@ -1,5 +1,5 @@
-function uid(radix = 32) {
+function uid(radix: number = 32): string {
   return Date.now().toString(radix) + Math.random().toString(radix).substr(2);
 }
 
-module.exports = uid;
+export default uid;
