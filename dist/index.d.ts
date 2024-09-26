@@ -2,6 +2,7 @@ import jwt from "./jwt";
 import removePunctuation from "./removePunctuation";
 import support from "./support";
 import trim from "./trim";
+import trimBoundary from "./trimBoundary";
 import trimPunctuation from "./trimPunctuation";
 import tryasync from "./tryasync";
 import trycallback from "./trycallback";
@@ -13,6 +14,7 @@ interface Simpul {
     removePunctuation: typeof removePunctuation;
     support: typeof support;
     trim: typeof trim;
+    trimBoundary: typeof trimBoundary;
     trimPunctuation: typeof trimPunctuation;
     tryasync: typeof tryasync;
     trycallback: typeof trycallback;

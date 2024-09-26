@@ -7,6 +7,7 @@ const jwt_1 = __importDefault(require("./jwt"));
 const removePunctuation_1 = __importDefault(require("./removePunctuation"));
 const support_1 = __importDefault(require("./support"));
 const trim_1 = __importDefault(require("./trim"));
+const trimBoundary_1 = __importDefault(require("./trimBoundary"));
 const trimPunctuation_1 = __importDefault(require("./trimPunctuation"));
 const tryasync_1 = __importDefault(require("./tryasync"));
 const trycallback_1 = __importDefault(require("./trycallback"));
@@ -18,6 +19,7 @@ const simpul = Object.assign({ jwt: jwt_1.default,
     removePunctuation: removePunctuation_1.default,
     support: support_1.default,
     trim: trim_1.default,
+    trimBoundary: trimBoundary_1.default,
     trimPunctuation: trimPunctuation_1.default,
     tryasync: tryasync_1.default,
     trycallback: trycallback_1.default,
