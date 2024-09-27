@@ -1,5 +1,10 @@
-function uid(radix: number = 32): string {
-  return Date.now().toString(radix) + Math.random().toString(radix).substr(2);
+import support from "./support";
+
+function uid(): string {
+  if (support.module("crypto")) {
+    return require("crypto").randomUUID();
+  }
+  return `${Date.now()}-${Math.random().toString(36).slice(2, 11)}`;
 }
 
 export default uid;

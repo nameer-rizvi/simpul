@@ -1,2 +1,2 @@
-declare function uid(radix?: number): string;
+declare function uid(): string;
 export default uid;

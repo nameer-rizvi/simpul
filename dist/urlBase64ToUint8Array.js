@@ -4,14 +4,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const validate_1 = __importDefault(require("./validate"));
-const support_1 = __importDefault(require("./support"));
 function urlBase64ToUint8Array(base64String) {
-    if (validate_1.default.isBase64(base64String) && support_1.default.window) {
+    if (validate_1.default.isBase64(base64String)) {
         const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
         const base64 = (base64String + padding)
             .replace(/-/g, "+")
             .replace(/_/g, "/");
-        const rawData = window.atob(base64);
+        const rawData = Buffer.from(base64, "base64").toString();
         const outputArray = new Uint8Array(rawData.length);
         for (let i = 0; i < rawData.length; ++i) {
             outputArray[i] = rawData.charCodeAt(i);

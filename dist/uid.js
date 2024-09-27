@@ -1,6 +1,13 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-function uid(radix = 32) {
-    return Date.now().toString(radix) + Math.random().toString(radix).substr(2);
+const support_1 = __importDefault(require("./support"));
+function uid() {
+    if (support_1.default.module("crypto")) {
+        return require("crypto").randomUUID();
+    }
+    return `${Date.now()}-${Math.random().toString(36).slice(2, 11)}`;
 }
 exports.default = uid;
