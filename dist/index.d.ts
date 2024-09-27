@@ -1,7 +1,10 @@
 import datestring from "./datestring";
 import jwt from "./jwt";
 import removePunctuation from "./removePunctuation";
+import stringnumber from "./stringnumber";
+import stringtest from "./stringtest";
 import support from "./support";
+import timenvlog from "./timenvlog";
 import tokenize from "./tokenize";
 import trim from "./trim";
 import trimBoundary from "./trimBoundary";
@@ -15,7 +18,10 @@ interface Simpul {
     datestring: typeof datestring;
     jwt: typeof jwt;
     removePunctuation: typeof removePunctuation;
+    stringnumber: typeof stringnumber;
+    stringtest: typeof stringtest;
     support: typeof support;
+    timenvlog: typeof timenvlog;
     tokenize: typeof tokenize;
     trim: typeof trim;
     trimBoundary: typeof trimBoundary;

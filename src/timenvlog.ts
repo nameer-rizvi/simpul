@@ -1,11 +1,21 @@
-const validate = require("./validate");
-const datestring = require("./datestring");
+import validate from "./validate";
+import datestring from "./datestring";
 
-function timenvlog(log, option = {}) {
-  let datetime, environment;
+interface TimenvlogOptions {
+  ignoreTimestamp?: boolean;
+  ignoreEnvironment?: boolean;
+  date?: Date | string;
+  date_format?: string;
+  date_option?: object;
+}
+
+function timenvlog(log: any, option: TimenvlogOptions = {}): void {
+  let datetime: string | undefined;
+
+  let environment: string | undefined;
 
   if (!validate.isString(log)) {
-    log = log?.toString?.();
+    log = log?.toString();
   }
 
   if (!option.ignoreTimestamp) {
@@ -25,4 +35,4 @@ function timenvlog(log, option = {}) {
   }
 }
 
-module.exports = timenvlog;
+export default timenvlog;

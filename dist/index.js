@@ -6,7 +6,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const datestring_1 = __importDefault(require("./datestring"));
 const jwt_1 = __importDefault(require("./jwt"));
 const removePunctuation_1 = __importDefault(require("./removePunctuation"));
+const stringnumber_1 = __importDefault(require("./stringnumber"));
+const stringtest_1 = __importDefault(require("./stringtest"));
 const support_1 = __importDefault(require("./support"));
+const timenvlog_1 = __importDefault(require("./timenvlog"));
 const tokenize_1 = __importDefault(require("./tokenize"));
 const trim_1 = __importDefault(require("./trim"));
 const trimBoundary_1 = __importDefault(require("./trimBoundary"));
@@ -15,12 +18,15 @@ const tryasync_1 = __importDefault(require("./tryasync"));
 const trycallback_1 = __importDefault(require("./trycallback"));
 const uid_1 = __importDefault(require("./uid"));
 const urlBase64ToUint8Array_1 = __importDefault(require("./urlBase64ToUint8Array"));
-const version_1 = __importDefault(require("./version"));
 const validate_1 = __importDefault(require("./validate"));
+const version_1 = __importDefault(require("./version"));
 const simpul = Object.assign({ datestring: datestring_1.default,
     jwt: jwt_1.default,
     removePunctuation: removePunctuation_1.default,
+    stringnumber: stringnumber_1.default,
+    stringtest: stringtest_1.default,
     support: support_1.default,
+    timenvlog: timenvlog_1.default,
     tokenize: tokenize_1.default,
     trim: trim_1.default,
     trimBoundary: trimBoundary_1.default,
