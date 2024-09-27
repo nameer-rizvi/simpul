@@ -1,6 +1,9 @@
+import cleanstring from "./cleanstring";
 import datestring from "./datestring";
 import jwt from "./jwt";
 import removePunctuation from "./removePunctuation";
+import slug from "./slug";
+import stringlength from "./stringlength";
 import stringnumber from "./stringnumber";
 import stringtest from "./stringtest";
 import support from "./support";
@@ -15,9 +18,12 @@ import uid from "./uid";
 import urlBase64ToUint8Array from "./urlBase64ToUint8Array";
 import version from "./version";
 interface Simpul {
+    cleanstring: typeof cleanstring;
     datestring: typeof datestring;
     jwt: typeof jwt;
     removePunctuation: typeof removePunctuation;
+    slug: typeof slug;
+    stringlength: typeof stringlength;
     stringnumber: typeof stringnumber;
     stringtest: typeof stringtest;
     support: typeof support;
