@@ -1,4 +1,5 @@
 import validate from "./validate";
+import support from "./support";
 
 function urlBase64ToUint8Array(base64String: string): Uint8Array | undefined {
   if (validate.isBase64(base64String)) {
@@ -8,7 +9,15 @@ function urlBase64ToUint8Array(base64String: string): Uint8Array | undefined {
       .replace(/-/g, "+")
       .replace(/_/g, "/");
 
-    const rawData = Buffer.from(base64, "base64").toString();
+    let rawData;
+
+    if (support.window) {
+      rawData = window.atob(base64);
+    } else if (typeof Buffer !== "undefined") {
+      rawData = Buffer.from(base64, "base64").toString();
+    }
+
+    if (!rawData) return;
 
     const outputArray = new Uint8Array(rawData.length);
 
