@@ -76,6 +76,7 @@ function isEmail(test: unknown): boolean {
 
 // FUNCTION
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
 function isFunction(test: unknown): test is Function {
   return typeof test === "function";
 }

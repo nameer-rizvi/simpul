@@ -57,6 +57,7 @@ function isEmail(test) {
     return isString(test) && emailPattern.test(test);
 }
 // FUNCTION
+// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
 function isFunction(test) {
     return typeof test === "function";
 }

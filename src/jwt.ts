@@ -18,7 +18,7 @@ function decode(jwt: string): string | undefined {
   }
 }
 
-function decodeJSON(jwt: string): any {
+function decodeJSON(jwt: string): unknown {
   const decoded = decode(jwt);
 
   if (!decoded) return;

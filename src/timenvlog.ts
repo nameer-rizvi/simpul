@@ -9,7 +9,7 @@ interface TimenvlogOptions {
   date_option?: object;
 }
 
-function timenvlog(log: any, option: TimenvlogOptions = {}): void {
+function timenvlog(log: unknown, option: TimenvlogOptions = {}): void {
   let datetime: string | undefined;
 
   let environment: string | undefined;
