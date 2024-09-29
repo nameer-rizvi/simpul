@@ -3,10 +3,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const changecase_1 = __importDefault(require("./changecase"));
 const cleanstring_1 = __importDefault(require("./cleanstring"));
+const clonedeep_1 = __importDefault(require("./clonedeep"));
 const datestring_1 = __importDefault(require("./datestring"));
 const jwt_1 = __importDefault(require("./jwt"));
 const removePunctuation_1 = __importDefault(require("./removePunctuation"));
+const scale_1 = __importDefault(require("./scale"));
+const shuffle_1 = __importDefault(require("./shuffle"));
 const slug_1 = __importDefault(require("./slug"));
 const stringlength_1 = __importDefault(require("./stringlength"));
 const stringnumber_1 = __importDefault(require("./stringnumber"));
@@ -23,10 +27,14 @@ const uid_1 = __importDefault(require("./uid"));
 const urlBase64ToUint8Array_1 = __importDefault(require("./urlBase64ToUint8Array"));
 const validate_1 = __importDefault(require("./validate"));
 const version_1 = __importDefault(require("./version"));
-const simpul = Object.assign({ cleanstring: cleanstring_1.default,
+const simpul = Object.assign({ changecase: changecase_1.default,
+    cleanstring: cleanstring_1.default,
+    clonedeep: clonedeep_1.default,
     datestring: datestring_1.default,
     jwt: jwt_1.default,
     removePunctuation: removePunctuation_1.default,
+    scale: scale_1.default,
+    shuffle: shuffle_1.default,
     slug: slug_1.default,
     stringlength: stringlength_1.default,
     stringnumber: stringnumber_1.default,

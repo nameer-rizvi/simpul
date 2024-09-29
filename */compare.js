@@ -1,7 +1,6 @@
 const math = require("./math");
 
 function euclidean(arr1 = [], arr2 = []) {
-  // https://simple.wikipedia.org/wiki/Euclidean_distance
   const arr1N = math.normalize(arr1);
   const arr2N = math.normalize(arr2);
   if (arr1N?.length !== arr2N?.length) return;
@@ -10,9 +9,9 @@ function euclidean(arr1 = [], arr2 = []) {
     distance += Math.pow(arr1N[i] - arr2N[i], 2);
   return math.num(Math.sqrt(distance));
 }
+// https://simple.wikipedia.org/wiki/Euclidean_distance
 
 function manhattan(arr1 = [], arr2 = []) {
-  // https://simple.wikipedia.org/wiki/Manhattan_distance
   const arr1N = math.normalize(arr1);
   const arr2N = math.normalize(arr2);
   if (arr1N?.length !== arr2N?.length) return;
@@ -21,9 +20,9 @@ function manhattan(arr1 = [], arr2 = []) {
     distance += Math.abs(arr1N[i] - arr2N[i]);
   return math.num(distance);
 }
+// https://simple.wikipedia.org/wiki/Manhattan_distance
 
 function cosine(arr1 = [], arr2 = []) {
-  // https://en.wikipedia.org/wiki/Cosine_similarity
   const arr1N = math.normalize(arr1);
   const arr2N = math.normalize(arr2);
   if (arr1N?.length !== arr2N?.length) return;
@@ -38,9 +37,9 @@ function cosine(arr1 = [], arr2 = []) {
   const magnitude = Math.sqrt(magnitude1) * Math.sqrt(magnitude2);
   return math.num(dotProduct / magnitude);
 }
+// https://en.wikipedia.org/wiki/Cosine_similarity
 
 function pearson(arr1 = [], arr2 = []) {
-  // https://en.wikipedia.org/wiki/Pearson_correlation_coefficient
   const arr1N = math.normalize(arr1);
   const arr2N = math.normalize(arr2);
   if (arr1N?.length !== arr2N?.length) return;
@@ -67,5 +66,6 @@ function pearson(arr1 = [], arr2 = []) {
   if (denominator === 0) return 0;
   return math.num(num / denominator);
 }
+// https://en.wikipedia.org/wiki/Pearson_correlation_coefficient
 
 module.exports = { euclidean, manhattan, cosine, pearson };

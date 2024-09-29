@@ -1,7 +1,7 @@
-function shuffle(array) {
+function shuffle<T>(array: T[]): T[] {
   let currentIndex = array.length;
 
-  let randomIndex;
+  let randomIndex: number;
 
   while (currentIndex !== 0) {
     randomIndex = Math.floor(Math.random() * currentIndex);
@@ -15,6 +15,4 @@ function shuffle(array) {
   return array;
 }
 
-module.exports = shuffle;
-
-// Source: https://stackoverflow.com/a/2450976
+export default shuffle;

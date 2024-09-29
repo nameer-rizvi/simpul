@@ -30,12 +30,17 @@
   "homepage": "https://github.com/nameer-rizvi/simpul#readme",
   "devDependencies": {
     "@types/he": "^1.2.3",
+    "@types/lodash.clonedeep": "^4.5.9",
     "@types/node": "^22.7.2",
     "@types/safe-regex": "^1.1.6",
     "he": "^1.2.0",
+    "lodash.clonedeep": "^4.5.0",
     "safe-regex": "^2.1.1",
     "string-strip-html": "8.5.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.6.2"
+  },
+  "dependencies": {
+    "change-case": "4.1.2"
   }
 }

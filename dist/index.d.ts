@@ -1,7 +1,11 @@
+import changecase from "./changecase";
 import cleanstring from "./cleanstring";
+import clonedeep from "./clonedeep";
 import datestring from "./datestring";
 import jwt from "./jwt";
 import removePunctuation from "./removePunctuation";
+import scale from "./scale";
+import shuffle from "./shuffle";
 import slug from "./slug";
 import stringlength from "./stringlength";
 import stringnumber from "./stringnumber";
@@ -18,10 +22,14 @@ import uid from "./uid";
 import urlBase64ToUint8Array from "./urlBase64ToUint8Array";
 import version from "./version";
 interface Simpul {
+    changecase: typeof changecase;
     cleanstring: typeof cleanstring;
+    clonedeep: typeof clonedeep;
     datestring: typeof datestring;
     jwt: typeof jwt;
     removePunctuation: typeof removePunctuation;
+    scale: typeof scale;
+    shuffle: typeof shuffle;
     slug: typeof slug;
     stringlength: typeof stringlength;
     stringnumber: typeof stringnumber;
