@@ -4,6 +4,8 @@ import clonedeep from "./clonedeep";
 import datestring from "./datestring";
 import jwt from "./jwt";
 import removePunctuation from "./removePunctuation";
+import removeStrings from "./removeStrings";
+import replaceStrings from "./replaceStrings";
 import scale from "./scale";
 import shuffle from "./shuffle";
 import slug from "./slug";
@@ -28,6 +30,8 @@ interface Simpul {
     datestring: typeof datestring;
     jwt: typeof jwt;
     removePunctuation: typeof removePunctuation;
+    removeStrings: typeof removeStrings;
+    replaceStrings: typeof replaceStrings;
     scale: typeof scale;
     shuffle: typeof shuffle;
     slug: typeof slug;
@@ -45,7 +49,7 @@ interface Simpul {
     uid: typeof uid;
     urlBase64ToUint8Array: typeof urlBase64ToUint8Array;
     version: typeof version;
-    [key: string]: any;
+    [key: string]: unknown;
 }
 declare const simpul: Simpul;
 export default simpul;

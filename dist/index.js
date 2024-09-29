@@ -9,6 +9,8 @@ const clonedeep_1 = __importDefault(require("./clonedeep"));
 const datestring_1 = __importDefault(require("./datestring"));
 const jwt_1 = __importDefault(require("./jwt"));
 const removePunctuation_1 = __importDefault(require("./removePunctuation"));
+const removeStrings_1 = __importDefault(require("./removeStrings"));
+const replaceStrings_1 = __importDefault(require("./replaceStrings"));
 const scale_1 = __importDefault(require("./scale"));
 const shuffle_1 = __importDefault(require("./shuffle"));
 const slug_1 = __importDefault(require("./slug"));
@@ -33,6 +35,8 @@ const simpul = Object.assign({ changecase: changecase_1.default,
     datestring: datestring_1.default,
     jwt: jwt_1.default,
     removePunctuation: removePunctuation_1.default,
+    removeStrings: removeStrings_1.default,
+    replaceStrings: replaceStrings_1.default,
     scale: scale_1.default,
     shuffle: shuffle_1.default,
     slug: slug_1.default,
