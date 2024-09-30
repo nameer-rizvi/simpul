@@ -1,6 +1,10 @@
-const validate = require("./validate");
+import validate from "./validate";
 
-function applyValueToNumber(number, value, operator = "+") {
+function applyValueToNumber(
+  number: number,
+  value: number,
+  operator: string = "+",
+): number {
   if (!validate.isNumber(number) || !validate.isNumber(value)) return number;
 
   switch (operator) {
@@ -21,4 +25,4 @@ function applyValueToNumber(number, value, operator = "+") {
   }
 }
 
-module.exports = applyValueToNumber;
+export default applyValueToNumber;
