@@ -15,6 +15,10 @@ function paginationProps(PAGE_SIZE, PAGE, total) {
 
   pagination.prevPage = pagination.hasPrevPage && PAGE - 1;
 
+  // cursor... next, prev, etc.
+  // url params... next, prev, etc.
+  // see showlist live for example.
+
   return pagination;
 }
 

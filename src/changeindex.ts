@@ -1,6 +1,10 @@
-const validate = require("./validate");
+import validate from "./validate";
 
-function changeindex(array = [], oldIndex, newIndex) {
+function changeindex<T>(
+  array: T[] = [],
+  oldIndex: number,
+  newIndex: number,
+): T[] {
   if (!validate.isNumber(oldIndex)) {
     throw new Error('Second argument ("old index") is not a number.');
   }
@@ -10,7 +14,7 @@ function changeindex(array = [], oldIndex, newIndex) {
   }
 
   if (newIndex >= array.length) {
-    array.length = newIndex + 1; // Extend array length if necessary
+    array.length = newIndex + 1; // Extend array length if necessary.
   }
 
   array.splice(newIndex, 0, array.splice(oldIndex, 1)[0]);
@@ -18,4 +22,4 @@ function changeindex(array = [], oldIndex, newIndex) {
   return array;
 }
 
-module.exports = changeindex;
+export default changeindex;

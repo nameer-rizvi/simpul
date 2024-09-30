@@ -1,9 +1,9 @@
-const validate = require("./validate");
+import validate from "./validate";
 
-function batchify(array, size = 10) {
+function batchify<T>(array: T[], size: number = 10): T[][] | undefined {
   if (!validate.isArray(array)) return;
 
-  const batches = [];
+  const batches: T[][] = [];
 
   let i = 0;
 
@@ -15,4 +15,4 @@ function batchify(array, size = 10) {
   return batches;
 }
 
-module.exports = batchify;
+export default batchify;
