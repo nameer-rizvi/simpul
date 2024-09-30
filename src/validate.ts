@@ -63,15 +63,17 @@ function isCreditCardNumber(test: unknown): boolean {
 // DATE
 
 function isDate(test: unknown): boolean {
-  if (isStringValid(test)) return !isNaN(Date.parse(test));
-  return test instanceof Date && !isNaN(test.getTime());
+  if (test instanceof Date) {
+    return !isNaN(test.getTime());
+  } else if (typeof test === "string" || typeof test === "number") {
+    return !isNaN(new Date(test).getTime());
+  } else return false;
 }
 
 // EMAIL
 
 function isEmail(test: unknown): boolean {
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return isString(test) && emailPattern.test(test);
+  return isString(test) && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(test);
 }
 
 // FUNCTION
@@ -84,9 +86,7 @@ function isFunction(test: unknown): test is Function {
 // HTTP
 
 function isHTTP(test: unknown): boolean {
-  const http = "http://";
-  const https = "https://";
-  return isString(test) && (test.startsWith(http) || test.startsWith(https));
+  return isString(test) && /^https?:\/\//.test(test);
 }
 
 // JSON
@@ -137,8 +137,7 @@ function isObjectValid(test: unknown): boolean {
 // PHONE NUMBER
 
 function isPhoneNumber(test: unknown): boolean {
-  const phonePattern = /^\+?[1-9]\d{1,14}$/; // E.164 format
-  return isString(test) && phonePattern.test(test);
+  return isString(test) && /^\+?[1-9]\d{1,14}$/.test(test); // E.164 format
 }
 
 // REGEX

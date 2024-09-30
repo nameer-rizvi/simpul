@@ -5,12 +5,10 @@ function decode(jwt) {
         return;
     try {
         const token = jwt.split(".")[1].replace(/-/g, "+").replace(/_/g, "/");
-        const decodedString = atob(token);
-        const decodedArray = Array.from(decodedString).map((c) => {
+        const array = Array.from(atob(token)).map((c) => {
             return `%${("00" + c.charCodeAt(0).toString(16)).slice(-2)}`;
         });
-        const decoded = decodeURIComponent(decodedArray.join(""));
-        return decoded;
+        return decodeURIComponent(array.join(""));
     }
     catch (_a) {
         return;
