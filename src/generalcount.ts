@@ -1,4 +1,7 @@
-function generalcount(count, option = {}) {
+function generalcount(
+  count: number,
+  option: { lang?: string; upperCase?: boolean; [key: string]: any } = {},
+): string | undefined {
   const { lang = "en-US", upperCase, ...rest } = option;
 
   if (typeof count !== "number") return;
@@ -17,4 +20,4 @@ function generalcount(count, option = {}) {
   return generalized;
 }
 
-module.exports = generalcount;
+export default generalcount;

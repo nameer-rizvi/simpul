@@ -1,4 +1,4 @@
-const validate = require("./validate");
+import validate from "./validate";
 
 const weekdays = [
   "Sunday",
@@ -25,49 +25,66 @@ const months = [
   "December",
 ];
 
-function weekday(date) {
+function weekday(date: Date | string): string {
   date = validate.isDate(date) ? new Date(date) : new Date();
   return weekdays[date.getDay()];
 }
 
-function month(date) {
+function month(date: Date | string): string {
   date = validate.isDate(date) ? new Date(date) : new Date();
   return months[date.getMonth()];
 }
 
-function withaddeddays(add = 0, date, constant) {
+function withaddeddays(
+  add: number = 0,
+  date: Date | string,
+  constant?: string,
+): string | Date {
   date = validate.isDate(date) ? new Date(date) : new Date();
   date.setDate(date.getDate() + add);
   return constant === "STRING" ? date.toLocaleDateString() : date;
 }
 
-function withaddedworkdays(add = 0, date, constant) {
-  add = Math.abs(add);
+function withaddedworkdays(
+  add: number = 0,
+  date: Date | string,
+  constant?: string,
+): string | Date {
   date = validate.isDate(date) ? new Date(date) : new Date();
-  const dir = add < 0 ? -1 : 1;
-  while (add) {
-    const utc = date.getUTCDay(date.setUTCDate(date.getUTCDate() + dir));
-    if (![6, 0].includes(utc)) add--;
+  let workDaysRemaining = Math.abs(add);
+  const direction = add < 0 ? -1 : 1;
+  while (workDaysRemaining > 0) {
+    date.setUTCDate(date.getUTCDate() + direction);
+    const dayOfWeek = date.getUTCDay();
+    if (dayOfWeek !== 6 && dayOfWeek !== 0) workDaysRemaining--; // Check if it's a weekday (Monday to Friday)
   }
   return constant === "STRING" ? date.toLocaleDateString() : date;
 }
 
-function withaddedseconds(add = 0, date, constant) {
+function withaddedseconds(
+  add: number = 0,
+  date: Date | string,
+  constant?: string,
+): string | Date {
   date = validate.isDate(date) ? new Date(date) : new Date();
   date.setSeconds(date.getSeconds() + add);
   return constant === "STRING" ? date.toLocaleDateString() : date;
 }
 
-function daystill(date) {
+function daystill(date: Date | string): number {
   return Math.abs(daystill2(date));
 }
 
-function daystill2(date) {
+function daystill2(date: Date | string): number {
   date = validate.isDate(date) ? new Date(date) : new Date();
-  return Math.ceil((date - new Date()) / (1000 * 60 * 60 * 24));
+  const till = (date.getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24);
+  return Math.ceil(till);
 }
 
-function isday(date, option = {}) {
+function isday(
+  date: Date | string,
+  option: { addYears?: number; addMonths?: number; addDays?: number } = {},
+): boolean {
   if (!validate.isDate(date)) return false;
   date = new Date(date);
   const { addYears = 0, addMonths = 0, addDays = 0 } = option;
@@ -78,27 +95,29 @@ function isday(date, option = {}) {
   return isYear && isMonth && isDay;
 }
 
-function isfuture(date) {
+function isfuture(date: Date | string): boolean {
   if (!validate.isDate(date)) return false;
   const test = new Date(date).setHours(0, 0, 0, 0);
   const today = new Date().setHours(0, 0, 0, 0);
   return test >= today;
 }
 
-function mostrecentworkdate(date, method) {
+function mostrecentworkdate(
+  date: Date | string,
+  constant?: string,
+): string | Date {
   date = validate.isDate(date) ? new Date(date) : new Date();
   const day = date.getDay();
   const daysAgo = day === 6 ? -1 : day === 0 ? -2 : 0;
-  return withaddeddays(daysAgo, date, method);
+  return withaddeddays(daysAgo, date, constant);
 }
 
-function mysql(date) {
+function mysql(date: Date | string): string {
   date = validate.isDate(date) ? new Date(date) : new Date();
-  const mysqldate = date.toISOString().replace("T", " ").replace("Z", "");
-  return mysqldate;
+  return date.toISOString().replace("T", " ").replace("Z", "");
 }
 
-module.exports = {
+export default {
   weekdays,
   months,
   weekday,

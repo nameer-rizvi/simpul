@@ -1,4 +1,4 @@
-function delay(ms = 1000, onDelay) {
+function delay(ms: number = 1000, onDelay?: () => void): Promise<void> {
   return new Promise((resolve) =>
     setTimeout(() => {
       if (onDelay) onDelay();
@@ -7,4 +7,4 @@ function delay(ms = 1000, onDelay) {
   );
 }
 
-module.exports = delay;
+export default delay;

@@ -9,6 +9,11 @@ import cleanstring from "./cleanstring";
 import clone from "./clone";
 import clonedeep from "./clonedeep";
 import compare from "./compare";
+import copytext from "./copytext";
+import countlabel from "./countlabel";
+import date from "./date";
+import delay from "./delay";
+import generalcount from "./generalcount";
 import jwt from "./jwt";
 import math from "./math";
 import support from "./support";
@@ -27,6 +32,11 @@ interface Simpul {
   clone: typeof clone;
   clonedeep: typeof clonedeep;
   compare: typeof compare;
+  copytext: typeof copytext;
+  countlabel: typeof countlabel;
+  date: typeof date;
+  delay: typeof delay;
+  generalcount: typeof generalcount;
   jwt: typeof jwt;
   math: typeof math;
   support: typeof support;
@@ -46,6 +56,11 @@ const simpul: Simpul = {
   clone,
   clonedeep,
   compare,
+  copytext,
+  countlabel,
+  date,
+  delay,
+  generalcount,
   jwt,
   math,
   support,

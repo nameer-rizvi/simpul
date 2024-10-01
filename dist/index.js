@@ -14,6 +14,11 @@ const cleanstring_1 = __importDefault(require("./cleanstring"));
 const clone_1 = __importDefault(require("./clone"));
 const clonedeep_1 = __importDefault(require("./clonedeep"));
 const compare_1 = __importDefault(require("./compare"));
+const copytext_1 = __importDefault(require("./copytext"));
+const countlabel_1 = __importDefault(require("./countlabel"));
+const date_1 = __importDefault(require("./date"));
+const delay_1 = __importDefault(require("./delay"));
+const generalcount_1 = __importDefault(require("./generalcount"));
 const jwt_1 = __importDefault(require("./jwt"));
 const math_1 = __importDefault(require("./math"));
 const support_1 = __importDefault(require("./support"));
@@ -30,6 +35,11 @@ const simpul = Object.assign({ abbreviationToNumber: abbreviationToNumber_1.defa
     clone: clone_1.default,
     clonedeep: clonedeep_1.default,
     compare: compare_1.default,
+    copytext: copytext_1.default,
+    countlabel: countlabel_1.default,
+    date: date_1.default,
+    delay: delay_1.default,
+    generalcount: generalcount_1.default,
     jwt: jwt_1.default,
     math: math_1.default,
     support: support_1.default,
