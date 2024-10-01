@@ -1,9 +1,30 @@
-function endswith(string = "") {
+interface Punctuation {
+  period: boolean;
+  question: boolean;
+  exclamation: boolean;
+  comma: boolean;
+  colon: boolean;
+  semicolon: boolean;
+  dash: boolean;
+  hyphen: boolean;
+  bracket: boolean;
+  brace: boolean;
+  parenthesis: boolean;
+  apostrophe: boolean;
+  quotation: boolean;
+  ellipsis: boolean;
+  sentence?: boolean;
+  incomplete1?: boolean;
+  incomplete2?: boolean;
+  incomplete3?: boolean;
+}
+
+function endswith(string: string = ""): Punctuation {
   string = string.trim();
 
   const lastChar = string[string.length - 1];
 
-  const punctuation = {
+  const punctuation: Punctuation = {
     period: lastChar === ".",
     question: lastChar === "?",
     exclamation: lastChar === "!",
@@ -15,7 +36,7 @@ function endswith(string = "") {
     bracket: lastChar === "]",
     brace: lastChar === "}",
     parenthesis: lastChar === ")",
-    apostraphe: lastChar === "'",
+    apostrophe: lastChar === "'", // Fixed typo
     quotation: lastChar === '"',
     ellipsis: string.endsWith("...") || string.endsWith("…"),
   };
@@ -35,10 +56,10 @@ function endswith(string = "") {
     punctuation.bracket ||
     punctuation.brace ||
     punctuation.parenthesis ||
-    punctuation.apostraphe ||
+    punctuation.apostrophe ||
     punctuation.quotation;
 
   return punctuation;
 }
 
-module.exports = endswith;
+export default endswith;

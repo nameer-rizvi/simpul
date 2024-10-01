@@ -7,7 +7,7 @@ interface DatestringOptions {
 function datestring(
   date: Date | string = "",
   format: string = "M/D/Y h:m:s p",
-  option: DatestringOptions = {}
+  option: DatestringOptions = {},
 ): string {
   const dateObject = validate.isDate(date) ? new Date(date) : new Date();
 
