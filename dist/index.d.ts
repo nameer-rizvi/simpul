@@ -41,9 +41,13 @@ import removeNullValues from "./removeNullValues";
 import removePunctuation from "./removePunctuation";
 import removeStrings from "./removeStrings";
 import replaceStrings from "./replaceStrings";
+import scale from "./scale";
+import shuffle from "./shuffle";
+import slug from "./slug";
 import support from "./support";
 import timenvlog from "./timenvlog";
 import trim from "./trim";
+import trimPunctuation from "./trimPunctuation";
 interface Simpul {
     abbreviationToNumber: typeof abbreviationToNumber;
     applyValueToNumber: typeof applyValueToNumber;
@@ -88,9 +92,13 @@ interface Simpul {
     removePunctuation: typeof removePunctuation;
     removeStrings: typeof removeStrings;
     replaceStrings: typeof replaceStrings;
+    scale: typeof scale;
+    shuffle: typeof shuffle;
+    slug: typeof slug;
     support: typeof support;
     timenvlog: typeof timenvlog;
     trim: typeof trim;
+    trimPunctuation: typeof trimPunctuation;
     [key: string]: any;
 }
 declare const simpul: Simpul;

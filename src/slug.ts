@@ -2,7 +2,11 @@ import validate from "./validate";
 import cleanstring from "./cleanstring";
 import trimPunctuation from "./trimPunctuation";
 
-function slug(input: string, maxlength: number = 2000): string {
+function slug(
+  input: string,
+  delimiter: string = "_",
+  maxlength: number = 2000,
+): string {
   if (!validate.isString(input)) return "";
 
   let output = cleanstring(input);
@@ -13,7 +17,7 @@ function slug(input: string, maxlength: number = 2000): string {
 
   if (!output) return "";
 
-  output = output.replace(/ /g, "_");
+  output = output.replace(/ /g, delimiter);
 
   output = encodeURIComponent(output);
 

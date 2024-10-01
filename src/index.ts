@@ -41,9 +41,13 @@ import removeNullValues from "./removeNullValues";
 import removePunctuation from "./removePunctuation";
 import removeStrings from "./removeStrings";
 import replaceStrings from "./replaceStrings";
+import scale from "./scale";
+import shuffle from "./shuffle";
+import slug from "./slug";
 import support from "./support";
 import timenvlog from "./timenvlog";
 import trim from "./trim";
+import trimPunctuation from "./trimPunctuation";
 import validate from "./validate";
 
 interface Simpul {
@@ -90,9 +94,13 @@ interface Simpul {
   removePunctuation: typeof removePunctuation;
   removeStrings: typeof removeStrings;
   replaceStrings: typeof replaceStrings;
+  scale: typeof scale;
+  shuffle: typeof shuffle;
+  slug: typeof slug;
   support: typeof support;
   timenvlog: typeof timenvlog;
   trim: typeof trim;
+  trimPunctuation: typeof trimPunctuation;
   [key: string]: any;
 }
 
@@ -140,9 +148,13 @@ const simpul: Simpul = {
   removePunctuation,
   removeStrings,
   replaceStrings,
+  scale,
+  shuffle,
+  slug,
   support,
   timenvlog,
   trim,
+  trimPunctuation,
   ...validate,
 };
 

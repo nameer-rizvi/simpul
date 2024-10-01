@@ -1,13 +1,13 @@
-import trim from "./trim";
 import removePunctuation from "./removePunctuation";
+import trim from "./trim";
 
 function trimPunctuation(
   dirty: string,
-  delimiter?: string
+  delimiter?: string,
 ): string | undefined {
-  const withoutPunctuation = removePunctuation(dirty);
-  if (withoutPunctuation) {
-    return trim(withoutPunctuation, delimiter);
+  const removed = removePunctuation(dirty);
+  if (removed) {
+    return trim(removed, delimiter);
   }
 }
 

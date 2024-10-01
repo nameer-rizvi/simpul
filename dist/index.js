@@ -46,9 +46,13 @@ const removeNullValues_1 = __importDefault(require("./removeNullValues"));
 const removePunctuation_1 = __importDefault(require("./removePunctuation"));
 const removeStrings_1 = __importDefault(require("./removeStrings"));
 const replaceStrings_1 = __importDefault(require("./replaceStrings"));
+const scale_1 = __importDefault(require("./scale"));
+const shuffle_1 = __importDefault(require("./shuffle"));
+const slug_1 = __importDefault(require("./slug"));
 const support_1 = __importDefault(require("./support"));
 const timenvlog_1 = __importDefault(require("./timenvlog"));
 const trim_1 = __importDefault(require("./trim"));
+const trimPunctuation_1 = __importDefault(require("./trimPunctuation"));
 const validate_1 = __importDefault(require("./validate"));
 const simpul = Object.assign({ abbreviationToNumber: abbreviationToNumber_1.default,
     applyValueToNumber: applyValueToNumber_1.default,
@@ -93,7 +97,11 @@ const simpul = Object.assign({ abbreviationToNumber: abbreviationToNumber_1.defa
     removePunctuation: removePunctuation_1.default,
     removeStrings: removeStrings_1.default,
     replaceStrings: replaceStrings_1.default,
+    scale: scale_1.default,
+    shuffle: shuffle_1.default,
+    slug: slug_1.default,
     support: support_1.default,
     timenvlog: timenvlog_1.default,
-    trim: trim_1.default }, validate_1.default);
+    trim: trim_1.default,
+    trimPunctuation: trimPunctuation_1.default }, validate_1.default);
 exports.default = simpul;
