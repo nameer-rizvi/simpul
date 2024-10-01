@@ -1,7 +1,7 @@
 import validate from "./validate";
 
 function removeNullValues<T extends Record<string, any>>(
-  object: T = {} as T
+  object: T = {} as T,
 ): Partial<T> {
   const clean: Partial<T> = {};
 

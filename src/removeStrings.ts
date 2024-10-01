@@ -2,7 +2,7 @@ import validate from "./validate";
 
 function removeStrings(
   str: string,
-  removes: string[] = []
+  removes: string[] = [],
 ): string | undefined {
   if (validate.isString(str)) {
     return removes.reduce((result, remove) => {

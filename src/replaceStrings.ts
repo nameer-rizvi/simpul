@@ -2,7 +2,7 @@ import validate from "./validate";
 
 function replaceStrings(
   str: string,
-  replaces: [string, string][] = []
+  replaces: [string, string][] = [],
 ): string | undefined {
   if (validate.isString(str)) {
     return replaces.reduce((result, [pattern, replacement]) => {

@@ -42,6 +42,10 @@ const peaks_1 = __importDefault(require("./peaks"));
 const recursively_1 = __importDefault(require("./recursively"));
 const reduceobject_1 = __importDefault(require("./reduceobject"));
 const removeArrayItems_1 = __importDefault(require("./removeArrayItems"));
+const removeNullValues_1 = __importDefault(require("./removeNullValues"));
+const removePunctuation_1 = __importDefault(require("./removePunctuation"));
+const removeStrings_1 = __importDefault(require("./removeStrings"));
+const replaceStrings_1 = __importDefault(require("./replaceStrings"));
 const support_1 = __importDefault(require("./support"));
 const timenvlog_1 = __importDefault(require("./timenvlog"));
 const trim_1 = __importDefault(require("./trim"));
@@ -85,6 +89,10 @@ const simpul = Object.assign({ abbreviationToNumber: abbreviationToNumber_1.defa
     recursively: recursively_1.default,
     reduceobject: reduceobject_1.default,
     removeArrayItems: removeArrayItems_1.default,
+    removeNullValues: removeNullValues_1.default,
+    removePunctuation: removePunctuation_1.default,
+    removeStrings: removeStrings_1.default,
+    replaceStrings: replaceStrings_1.default,
     support: support_1.default,
     timenvlog: timenvlog_1.default,
     trim: trim_1.default }, validate_1.default);

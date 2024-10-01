@@ -37,6 +37,10 @@ import peaks from "./peaks";
 import recursively from "./recursively";
 import reduceobject from "./reduceobject";
 import removeArrayItems from "./removeArrayItems";
+import removeNullValues from "./removeNullValues";
+import removePunctuation from "./removePunctuation";
+import removeStrings from "./removeStrings";
+import replaceStrings from "./replaceStrings";
 import support from "./support";
 import timenvlog from "./timenvlog";
 import trim from "./trim";
@@ -82,6 +86,10 @@ interface Simpul {
   recursively: typeof recursively;
   reduceobject: typeof reduceobject;
   removeArrayItems: typeof removeArrayItems;
+  removeNullValues: typeof removeNullValues;
+  removePunctuation: typeof removePunctuation;
+  removeStrings: typeof removeStrings;
+  replaceStrings: typeof replaceStrings;
   support: typeof support;
   timenvlog: typeof timenvlog;
   trim: typeof trim;
@@ -128,6 +136,10 @@ const simpul: Simpul = {
   recursively,
   reduceobject,
   removeArrayItems,
+  removeNullValues,
+  removePunctuation,
+  removeStrings,
+  replaceStrings,
   support,
   timenvlog,
   trim,
