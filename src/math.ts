@@ -119,8 +119,7 @@ function rate(
 
 function normalize(arr: number[] = []): number[] | undefined {
   if (!validate.isArray(arr)) return;
-  const numbers: number[] = [];
-  for (const v of arr) if (validate.isNumber(v)) numbers.push(v);
+  const numbers = arr.filter(validate.isNumber);
   const max = Math.max(...numbers);
   const min = Math.min(...numbers);
   const range = simplify(max - min);

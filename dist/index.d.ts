@@ -8,8 +8,10 @@ import changeindex from "./changeindex";
 import cleanstring from "./cleanstring";
 import clone from "./clone";
 import clonedeep from "./clonedeep";
+import compare from "./compare";
 import jwt from "./jwt";
 import math from "./math";
+import support from "./support";
 import trim from "./trim";
 interface Simpul {
     abbreviationToNumber: typeof abbreviationToNumber;
@@ -22,8 +24,10 @@ interface Simpul {
     cleanstring: typeof cleanstring;
     clone: typeof clone;
     clonedeep: typeof clonedeep;
+    compare: typeof compare;
     jwt: typeof jwt;
     math: typeof math;
+    support: typeof support;
     trim: typeof trim;
     [key: string]: any;
 }

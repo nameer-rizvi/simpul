@@ -134,10 +134,7 @@ function rate(start, end, periods = 1) {
 function normalize(arr = []) {
     if (!validate_1.default.isArray(arr))
         return;
-    const numbers = [];
-    for (const v of arr)
-        if (validate_1.default.isNumber(v))
-            numbers.push(v);
+    const numbers = arr.filter(validate_1.default.isNumber);
     const max = Math.max(...numbers);
     const min = Math.min(...numbers);
     const range = simplify(max - min);

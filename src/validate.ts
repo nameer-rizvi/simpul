@@ -115,6 +115,18 @@ function isJWT(test: unknown): boolean {
   return isStringValid(jwt.decode(test as string));
 }
 
+// MODULE
+
+function isModule(test: unknown): boolean {
+  if (!isString(test)) return false;
+  try {
+    require.resolve(test);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 // NUMBER
 
 function isNumber(test: unknown): boolean {
@@ -190,6 +202,7 @@ export default {
   isJSON,
   isJSONString,
   isJWT,
+  isModule,
   isNumber,
   isObject,
   isObjectValid,

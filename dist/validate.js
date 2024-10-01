@@ -92,6 +92,18 @@ function isJSONString(test) {
 function isJWT(test) {
     return isStringValid(jwt_1.default.decode(test));
 }
+// MODULE
+function isModule(test) {
+    if (!isString(test))
+        return false;
+    try {
+        require.resolve(test);
+        return true;
+    }
+    catch (_a) {
+        return false;
+    }
+}
 // NUMBER
 function isNumber(test) {
     if (isStringValid(test))
@@ -155,6 +167,7 @@ exports.default = {
     isJSON,
     isJSONString,
     isJWT,
+    isModule,
     isNumber,
     isObject,
     isObjectValid,

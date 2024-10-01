@@ -13,8 +13,10 @@ const changeindex_1 = __importDefault(require("./changeindex"));
 const cleanstring_1 = __importDefault(require("./cleanstring"));
 const clone_1 = __importDefault(require("./clone"));
 const clonedeep_1 = __importDefault(require("./clonedeep"));
+const compare_1 = __importDefault(require("./compare"));
 const jwt_1 = __importDefault(require("./jwt"));
 const math_1 = __importDefault(require("./math"));
+const support_1 = __importDefault(require("./support"));
 const trim_1 = __importDefault(require("./trim"));
 const validate_1 = __importDefault(require("./validate"));
 const simpul = Object.assign({ abbreviationToNumber: abbreviationToNumber_1.default,
@@ -27,7 +29,9 @@ const simpul = Object.assign({ abbreviationToNumber: abbreviationToNumber_1.defa
     cleanstring: cleanstring_1.default,
     clone: clone_1.default,
     clonedeep: clonedeep_1.default,
+    compare: compare_1.default,
     jwt: jwt_1.default,
     math: math_1.default,
+    support: support_1.default,
     trim: trim_1.default }, validate_1.default);
 exports.default = simpul;
