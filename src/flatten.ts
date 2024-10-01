@@ -1,9 +1,12 @@
-const validate = require("./validate");
+import validate from "./validate";
 
-function flatten(object = {}, delimiter = "_") {
-  const result = {};
+function flatten(
+  object: Record<string, any> = {},
+  delimiter: string = "_",
+): Record<string, any> {
+  const result: Record<string, any> = {};
 
-  function recurse(obj, currentKey) {
+  function recurse(obj: Record<string, any>, currentKey: string) {
     Object.keys(obj).forEach((key) => {
       const newKey = currentKey ? `${currentKey}${delimiter}${key}` : key;
       if (validate.isObject(obj[key])) {
@@ -19,4 +22,4 @@ function flatten(object = {}, delimiter = "_") {
   return result;
 }
 
-module.exports = flatten;
+export default flatten;

@@ -1,19 +1,19 @@
-const isEnvDevelopment =
+const isEnvDevelopment: boolean =
   process.env.NODE_ENV === "development" || process.env.NODE_ENV === "dev";
 
-const isEnvTest = process.env.NODE_ENV === "test";
+const isEnvTest: boolean = process.env.NODE_ENV === "test";
 
-const isEnvStaging =
+const isEnvStaging: boolean =
   process.env.NODE_ENV === "staging" || process.env.NODE_ENV === "stage";
 
-const isEnvProduction =
+const isEnvProduction: boolean =
   process.env.NODE_ENV === "production" || process.env.NODE_ENV === "prod";
 
-module.exports = {
+export default {
   development: isEnvDevelopment,
   test: isEnvTest,
   staging: isEnvStaging,
   production: isEnvProduction,
   live: isEnvStaging || isEnvProduction,
-  name: process.env.NODE_ENV,
+  name: process.env.NODE_ENV as string | undefined, // Environment variable could be undefined
 };

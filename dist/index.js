@@ -23,10 +23,15 @@ const delimiter_1 = __importDefault(require("./delimiter"));
 const delimitersplit_1 = __importDefault(require("./delimitersplit"));
 const endswith_1 = __importDefault(require("./endswith"));
 const escaper_1 = __importDefault(require("./escaper"));
+const flatten_1 = __importDefault(require("./flatten"));
 const generalcount_1 = __importDefault(require("./generalcount"));
+const isEnv_1 = __importDefault(require("./isEnv"));
 const jwt_1 = __importDefault(require("./jwt"));
+const keychange_1 = __importDefault(require("./keychange"));
+const log_1 = __importDefault(require("./log"));
 const math_1 = __importDefault(require("./math"));
 const support_1 = __importDefault(require("./support"));
+const timenvlog_1 = __importDefault(require("./timenvlog"));
 const trim_1 = __importDefault(require("./trim"));
 const validate_1 = __importDefault(require("./validate"));
 const simpul = Object.assign({ abbreviationToNumber: abbreviationToNumber_1.default,
@@ -49,9 +54,14 @@ const simpul = Object.assign({ abbreviationToNumber: abbreviationToNumber_1.defa
     delimitersplit: delimitersplit_1.default,
     endswith: endswith_1.default,
     escaper: escaper_1.default,
+    flatten: flatten_1.default,
     generalcount: generalcount_1.default,
+    isEnv: isEnv_1.default,
     jwt: jwt_1.default,
+    keychange: keychange_1.default,
+    log: log_1.default,
     math: math_1.default,
     support: support_1.default,
+    timenvlog: timenvlog_1.default,
     trim: trim_1.default }, validate_1.default);
 exports.default = simpul;

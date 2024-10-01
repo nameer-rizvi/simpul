@@ -1,6 +1,21 @@
-const capitalize = require("./capitalize");
-const validate = require("./validate");
-const timenvlog = require("./timenvlog");
+import capitalize from "./capitalize";
+import validate from "./validate";
+import timenvlog from "./timenvlog";
+
+interface LogGeneratorOptions {
+  log?: any;
+  ignoreStringifiedNumber?: boolean;
+  ignoreKeyPrefix?: boolean;
+  key?: string;
+  ignoreDots?: boolean;
+  self?: Array<any>;
+  emoji?: string;
+  ignoreNonCriticalLogs?: boolean;
+  isCritical?: boolean;
+  flags?: string[];
+  flag?: string;
+  [key: string]: any;
+}
 
 function logGenerator({
   log,
@@ -15,7 +30,7 @@ function logGenerator({
   flags = [],
   flag = "",
   ...timenvlogOption
-}) {
+}: LogGeneratorOptions): void {
   log = capitalize(log?.toString?.());
 
   if (validate.isString(log)) {
@@ -23,15 +38,16 @@ function logGenerator({
     if (log.charAt(log.length - 1).match(/[a-z0-9)]/i)) log += ".";
   }
 
-  let keyPrefix;
+  let keyPrefix: string | undefined;
 
   if (!ignoreKeyPrefix) {
-    keyPrefix = capitalize(key).replace(/[0-9]/g, ".");
+    keyPrefix = capitalize(key || "")?.replace(/[0-9]/g, ".");
     if (!ignoreDots) {
       const maxKeyLength = self
-        .map(({ key }) => key.replace(/[0-9]/g, ""))
-        .sort((a, b) => b.length - a.length)[0].length;
-      for (let i = 0; i < maxKeyLength - key.length; i++) keyPrefix += ".";
+        ?.map(({ key }: { key: string }) => key.replace(/[0-9]/g, ""))
+        .sort((a: string, b: string) => b.length - a.length)[0].length;
+      for (let i = 0; i < (maxKeyLength || 0) - (key?.length || 0); i++)
+        keyPrefix += ".";
     }
     keyPrefix += ":";
   }
@@ -41,10 +57,21 @@ function logGenerator({
   if (ignoreNonCriticalLogs) {
     if (log instanceof Error || isCritical || flags.includes(flag))
       timenvlog(full, timenvlogOption);
-  } else timenvlog(full, timenvlogOption);
+  } else {
+    timenvlog(full, timenvlogOption);
+  }
 }
 
-const logResolver = (customConfigs = [], option = {}) =>
+interface LogResolverConfig {
+  key: string;
+  emoji: string;
+  ignoreStringifiedNumber?: boolean;
+}
+
+const logResolver = (
+  customConfigs: LogResolverConfig[] = [],
+  option: Partial<LogGeneratorOptions> = {},
+) =>
   [
     { key: "algo", emoji: "🤖" },
     { key: "at", emoji: "➡️ " },
@@ -105,7 +132,7 @@ const logResolver = (customConfigs = [], option = {}) =>
   ].reduce((reducer, config, index, self) => {
     return {
       ...reducer,
-      [config.key]: (log, option2) =>
+      [config.key]: (log: string, option2: Partial<LogGeneratorOptions>) =>
         logGenerator({
           ...option,
           ...option2,
@@ -117,23 +144,8 @@ const logResolver = (customConfigs = [], option = {}) =>
     };
   }, {});
 
-function map(token) {
+function map(token: string | number): string | number {
   return validate.isNumber(token) ? Number(token).toLocaleString() : token;
 }
 
-module.exports = logResolver;
-
-// TESTER/SAMPLE:
-//
-// logResolver(undefined, {
-//   ignoreStringifiedNumber: true,
-//   ignoreKeyPrefix: true,
-//   ignoreDots: true,
-//   ignoreNonCriticalLogs: true,
-//   flags: ["minimal"],
-//   ignoreEnvironment: true,
-//   ignoreTimestamp: true,
-//   date: new Date("7/27/1996 1:00 PM"),
-//   date_format: "M.D.Y",
-//   date_option: { military: true },
-// }).yen("dude it's 123123123123", { flag: "minimal" });
+export default logResolver;

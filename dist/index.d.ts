@@ -18,10 +18,15 @@ import delimiter from "./delimiter";
 import delimitersplit from "./delimitersplit";
 import endswith from "./endswith";
 import escaper from "./escaper";
+import flatten from "./flatten";
 import generalcount from "./generalcount";
+import isEnv from "./isEnv";
 import jwt from "./jwt";
+import keychange from "./keychange";
+import log from "./log";
 import math from "./math";
 import support from "./support";
+import timenvlog from "./timenvlog";
 import trim from "./trim";
 interface Simpul {
     abbreviationToNumber: typeof abbreviationToNumber;
@@ -44,10 +49,15 @@ interface Simpul {
     delimitersplit: typeof delimitersplit;
     endswith: typeof endswith;
     escaper: typeof escaper;
+    flatten: typeof flatten;
     generalcount: typeof generalcount;
+    isEnv: typeof isEnv;
     jwt: typeof jwt;
+    keychange: typeof keychange;
+    log: typeof log;
     math: typeof math;
     support: typeof support;
+    timenvlog: typeof timenvlog;
     trim: typeof trim;
     [key: string]: any;
 }

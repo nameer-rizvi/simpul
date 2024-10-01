@@ -34,6 +34,7 @@ function version(versions: string[] = []) {
   function parse(v: string, o: VersionOptions = {}): VersionResult {
     const result: VersionResult = { isSupported: false };
     if (validate.isString(v)) {
+      // v = formatter(v);
       result.string = v;
       const parts = v.split(".").filter(validate.isNumber).slice(0, 3);
       result.major = +parts[0];
