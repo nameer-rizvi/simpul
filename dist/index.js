@@ -29,7 +29,16 @@ const isEnv_1 = __importDefault(require("./isEnv"));
 const jwt_1 = __importDefault(require("./jwt"));
 const keychange_1 = __importDefault(require("./keychange"));
 const log_1 = __importDefault(require("./log"));
+const logPermutation_1 = __importDefault(require("./logPermutation"));
 const math_1 = __importDefault(require("./math"));
+const noop_1 = __importDefault(require("./noop"));
+const numberstring_1 = __importDefault(require("./numberstring"));
+const objectKeyGroup_1 = __importDefault(require("./objectKeyGroup"));
+const ordinalized_1 = __importDefault(require("./ordinalized"));
+const paginationProps_1 = __importDefault(require("./paginationProps"));
+const parseCommafiedNumber_1 = __importDefault(require("./parseCommafiedNumber"));
+const parsejson_1 = __importDefault(require("./parsejson"));
+const peaks_1 = __importDefault(require("./peaks"));
 const support_1 = __importDefault(require("./support"));
 const timenvlog_1 = __importDefault(require("./timenvlog"));
 const trim_1 = __importDefault(require("./trim"));
@@ -60,7 +69,16 @@ const simpul = Object.assign({ abbreviationToNumber: abbreviationToNumber_1.defa
     jwt: jwt_1.default,
     keychange: keychange_1.default,
     log: log_1.default,
+    logPermutation: logPermutation_1.default,
     math: math_1.default,
+    noop: noop_1.default,
+    numberstring: numberstring_1.default,
+    objectKeyGroup: objectKeyGroup_1.default,
+    ordinalized: ordinalized_1.default,
+    paginationProps: paginationProps_1.default,
+    parseCommafiedNumber: parseCommafiedNumber_1.default,
+    parsejson: parsejson_1.default,
+    peaks: peaks_1.default,
     support: support_1.default,
     timenvlog: timenvlog_1.default,
     trim: trim_1.default }, validate_1.default);

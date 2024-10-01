@@ -1,16 +1,21 @@
-const validate = require("./validate");
-const math = require("./math");
+import validate from "./validate";
+import math from "./math";
 
-// Identifies peaks (local maxima and minima) in an array of numbers.
-function peaks(array, rank = false) {
-  const results = [];
+interface Peak {
+  index: number;
+  value: number;
+  category: "top" | "bottom";
+  changeNum: number;
+  changeRank?: number;
+}
+
+function peaks(array: number[], rank: boolean = false): Peak[] {
+  const results: Peak[] = [];
 
   if (validate.isArray(array)) {
     for (let i = 0; i < array.length - 2; i++) {
       const a = array[i];
-
       const b = array[i + 1];
-
       const c = array[i + 2];
 
       if (
@@ -18,17 +23,14 @@ function peaks(array, rank = false) {
         validate.isNumber(b) &&
         validate.isNumber(c)
       ) {
-        let category;
-
+        let category: "top" | "bottom" | undefined;
         if (b > a && b >= c) category = "top";
-
         if (b < a && b <= c) category = "bottom";
 
         if (category) {
           const last = results[results.length - 1];
-
-          const changeNum = last ? Math.abs(math.change.num(last.value, b)) : 0;
-
+          let changeNum = last && math.change.num(last.value, b);
+          if (!changeNum) changeNum = 0;
           results.push({ index: i + 1, value: b, category, changeNum });
         }
       }
@@ -43,4 +45,4 @@ function peaks(array, rank = false) {
   return results;
 }
 
-module.exports = peaks;
+export default peaks;

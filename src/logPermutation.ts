@@ -1,9 +1,12 @@
-const math = require("./math");
+import math from "./math";
 
-function logPermutationDecorator(permutations, withDatetime = true) {
+function logPermutationDecorator(
+  permutations: number,
+  withDatetime: boolean = true,
+) {
   let permutation = 1;
 
-  return function logPermutation() {
+  return function logPermutation(): void {
     const datetime = withDatetime
       ? `${new Date().toLocaleString().replace(",", "")} - `
       : "";
@@ -18,7 +21,7 @@ function logPermutationDecorator(permutations, withDatetime = true) {
 
     const total = permutations.toLocaleString();
 
-    const perc = math.percent(permutation, permutations).toLocaleString();
+    const perc = math.percent(permutation, permutations)?.toLocaleString() || 0;
 
     const text = `${datetime}${emoji} ${title} ${completed}/${total} (${perc}%)`;
 
@@ -36,4 +39,4 @@ function logPermutationDecorator(permutations, withDatetime = true) {
   };
 }
 
-module.exports = logPermutationDecorator;
+export default logPermutationDecorator;

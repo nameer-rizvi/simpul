@@ -1,5 +1,5 @@
-const validate = require("./validate");
-const math = require("./math");
+import validate from "./validate";
+import math from "./math";
 
 const currency = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -8,9 +8,14 @@ const currency = new Intl.NumberFormat("en-US", {
   maximumFractionDigits: 2,
 });
 
-function numberstring(number, types = []) {
+function numberstring(
+  number: number,
+  types: string[] = [],
+): string | undefined {
   if (validate.isNumber(number)) {
-    let string = math.num(number).toLocaleString();
+    let string = math.num(number)?.toLocaleString();
+
+    if (!validate.isString(string)) return;
 
     if (types.includes("$")) {
       string = currency.format(number);
@@ -26,8 +31,14 @@ function numberstring(number, types = []) {
       string = "+" + string;
     }
 
+    if (types.includes(".-")) {
+      string = string.split(".")[0];
+    } else if (types.includes(".+")) {
+      if (!string.includes(".")) string += ".00";
+    }
+
     return string;
   }
 }
 
-module.exports = numberstring;
+export default numberstring;

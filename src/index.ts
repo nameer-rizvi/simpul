@@ -24,7 +24,16 @@ import isEnv from "./isEnv";
 import jwt from "./jwt";
 import keychange from "./keychange";
 import log from "./log";
+import logPermutation from "./logPermutation";
 import math from "./math";
+import noop from "./noop";
+import numberstring from "./numberstring";
+import objectKeyGroup from "./objectKeyGroup";
+import ordinalized from "./ordinalized";
+import paginationProps from "./paginationProps";
+import parseCommafiedNumber from "./parseCommafiedNumber";
+import parsejson from "./parsejson";
+import peaks from "./peaks";
 import support from "./support";
 import timenvlog from "./timenvlog";
 import trim from "./trim";
@@ -57,7 +66,16 @@ interface Simpul {
   jwt: typeof jwt;
   keychange: typeof keychange;
   log: typeof log;
+  logPermutation: typeof logPermutation;
   math: typeof math;
+  noop: typeof noop;
+  numberstring: typeof numberstring;
+  objectKeyGroup: typeof objectKeyGroup;
+  ordinalized: typeof ordinalized;
+  paginationProps: typeof paginationProps;
+  parseCommafiedNumber: typeof parseCommafiedNumber;
+  parsejson: typeof parsejson;
+  peaks: typeof peaks;
   support: typeof support;
   timenvlog: typeof timenvlog;
   trim: typeof trim;
@@ -91,7 +109,16 @@ const simpul: Simpul = {
   jwt,
   keychange,
   log,
+  logPermutation,
   math,
+  noop,
+  numberstring,
+  objectKeyGroup,
+  ordinalized,
+  paginationProps,
+  parseCommafiedNumber,
+  parsejson,
+  peaks,
   support,
   timenvlog,
   trim,
