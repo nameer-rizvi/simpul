@@ -3,7 +3,7 @@ import trim from "./trim";
 function trimBoundary(
   dirty: string,
   boundary?: string,
-  delimiter?: string
+  delimiter?: string,
 ): string | undefined {
   let clean = dirty?.trim() || undefined;
 

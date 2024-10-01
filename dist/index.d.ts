@@ -49,8 +49,12 @@ import stringnumber from "./stringnumber";
 import stringtest from "./stringtest";
 import support from "./support";
 import timenvlog from "./timenvlog";
+import tokenize from "./tokenize";
 import trim from "./trim";
+import trimBoundary from "./trimBoundary";
 import trimPunctuation from "./trimPunctuation";
+import tryasync from "./tryasync";
+import trycallback from "./trycallback";
 interface Simpul {
     abbreviationToNumber: typeof abbreviationToNumber;
     applyValueToNumber: typeof applyValueToNumber;
@@ -103,8 +107,12 @@ interface Simpul {
     stringtest: typeof stringtest;
     support: typeof support;
     timenvlog: typeof timenvlog;
+    tokenize: typeof tokenize;
     trim: typeof trim;
+    trimBoundary: typeof trimBoundary;
     trimPunctuation: typeof trimPunctuation;
+    tryasync: typeof tryasync;
+    trycallback: typeof trycallback;
     [key: string]: any;
 }
 declare const simpul: Simpul;

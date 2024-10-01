@@ -54,8 +54,12 @@ const stringnumber_1 = __importDefault(require("./stringnumber"));
 const stringtest_1 = __importDefault(require("./stringtest"));
 const support_1 = __importDefault(require("./support"));
 const timenvlog_1 = __importDefault(require("./timenvlog"));
+const tokenize_1 = __importDefault(require("./tokenize"));
 const trim_1 = __importDefault(require("./trim"));
+const trimBoundary_1 = __importDefault(require("./trimBoundary"));
 const trimPunctuation_1 = __importDefault(require("./trimPunctuation"));
+const tryasync_1 = __importDefault(require("./tryasync"));
+const trycallback_1 = __importDefault(require("./trycallback"));
 const validate_1 = __importDefault(require("./validate"));
 const simpul = Object.assign({ abbreviationToNumber: abbreviationToNumber_1.default,
     applyValueToNumber: applyValueToNumber_1.default,
@@ -108,6 +112,10 @@ const simpul = Object.assign({ abbreviationToNumber: abbreviationToNumber_1.defa
     stringtest: stringtest_1.default,
     support: support_1.default,
     timenvlog: timenvlog_1.default,
+    tokenize: tokenize_1.default,
     trim: trim_1.default,
-    trimPunctuation: trimPunctuation_1.default }, validate_1.default);
+    trimBoundary: trimBoundary_1.default,
+    trimPunctuation: trimPunctuation_1.default,
+    tryasync: tryasync_1.default,
+    trycallback: trycallback_1.default }, validate_1.default);
 exports.default = simpul;

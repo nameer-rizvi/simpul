@@ -2,7 +2,7 @@ type AsyncCallback<T> = (error: Error | null, result?: T) => void;
 
 async function tryasync<T>(
   f: () => Promise<T>,
-  c?: AsyncCallback<T>
+  c?: AsyncCallback<T>,
 ): Promise<T | undefined> {
   try {
     const r = await f();
