@@ -13,7 +13,7 @@ function wordLength(string: string): number | undefined {
   }
 }
 
+export default { char: charLength, word: wordLength };
+
 // [1] Alternate: string.split(/\s+\b/).length
 // [2] Alternate: string.match(/\w+/g).length
-
-export default { char: charLength, word: wordLength };

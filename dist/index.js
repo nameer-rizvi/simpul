@@ -49,6 +49,9 @@ const replaceStrings_1 = __importDefault(require("./replaceStrings"));
 const scale_1 = __importDefault(require("./scale"));
 const shuffle_1 = __importDefault(require("./shuffle"));
 const slug_1 = __importDefault(require("./slug"));
+const stringlength_1 = __importDefault(require("./stringlength"));
+const stringnumber_1 = __importDefault(require("./stringnumber"));
+const stringtest_1 = __importDefault(require("./stringtest"));
 const support_1 = __importDefault(require("./support"));
 const timenvlog_1 = __importDefault(require("./timenvlog"));
 const trim_1 = __importDefault(require("./trim"));
@@ -100,6 +103,9 @@ const simpul = Object.assign({ abbreviationToNumber: abbreviationToNumber_1.defa
     scale: scale_1.default,
     shuffle: shuffle_1.default,
     slug: slug_1.default,
+    stringlength: stringlength_1.default,
+    stringnumber: stringnumber_1.default,
+    stringtest: stringtest_1.default,
     support: support_1.default,
     timenvlog: timenvlog_1.default,
     trim: trim_1.default,
