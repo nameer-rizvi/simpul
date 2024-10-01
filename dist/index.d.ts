@@ -6,7 +6,10 @@ import capitalize from "./capitalize";
 import changecase from "./changecase";
 import changeindex from "./changeindex";
 import cleanstring from "./cleanstring";
+import clone from "./clone";
+import clonedeep from "./clonedeep";
 import jwt from "./jwt";
+import math from "./math";
 import trim from "./trim";
 interface Simpul {
     abbreviationToNumber: typeof abbreviationToNumber;
@@ -17,7 +20,10 @@ interface Simpul {
     changecase: typeof changecase;
     changeindex: typeof changeindex;
     cleanstring: typeof cleanstring;
+    clone: typeof clone;
+    clonedeep: typeof clonedeep;
     jwt: typeof jwt;
+    math: typeof math;
     trim: typeof trim;
     [key: string]: any;
 }
