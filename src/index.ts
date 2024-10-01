@@ -34,6 +34,9 @@ import paginationProps from "./paginationProps";
 import parseCommafiedNumber from "./parseCommafiedNumber";
 import parsejson from "./parsejson";
 import peaks from "./peaks";
+import recursively from "./recursively";
+import reduceobject from "./reduceobject";
+import removeArrayItems from "./removeArrayItems";
 import support from "./support";
 import timenvlog from "./timenvlog";
 import trim from "./trim";
@@ -76,6 +79,9 @@ interface Simpul {
   parseCommafiedNumber: typeof parseCommafiedNumber;
   parsejson: typeof parsejson;
   peaks: typeof peaks;
+  recursively: typeof recursively;
+  reduceobject: typeof reduceobject;
+  removeArrayItems: typeof removeArrayItems;
   support: typeof support;
   timenvlog: typeof timenvlog;
   trim: typeof trim;
@@ -119,6 +125,9 @@ const simpul: Simpul = {
   parseCommafiedNumber,
   parsejson,
   peaks,
+  recursively,
+  reduceobject,
+  removeArrayItems,
   support,
   timenvlog,
   trim,
