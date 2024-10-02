@@ -25,6 +25,7 @@ export interface PriceHistoryOptions {
     rsi?: boolean;
     ema?: boolean;
     macd?: boolean;
+    color?: boolean;
 }
 export interface Candle {
     dateString?: string;

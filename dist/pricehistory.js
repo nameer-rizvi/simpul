@@ -11,14 +11,14 @@ const pricehistoryvwap_1 = __importDefault(require("./pricehistoryvwap"));
 const pricehistoryrsi_1 = __importDefault(require("./pricehistoryrsi"));
 const pricehistoryema_1 = require("./pricehistoryema");
 const pricehistorymacd_1 = __importDefault(require("./pricehistorymacd"));
-// import pricehistorycolor from "./pricehistorycolor";
+const pricehistorycolor_1 = __importDefault(require("./pricehistorycolor"));
 // import pricehistorysma from "./pricehistorysma";
 // import pricehistorytrend from "./pricehistorytrend";
 // import pricehistorycrossover from "./pricehistorycrossover";
 // import pricehistoryanchor from "./pricehistoryanchor";
 // import pricehistoryscales from "./pricehistoryscales";
 function pricehistory(datas = [], options) {
-    const option = Object.assign({ open: "open", high: "high", low: "low", close: "close", volume: "volume", datetime: "datetime", volumefill: false, date: false, price: false, leverage: false, obv: false, vwap: false, sma: false, rsi: false, ema: false, macd: false }, options);
+    const option = Object.assign({ open: "open", high: "high", low: "low", close: "close", volume: "volume", datetime: "datetime", volumefill: false, date: false, price: false, leverage: false, obv: false, vwap: false, sma: false, rsi: false, ema: false, macd: false, color: false }, options);
     if (!option.basePrice && option.open) {
         for (const data of datas) {
             if (data[option.open]) {
@@ -42,7 +42,7 @@ function pricehistory(datas = [], options) {
         (0, pricehistoryrsi_1.default)(option, candle, series);
         (0, pricehistoryema_1.pricehistoryema)(option, candle, series);
         (0, pricehistorymacd_1.default)(option, candle, series);
-        // pricehistorycolor(option, candle, series);
+        (0, pricehistorycolor_1.default)(option, candle, series);
         // for (const period of option.periods!) {
         //   if (series.length >= period) {
         //     const seriesSlice = series.slice(-period);

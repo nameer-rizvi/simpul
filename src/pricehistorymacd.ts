@@ -6,7 +6,7 @@ function pricehistorymacd(
   option: PriceHistoryOptions,
   candle: Candle,
   series: Candle[],
-) {
+): void {
   if (option.macd !== true) return;
 
   if (typeof candle.ema12 === "number" && typeof candle.ema26 === "number") {

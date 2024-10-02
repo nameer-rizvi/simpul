@@ -4,7 +4,7 @@ function pricehistorydate(
   option: PriceHistoryOptions,
   curr: DataPoint,
   candle: Candle,
-) {
+): void {
   if (!option.datetime) return;
 
   const date = new Date(curr[option.datetime]);

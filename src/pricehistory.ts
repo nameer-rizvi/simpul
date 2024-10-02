@@ -7,7 +7,7 @@ import pricehistoryvwap from "./pricehistoryvwap";
 import pricehistoryrsi from "./pricehistoryrsi";
 import { pricehistoryema } from "./pricehistoryema";
 import pricehistorymacd from "./pricehistorymacd";
-// import pricehistorycolor from "./pricehistorycolor";
+import pricehistorycolor from "./pricehistorycolor";
 // import pricehistorysma from "./pricehistorysma";
 // import pricehistorytrend from "./pricehistorytrend";
 // import pricehistorycrossover from "./pricehistorycrossover";
@@ -32,7 +32,7 @@ function pricehistory(datas: DataPoint[] = [], options: PriceHistoryOptions) {
     rsi: false,
     ema: false,
     macd: false,
-    // color: false,
+    color: false,
     // trend: false,
     // crossover: false,
     // anchor: false,
@@ -77,7 +77,8 @@ function pricehistory(datas: DataPoint[] = [], options: PriceHistoryOptions) {
 
     pricehistorymacd(option, candle, series);
 
-    // pricehistorycolor(option, candle, series);
+    pricehistorycolor(option, candle, series);
+
     // for (const period of option.periods!) {
     //   if (series.length >= period) {
     //     const seriesSlice = series.slice(-period);

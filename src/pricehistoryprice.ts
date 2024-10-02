@@ -6,7 +6,7 @@ function pricehistoryprice(
   curr: DataPoint,
   candle: Candle,
   last?: Candle,
-) {
+): void {
   const open = option.open && curr[option.open];
   const high = option.high && curr[option.high];
   const low = option.low && curr[option.low];

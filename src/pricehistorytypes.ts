@@ -26,7 +26,7 @@ export interface PriceHistoryOptions {
   rsi?: boolean;
   ema?: boolean;
   macd?: boolean;
-  // color?: boolean;
+  color?: boolean;
   // trend?: boolean;
   // crossover?: boolean;
   // anchor?: boolean;

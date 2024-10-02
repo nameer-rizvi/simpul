@@ -6,7 +6,7 @@ function pricehistoryvwap(
   candle: Candle,
   series: Candle[],
   period?: number,
-) {
+): void {
   if (option.vwap !== true) return;
 
   let p = 0;

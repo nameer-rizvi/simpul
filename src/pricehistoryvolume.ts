@@ -6,7 +6,7 @@ function pricehistoryvolume(
   candle: Candle,
   series: Candle[],
   volumerate: number | undefined,
-) {
+): void {
   const volume = option.volume && curr[option.volume];
 
   if (typeof volume === "number") {

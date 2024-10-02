@@ -5,7 +5,7 @@ function pricehistoryrsi(
   option: PriceHistoryOptions,
   candle: Candle,
   series: Candle[],
-) {
+): void {
   if (option.rsi !== true) return;
 
   const prev = series[series.length - 2];

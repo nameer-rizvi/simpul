@@ -5,7 +5,7 @@ function pricehistoryema(
   option: PriceHistoryOptions,
   candle: Candle,
   series: Candle[],
-) {
+): void {
   if (option.ema === true || option.macd === true) {
     ema(9, series, candle);
 
@@ -20,7 +20,7 @@ function ema(
   series: Candle[],
   candle: Candle,
   numKey: string = "priceClose",
-) {
+): void {
   if (!(series.length > period)) return;
 
   const prev = series[series.length - 2];
