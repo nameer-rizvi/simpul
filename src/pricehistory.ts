@@ -2,8 +2,8 @@ import { DataPoint, PriceHistoryOptions, Candle } from "./pricehistorytypes";
 import pricehistoryvolumerate from "./pricehistoryvolumerate";
 import pricehistorydate from "./pricehistorydate";
 import pricehistoryprice from "./pricehistoryprice";
-// import pricehistoryvolume from "./pricehistoryvolume";
-// import pricehistoryvwap from "./pricehistoryvwap";
+import pricehistoryvolume from "./pricehistoryvolume";
+import pricehistoryvwap from "./pricehistoryvwap";
 // import pricehistoryrsi from "./pricehistoryrsi";
 // import { pricehistoryema } from "./pricehistoryema";
 // import pricehistorymacd from "./pricehistorymacd";
@@ -22,14 +22,13 @@ function pricehistory(datas: DataPoint[] = [], options: PriceHistoryOptions) {
     close: "close",
     volume: "volume",
     datetime: "datetime",
-    // periods: [5, 10, 20, 50, 100, 200],
     volumefill: false,
     date: false,
     price: false,
     leverage: false,
-    // obv: false,
-    // vwap: false,
-    // sma: false,
+    obv: false,
+    vwap: false,
+    sma: false,
     // rsi: false,
     // ema: false,
     // macd: false,
@@ -37,8 +36,9 @@ function pricehistory(datas: DataPoint[] = [], options: PriceHistoryOptions) {
     // trend: false,
     // crossover: false,
     // anchor: false,
-    // scales: [],
     // valueCapAt: 100,
+    // periods: [5, 10, 20, 50, 100, 200],
+    // scales: [],
     ...options,
   };
 
@@ -62,6 +62,12 @@ function pricehistory(datas: DataPoint[] = [], options: PriceHistoryOptions) {
     pricehistorydate(option, data, candle);
 
     pricehistoryprice(option, data, candle, candles[candles.length - 1]);
+
+    const series = [...candles, candle];
+
+    pricehistoryvolume(option, data, candle, series, volumerate);
+
+    pricehistoryvwap(option, candle, series);
 
     candles.push(candle);
   }

@@ -6,8 +6,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const pricehistoryvolumerate_1 = __importDefault(require("./pricehistoryvolumerate"));
 const pricehistorydate_1 = __importDefault(require("./pricehistorydate"));
 const pricehistoryprice_1 = __importDefault(require("./pricehistoryprice"));
-// import pricehistoryvolume from "./pricehistoryvolume";
-// import pricehistoryvwap from "./pricehistoryvwap";
+const pricehistoryvolume_1 = __importDefault(require("./pricehistoryvolume"));
+const pricehistoryvwap_1 = __importDefault(require("./pricehistoryvwap"));
 // import pricehistoryrsi from "./pricehistoryrsi";
 // import { pricehistoryema } from "./pricehistoryema";
 // import pricehistorymacd from "./pricehistorymacd";
@@ -18,9 +18,7 @@ const pricehistoryprice_1 = __importDefault(require("./pricehistoryprice"));
 // import pricehistoryanchor from "./pricehistoryanchor";
 // import pricehistoryscales from "./pricehistoryscales";
 function pricehistory(datas = [], options) {
-    const option = Object.assign({ open: "open", high: "high", low: "low", close: "close", volume: "volume", datetime: "datetime", 
-        // periods: [5, 10, 20, 50, 100, 200],
-        volumefill: false, date: false, price: false, leverage: false }, options);
+    const option = Object.assign({ open: "open", high: "high", low: "low", close: "close", volume: "volume", datetime: "datetime", volumefill: false, date: false, price: false, leverage: false, obv: false, vwap: false, sma: false }, options);
     if (!option.basePrice && option.open) {
         for (const data of datas) {
             if (data[option.open]) {
@@ -37,6 +35,9 @@ function pricehistory(datas = [], options) {
         const candle = {};
         (0, pricehistorydate_1.default)(option, data, candle);
         (0, pricehistoryprice_1.default)(option, data, candle, candles[candles.length - 1]);
+        const series = [...candles, candle];
+        (0, pricehistoryvolume_1.default)(option, data, candle, series, volumerate);
+        (0, pricehistoryvwap_1.default)(option, candle, series);
         candles.push(candle);
     }
     return { candles };

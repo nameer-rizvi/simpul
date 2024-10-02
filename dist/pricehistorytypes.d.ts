@@ -19,6 +19,9 @@ export interface PriceHistoryOptions {
     date?: boolean;
     price?: boolean;
     leverage?: boolean | number;
+    obv?: boolean;
+    vwap?: boolean;
+    sma?: boolean;
 }
 export interface Candle {
     dateString?: string;
@@ -40,4 +43,12 @@ export interface Candle {
     priceChange?: number;
     priceRange?: number;
     priceRangeDiff?: number;
+    volume?: number;
+    volumeFilled?: boolean;
+    obv?: number;
+    vwap?: number;
+    vwapSignal?: number;
+    vwapValue?: number;
+    volumeTotal?: number;
+    volumeValue?: number;
 }

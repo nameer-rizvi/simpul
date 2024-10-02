@@ -1,5 +1,5 @@
 export interface DataPoint {
-  [key: string]: number | string | Date; // Allow flexibility for any properties.
+  [key: string]: number | string | Date;
   open: number;
   high: number;
   low: number;
@@ -16,14 +16,13 @@ export interface PriceHistoryOptions {
   close?: string;
   volume?: string;
   datetime?: string;
-  // periods?: number[];
   volumefill?: boolean;
   date?: boolean;
   price?: boolean;
   leverage?: boolean | number;
-  // obv?: boolean;
-  // vwap?: boolean;
-  // sma?: boolean;
+  obv?: boolean;
+  vwap?: boolean;
+  sma?: boolean;
   // rsi?: boolean;
   // ema?: boolean;
   // macd?: boolean;
@@ -31,9 +30,10 @@ export interface PriceHistoryOptions {
   // trend?: boolean;
   // crossover?: boolean;
   // anchor?: boolean;
-  // scales?: string[];
   // basePrice?: number;
   // valueCapAt?: number;
+  // periods?: number[];
+  // scales?: string[];
 }
 
 export interface Candle {
@@ -56,4 +56,13 @@ export interface Candle {
   priceChange?: number;
   priceRange?: number;
   priceRangeDiff?: number;
+  volume?: number;
+  volumeFilled?: boolean;
+  obv?: number;
+  vwap?: number;
+  vwapSignal?: number;
+  vwapValue?: number;
+  volumeTotal?: number;
+  volumeValue?: number;
+  // [key: string]: undefined | string | number | boolean | Date;
 }
