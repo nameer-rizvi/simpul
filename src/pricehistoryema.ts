@@ -6,7 +6,7 @@ function pricehistoryema(
   candle: Candle,
   series: Candle[],
 ) {
-  if (option.ema === true) {
+  if (option.ema === true || option.macd === true) {
     ema(9, series, candle);
 
     ema(12, series, candle);

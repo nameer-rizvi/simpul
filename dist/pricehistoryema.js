@@ -7,7 +7,7 @@ exports.pricehistoryema = pricehistoryema;
 exports.ema = ema;
 const math_1 = __importDefault(require("./math"));
 function pricehistoryema(option, candle, series) {
-    if (option.ema === true) {
+    if (option.ema === true || option.macd === true) {
         ema(9, series, candle);
         ema(12, series, candle);
         ema(26, series, candle);

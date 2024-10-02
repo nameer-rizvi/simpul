@@ -10,7 +10,7 @@ const pricehistoryvolume_1 = __importDefault(require("./pricehistoryvolume"));
 const pricehistoryvwap_1 = __importDefault(require("./pricehistoryvwap"));
 const pricehistoryrsi_1 = __importDefault(require("./pricehistoryrsi"));
 const pricehistoryema_1 = require("./pricehistoryema");
-// import pricehistorymacd from "./pricehistorymacd";
+const pricehistorymacd_1 = __importDefault(require("./pricehistorymacd"));
 // import pricehistorycolor from "./pricehistorycolor";
 // import pricehistorysma from "./pricehistorysma";
 // import pricehistorytrend from "./pricehistorytrend";
@@ -18,7 +18,7 @@ const pricehistoryema_1 = require("./pricehistoryema");
 // import pricehistoryanchor from "./pricehistoryanchor";
 // import pricehistoryscales from "./pricehistoryscales";
 function pricehistory(datas = [], options) {
-    const option = Object.assign({ open: "open", high: "high", low: "low", close: "close", volume: "volume", datetime: "datetime", volumefill: false, date: false, price: false, leverage: false, obv: false, vwap: false, sma: false, rsi: false, ema: false }, options);
+    const option = Object.assign({ open: "open", high: "high", low: "low", close: "close", volume: "volume", datetime: "datetime", volumefill: false, date: false, price: false, leverage: false, obv: false, vwap: false, sma: false, rsi: false, ema: false, macd: false }, options);
     if (!option.basePrice && option.open) {
         for (const data of datas) {
             if (data[option.open]) {
@@ -41,7 +41,7 @@ function pricehistory(datas = [], options) {
         (0, pricehistoryvwap_1.default)(option, candle, series.slice(-1), 1);
         (0, pricehistoryrsi_1.default)(option, candle, series);
         (0, pricehistoryema_1.pricehistoryema)(option, candle, series);
-        // pricehistorymacd(option, candle, series);
+        (0, pricehistorymacd_1.default)(option, candle, series);
         // pricehistorycolor(option, candle, series);
         // for (const period of option.periods!) {
         //   if (series.length >= period) {

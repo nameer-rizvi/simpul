@@ -25,7 +25,7 @@ export interface PriceHistoryOptions {
   sma?: boolean;
   rsi?: boolean;
   ema?: boolean;
-  // macd?: boolean;
+  macd?: boolean;
   // color?: boolean;
   // trend?: boolean;
   // crossover?: boolean;
@@ -67,5 +67,12 @@ export interface Candle {
   averageGain?: number;
   averageLoss?: number;
   rsi?: number;
+  ema9?: number;
+  ema12?: number;
+  ema26?: number;
+  macd?: number;
+  macdSignal?: number;
+  ema9macd?: number;
+  macdHist?: number;
   [key: string]: undefined | string | number | boolean | Date; // TODO
 }
