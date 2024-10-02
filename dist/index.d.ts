@@ -34,6 +34,8 @@ import paginationProps from "./paginationProps";
 import parseCommafiedNumber from "./parseCommafiedNumber";
 import parsejson from "./parsejson";
 import peaks from "./peaks";
+import pricehistory from "./pricehistory";
+import pricelimit from "./pricelimit";
 import recursively from "./recursively";
 import reduceobject from "./reduceobject";
 import removeArrayItems from "./removeArrayItems";
@@ -95,6 +97,8 @@ interface Simpul {
     parseCommafiedNumber: typeof parseCommafiedNumber;
     parsejson: typeof parsejson;
     peaks: typeof peaks;
+    pricehistory: typeof pricehistory;
+    pricelimit: typeof pricelimit;
     recursively: typeof recursively;
     reduceobject: typeof reduceobject;
     removeArrayItems: typeof removeArrayItems;

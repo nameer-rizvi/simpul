@@ -1,4 +1,12 @@
-function pricehistorydate(option, curr, candle) {
+import { PriceHistoryOptions, DataPoint, Candle } from "./pricehistorytypes";
+
+function pricehistorydate(
+  option: PriceHistoryOptions,
+  curr: DataPoint,
+  candle: Candle,
+) {
+  if (!option.datetime) return;
+
   const date = new Date(curr[option.datetime]);
 
   candle.dateString = date.toLocaleString();
@@ -28,4 +36,4 @@ function pricehistorydate(option, curr, candle) {
   }
 }
 
-module.exports = pricehistorydate;
+export default pricehistorydate;

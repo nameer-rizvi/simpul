@@ -39,6 +39,8 @@ const paginationProps_1 = __importDefault(require("./paginationProps"));
 const parseCommafiedNumber_1 = __importDefault(require("./parseCommafiedNumber"));
 const parsejson_1 = __importDefault(require("./parsejson"));
 const peaks_1 = __importDefault(require("./peaks"));
+const pricehistory_1 = __importDefault(require("./pricehistory"));
+const pricelimit_1 = __importDefault(require("./pricelimit"));
 const recursively_1 = __importDefault(require("./recursively"));
 const reduceobject_1 = __importDefault(require("./reduceobject"));
 const removeArrayItems_1 = __importDefault(require("./removeArrayItems"));
@@ -100,6 +102,8 @@ const simpul = Object.assign({ abbreviationToNumber: abbreviationToNumber_1.defa
     parseCommafiedNumber: parseCommafiedNumber_1.default,
     parsejson: parsejson_1.default,
     peaks: peaks_1.default,
+    pricehistory: pricehistory_1.default,
+    pricelimit: pricelimit_1.default,
     recursively: recursively_1.default,
     reduceobject: reduceobject_1.default,
     removeArrayItems: removeArrayItems_1.default,
