@@ -85,9 +85,9 @@ function pricehistory(datas: DataPoint[] = [], options: PriceHistoryOptions) {
 
         pricehistorysma(option, candle, seriesSlice, period);
 
-        // pricehistoryvwap(option, candle, seriesSlice, period);
+        pricehistoryvwap(option, candle, seriesSlice, period);
 
-        // pricehistorycolor(option, candle, seriesSlice, period);
+        pricehistorycolor(option, candle, seriesSlice, period);
       }
     }
 

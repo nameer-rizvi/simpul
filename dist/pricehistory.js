@@ -47,8 +47,8 @@ function pricehistory(datas = [], options) {
             if (series.length >= period) {
                 const seriesSlice = series.slice(-period);
                 (0, pricehistorysma_1.default)(option, candle, seriesSlice, period);
-                // pricehistoryvwap(option, candle, seriesSlice, period);
-                // pricehistorycolor(option, candle, seriesSlice, period);
+                (0, pricehistoryvwap_1.default)(option, candle, seriesSlice, period);
+                (0, pricehistorycolor_1.default)(option, candle, seriesSlice, period);
             }
         }
         // pricehistorytrend(option, candle, series);

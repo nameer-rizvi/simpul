@@ -43,16 +43,17 @@ function pricehistoryvwap(
   if (typeof candle.volume === "number") volValue = math.num(p * candle.volume);
 
   if (option.sma === true && typeof period === "number") {
-    // TODO
-    // if (typeof vwap === "number") {
-    //   candle[`sma${period}Vwap`] = vwap;
-    // }
-    // if (typeof vwapSignal === "number") {
-    //   candle[`sma${period}VwapSignal`] = vwapSignal;
-    // }
-    // if (typeof vwapValue === "number") {
-    //   candle[`sma${period}VwapValue`] = vwapValue;
-    // }
+    if (typeof vwap === "number") {
+      candle[`sma${period}Vwap`] = vwap;
+    }
+
+    if (typeof vwapSignal === "number") {
+      candle[`sma${period}VwapSignal`] = vwapSignal;
+    }
+
+    if (typeof vwapValue === "number") {
+      candle[`sma${period}VwapValue`] = vwapValue;
+    }
   } else {
     if (typeof vwap === "number") candle.vwap = vwap;
     if (typeof vwapSignal === "number") candle.vwapSignal = vwapSignal;

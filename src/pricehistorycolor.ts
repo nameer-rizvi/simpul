@@ -38,20 +38,28 @@ function pricehistorycolor(
   }
 
   if (option.sma === true && typeof period === "number") {
-    // TODO
-    // const seriesPriceOpen = series[0]?.priceOpen;
-    // const seriesPriceClose = series[series.length - 1]?.priceClose;
-    // candle[`sma${period}Color`] = getColor(seriesPriceOpen!, seriesPriceClose!);
-    // candle[`sma${period}ColorsGreen`] = getPercent(countColor.green);
-    // candle[`sma${period}ColorsRed`] = getPercent(countColor.red);
-    // candle[`sma${period}ColorsGray`] = getPercent(countColor.gray);
-    // candle[`sma${period}ColorVolumeGreen`] = getPercent2(countVolume.green);
-    // candle[`sma${period}ColorVolumeRed`] = getPercent2(countVolume.red);
-    // candle[`sma${period}ColorVolumeGray`] = getPercent2(countVolume.gray);
-    // candle[`sma${period}ColorVolumeDiscrepancy`] = math.discrepancy(
-    //   candle[`sma${period}ColorsGreen`],
-    //   candle[`sma${period}ColorVolumeGreen`]
-    // );
+    const seriesPriceOpen = series[0]?.priceOpen;
+    const seriesPriceClose = series[series.length - 1]?.priceClose;
+    if (typeof seriesPriceOpen !== "number") return;
+    if (typeof seriesPriceClose !== "number") return;
+    candle[`sma${period}Color`] = getColor(seriesPriceOpen, seriesPriceClose);
+    candle[`sma${period}ColorsGreen`] = getPercent(countColor.green);
+    candle[`sma${period}ColorsRed`] = getPercent(countColor.red);
+    candle[`sma${period}ColorsGray`] = getPercent(countColor.gray);
+    candle[`sma${period}ColorVolumeGreen`] = getPercent2(countVolume.green);
+    candle[`sma${period}ColorVolumeRed`] = getPercent2(countVolume.red);
+    candle[`sma${period}ColorVolumeGray`] = getPercent2(countVolume.gray);
+    const ColorsGreen = candle[`sma${period}ColorsGreen`];
+    const ColorVolumeGreen = candle[`sma${period}ColorVolumeGreen`];
+    if (
+      typeof ColorsGreen === "number" &&
+      typeof ColorVolumeGreen === "number"
+    ) {
+      candle[`sma${period}ColorVolumeDiscrepancy`] = math.discrepancy(
+        ColorsGreen,
+        ColorVolumeGreen,
+      );
+    }
   } else {
     candle.color = getColor(candle.priceClose!, candle.priceOpen!);
     candle.colorsGreen = getPercent(countColor.green);

@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const math_1 = __importDefault(require("./math"));
 function pricehistorycolor(option, candle, series, period) {
+    var _a, _b;
     if (option.color !== true)
         return;
     const countColor = { green: 0, red: 0, gray: 0, total: 0 };
@@ -30,20 +31,25 @@ function pricehistorycolor(option, candle, series, period) {
         }
     }
     if (option.sma === true && typeof period === "number") {
-        // TODO
-        // const seriesPriceOpen = series[0]?.priceOpen;
-        // const seriesPriceClose = series[series.length - 1]?.priceClose;
-        // candle[`sma${period}Color`] = getColor(seriesPriceOpen!, seriesPriceClose!);
-        // candle[`sma${period}ColorsGreen`] = getPercent(countColor.green);
-        // candle[`sma${period}ColorsRed`] = getPercent(countColor.red);
-        // candle[`sma${period}ColorsGray`] = getPercent(countColor.gray);
-        // candle[`sma${period}ColorVolumeGreen`] = getPercent2(countVolume.green);
-        // candle[`sma${period}ColorVolumeRed`] = getPercent2(countVolume.red);
-        // candle[`sma${period}ColorVolumeGray`] = getPercent2(countVolume.gray);
-        // candle[`sma${period}ColorVolumeDiscrepancy`] = math.discrepancy(
-        //   candle[`sma${period}ColorsGreen`],
-        //   candle[`sma${period}ColorVolumeGreen`]
-        // );
+        const seriesPriceOpen = (_a = series[0]) === null || _a === void 0 ? void 0 : _a.priceOpen;
+        const seriesPriceClose = (_b = series[series.length - 1]) === null || _b === void 0 ? void 0 : _b.priceClose;
+        if (typeof seriesPriceOpen !== "number")
+            return;
+        if (typeof seriesPriceClose !== "number")
+            return;
+        candle[`sma${period}Color`] = getColor(seriesPriceOpen, seriesPriceClose);
+        candle[`sma${period}ColorsGreen`] = getPercent(countColor.green);
+        candle[`sma${period}ColorsRed`] = getPercent(countColor.red);
+        candle[`sma${period}ColorsGray`] = getPercent(countColor.gray);
+        candle[`sma${period}ColorVolumeGreen`] = getPercent2(countVolume.green);
+        candle[`sma${period}ColorVolumeRed`] = getPercent2(countVolume.red);
+        candle[`sma${period}ColorVolumeGray`] = getPercent2(countVolume.gray);
+        const ColorsGreen = candle[`sma${period}ColorsGreen`];
+        const ColorVolumeGreen = candle[`sma${period}ColorVolumeGreen`];
+        if (typeof ColorsGreen === "number" &&
+            typeof ColorVolumeGreen === "number") {
+            candle[`sma${period}ColorVolumeDiscrepancy`] = math_1.default.discrepancy(ColorsGreen, ColorVolumeGreen);
+        }
     }
     else {
         candle.color = getColor(candle.priceClose, candle.priceOpen);
