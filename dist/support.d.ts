@@ -1,5 +1,6 @@
 declare function inWindow(name: string): boolean;
 declare const _default: {
+    node: boolean;
     window: boolean;
     document: boolean;
     inWindow: typeof inWindow;

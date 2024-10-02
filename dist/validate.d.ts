@@ -2,7 +2,7 @@ declare function isString(test: unknown): test is string;
 declare function isStringValid(test: unknown): test is string;
 declare function isArrayValid(test: unknown): test is unknown[];
 declare function isStringOrArray(test: unknown): test is string | unknown[];
-declare function isBase64(test: unknown): boolean;
+declare function isBase64(test: string): boolean;
 declare function isBoolean(test: unknown): test is boolean;
 declare function isBooleanString(test: unknown): test is "true" | "false";
 declare function isBooleanNumber(test: unknown): test is 0 | 1;

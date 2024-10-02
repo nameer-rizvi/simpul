@@ -1,3 +1,8 @@
+const isNode: boolean =
+  typeof process !== "undefined" &&
+  process.versions != null &&
+  process.versions.node != null;
+
 const isWindow: boolean = typeof window !== "undefined";
 
 const isDocument: boolean = typeof document !== "undefined";
@@ -23,6 +28,7 @@ const isWindowLocalhost: boolean =
     ));
 
 export default {
+  node: isNode,
   window: isWindow,
   document: isDocument,
   inWindow: inWindow,

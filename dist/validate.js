@@ -3,6 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const support_1 = __importDefault(require("./support"));
 const safe_regex_1 = __importDefault(require("safe-regex"));
 const jwt_1 = __importDefault(require("./jwt"));
 // STRING (REQUIRED BY OTHER VALIDATIONS)
@@ -22,10 +23,18 @@ function isStringOrArray(test) {
 }
 // BASE64
 function isBase64(test) {
-    return (isStringValid(test) &&
-        test.length % 4 === 0 &&
-        (0, safe_regex_1.default)(test) &&
-        !/[^A-Z0-9+/=]/i.test(test));
+    try {
+        if (support_1.default.window) {
+            btoa(encodeURIComponent(test));
+        }
+        else {
+            Buffer.from(test, "utf-8").toString("base64");
+        }
+        return true;
+    }
+    catch (_a) {
+        return false;
+    }
 }
 // BOOLEAN
 function isBoolean(test) {
@@ -43,7 +52,7 @@ function isBooleanAny(test) {
 // CREDIT CARD NUMBER
 function isCreditCardNumber(test) {
     const cardPattern = /^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9]{2})[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|7[0-9]{15})$/;
-    return isString(test) && cardPattern.test(test);
+    return isString(test) && (0, safe_regex_1.default)(test) && cardPattern.test(test);
 }
 // DATE
 function isDate(test) {
@@ -58,7 +67,8 @@ function isDate(test) {
 }
 // EMAIL
 function isEmail(test) {
-    return isString(test) && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(test);
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return isString(test) && (0, safe_regex_1.default)(test) && emailPattern.test(test);
 }
 // FUNCTION
 // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
@@ -67,7 +77,7 @@ function isFunction(test) {
 }
 // HTTP
 function isHTTP(test) {
-    return isString(test) && /^https?:\/\//.test(test);
+    return isString(test) && (0, safe_regex_1.default)(test) && /^https?:\/\//.test(test);
 }
 // JSON
 function isJSON(test) {
@@ -119,7 +129,7 @@ function isObjectValid(test) {
 }
 // PHONE NUMBER
 function isPhoneNumber(test) {
-    return isString(test) && /^\+?[1-9]\d{1,14}$/.test(test); // E.164 format
+    return isString(test) && (0, safe_regex_1.default)(test) && /^\+?[1-9]\d{1,14}$/.test(test); // E.164 format
 }
 // REGEX
 function isRegex(test) {
@@ -128,7 +138,7 @@ function isRegex(test) {
 // URL
 function isURL(test) {
     const urlPattern = /^(https?:\/\/)?([^\s.]+\.[^\s]{2,}|localhost[:\d]*)\S*$/;
-    return isString(test) && urlPattern.test(test);
+    return isString(test) && (0, safe_regex_1.default)(test) && urlPattern.test(test);
 }
 // VALUE
 function isValid(test, testAll = false) {

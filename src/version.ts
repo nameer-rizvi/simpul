@@ -33,10 +33,10 @@ function version(versions: string[] = []) {
 
   function parse(v: string, o: VersionOptions = {}): VersionResult {
     const result: VersionResult = { isSupported: false };
-    if (validate.isString(v)) {
-      // v = formatter(v);
-      result.string = v;
-      const parts = v.split(".").filter(validate.isNumber).slice(0, 3);
+    const version = formatter(v);
+    if (version) {
+      result.string = version;
+      const parts = version.split(".").filter(validate.isNumber).slice(0, 3);
       result.major = +parts[0];
       result.minor = +parts[1];
       result.patch = +parts[2];
@@ -63,7 +63,7 @@ function version(versions: string[] = []) {
   };
 }
 
-function formatter(v: string) {
+function formatter(v: string): string | undefined {
   const parts = v.split(".");
   const strings = parts.map((part) => Number(part).toString());
   const numbers = strings.filter(validate.isNumber);

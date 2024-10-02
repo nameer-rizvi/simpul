@@ -55,7 +55,10 @@ import trimBoundary from "./trimBoundary";
 import trimPunctuation from "./trimPunctuation";
 import tryasync from "./tryasync";
 import trycallback from "./trycallback";
+import uid from "./uid";
+import urlBase64ToUint8Array from "./urlBase64ToUint8Array";
 import validate from "./validate";
+import version from "./version";
 
 interface Simpul {
   abbreviationToNumber: typeof abbreviationToNumber;
@@ -115,6 +118,9 @@ interface Simpul {
   trimPunctuation: typeof trimPunctuation;
   tryasync: typeof tryasync;
   trycallback: typeof trycallback;
+  uid: typeof uid;
+  urlBase64ToUint8Array: typeof urlBase64ToUint8Array;
+  version: typeof version;
   [key: string]: any;
 }
 
@@ -176,6 +182,9 @@ const simpul: Simpul = {
   trimPunctuation,
   tryasync,
   trycallback,
+  uid,
+  urlBase64ToUint8Array,
+  version,
   ...validate,
 };
 

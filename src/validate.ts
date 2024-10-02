@@ -1,3 +1,4 @@
+import support from "./support";
 import safe from "safe-regex";
 import jwt from "./jwt";
 
@@ -25,13 +26,17 @@ function isStringOrArray(test: unknown): test is string | unknown[] {
 
 // BASE64
 
-function isBase64(test: unknown): boolean {
-  return (
-    isStringValid(test) &&
-    test.length % 4 === 0 &&
-    safe(test) &&
-    !/[^A-Z0-9+/=]/i.test(test)
-  );
+function isBase64(test: string): boolean {
+  try {
+    if (support.window) {
+      btoa(encodeURIComponent(test));
+    } else {
+      Buffer.from(test, "utf-8").toString("base64");
+    }
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 // BOOLEAN
@@ -57,7 +62,7 @@ function isBooleanAny(test: unknown): boolean {
 function isCreditCardNumber(test: unknown): boolean {
   const cardPattern =
     /^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9]{2})[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|7[0-9]{15})$/;
-  return isString(test) && cardPattern.test(test);
+  return isString(test) && safe(test) && cardPattern.test(test);
 }
 
 // DATE
@@ -73,7 +78,8 @@ function isDate(test: unknown): boolean {
 // EMAIL
 
 function isEmail(test: unknown): boolean {
-  return isString(test) && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(test);
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return isString(test) && safe(test) && emailPattern.test(test);
 }
 
 // FUNCTION
@@ -86,7 +92,7 @@ function isFunction(test: unknown): test is Function {
 // HTTP
 
 function isHTTP(test: unknown): boolean {
-  return isString(test) && /^https?:\/\//.test(test);
+  return isString(test) && safe(test) && /^https?:\/\//.test(test);
 }
 
 // JSON
@@ -149,7 +155,7 @@ function isObjectValid(test: unknown): boolean {
 // PHONE NUMBER
 
 function isPhoneNumber(test: unknown): boolean {
-  return isString(test) && /^\+?[1-9]\d{1,14}$/.test(test); // E.164 format
+  return isString(test) && safe(test) && /^\+?[1-9]\d{1,14}$/.test(test); // E.164 format
 }
 
 // REGEX
@@ -162,7 +168,7 @@ function isRegex(test: unknown): test is RegExp {
 
 function isURL(test: unknown): boolean {
   const urlPattern = /^(https?:\/\/)?([^\s.]+\.[^\s]{2,}|localhost[:\d]*)\S*$/;
-  return isString(test) && urlPattern.test(test);
+  return isString(test) && safe(test) && urlPattern.test(test);
 }
 
 // VALUE
