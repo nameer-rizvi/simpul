@@ -47,8 +47,8 @@ function ema(
 
   if (typeof prevEMA === "number" && typeof period === "number") {
     const v = candle[numKey];
-    const k = 2 / (period + 1);
     if (typeof v === "number") {
+      const k = 2 / (period + 1);
       candle[key] = math.num(v * k + prevEMA * (1 - k));
     }
   }

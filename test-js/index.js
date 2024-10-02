@@ -804,5 +804,5 @@ const series = [
   },
 ];
 
-const res = simpul.pricehistory(series, { color: true });
-// console.log(res);
+const res = simpul.pricehistory(series, { rsi: true, sma: true });
+console.log(res);

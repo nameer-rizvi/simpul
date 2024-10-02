@@ -27,12 +27,12 @@ export interface PriceHistoryOptions {
   ema?: boolean;
   macd?: boolean;
   color?: boolean;
+  periods?: number[];
   // trend?: boolean;
   // crossover?: boolean;
   // anchor?: boolean;
   // basePrice?: number;
   // valueCapAt?: number;
-  // periods?: number[];
   // scales?: string[];
 }
 
@@ -74,5 +74,13 @@ export interface Candle {
   macdSignal?: number;
   ema9macd?: number;
   macdHist?: number;
+  color?: string;
+  colorsGreen?: number;
+  colorsRed?: number;
+  colorsGray?: number;
+  colorVolumeGreen?: number;
+  colorVolumeRed?: number;
+  colorVolumeGray?: number;
+  colorVolumeDiscrepancy?: number;
   [key: string]: undefined | string | number | boolean | Date; // TODO
 }

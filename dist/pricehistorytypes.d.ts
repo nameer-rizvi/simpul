@@ -26,6 +26,7 @@ export interface PriceHistoryOptions {
     ema?: boolean;
     macd?: boolean;
     color?: boolean;
+    periods?: number[];
 }
 export interface Candle {
     dateString?: string;
@@ -65,5 +66,13 @@ export interface Candle {
     macdSignal?: number;
     ema9macd?: number;
     macdHist?: number;
+    color?: string;
+    colorsGreen?: number;
+    colorsRed?: number;
+    colorsGray?: number;
+    colorVolumeGreen?: number;
+    colorVolumeRed?: number;
+    colorVolumeGray?: number;
+    colorVolumeDiscrepancy?: number;
     [key: string]: undefined | string | number | boolean | Date;
 }

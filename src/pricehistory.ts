@@ -8,7 +8,7 @@ import pricehistoryrsi from "./pricehistoryrsi";
 import { pricehistoryema } from "./pricehistoryema";
 import pricehistorymacd from "./pricehistorymacd";
 import pricehistorycolor from "./pricehistorycolor";
-// import pricehistorysma from "./pricehistorysma";
+import pricehistorysma from "./pricehistorysma";
 // import pricehistorytrend from "./pricehistorytrend";
 // import pricehistorycrossover from "./pricehistorycrossover";
 // import pricehistoryanchor from "./pricehistoryanchor";
@@ -33,11 +33,11 @@ function pricehistory(datas: DataPoint[] = [], options: PriceHistoryOptions) {
     ema: false,
     macd: false,
     color: false,
+    periods: [5, 10, 20, 50, 100, 200],
     // trend: false,
     // crossover: false,
     // anchor: false,
     // valueCapAt: 100,
-    // periods: [5, 10, 20, 50, 100, 200],
     // scales: [],
     ...options,
   };
@@ -79,16 +79,22 @@ function pricehistory(datas: DataPoint[] = [], options: PriceHistoryOptions) {
 
     pricehistorycolor(option, candle, series);
 
-    // for (const period of option.periods!) {
-    //   if (series.length >= period) {
-    //     const seriesSlice = series.slice(-period);
-    //     pricehistorysma(option, candle, seriesSlice, period);
-    //     pricehistoryvwap(option, candle, seriesSlice, period);
-    //     pricehistorycolor(option, candle, seriesSlice, period);
-    //   }
-    // }
+    for (const period of option.periods || []) {
+      if (series.length >= period) {
+        const seriesSlice = series.slice(-period);
+
+        pricehistorysma(option, candle, seriesSlice, period);
+
+        // pricehistoryvwap(option, candle, seriesSlice, period);
+
+        // pricehistorycolor(option, candle, seriesSlice, period);
+      }
+    }
+
     // pricehistorytrend(option, candle, series);
+
     // pricehistorycrossover(option, candle, series);
+
     // pricehistoryanchor(option, candle);
 
     candles.push(candle);

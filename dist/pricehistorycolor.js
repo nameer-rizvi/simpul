@@ -30,6 +30,7 @@ function pricehistorycolor(option, candle, series, period) {
         }
     }
     if (option.sma === true && typeof period === "number") {
+        // TODO
         // const seriesPriceOpen = series[0]?.priceOpen;
         // const seriesPriceClose = series[series.length - 1]?.priceClose;
         // candle[`sma${period}Color`] = getColor(seriesPriceOpen!, seriesPriceClose!);
@@ -53,7 +54,6 @@ function pricehistorycolor(option, candle, series, period) {
         candle.colorVolumeRed = getPercent2(countVolume.red);
         candle.colorVolumeGray = getPercent2(countVolume.gray);
         candle.colorVolumeDiscrepancy = math_1.default.discrepancy(candle.colorsGreen, candle.colorVolumeGreen);
-        console.log(candle);
     }
 }
 exports.default = pricehistorycolor;

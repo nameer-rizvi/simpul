@@ -36,8 +36,8 @@ function ema(period, series, candle, numKey = "priceClose") {
     }
     if (typeof prevEMA === "number" && typeof period === "number") {
         const v = candle[numKey];
-        const k = 2 / (period + 1);
         if (typeof v === "number") {
+            const k = 2 / (period + 1);
             candle[key] = math_1.default.num(v * k + prevEMA * (1 - k));
         }
     }

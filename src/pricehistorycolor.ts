@@ -38,6 +38,7 @@ function pricehistorycolor(
   }
 
   if (option.sma === true && typeof period === "number") {
+    // TODO
     // const seriesPriceOpen = series[0]?.priceOpen;
     // const seriesPriceClose = series[series.length - 1]?.priceClose;
     // candle[`sma${period}Color`] = getColor(seriesPriceOpen!, seriesPriceClose!);
