@@ -22,6 +22,8 @@ export interface PriceHistoryOptions {
     obv?: boolean;
     vwap?: boolean;
     sma?: boolean;
+    rsi?: boolean;
+    ema?: boolean;
 }
 export interface Candle {
     dateString?: string;
@@ -51,4 +53,8 @@ export interface Candle {
     vwapValue?: number;
     volumeTotal?: number;
     volumeValue?: number;
+    averageGain?: number;
+    averageLoss?: number;
+    rsi?: number;
+    [key: string]: undefined | string | number | boolean | Date;
 }

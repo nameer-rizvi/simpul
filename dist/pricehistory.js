@@ -8,8 +8,8 @@ const pricehistorydate_1 = __importDefault(require("./pricehistorydate"));
 const pricehistoryprice_1 = __importDefault(require("./pricehistoryprice"));
 const pricehistoryvolume_1 = __importDefault(require("./pricehistoryvolume"));
 const pricehistoryvwap_1 = __importDefault(require("./pricehistoryvwap"));
-// import pricehistoryrsi from "./pricehistoryrsi";
-// import { pricehistoryema } from "./pricehistoryema";
+const pricehistoryrsi_1 = __importDefault(require("./pricehistoryrsi"));
+const pricehistoryema_1 = require("./pricehistoryema");
 // import pricehistorymacd from "./pricehistorymacd";
 // import pricehistorycolor from "./pricehistorycolor";
 // import pricehistorysma from "./pricehistorysma";
@@ -18,7 +18,7 @@ const pricehistoryvwap_1 = __importDefault(require("./pricehistoryvwap"));
 // import pricehistoryanchor from "./pricehistoryanchor";
 // import pricehistoryscales from "./pricehistoryscales";
 function pricehistory(datas = [], options) {
-    const option = Object.assign({ open: "open", high: "high", low: "low", close: "close", volume: "volume", datetime: "datetime", volumefill: false, date: false, price: false, leverage: false, obv: false, vwap: false, sma: false }, options);
+    const option = Object.assign({ open: "open", high: "high", low: "low", close: "close", volume: "volume", datetime: "datetime", volumefill: false, date: false, price: false, leverage: false, obv: false, vwap: false, sma: false, rsi: false, ema: false }, options);
     if (!option.basePrice && option.open) {
         for (const data of datas) {
             if (data[option.open]) {
@@ -38,8 +38,36 @@ function pricehistory(datas = [], options) {
         const series = [...candles, candle];
         (0, pricehistoryvolume_1.default)(option, data, candle, series, volumerate);
         (0, pricehistoryvwap_1.default)(option, candle, series);
+        (0, pricehistoryvwap_1.default)(option, candle, series.slice(-1), 1);
+        (0, pricehistoryrsi_1.default)(option, candle, series);
+        (0, pricehistoryema_1.pricehistoryema)(option, candle, series);
+        // pricehistorymacd(option, candle, series);
+        // pricehistorycolor(option, candle, series);
+        // for (const period of option.periods!) {
+        //   if (series.length >= period) {
+        //     const seriesSlice = series.slice(-period);
+        //     pricehistorysma(option, candle, seriesSlice, period);
+        //     pricehistoryvwap(option, candle, seriesSlice, period);
+        //     pricehistorycolor(option, candle, seriesSlice, period);
+        //   }
+        // }
+        // pricehistorytrend(option, candle, series);
+        // pricehistorycrossover(option, candle, series);
+        // pricehistoryanchor(option, candle);
         candles.push(candle);
     }
+    // pricehistoryscales(option, candles);
+    // const curr = candles[candles.length - 1];
+    // const prev = candles[candles.length - 2];
+    // const valueCap =
+    //   option.valueCapAt > 0 &&
+    //   (prev?.sma5VwapValue
+    //     ? prev?.sma5VwapValue * (option.valueCapAt / 100)
+    //     : prev?.sma1VwapValue
+    //     ? prev?.sma1VwapValue * (option.valueCapAt / 100)
+    //     : prev?.vwapValue
+    //     ? prev?.vwapValue * (option.valueCapAt / 100)
+    //     : undefined);
     return { candles };
 }
 exports.default = pricehistory;

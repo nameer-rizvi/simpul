@@ -20,9 +20,9 @@ function pricehistoryvwap(option, candle, series, period) {
             v += i.volume;
         }
     }
-    let vwap, vwapSignal, vwapValue, volValue;
-    vwap = math_1.default.num(pv / v);
-    vwapValue = math_1.default.num(pv);
+    const vwap = math_1.default.num(pv / v);
+    const vwapValue = math_1.default.num(pv);
+    let vwapSignal, volValue;
     if (typeof vwap === "number")
         vwapSignal = math_1.default.change.percent(vwap, p);
     if (typeof vwapSignal === "number")
@@ -30,6 +30,7 @@ function pricehistoryvwap(option, candle, series, period) {
     if (typeof candle.volume === "number")
         volValue = math_1.default.num(p * candle.volume);
     if (option.sma === true && typeof period === "number") {
+        // TODO
         // if (typeof vwap === "number") {
         //   candle[`sma${period}Vwap`] = vwap;
         // }

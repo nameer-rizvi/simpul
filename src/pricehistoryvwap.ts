@@ -1,4 +1,4 @@
-import { PriceHistoryOptions, DataPoint, Candle } from "./pricehistorytypes";
+import { PriceHistoryOptions, Candle } from "./pricehistorytypes";
 import math from "./math";
 
 function pricehistoryvwap(
@@ -30,11 +30,11 @@ function pricehistoryvwap(
     }
   }
 
-  let vwap, vwapValue, vwapSignal, volValue;
+  const vwap = math.num(pv / v);
 
-  vwap = math.num(pv / v);
+  const vwapValue = math.num(pv);
 
-  vwapValue = math.num(pv);
+  let vwapSignal, volValue;
 
   if (typeof vwap === "number") vwapSignal = math.change.percent(vwap, p);
 
@@ -43,6 +43,7 @@ function pricehistoryvwap(
   if (typeof candle.volume === "number") volValue = math.num(p * candle.volume);
 
   if (option.sma === true && typeof period === "number") {
+    // TODO
     // if (typeof vwap === "number") {
     //   candle[`sma${period}Vwap`] = vwap;
     // }

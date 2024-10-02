@@ -4,8 +4,8 @@ import pricehistorydate from "./pricehistorydate";
 import pricehistoryprice from "./pricehistoryprice";
 import pricehistoryvolume from "./pricehistoryvolume";
 import pricehistoryvwap from "./pricehistoryvwap";
-// import pricehistoryrsi from "./pricehistoryrsi";
-// import { pricehistoryema } from "./pricehistoryema";
+import pricehistoryrsi from "./pricehistoryrsi";
+import { pricehistoryema } from "./pricehistoryema";
 // import pricehistorymacd from "./pricehistorymacd";
 // import pricehistorycolor from "./pricehistorycolor";
 // import pricehistorysma from "./pricehistorysma";
@@ -29,8 +29,8 @@ function pricehistory(datas: DataPoint[] = [], options: PriceHistoryOptions) {
     obv: false,
     vwap: false,
     sma: false,
-    // rsi: false,
-    // ema: false,
+    rsi: false,
+    ema: false,
     // macd: false,
     // color: false,
     // trend: false,
@@ -69,8 +69,41 @@ function pricehistory(datas: DataPoint[] = [], options: PriceHistoryOptions) {
 
     pricehistoryvwap(option, candle, series);
 
+    pricehistoryvwap(option, candle, series.slice(-1), 1);
+
+    pricehistoryrsi(option, candle, series);
+
+    pricehistoryema(option, candle, series);
+
+    // pricehistorymacd(option, candle, series);
+    // pricehistorycolor(option, candle, series);
+    // for (const period of option.periods!) {
+    //   if (series.length >= period) {
+    //     const seriesSlice = series.slice(-period);
+    //     pricehistorysma(option, candle, seriesSlice, period);
+    //     pricehistoryvwap(option, candle, seriesSlice, period);
+    //     pricehistorycolor(option, candle, seriesSlice, period);
+    //   }
+    // }
+    // pricehistorytrend(option, candle, series);
+    // pricehistorycrossover(option, candle, series);
+    // pricehistoryanchor(option, candle);
+
     candles.push(candle);
   }
+
+  // pricehistoryscales(option, candles);
+  // const curr = candles[candles.length - 1];
+  // const prev = candles[candles.length - 2];
+  // const valueCap =
+  //   option.valueCapAt > 0 &&
+  //   (prev?.sma5VwapValue
+  //     ? prev?.sma5VwapValue * (option.valueCapAt / 100)
+  //     : prev?.sma1VwapValue
+  //     ? prev?.sma1VwapValue * (option.valueCapAt / 100)
+  //     : prev?.vwapValue
+  //     ? prev?.vwapValue * (option.valueCapAt / 100)
+  //     : undefined);
 
   return { candles };
 }

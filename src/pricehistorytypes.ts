@@ -23,8 +23,8 @@ export interface PriceHistoryOptions {
   obv?: boolean;
   vwap?: boolean;
   sma?: boolean;
-  // rsi?: boolean;
-  // ema?: boolean;
+  rsi?: boolean;
+  ema?: boolean;
   // macd?: boolean;
   // color?: boolean;
   // trend?: boolean;
@@ -64,5 +64,8 @@ export interface Candle {
   vwapValue?: number;
   volumeTotal?: number;
   volumeValue?: number;
-  // [key: string]: undefined | string | number | boolean | Date;
+  averageGain?: number;
+  averageLoss?: number;
+  rsi?: number;
+  [key: string]: undefined | string | number | boolean | Date; // TODO
 }

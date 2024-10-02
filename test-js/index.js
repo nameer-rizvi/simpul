@@ -803,5 +803,6 @@ const series = [
     volume: 2718565,
   },
 ];
-// simpul.pricehistory(series, { vwap: true });
-console.log(simpul.pricehistory(series, { vwap: true }));
+
+const res = simpul.pricehistory(series, { ema: true });
+console.log(res);
