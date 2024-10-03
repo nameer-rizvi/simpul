@@ -27,6 +27,7 @@ export interface PriceHistoryOptions {
     macd?: boolean;
     color?: boolean;
     periods?: number[];
+    trend?: boolean;
 }
 export interface Candle {
     dateString?: string;

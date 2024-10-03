@@ -9,7 +9,7 @@ import { pricehistoryema } from "./pricehistoryema";
 import pricehistorymacd from "./pricehistorymacd";
 import pricehistorycolor from "./pricehistorycolor";
 import pricehistorysma from "./pricehistorysma";
-// import pricehistorytrend from "./pricehistorytrend";
+import pricehistorytrend from "./pricehistorytrend";
 // import pricehistorycrossover from "./pricehistorycrossover";
 // import pricehistoryanchor from "./pricehistoryanchor";
 // import pricehistoryscales from "./pricehistoryscales";
@@ -34,7 +34,7 @@ function pricehistory(datas: DataPoint[] = [], options: PriceHistoryOptions) {
     macd: false,
     color: false,
     periods: [5, 10, 20, 50, 100, 200],
-    // trend: false,
+    trend: false,
     // crossover: false,
     // anchor: false,
     // valueCapAt: 100,
@@ -91,7 +91,7 @@ function pricehistory(datas: DataPoint[] = [], options: PriceHistoryOptions) {
       }
     }
 
-    // pricehistorytrend(option, candle, series);
+    pricehistorytrend(option, candle, series);
 
     // pricehistorycrossover(option, candle, series);
 

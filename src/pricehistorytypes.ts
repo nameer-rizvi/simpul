@@ -28,7 +28,7 @@ export interface PriceHistoryOptions {
   macd?: boolean;
   color?: boolean;
   periods?: number[];
-  // trend?: boolean;
+  trend?: boolean;
   // crossover?: boolean;
   // anchor?: boolean;
   // basePrice?: number;

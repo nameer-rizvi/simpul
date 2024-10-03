@@ -1,10 +1,11 @@
-const pricehistorytrendprops = [
+const pricehistorytrendprops: string[] = [
   "priceOpen",
   "priceHigh",
   "priceLow",
   "priceClose",
   "priceChange",
   "priceRange",
+  "priceRangeDiff",
   "volume",
   "vwap",
   "vwapSignal",
@@ -83,4 +84,4 @@ const pricehistorytrendprops = [
   "sma200ColorVolumeDiscrepancy",
 ];
 
-module.exports = pricehistorytrendprops;
+export default pricehistorytrendprops;
