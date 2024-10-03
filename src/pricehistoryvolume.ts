@@ -9,7 +9,7 @@ function pricehistoryvolume(
 ): void {
   const volume = option.volume && curr[option.volume];
 
-  if (typeof volume === "number") {
+  if (typeof volume === "number" && volume > 0) {
     candle.volume = volume;
   } else if (
     typeof volumerate === "number" &&

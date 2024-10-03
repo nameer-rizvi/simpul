@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 function pricehistoryvolume(option, curr, candle, series, volumerate) {
     const volume = option.volume && curr[option.volume];
-    if (typeof volume === "number") {
+    if (typeof volume === "number" && volume > 0) {
         candle.volume = volume;
     }
     else if (typeof volumerate === "number" &&
