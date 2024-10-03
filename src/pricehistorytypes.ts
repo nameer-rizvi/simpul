@@ -31,9 +31,8 @@ export interface PriceHistoryOptions {
   trend?: boolean;
   crossover?: boolean;
   anchor?: boolean;
-  // basePrice?: number;
-  // valueCapAt?: number;
-  // scales?: string[];
+  scales?: string[];
+  valueCapAt?: number;
 }
 
 export interface Candle {
@@ -85,5 +84,7 @@ export interface Candle {
   anchor0?: number;
   anchor50?: number;
   anchor100?: number;
-  [key: string]: undefined | string | number | boolean | Date; // TODO
+  volumeVwapValueDiscrepancy?: number;
+  vvcvg?: number;
+  [key: string]: undefined | string | number | boolean | Date;
 }

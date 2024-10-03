@@ -12,9 +12,17 @@ import pricehistorysma from "./pricehistorysma";
 import pricehistorytrend from "./pricehistorytrend";
 import pricehistorycrossover from "./pricehistorycrossover";
 import pricehistoryanchor from "./pricehistoryanchor";
-// import pricehistoryscales from "./pricehistoryscales";
+import pricehistoryscales from "./pricehistoryscales";
 
-function pricehistory(datas: DataPoint[] = [], options: PriceHistoryOptions) {
+function pricehistory(
+  datas: DataPoint[] = [],
+  options: PriceHistoryOptions,
+): {
+  candles: Candle[];
+  curr: Candle;
+  prev: Candle;
+  valueCap: number | undefined;
+} {
   const option: PriceHistoryOptions = {
     open: "open",
     high: "high",
@@ -33,12 +41,12 @@ function pricehistory(datas: DataPoint[] = [], options: PriceHistoryOptions) {
     ema: false,
     macd: false,
     color: false,
-    periods: [5, 10, 20, 50, 100, 200],
+    periods: [],
     trend: false,
     crossover: false,
     anchor: false,
-    // valueCapAt: 100,
-    // scales: [],
+    scales: [],
+    valueCapAt: 100,
     ...options,
   };
 
@@ -49,6 +57,22 @@ function pricehistory(datas: DataPoint[] = [], options: PriceHistoryOptions) {
         if (typeof basePrice === "number") option.basePrice = basePrice;
         break;
       }
+    }
+  }
+
+  if (option.scales?.includes("vwapdisc")) {
+    option.vwap = true;
+    option.sma = true;
+  }
+
+  if (option.scales?.includes("vvcvg")) {
+    option.vwap = true;
+    option.sma = true;
+    option.color = true;
+    if (!option.periods) {
+      option.periods = [5];
+    } else if (!option.periods.includes(5)) {
+      option.periods.push(5);
     }
   }
 
@@ -100,20 +124,25 @@ function pricehistory(datas: DataPoint[] = [], options: PriceHistoryOptions) {
     candles.push(candle);
   }
 
-  // pricehistoryscales(option, candles);
-  // const curr = candles[candles.length - 1];
-  // const prev = candles[candles.length - 2];
-  // const valueCap =
-  //   option.valueCapAt > 0 &&
-  //   (prev?.sma5VwapValue
-  //     ? prev?.sma5VwapValue * (option.valueCapAt / 100)
-  //     : prev?.sma1VwapValue
-  //     ? prev?.sma1VwapValue * (option.valueCapAt / 100)
-  //     : prev?.vwapValue
-  //     ? prev?.vwapValue * (option.valueCapAt / 100)
-  //     : undefined);
+  pricehistoryscales(option, candles);
 
-  return { candles };
+  const curr = candles[candles.length - 1];
+
+  const prev = candles[candles.length - 2];
+
+  let valueCap;
+
+  if (typeof option.valueCapAt === "number" && prev) {
+    if (typeof prev.sma5VwapValue === "number") {
+      valueCap = prev.sma5VwapValue * (option.valueCapAt / 100);
+    } else if (typeof prev.sma1VwapValue === "number") {
+      valueCap = prev.sma1VwapValue * (option.valueCapAt / 100);
+    } else if (typeof prev.vwapValue === "number") {
+      valueCap = prev.vwapValue * (option.valueCapAt / 100);
+    }
+  }
+
+  return { candles, curr, prev, valueCap };
 }
 
 export default pricehistory;

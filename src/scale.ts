@@ -1,7 +1,7 @@
 import math from "./math";
 
 interface Item {
-  [key: string]: number;
+  [key: string]: any;
 }
 
 function scale<T extends Item | number>(
