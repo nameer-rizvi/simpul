@@ -15,8 +15,8 @@ function pricehistoryvolume(
     typeof volumerate === "number" &&
     typeof candle.priceRangeDiff === "number"
   ) {
-    candle.volume = Math.floor(volumerate * candle.priceRangeDiff);
-    candle.volumeFilled = true;
+    candle.volume = Math.round(volumerate * candle.priceRangeDiff);
+    candle.volumeFill = true;
   }
 
   if (

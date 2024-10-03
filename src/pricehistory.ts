@@ -60,6 +60,10 @@ function pricehistory(
     }
   }
 
+  if (option.volumefill === true) {
+    option.price = true;
+  }
+
   if (option.scales?.includes("vwapdisc")) {
     option.vwap = true;
     option.sma = true;
