@@ -1,4 +1,4 @@
-import { PriceHistoryOptions, DataPoint, Candle } from "./pricehistorytypes";
+import { PriceHistoryOptions, Candle } from "./pricehistorytypes";
 import pricehistorytrendprops from "./pricehistorytrendprops";
 
 function pricehistorytrend(

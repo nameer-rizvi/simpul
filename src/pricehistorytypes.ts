@@ -29,8 +29,8 @@ export interface PriceHistoryOptions {
   color?: boolean;
   periods?: number[];
   trend?: boolean;
-  // crossover?: boolean;
-  // anchor?: boolean;
+  crossover?: boolean;
+  anchor?: boolean;
   // basePrice?: number;
   // valueCapAt?: number;
   // scales?: string[];
@@ -82,5 +82,8 @@ export interface Candle {
   colorVolumeRed?: number;
   colorVolumeGray?: number;
   colorVolumeDiscrepancy?: number;
+  anchor0?: number;
+  anchor50?: number;
+  anchor100?: number;
   [key: string]: undefined | string | number | boolean | Date; // TODO
 }

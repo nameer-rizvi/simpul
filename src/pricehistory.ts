@@ -10,8 +10,8 @@ import pricehistorymacd from "./pricehistorymacd";
 import pricehistorycolor from "./pricehistorycolor";
 import pricehistorysma from "./pricehistorysma";
 import pricehistorytrend from "./pricehistorytrend";
-// import pricehistorycrossover from "./pricehistorycrossover";
-// import pricehistoryanchor from "./pricehistoryanchor";
+import pricehistorycrossover from "./pricehistorycrossover";
+import pricehistoryanchor from "./pricehistoryanchor";
 // import pricehistoryscales from "./pricehistoryscales";
 
 function pricehistory(datas: DataPoint[] = [], options: PriceHistoryOptions) {
@@ -35,8 +35,8 @@ function pricehistory(datas: DataPoint[] = [], options: PriceHistoryOptions) {
     color: false,
     periods: [5, 10, 20, 50, 100, 200],
     trend: false,
-    // crossover: false,
-    // anchor: false,
+    crossover: false,
+    anchor: false,
     // valueCapAt: 100,
     // scales: [],
     ...options,
@@ -93,9 +93,9 @@ function pricehistory(datas: DataPoint[] = [], options: PriceHistoryOptions) {
 
     pricehistorytrend(option, candle, series);
 
-    // pricehistorycrossover(option, candle, series);
+    pricehistorycrossover(option, candle, series);
 
-    // pricehistoryanchor(option, candle);
+    pricehistoryanchor(option, candle);
 
     candles.push(candle);
   }

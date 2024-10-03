@@ -28,6 +28,8 @@ export interface PriceHistoryOptions {
     color?: boolean;
     periods?: number[];
     trend?: boolean;
+    crossover?: boolean;
+    anchor?: boolean;
 }
 export interface Candle {
     dateString?: string;
