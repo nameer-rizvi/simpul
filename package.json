@@ -3,7 +3,6 @@
   "version": "1.1.9",
   "description": "Library of common utilities for personal use.",
   "main": "dist/index.js",
-  "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "lint": "npx eslint 'src/**/*.{js,mjs,cjs,ts}'; exit 0",

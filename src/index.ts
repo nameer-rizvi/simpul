@@ -194,4 +194,4 @@ const simpul: Simpul = {
   ...validate,
 };
 
-export default simpul;
+export = simpul;

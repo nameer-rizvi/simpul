@@ -2,7 +2,6 @@
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 const abbreviationToNumber_1 = __importDefault(require("./abbreviationToNumber"));
 const applyValueToNumber_1 = __importDefault(require("./applyValueToNumber"));
 const base64_1 = __importDefault(require("./base64"));
@@ -128,4 +127,4 @@ const simpul = Object.assign({ abbreviationToNumber: abbreviationToNumber_1.defa
     uid: uid_1.default,
     urlBase64ToUint8Array: urlBase64ToUint8Array_1.default,
     version: version_1.default }, validate_1.default);
-exports.default = simpul;
+module.exports = simpul;

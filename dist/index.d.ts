@@ -126,4 +126,4 @@ interface Simpul {
     [key: string]: any;
 }
 declare const simpul: Simpul;
-export default simpul;
+export = simpul;

@@ -1,2 +1,2 @@
-const simpul = require("../dist").default;
+const simpul = require("../dist");
 console.log(simpul);
