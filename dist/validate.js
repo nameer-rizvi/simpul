@@ -23,12 +23,14 @@ function isStringOrArray(test) {
 }
 // BASE64
 function isBase64(test) {
+    if (!isStringValid(test))
+        return false;
     try {
         if (support_1.default.window) {
-            btoa(encodeURIComponent(test));
+            decodeURIComponent(atob(test));
         }
         else {
-            Buffer.from(test, "utf-8").toString("base64");
+            Buffer.from(test, "base64").toString("utf-8");
         }
         return true;
     }
