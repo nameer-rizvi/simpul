@@ -16,6 +16,8 @@ function pricehistorycrossover(
     for (const prop2 of pricehistorycrossoverprops) {
       if (prop1 === prop2) continue;
 
+      if (prop1.startsWith("price") && prop2.startsWith("price")) continue;
+
       const prop1Prev = prev[prop1];
 
       const prop1Curr = candle[prop1];

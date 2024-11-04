@@ -35,6 +35,8 @@ import parseCommafiedNumber from "./parseCommafiedNumber";
 import parsejson from "./parsejson";
 import peaks from "./peaks";
 import pricehistory from "./pricehistory";
+import pricehistorycrossoverprops from "./pricehistorycrossoverprops";
+import pricehistorytrendprops from "./pricehistorytrendprops";
 import pricelimit from "./pricelimit";
 import recursively from "./recursively";
 import reduceobject from "./reduceobject";
@@ -98,6 +100,8 @@ interface Simpul {
     parsejson: typeof parsejson;
     peaks: typeof peaks;
     pricehistory: typeof pricehistory;
+    pricehistorycrossoverprops: typeof pricehistorycrossoverprops;
+    pricehistorytrendprops: typeof pricehistorytrendprops;
     pricelimit: typeof pricelimit;
     recursively: typeof recursively;
     reduceobject: typeof reduceobject;

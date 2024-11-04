@@ -8,7 +8,7 @@ function clone(json) {
         return [...json];
     const result = {};
     for (const key in json) {
-        if (json.hasOwnProperty(key)) {
+        if (Object.prototype.hasOwnProperty.call(json, key)) {
             result[key] = clone(json[key]);
         }
     }
