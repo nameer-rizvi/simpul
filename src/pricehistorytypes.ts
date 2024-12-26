@@ -30,6 +30,7 @@ export interface PriceHistoryOptions {
   periods?: number[];
   trend?: boolean;
   crossover?: boolean;
+  candlestick?: boolean;
   anchor?: boolean;
   scales?: string[];
   valueCapAt?: number;
@@ -81,10 +82,30 @@ export interface Candle {
   colorVolumeRed?: number;
   colorVolumeGray?: number;
   colorVolumeDiscrepancy?: number;
+  patterns?: string[];
   anchor0?: number;
   anchor50?: number;
   anchor100?: number;
   volumeVwapValueDiscrepancy?: number;
   vvcvg?: number;
-  [key: string]: undefined | string | number | boolean | Date;
+  [key: string]: undefined | string | number | boolean | Date | string[];
+}
+
+export interface CandlestickPattern {
+  name: string;
+  label: string;
+  isBullish: boolean;
+  isBearish: boolean;
+  isReversal: boolean;
+  isContinuation: boolean;
+  isIndecision: boolean;
+  condition: ({
+    candle,
+    prev1,
+    prev2,
+  }: {
+    candle: Candle;
+    prev1?: Candle;
+    prev2?: Candle;
+  }) => boolean;
 }

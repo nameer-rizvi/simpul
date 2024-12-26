@@ -4,7 +4,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const pricehistorytrendprops_1 = __importDefault(require("./pricehistorytrendprops"));
+const math_1 = __importDefault(require("./math"));
 function pricehistorytrend(option, candle, series) {
+    var _a;
     if (option.trend !== true)
         return;
     const prev = series[series.length - 2];
@@ -14,15 +16,7 @@ function pricehistorytrend(option, candle, series) {
         const vA = candle[prop];
         const vB = prev[prop];
         if (typeof vA === "number" && typeof vB === "number") {
-            if (vA > vB) {
-                candle[`${prop}Trend`] = "up";
-            }
-            else if (vA < vB) {
-                candle[`${prop}Trend`] = "down";
-            }
-            else {
-                candle[`${prop}Trend`] = "";
-            }
+            candle[`${prop}Trend`] = (_a = math_1.default.change.signal(vB, vA)) === null || _a === void 0 ? void 0 : _a[0];
         }
     }
 }

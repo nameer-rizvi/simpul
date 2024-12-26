@@ -89,13 +89,8 @@ function pricehistoryscales(
           const vA = curr[prop];
           const vB = prev[prop];
           if (typeof vA === "number" && typeof vB === "number") {
-            if (vA > vB) {
-              curr[`${prop}Trend`] = "up";
-              continue;
-            } else if (vA < vB) {
-              curr[`${prop}Trend`] = "down";
-              continue;
-            }
+            curr[`${prop}Trend`] = math.change.symbol(vB, vA)?.[0];
+            if (curr[`${prop}Trend`]) continue;
           }
         }
         curr[`${prop}Trend`] = "";

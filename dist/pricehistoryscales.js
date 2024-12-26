@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const scale_1 = __importDefault(require("./scale"));
 const math_1 = __importDefault(require("./math"));
 function pricehistoryscales(option, candles) {
-    var _a;
+    var _a, _b;
     if (!((_a = option.scales) === null || _a === void 0 ? void 0 : _a.length))
         return;
     let isVwapdisc = false;
@@ -81,14 +81,9 @@ function pricehistoryscales(option, candles) {
                     const vA = curr[prop];
                     const vB = prev[prop];
                     if (typeof vA === "number" && typeof vB === "number") {
-                        if (vA > vB) {
-                            curr[`${prop}Trend`] = "up";
+                        curr[`${prop}Trend`] = (_b = math_1.default.change.signal(vB, vA)) === null || _b === void 0 ? void 0 : _b[0];
+                        if (curr[`${prop}Trend`])
                             continue;
-                        }
-                        else if (vA < vB) {
-                            curr[`${prop}Trend`] = "down";
-                            continue;
-                        }
                     }
                 }
                 curr[`${prop}Trend`] = "";

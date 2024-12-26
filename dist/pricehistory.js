@@ -15,11 +15,12 @@ const pricehistorycolor_1 = __importDefault(require("./pricehistorycolor"));
 const pricehistorysma_1 = __importDefault(require("./pricehistorysma"));
 const pricehistorytrend_1 = __importDefault(require("./pricehistorytrend"));
 const pricehistorycrossover_1 = __importDefault(require("./pricehistorycrossover"));
+const pricehistorycandlestick_1 = __importDefault(require("./pricehistorycandlestick"));
 const pricehistoryanchor_1 = __importDefault(require("./pricehistoryanchor"));
 const pricehistoryscales_1 = __importDefault(require("./pricehistoryscales"));
 function pricehistory(datas = [], options) {
     var _a, _b;
-    const option = Object.assign({ open: "open", high: "high", low: "low", close: "close", volume: "volume", datetime: "datetime", volumefill: false, date: false, price: false, leverage: false, obv: false, vwap: false, sma: false, rsi: false, ema: false, macd: false, color: false, periods: [], trend: false, crossover: false, anchor: false, scales: [], valueCapAt: 100 }, options);
+    const option = Object.assign({ open: "open", high: "high", low: "low", close: "close", volume: "volume", datetime: "datetime", volumefill: false, date: false, price: false, leverage: false, obv: false, vwap: false, sma: false, rsi: false, ema: false, macd: false, color: false, periods: [], trend: false, crossover: false, candlestick: false, anchor: false, scales: [], valueCapAt: 100 }, options);
     if (!option.basePrice && option.open) {
         for (const data of datas) {
             if (data[option.open]) {
@@ -72,6 +73,7 @@ function pricehistory(datas = [], options) {
         }
         (0, pricehistorytrend_1.default)(option, candle, series);
         (0, pricehistorycrossover_1.default)(option, candle, series);
+        (0, pricehistorycandlestick_1.default)(option, candle, series);
         (0, pricehistoryanchor_1.default)(option, candle);
         candles.push(candle);
     }

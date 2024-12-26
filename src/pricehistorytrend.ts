@@ -1,5 +1,6 @@
 import { PriceHistoryOptions, Candle } from "./pricehistorytypes";
 import pricehistorytrendprops from "./pricehistorytrendprops";
+import math from "./math";
 
 function pricehistorytrend(
   option: PriceHistoryOptions,
@@ -18,13 +19,7 @@ function pricehistorytrend(
     const vB = prev[prop];
 
     if (typeof vA === "number" && typeof vB === "number") {
-      if (vA > vB) {
-        candle[`${prop}Trend`] = "up";
-      } else if (vA < vB) {
-        candle[`${prop}Trend`] = "down";
-      } else {
-        candle[`${prop}Trend`] = "";
-      }
+      candle[`${prop}Trend`] = math.change.symbol(vB, vA)?.[0];
     }
   }
 }

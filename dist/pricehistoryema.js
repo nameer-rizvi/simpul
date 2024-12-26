@@ -38,7 +38,15 @@ function ema(period, series, candle, numKey = "priceClose") {
         const v = candle[numKey];
         if (typeof v === "number") {
             const k = 2 / (period + 1);
-            candle[key] = math_1.default.num(v * k + prevEMA * (1 - k));
+            const currEMA = math_1.default.num(v * k + prevEMA * (1 - k));
+            candle[key] = currEMA;
+            if (typeof currEMA === "number" &&
+                typeof candle.priceClose === "number") {
+                const signal = math_1.default.change.percent(currEMA, candle.priceClose);
+                if (typeof signal === "number") {
+                    candle[`ema${period}Signal`] = math_1.default.num(signal * 100);
+                }
+            }
         }
     }
 }

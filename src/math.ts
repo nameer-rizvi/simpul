@@ -32,6 +32,22 @@ function changePercent(num1: number, num2: number): number | undefined {
   }
 }
 
+export type ChangeSymbol =
+  | ["up" | "down" | "neutral", "↑" | "↓" | "•", "🟢" | "🔴" | "⚪"]
+  | undefined;
+
+function changeSymbol(num1: number, num2: number): ChangeSymbol {
+  if (validate.isNumber(num1) && validate.isNumber(num2) && num1 !== 0) {
+    if (num2 > num1) {
+      return ["up", "↑", "🟢"];
+    } else if (num2 < num1) {
+      return ["down", "↓", "🔴"];
+    } else if (num2 === num1) {
+      return ["neutral", "•", "⚪"];
+    }
+  }
+}
+
 function percent(num1: number, num2: number): number | undefined {
   if (validate.isNumber(num1) && validate.isNumber(num2) && num2 !== 0) {
     return simplify((num1 / num2) * 100);
@@ -134,7 +150,11 @@ function normalize(arr: number[] = []): number[] | undefined {
 
 export default {
   num: simplify,
-  change: { num: changeNum, percent: changePercent },
+  change: {
+    num: changeNum,
+    percent: changePercent,
+    symbol: changeSymbol,
+  },
   percent,
   discrepancy,
   sum,

@@ -40,6 +40,19 @@ function changePercent(num1, num2) {
             return simplify(change / num1);
     }
 }
+function changeSignal(num1, num2) {
+    if (validate_1.default.isNumber(num1) && validate_1.default.isNumber(num2) && num1 !== 0) {
+        if (num2 > num1) {
+            return ["up", "↑", "🟢"];
+        }
+        else if (num2 < num1) {
+            return ["down", "↓", "🔴"];
+        }
+        else if (num2 === num1) {
+            return ["neutral", "•", "⚪"];
+        }
+    }
+}
 function percent(num1, num2) {
     if (validate_1.default.isNumber(num1) && validate_1.default.isNumber(num2) && num2 !== 0) {
         return simplify((num1 / num2) * 100);
@@ -150,7 +163,11 @@ function normalize(arr = []) {
 }
 exports.default = {
     num: simplify,
-    change: { num: changeNum, percent: changePercent },
+    change: {
+        num: changeNum,
+        percent: changePercent,
+        signal: changeSignal,
+    },
     percent,
     discrepancy,
     sum,

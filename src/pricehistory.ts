@@ -11,6 +11,7 @@ import pricehistorycolor from "./pricehistorycolor";
 import pricehistorysma from "./pricehistorysma";
 import pricehistorytrend from "./pricehistorytrend";
 import pricehistorycrossover from "./pricehistorycrossover";
+import pricehistorycandlestick from "./pricehistorycandlestick";
 import pricehistoryanchor from "./pricehistoryanchor";
 import pricehistoryscales from "./pricehistoryscales";
 
@@ -44,6 +45,7 @@ function pricehistory(
     periods: [],
     trend: false,
     crossover: false,
+    candlestick: false,
     anchor: false,
     scales: [],
     valueCapAt: 100,
@@ -122,6 +124,8 @@ function pricehistory(
     pricehistorytrend(option, candle, series);
 
     pricehistorycrossover(option, candle, series);
+
+    pricehistorycandlestick(option, candle, series);
 
     pricehistoryanchor(option, candle);
 
