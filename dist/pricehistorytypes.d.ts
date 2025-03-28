@@ -80,7 +80,12 @@ export interface Candle {
     colorVolumeRed?: number;
     colorVolumeGray?: number;
     colorVolumeDiscrepancy?: number;
-    patterns?: string[];
+    candlestickPatterns?: string[];
+    candlestickIsBullish?: number;
+    candlestickIsBearish?: number;
+    candlestickIsReversal?: number;
+    candlestickIsContinuation?: number;
+    candlestickIsIndecision?: number;
     anchor0?: number;
     anchor50?: number;
     anchor100?: number;
@@ -88,11 +93,41 @@ export interface Candle {
     vvcvg?: number;
     [key: string]: undefined | string | number | boolean | Date | string[];
 }
+export interface CandlestickProps {
+    bodySize: number;
+    upperSize: number;
+    lowerSize: number;
+    isBullish: boolean;
+    isBullishPrev1: boolean;
+    isBullishPrev2: boolean;
+    isBearish: boolean;
+    isNeutral: boolean;
+    isEngulfed: boolean;
+    isGapUp: boolean;
+    isGapDown: boolean;
+    isUpper0: boolean;
+    isBody0: boolean;
+    isLower0: boolean;
+    isUpperGreaterThanBody1: boolean;
+    isUpperGreaterThanBody2: boolean;
+    isUpperGreaterThanBody3: boolean;
+    isUpperSmallerThanBody1: boolean;
+    isUpperSmallerThanBody2: boolean;
+    isUpperSmallerThanBody3: boolean;
+    isLowerGreaterThanBody1: boolean;
+    isLowerGreaterThanBody2: boolean;
+    isLowerGreaterThanBody3: boolean;
+    isLowerSmallerThanBody1: boolean;
+    isLowerSmallerThanBody2: boolean;
+    isLowerSmallerThanBody3: boolean;
+    [key: string]: number | boolean;
+}
 export interface CandlestickPattern {
     name: string;
-    condition: ({ candle, prev1, prev2, }: {
-        candle: Candle;
-        prev1?: Candle;
-        prev2?: Candle;
-    }) => boolean;
+    isBullish: 0 | 1 | 2;
+    isBearish: 0 | 1 | 2;
+    isReversal: 0 | 1 | 2;
+    isContinuation: 0 | 1 | 2;
+    isIndecision: 0 | 1 | 2;
+    conditions: string[];
 }

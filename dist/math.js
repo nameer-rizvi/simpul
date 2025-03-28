@@ -37,19 +37,19 @@ function changePercent(num1, num2) {
     if (validate_1.default.isNumber(num1) && validate_1.default.isNumber(num2) && num1 !== 0) {
         const change = changeNum(num1, num2);
         if (change !== undefined)
-            return simplify(change / num1);
+            return simplify((change / num1) * 100);
     }
 }
-function changeSignal(num1, num2) {
+function changeSymbol(num1, num2) {
     if (validate_1.default.isNumber(num1) && validate_1.default.isNumber(num2) && num1 !== 0) {
         if (num2 > num1) {
-            return ["up", "↑", "🟢"];
+            return [1, "up", "+", "↑", "🟢"];
         }
         else if (num2 < num1) {
-            return ["down", "↓", "🔴"];
+            return [-1, "down", "-", "↓", "🔴"];
         }
         else if (num2 === num1) {
-            return ["neutral", "•", "⚪"];
+            return [0, "neutral", "", "•", "⚪"];
         }
     }
 }
@@ -166,7 +166,7 @@ exports.default = {
     change: {
         num: changeNum,
         percent: changePercent,
-        signal: changeSignal,
+        symbol: changeSymbol,
     },
     percent,
     discrepancy,

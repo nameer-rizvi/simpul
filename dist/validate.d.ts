@@ -10,6 +10,7 @@ declare function isBooleanAny(test: unknown): boolean;
 declare function isCreditCardNumber(test: unknown): boolean;
 declare function isDate(test: unknown): boolean;
 declare function isEmail(test: unknown): boolean;
+declare function isError(test: unknown): boolean;
 declare function isFunction(test: unknown): test is Function;
 declare function isHTTP(test: unknown): boolean;
 declare function isJSON(test: unknown): boolean;
@@ -37,6 +38,7 @@ declare const _default: {
     isCreditCardNumber: typeof isCreditCardNumber;
     isDate: typeof isDate;
     isEmail: typeof isEmail;
+    isError: typeof isError;
     isFunction: typeof isFunction;
     isHTTP: typeof isHTTP;
     isJSON: typeof isJSON;

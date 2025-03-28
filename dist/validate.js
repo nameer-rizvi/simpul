@@ -72,6 +72,11 @@ function isEmail(test) {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return isString(test) && (0, safe_regex_1.default)(test) && emailPattern.test(test);
 }
+// ERROR
+function isError(test) {
+    return (test instanceof Error ||
+        Object.prototype.toString.call(test) === "[object Error]");
+}
 // FUNCTION
 // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
 function isFunction(test) {
@@ -174,6 +179,7 @@ exports.default = {
     isCreditCardNumber,
     isDate,
     isEmail,
+    isError,
     isFunction,
     isHTTP,
     isJSON,

@@ -27,7 +27,7 @@ const generalcount_1 = __importDefault(require("./generalcount"));
 const isEnv_1 = __importDefault(require("./isEnv"));
 const jwt_1 = __importDefault(require("./jwt"));
 const keychange_1 = __importDefault(require("./keychange"));
-const log_1 = __importDefault(require("./log"));
+const listify_1 = __importDefault(require("./listify"));
 const logPermutation_1 = __importDefault(require("./logPermutation"));
 const math_1 = __importDefault(require("./math"));
 const noop_1 = __importDefault(require("./noop"));
@@ -38,10 +38,6 @@ const paginationProps_1 = __importDefault(require("./paginationProps"));
 const parseCommafiedNumber_1 = __importDefault(require("./parseCommafiedNumber"));
 const parsejson_1 = __importDefault(require("./parsejson"));
 const peaks_1 = __importDefault(require("./peaks"));
-const pricehistory_1 = __importDefault(require("./pricehistory"));
-const pricehistorycrossoverprops_1 = __importDefault(require("./pricehistorycrossoverprops"));
-const pricehistorytrendprops_1 = __importDefault(require("./pricehistorytrendprops"));
-const pricelimit_1 = __importDefault(require("./pricelimit"));
 const recursively_1 = __importDefault(require("./recursively"));
 const reduceobject_1 = __importDefault(require("./reduceobject"));
 const removeArrayItems_1 = __importDefault(require("./removeArrayItems"));
@@ -56,7 +52,6 @@ const stringlength_1 = __importDefault(require("./stringlength"));
 const stringnumber_1 = __importDefault(require("./stringnumber"));
 const stringtest_1 = __importDefault(require("./stringtest"));
 const support_1 = __importDefault(require("./support"));
-const timenvlog_1 = __importDefault(require("./timenvlog"));
 const tokenize_1 = __importDefault(require("./tokenize"));
 const trim_1 = __importDefault(require("./trim"));
 const trimBoundary_1 = __importDefault(require("./trimBoundary"));
@@ -67,6 +62,7 @@ const uid_1 = __importDefault(require("./uid"));
 const urlBase64ToUint8Array_1 = __importDefault(require("./urlBase64ToUint8Array"));
 const validate_1 = __importDefault(require("./validate"));
 const version_1 = __importDefault(require("./version"));
+const wave_1 = __importDefault(require("./wave"));
 const simpul = Object.assign({ abbreviationToNumber: abbreviationToNumber_1.default,
     applyValueToNumber: applyValueToNumber_1.default,
     base64: base64_1.default,
@@ -92,7 +88,7 @@ const simpul = Object.assign({ abbreviationToNumber: abbreviationToNumber_1.defa
     isEnv: isEnv_1.default,
     jwt: jwt_1.default,
     keychange: keychange_1.default,
-    log: log_1.default,
+    listify: listify_1.default,
     logPermutation: logPermutation_1.default,
     math: math_1.default,
     noop: noop_1.default,
@@ -103,10 +99,6 @@ const simpul = Object.assign({ abbreviationToNumber: abbreviationToNumber_1.defa
     parseCommafiedNumber: parseCommafiedNumber_1.default,
     parsejson: parsejson_1.default,
     peaks: peaks_1.default,
-    pricehistory: pricehistory_1.default,
-    pricehistorycrossoverprops: pricehistorycrossoverprops_1.default,
-    pricehistorytrendprops: pricehistorytrendprops_1.default,
-    pricelimit: pricelimit_1.default,
     recursively: recursively_1.default,
     reduceobject: reduceobject_1.default,
     removeArrayItems: removeArrayItems_1.default,
@@ -121,7 +113,6 @@ const simpul = Object.assign({ abbreviationToNumber: abbreviationToNumber_1.defa
     stringnumber: stringnumber_1.default,
     stringtest: stringtest_1.default,
     support: support_1.default,
-    timenvlog: timenvlog_1.default,
     tokenize: tokenize_1.default,
     trim: trim_1.default,
     trimBoundary: trimBoundary_1.default,
@@ -130,5 +121,6 @@ const simpul = Object.assign({ abbreviationToNumber: abbreviationToNumber_1.defa
     trycallback: trycallback_1.default,
     uid: uid_1.default,
     urlBase64ToUint8Array: urlBase64ToUint8Array_1.default,
-    version: version_1.default }, validate_1.default);
+    version: version_1.default,
+    wave: wave_1.default }, validate_1.default);
 module.exports = simpul;

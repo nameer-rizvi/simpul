@@ -81,7 +81,7 @@ function pricehistoryscales(option, candles) {
                     const vA = curr[prop];
                     const vB = prev[prop];
                     if (typeof vA === "number" && typeof vB === "number") {
-                        curr[`${prop}Trend`] = (_b = math_1.default.change.signal(vB, vA)) === null || _b === void 0 ? void 0 : _b[0];
+                        curr[`${prop}Trend`] = (_b = math_1.default.change.symbol(vB, vA)) === null || _b === void 0 ? void 0 : _b[0];
                         if (curr[`${prop}Trend`])
                             continue;
                     }

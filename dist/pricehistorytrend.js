@@ -16,7 +16,7 @@ function pricehistorytrend(option, candle, series) {
         const vA = candle[prop];
         const vB = prev[prop];
         if (typeof vA === "number" && typeof vB === "number") {
-            candle[`${prop}Trend`] = (_a = math_1.default.change.signal(vB, vA)) === null || _a === void 0 ? void 0 : _a[0];
+            candle[`${prop}Trend`] = (_a = math_1.default.change.symbol(vB, vA)) === null || _a === void 0 ? void 0 : _a[0];
         }
     }
 }

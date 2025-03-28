@@ -28,22 +28,29 @@ function changeNum(num1: number, num2: number): number | undefined {
 function changePercent(num1: number, num2: number): number | undefined {
   if (validate.isNumber(num1) && validate.isNumber(num2) && num1 !== 0) {
     const change = changeNum(num1, num2);
-    if (change !== undefined) return simplify(change / num1);
+    if (change !== undefined) return simplify((change / num1) * 100);
   }
 }
 
-export type ChangeSymbol =
-  | ["up" | "down" | "neutral", "↑" | "↓" | "•", "🟢" | "🔴" | "⚪"]
-  | undefined;
+export type ChangeSymbolType = [
+  1 | -1 | 0,
+  "up" | "down" | "neutral",
+  "+" | "-" | "",
+  "↑" | "↓" | "•",
+  "🟢" | "🔴" | "⚪",
+];
 
-function changeSymbol(num1: number, num2: number): ChangeSymbol {
+function changeSymbol(
+  num1: number,
+  num2: number,
+): ChangeSymbolType | undefined {
   if (validate.isNumber(num1) && validate.isNumber(num2) && num1 !== 0) {
     if (num2 > num1) {
-      return ["up", "↑", "🟢"];
+      return [1, "up", "+", "↑", "🟢"];
     } else if (num2 < num1) {
-      return ["down", "↓", "🔴"];
+      return [-1, "down", "-", "↓", "🔴"];
     } else if (num2 === num1) {
-      return ["neutral", "•", "⚪"];
+      return [0, "neutral", "", "•", "⚪"];
     }
   }
 }

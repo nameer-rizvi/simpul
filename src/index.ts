@@ -23,7 +23,7 @@ import generalcount from "./generalcount";
 import isEnv from "./isEnv";
 import jwt from "./jwt";
 import keychange from "./keychange";
-import log from "./log";
+import listify from "./listify";
 import logPermutation from "./logPermutation";
 import math from "./math";
 import noop from "./noop";
@@ -34,10 +34,6 @@ import paginationProps from "./paginationProps";
 import parseCommafiedNumber from "./parseCommafiedNumber";
 import parsejson from "./parsejson";
 import peaks from "./peaks";
-import pricehistory from "./pricehistory";
-import pricehistorycrossoverprops from "./pricehistorycrossoverprops";
-import pricehistorytrendprops from "./pricehistorytrendprops";
-import pricelimit from "./pricelimit";
 import recursively from "./recursively";
 import reduceobject from "./reduceobject";
 import removeArrayItems from "./removeArrayItems";
@@ -52,7 +48,6 @@ import stringlength from "./stringlength";
 import stringnumber from "./stringnumber";
 import stringtest from "./stringtest";
 import support from "./support";
-import timenvlog from "./timenvlog";
 import tokenize from "./tokenize";
 import trim from "./trim";
 import trimBoundary from "./trimBoundary";
@@ -63,6 +58,7 @@ import uid from "./uid";
 import urlBase64ToUint8Array from "./urlBase64ToUint8Array";
 import validate from "./validate";
 import version from "./version";
+import wave from "./wave";
 
 interface Simpul {
   abbreviationToNumber: typeof abbreviationToNumber;
@@ -90,7 +86,7 @@ interface Simpul {
   isEnv: typeof isEnv;
   jwt: typeof jwt;
   keychange: typeof keychange;
-  log: typeof log;
+  listify: typeof listify;
   logPermutation: typeof logPermutation;
   math: typeof math;
   noop: typeof noop;
@@ -101,10 +97,6 @@ interface Simpul {
   parseCommafiedNumber: typeof parseCommafiedNumber;
   parsejson: typeof parsejson;
   peaks: typeof peaks;
-  pricehistory: typeof pricehistory;
-  pricehistorycrossoverprops: typeof pricehistorycrossoverprops;
-  pricehistorytrendprops: typeof pricehistorytrendprops;
-  pricelimit: typeof pricelimit;
   recursively: typeof recursively;
   reduceobject: typeof reduceobject;
   removeArrayItems: typeof removeArrayItems;
@@ -119,7 +111,6 @@ interface Simpul {
   stringnumber: typeof stringnumber;
   stringtest: typeof stringtest;
   support: typeof support;
-  timenvlog: typeof timenvlog;
   tokenize: typeof tokenize;
   trim: typeof trim;
   trimBoundary: typeof trimBoundary;
@@ -129,6 +120,7 @@ interface Simpul {
   uid: typeof uid;
   urlBase64ToUint8Array: typeof urlBase64ToUint8Array;
   version: typeof version;
+  wave: typeof wave;
   [key: string]: any;
 }
 
@@ -158,7 +150,7 @@ const simpul: Simpul = {
   isEnv,
   jwt,
   keychange,
-  log,
+  listify,
   logPermutation,
   math,
   noop,
@@ -169,10 +161,6 @@ const simpul: Simpul = {
   parseCommafiedNumber,
   parsejson,
   peaks,
-  pricehistory,
-  pricehistorycrossoverprops,
-  pricehistorytrendprops,
-  pricelimit,
   recursively,
   reduceobject,
   removeArrayItems,
@@ -187,7 +175,6 @@ const simpul: Simpul = {
   stringnumber,
   stringtest,
   support,
-  timenvlog,
   tokenize,
   trim,
   trimBoundary,
@@ -197,6 +184,7 @@ const simpul: Simpul = {
   uid,
   urlBase64ToUint8Array,
   version,
+  wave,
   ...validate,
 };
 

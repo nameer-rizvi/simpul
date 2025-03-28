@@ -83,6 +83,15 @@ function isEmail(test: unknown): boolean {
   return isString(test) && safe(test) && emailPattern.test(test);
 }
 
+// ERROR
+
+function isError(test: unknown): boolean {
+  return (
+    test instanceof Error ||
+    Object.prototype.toString.call(test) === "[object Error]"
+  );
+}
+
 // FUNCTION
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
@@ -204,6 +213,7 @@ export default {
   isCreditCardNumber,
   isDate,
   isEmail,
+  isError,
   isFunction,
   isHTTP,
   isJSON,
