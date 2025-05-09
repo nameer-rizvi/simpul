@@ -44,7 +44,7 @@ function changeSymbol(
   num1: number,
   num2: number,
 ): ChangeSymbolType | undefined {
-  if (validate.isNumber(num1) && validate.isNumber(num2) && num1 !== 0) {
+  if (validate.isNumber(num1) && validate.isNumber(num2)) {
     if (num2 > num1) {
       return [1, "up", "+", "↑", "🟢"];
     } else if (num2 < num1) {

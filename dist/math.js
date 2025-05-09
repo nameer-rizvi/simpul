@@ -41,7 +41,7 @@ function changePercent(num1, num2) {
     }
 }
 function changeSymbol(num1, num2) {
-    if (validate_1.default.isNumber(num1) && validate_1.default.isNumber(num2) && num1 !== 0) {
+    if (validate_1.default.isNumber(num1) && validate_1.default.isNumber(num2)) {
         if (num2 > num1) {
             return [1, "up", "+", "↑", "🟢"];
         }
