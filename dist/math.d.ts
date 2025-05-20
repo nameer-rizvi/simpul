@@ -4,7 +4,7 @@ declare function changePercent(num1: number, num2: number): number | undefined;
 export type ChangeSymbolType = [
     1 | -1 | 0,
     "up" | "down" | "neutral",
-    "+" | "-" | "",
+    "+" | "-" | "•",
     "↑" | "↓" | "•",
     "🟢" | "🔴" | "⚪"
 ];
@@ -15,10 +15,13 @@ declare function sum(arr: number[]): number | undefined;
 declare function mean(arr: number[]): number | undefined;
 declare function median(arr: number[]): number | undefined;
 declare function mode(arr: number[]): number | undefined;
+declare function variance(arr: number[]): number | undefined;
 declare function standarddeviation(arr: number[]): number | undefined;
+declare function zscore(num: number, arr: number[]): number | undefined;
 declare function efficiency(arr: number[]): number | undefined;
 declare function rate(start: number, end: number, periods?: number): number | undefined;
-declare function normalize(arr?: number[]): number[] | undefined;
+declare function normalize(arr: number[]): number[] | undefined;
+declare function trendSlope(arr: number[]): number | undefined;
 declare const _default: {
     num: typeof simplify;
     change: {
@@ -32,9 +35,12 @@ declare const _default: {
     mean: typeof mean;
     median: typeof median;
     mode: typeof mode;
+    variance: typeof variance;
     standarddeviation: typeof standarddeviation;
+    zscore: typeof zscore;
     efficiency: typeof efficiency;
     rate: typeof rate;
     normalize: typeof normalize;
+    trendSlope: typeof trendSlope;
 };
 export default _default;

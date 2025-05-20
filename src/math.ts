@@ -35,7 +35,7 @@ function changePercent(num1: number, num2: number): number | undefined {
 export type ChangeSymbolType = [
   1 | -1 | 0,
   "up" | "down" | "neutral",
-  "+" | "-" | "",
+  "+" | "-" | "•",
   "↑" | "↓" | "•",
   "🟢" | "🔴" | "⚪",
 ];
@@ -50,7 +50,7 @@ function changeSymbol(
     } else if (num2 < num1) {
       return [-1, "down", "-", "↓", "🔴"];
     } else if (num2 === num1) {
-      return [0, "neutral", "", "•", "⚪"];
+      return [0, "neutral", "•", "•", "⚪"];
     }
   }
 }
@@ -69,8 +69,10 @@ function discrepancy(num1: number, num2: number): number | undefined {
 
 function sum(arr: number[]): number | undefined {
   if (!validate.isArray(arr)) return;
+  const numbers = arr.filter(validate.isNumber);
+  if (!numbers.length) return;
   let total = 0;
-  for (const n of arr) if (validate.isNumber(n)) total += n;
+  for (const n of arr) total += n;
   return simplify(total);
 }
 
@@ -81,11 +83,13 @@ function mean(arr: number[]): number | undefined {
 
 function median(arr: number[]): number | undefined {
   if (!validate.isArray(arr)) return;
-  const numbers = arr.filter(validate.isNumber).sort((a, b) => a - b);
+  const numbers = arr.filter(validate.isNumber);
   if (!numbers.length) return;
+  numbers.sort((a, b) => a - b);
   const mid = Math.floor(numbers.length / 2);
-  if (numbers.length % 2) return numbers[mid];
-  return simplify((numbers[mid - 1] + numbers[mid]) / 2);
+  const med =
+    numbers.length % 2 ? numbers[mid] : (numbers[mid - 1] + numbers[mid]) / 2;
+  return simplify(med);
 }
 
 function mode(arr: number[]): number | undefined {
@@ -95,21 +99,34 @@ function mode(arr: number[]): number | undefined {
   const frequency: { [key: number]: number } = {};
   for (const num of numbers) frequency[num] = (frequency[num] || 0) + 1;
   let res: [string, number] = ["", 0];
-  for (const key of Object.keys(frequency)) {
-    if (frequency[+key] > res[1]) res = [key, frequency[+key]];
+  for (const [key, value] of Object.entries(frequency)) {
+    if (value > res[1]) res = [key, value];
   }
   return simplify(+res[0]);
 }
 
-function standarddeviation(arr: number[]): number | undefined {
+function variance(arr: number[]): number | undefined {
   if (!validate.isArray(arr)) return;
   const numbers = arr.filter(validate.isNumber);
   if (!numbers.length) return;
   const me = mean(numbers);
   if (me === undefined) return;
-  const va = numbers.reduce((r, n) => r + Math.pow(n - me, 2), 0);
-  const sq = Math.sqrt(va / numbers.length);
-  return simplify(sq);
+  let va = 0;
+  for (const n of numbers) va += Math.pow(n - me, 2);
+  return simplify(va / numbers.length);
+}
+
+function standarddeviation(arr: number[]): number | undefined {
+  const va = variance(arr);
+  if (va !== undefined) return simplify(Math.sqrt(va));
+}
+
+function zscore(num: number, arr: number[]): number | undefined {
+  if (!validate.isNumber(num)) return;
+  const me = mean(arr);
+  const sd = standarddeviation(arr);
+  if (me === undefined || sd === undefined) return;
+  return simplify((num - me) / sd);
 }
 
 function efficiency(arr: number[]): number | undefined {
@@ -140,9 +157,10 @@ function rate(
   }
 }
 
-function normalize(arr: number[] = []): number[] | undefined {
+function normalize(arr: number[]): number[] | undefined {
   if (!validate.isArray(arr)) return;
   const numbers = arr.filter(validate.isNumber);
+  if (!numbers.length) return;
   const max = Math.max(...numbers);
   const min = Math.min(...numbers);
   const range = simplify(max - min);
@@ -153,6 +171,28 @@ function normalize(arr: number[] = []): number[] | undefined {
     if (normalized !== undefined) numbers2.push(normalized);
   }
   return numbers2;
+}
+
+function trendSlope(arr: number[]): number | undefined {
+  // Computes the slope of the linear regression line assuming x = [0, 1, ..., n-1]:
+  if (!validate.isArray(arr)) return;
+  const numbers = arr.filter(validate.isNumber);
+  if (!numbers.length) return;
+  const n = arr.length;
+  if (n < 2) return 0;
+  let sumX = 0,
+    sumY = 0,
+    sumXY = 0,
+    sumX2 = 0;
+  for (let i = 0; i < n; i++) {
+    sumX += i;
+    sumY += arr[i];
+    sumXY += i * arr[i];
+    sumX2 += i * i;
+  }
+  const numerator = n * sumXY - sumX * sumY;
+  const denominator = n * sumX2 - sumX * sumX;
+  return denominator !== 0 ? simplify(numerator / denominator) : 0;
 }
 
 export default {
@@ -168,8 +208,11 @@ export default {
   mean,
   median,
   mode,
+  variance,
   standarddeviation,
+  zscore,
   efficiency,
   rate,
   normalize,
+  trendSlope,
 };
