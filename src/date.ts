@@ -25,6 +25,10 @@ const months = [
   "December",
 ];
 
+const weekdaysShort = weekdays.map((weekday) => weekday.slice(0, 3));
+
+const monthsShort = months.map((month) => month.slice(0, 3));
+
 function weekday(date: Date | string): string {
   date = validate.isDate(date) ? new Date(date) : new Date();
   return weekdays[date.getDay()];

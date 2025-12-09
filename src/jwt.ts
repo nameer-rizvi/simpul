@@ -4,8 +4,8 @@ function decode(jwt: string): string | undefined {
   try {
     const token = jwt.split(".")[1].replace(/-/g, "+").replace(/_/g, "/");
 
-    const array = Array.from(atob(token)).map((c) => {
-      return `%${("00" + c.charCodeAt(0).toString(16)).slice(-2)}`;
+    const array = Array.from(atob(token), (c) => {
+      return `%${c.charCodeAt(0).toString(16).padStart(2, "0")}`;
     });
 
     return decodeURIComponent(array.join(""));

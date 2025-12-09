@@ -1,8 +1,7 @@
 "use strict";
+var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-const isNode = typeof process !== "undefined" &&
-    process.versions != null &&
-    process.versions.node != null;
+const isNode = typeof process !== "undefined" && !!((_a = process === null || process === void 0 ? void 0 : process.versions) === null || _a === void 0 ? void 0 : _a.node);
 const isWindow = typeof window !== "undefined";
 const isDocument = typeof document !== "undefined";
 function inWindow(name) {

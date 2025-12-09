@@ -1,7 +1,5 @@
 const isNode: boolean =
-  typeof process !== "undefined" &&
-  process.versions != null &&
-  process.versions.node != null;
+  typeof process !== "undefined" && !!process?.versions?.node;
 
 const isWindow: boolean = typeof window !== "undefined";
 
@@ -24,7 +22,7 @@ const isWindowLocalhost: boolean =
     window.location.hostname === "[::1]" ||
     // 127.0.0.1/8 is considered localhost for IPv4.
     /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/.test(
-      window.location.hostname,
+      window.location.hostname
     ));
 
 export default {

@@ -60,10 +60,11 @@ function isBooleanAny(test: unknown): boolean {
 
 // CREDIT CARD NUMBER
 
+const creditCardPattern =
+  /^(?:4\d{12}(?:\d{3})?|5[1-5]\d{14}|6(?:011|5\d{2})\d{12}|3[47]\d{13}|3(?:0[0-5]|[68]\d)\d{11}|7\d{15})$/;
+
 function isCreditCardNumber(test: unknown): boolean {
-  const cardPattern =
-    /^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9]{2})[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|7[0-9]{15})$/;
-  return isString(test) && safe(test) && cardPattern.test(test);
+  return isString(test) && safe(test) && creditCardPattern.test(test);
 }
 
 // DATE
@@ -78,8 +79,9 @@ function isDate(test: unknown): boolean {
 
 // EMAIL
 
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 function isEmail(test: unknown): boolean {
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return isString(test) && safe(test) && emailPattern.test(test);
 }
 
@@ -87,8 +89,9 @@ function isEmail(test: unknown): boolean {
 
 function isError(test: unknown): boolean {
   return (
-    test instanceof Error ||
-    Object.prototype.toString.call(test) === "[object Error]"
+    !!test &&
+    (test instanceof Error ||
+      Object.prototype.toString.call(test) === "[object Error]")
   );
 }
 
@@ -134,9 +137,8 @@ function isJWT(test: unknown): boolean {
 // MODULE
 
 function isModule(test: unknown): boolean {
-  if (!isString(test)) return false;
   try {
-    require.resolve(test);
+    require.resolve(test as string);
     return true;
   } catch {
     return false;
@@ -152,10 +154,8 @@ function isNumber(test: unknown): boolean {
 
 // OBJECT
 
-function isObject(test: unknown): test is Record<string, unknown> {
-  return (
-    test !== null && typeof test === "object" && test.constructor === Object
-  );
+function isObject(test: unknown): test is object {
+  return !!test && typeof test === "object" && test.constructor === Object;
 }
 
 function isObjectValid(test: unknown): boolean {
@@ -176,8 +176,9 @@ function isRegex(test: unknown): test is RegExp {
 
 // URL
 
+const urlPattern = /^(https?:\/\/)?([^\s.]+\.[^\s]{2,}|localhost[:\d]*)\S*$/;
+
 function isURL(test: unknown): boolean {
-  const urlPattern = /^(https?:\/\/)?([^\s.]+\.[^\s]{2,}|localhost[:\d]*)\S*$/;
   return isString(test) && safe(test) && urlPattern.test(test);
 }
 

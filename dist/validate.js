@@ -52,9 +52,9 @@ function isBooleanAny(test) {
     return isBoolean(test) || isBooleanString(test) || isBooleanNumber(test);
 }
 // CREDIT CARD NUMBER
+const creditCardPattern = /^(?:4\d{12}(?:\d{3})?|5[1-5]\d{14}|6(?:011|5\d{2})\d{12}|3[47]\d{13}|3(?:0[0-5]|[68]\d)\d{11}|7\d{15})$/;
 function isCreditCardNumber(test) {
-    const cardPattern = /^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9]{2})[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|7[0-9]{15})$/;
-    return isString(test) && (0, safe_regex_1.default)(test) && cardPattern.test(test);
+    return isString(test) && (0, safe_regex_1.default)(test) && creditCardPattern.test(test);
 }
 // DATE
 function isDate(test) {
@@ -68,8 +68,8 @@ function isDate(test) {
         return false;
 }
 // EMAIL
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 function isEmail(test) {
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return isString(test) && (0, safe_regex_1.default)(test) && emailPattern.test(test);
 }
 // ERROR
