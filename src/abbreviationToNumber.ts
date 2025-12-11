@@ -1,29 +1,25 @@
 import validate from "./validate";
 
-function abbreviationToNumber(
-  abbreviation: string | number,
-): number | undefined {
-  if (validate.isNumber(abbreviation)) return Number(abbreviation);
+function abbreviationToNumber(input: string | number): number | undefined {
+  if (validate.isNumber(input)) return Number(input);
 
-  if (!validate.isString(abbreviation)) return;
+  if (!validate.isString(input)) return;
 
-  const cleanAbbreviation = (abbreviation as string).replace(/ /g, "");
+  const string = input.replace(/ /g, "");
 
-  const key = cleanAbbreviation.slice(-1).toLowerCase();
+  const key = string[string.length - 1].toLowerCase();
 
-  const digits = { t: 12, b: 9, m: 6, k: 3 }[key];
+  const power = { t: 12, b: 9, m: 6, k: 3 }[key];
 
-  if (!digits) return Number(cleanAbbreviation);
+  if (!power) return parseFloat(string);
 
-  const parts = cleanAbbreviation.slice(0, -1).split(".");
+  const [part1, part2 = ""] = string.slice(0, -1).split(".");
 
-  let numberString = parts[0];
+  const joined = part1 + part2.slice(0, power);
 
-  if (parts[1]) numberString += parts[1].slice(0, digits);
+  const padded = joined.padEnd(part1.length + power, "0");
 
-  numberString = numberString.padEnd(parts[0].length + digits, "0");
-
-  return Number(numberString);
+  return Number(padded);
 }
 
 export default abbreviationToNumber;

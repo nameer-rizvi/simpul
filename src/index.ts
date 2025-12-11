@@ -1,12 +1,12 @@
+import abbreviationToNumber from "./abbreviationToNumber";
+import applyValueToNumber from "./applyValueToNumber";
+import base64 from "./base64";
+import batchify from "./batchify";
+import capitalize from "./capitalize";
+import changecase from "./changecase";
 import jwt from "./jwt";
 import support from "./support";
 import validate from "./validate";
-// import abbreviationToNumber from "./abbreviationToNumber";
-// import applyValueToNumber from "./applyValueToNumber";
-// import base64 from "./base64";
-// import batchify from "./batchify";
-// import capitalize from "./capitalize";
-// import changecase from "./changecase";
 // import changeindex from "./changeindex";
 // import cleanstring from "./cleanstring";
 // import clone from "./clone";
@@ -61,14 +61,14 @@ import validate from "./validate";
 // import wave from "./wave";
 
 interface Simpul {
+  abbreviationToNumber: typeof abbreviationToNumber;
+  applyValueToNumber: typeof applyValueToNumber;
+  base64: typeof base64;
+  batchify: typeof batchify;
+  capitalize: typeof capitalize;
+  changecase: typeof changecase;
   jwt: typeof jwt;
   support: typeof support;
-  // abbreviationToNumber: typeof abbreviationToNumber;
-  // applyValueToNumber: typeof applyValueToNumber;
-  // base64: typeof base64;
-  // batchify: typeof batchify;
-  // capitalize: typeof capitalize;
-  // changecase: typeof changecase;
   // changeindex: typeof changeindex;
   // cleanstring: typeof cleanstring;
   // clone: typeof clone;
@@ -125,15 +125,15 @@ interface Simpul {
 }
 
 const simpul: Simpul = {
+  abbreviationToNumber,
+  applyValueToNumber,
+  base64,
+  batchify,
+  capitalize,
+  changecase,
   jwt,
   support,
   ...validate,
-  // abbreviationToNumber,
-  // applyValueToNumber,
-  // base64,
-  // batchify,
-  // capitalize,
-  // changecase,
   // changeindex,
   // cleanstring,
   // clone,

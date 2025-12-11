@@ -2,9 +2,21 @@
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
+const abbreviationToNumber_1 = __importDefault(require("./abbreviationToNumber"));
+const applyValueToNumber_1 = __importDefault(require("./applyValueToNumber"));
+const base64_1 = __importDefault(require("./base64"));
+const batchify_1 = __importDefault(require("./batchify"));
+const capitalize_1 = __importDefault(require("./capitalize"));
+const changecase_1 = __importDefault(require("./changecase"));
 const jwt_1 = __importDefault(require("./jwt"));
 const support_1 = __importDefault(require("./support"));
 const validate_1 = __importDefault(require("./validate"));
-const simpul = Object.assign({ jwt: jwt_1.default,
+const simpul = Object.assign({ abbreviationToNumber: abbreviationToNumber_1.default,
+    applyValueToNumber: applyValueToNumber_1.default,
+    base64: base64_1.default,
+    batchify: batchify_1.default,
+    capitalize: capitalize_1.default,
+    changecase: changecase_1.default,
+    jwt: jwt_1.default,
     support: support_1.default }, validate_1.default);
 module.exports = simpul;

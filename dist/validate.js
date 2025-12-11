@@ -74,8 +74,9 @@ function isEmail(test) {
 }
 // ERROR
 function isError(test) {
-    return (test instanceof Error ||
-        Object.prototype.toString.call(test) === "[object Error]");
+    return (!!test &&
+        (test instanceof Error ||
+            Object.prototype.toString.call(test) === "[object Error]"));
 }
 // FUNCTION
 // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
@@ -111,8 +112,6 @@ function isJWT(test) {
 }
 // MODULE
 function isModule(test) {
-    if (!isString(test))
-        return false;
     try {
         require.resolve(test);
         return true;
@@ -129,7 +128,7 @@ function isNumber(test) {
 }
 // OBJECT
 function isObject(test) {
-    return (test !== null && typeof test === "object" && test.constructor === Object);
+    return !!test && typeof test === "object" && test.constructor === Object;
 }
 function isObjectValid(test) {
     return isObject(test) && Object.keys(test).length > 0;
@@ -143,8 +142,8 @@ function isRegex(test) {
     return test instanceof RegExp;
 }
 // URL
+const urlPattern = /^(https?:\/\/)?([^\s.]+\.[^\s]{2,}|localhost[:\d]*)\S*$/;
 function isURL(test) {
-    const urlPattern = /^(https?:\/\/)?([^\s.]+\.[^\s]{2,}|localhost[:\d]*)\S*$/;
     return isString(test) && (0, safe_regex_1.default)(test) && urlPattern.test(test);
 }
 // VALUE

@@ -12,3 +12,19 @@ function listify(input: any, delimiter = ","): string[] {
 }
 
 export default listify;
+
+// function parseList(...values) {
+//   const list = [];
+
+//   for (const value of values) {
+//     if (typeof value === "string") {
+//       list.push(...value.split(","));
+//     } else if (Array.isArray(value)) {
+//       list.push(...value);
+//     }
+//   }
+
+//   return list;
+// }
+
+// module.exports = parseList;

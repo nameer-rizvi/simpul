@@ -8,10 +8,8 @@ function batchify(array, size = 10) {
     if (!validate_1.default.isArray(array))
         return;
     const batches = [];
-    let i = 0;
-    while (i < array.length) {
+    for (let i = 0; i < array.length; i += size) {
         batches.push(array.slice(i, i + size));
-        i += size;
     }
     return batches;
 }

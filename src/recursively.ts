@@ -11,7 +11,7 @@ function recursively(
   json: any,
   callback: (args: CallbackArgs) => any,
   depth: number = 0,
-  path: string[] = [],
+  path: string[] = []
 ): any {
   function makePath(curr: string | number): [string, string] {
     const path0 = curr.toString();
@@ -29,7 +29,8 @@ function recursively(
   if (validate.isObject(json)) {
     for (const key in json) {
       if (Object.prototype.hasOwnProperty.call(json, key)) {
-        json[key] = recursively(json[key], callback, depth + 1, makePath(key));
+        // TODO
+        // json[key] = recursively(json[key], callback, depth + 1, makePath(key));
       }
     }
     return json;

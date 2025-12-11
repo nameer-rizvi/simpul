@@ -19,7 +19,7 @@ function recursively(json, callback, depth = 0, path = []) {
     if (validate_1.default.isObject(json)) {
         for (const key in json) {
             if (Object.prototype.hasOwnProperty.call(json, key)) {
-                json[key] = recursively(json[key], callback, depth + 1, makePath(key));
+                // json[key] = recursively(json[key], callback, depth + 1, makePath(key));
             }
         }
         return json;

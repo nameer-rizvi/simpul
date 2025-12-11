@@ -1,2 +1,2 @@
-declare function capitalize(str: string): string | undefined;
+declare function capitalize(string: string): string | undefined;
 export default capitalize;

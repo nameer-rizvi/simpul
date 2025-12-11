@@ -3,7 +3,7 @@ import validate from "./validate";
 function applyValueToNumber(
   number: number,
   value: number,
-  operator: string = "+",
+  operator: string = "+"
 ): number {
   if (!validate.isNumber(number) || !validate.isNumber(value)) return number;
 

@@ -18,7 +18,7 @@ declare function isJSONString(test: unknown): boolean;
 declare function isJWT(test: unknown): boolean;
 declare function isModule(test: unknown): boolean;
 declare function isNumber(test: unknown): boolean;
-declare function isObject(test: unknown): test is Record<string, unknown>;
+declare function isObject(test: unknown): test is object;
 declare function isObjectValid(test: unknown): boolean;
 declare function isPhoneNumber(test: unknown): boolean;
 declare function isRegex(test: unknown): test is RegExp;

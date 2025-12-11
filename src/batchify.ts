@@ -5,11 +5,8 @@ function batchify<T>(array: T[], size: number = 10): T[][] | undefined {
 
   const batches: T[][] = [];
 
-  let i = 0;
-
-  while (i < array.length) {
+  for (let i = 0; i < array.length; i += size) {
     batches.push(array.slice(i, i + size));
-    i += size;
   }
 
   return batches;
