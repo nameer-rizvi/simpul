@@ -4,25 +4,25 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const validate_1 = __importDefault(require("./validate"));
-function applyValueToNumber(number, value, operator = "+") {
-    if (!validate_1.default.isNumberValid(number) || !validate_1.default.isNumberValid(value)) {
-        return number;
+function applyValueToNumber(inputA, inputB, operator = "+") {
+    if (!validate_1.default.isNumberValid(inputA) || !validate_1.default.isNumberValid(inputB)) {
+        return inputA;
     }
     switch (operator) {
         case "+":
-            return number + value;
+            return inputA + inputB;
         case "-":
-            return number - value;
+            return inputA - inputB;
         case "*":
-            return number * value;
+            return inputA * inputB;
         case "/":
-            return value !== 0 ? number / value : number;
+            return inputB !== 0 ? inputA / inputB : inputA;
         case "+%":
-            return number * (1 + value / 100);
+            return inputA * (1 + inputB / 100);
         case "-%":
-            return number * (1 - value / 100);
+            return inputA * (1 - inputB / 100);
         default:
-            return number;
+            return inputA;
     }
 }
 exports.default = applyValueToNumber;

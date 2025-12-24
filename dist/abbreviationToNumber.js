@@ -9,14 +9,14 @@ function abbreviationToNumber(input) {
         return input;
     if (!validate_1.default.isString(input))
         return;
-    const string = input.replace(/\s+|\,/g, "");
-    if (!string)
+    const clean = input.replace(/\s+|\,/g, "");
+    if (!clean)
         return;
-    const key = string[string.length - 1].toLowerCase();
+    const key = clean[clean.length - 1].toLowerCase();
     const power = { k: 3, m: 6, b: 9, t: 12 }[key];
     if (!power)
-        return parseFloat(string);
-    const base = string.slice(0, -1);
+        return parseFloat(clean);
+    const base = clean.slice(0, -1);
     const number = Number(base);
     if (!Number.isFinite(number))
         return;

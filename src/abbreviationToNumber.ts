@@ -5,17 +5,17 @@ function abbreviationToNumber(input: string | number): number | undefined {
 
   if (!validate.isString(input)) return;
 
-  const string = input.replace(/\s+|\,/g, "");
+  const clean = input.replace(/\s+|\,/g, "");
 
-  if (!string) return;
+  if (!clean) return;
 
-  const key = string[string.length - 1].toLowerCase();
+  const key = clean[clean.length - 1].toLowerCase();
 
   const power = { k: 3, m: 6, b: 9, t: 12 }[key];
 
-  if (!power) return parseFloat(string);
+  if (!power) return parseFloat(clean);
 
-  const base = string.slice(0, -1);
+  const base = clean.slice(0, -1);
 
   const number = Number(base);
 
