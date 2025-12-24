@@ -2,31 +2,28 @@
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
+var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-const support_1 = __importDefault(require("./support"));
-const safe_regex_1 = __importDefault(require("safe-regex"));
 const jwt_1 = __importDefault(require("./jwt"));
-// STRING (REQUIRED BY OTHER VALIDATIONS)
-function isString(test) {
-    return typeof test === "string";
-}
-function isStringValid(test) {
-    return isString(test) && test.trim().length > 0;
-}
-// ARRAY
+const safe_regex_1 = __importDefault(require("safe-regex"));
+/*
+ * Array Validations
+ */
 const isArray = Array.isArray;
-function isArrayValid(test) {
-    return isArray(test) && test.length > 0;
+function isArrayNonEmpty(test) {
+    return isArray(test) && test.some(Boolean);
 }
-function isStringOrArray(test) {
-    return isString(test) || isArray(test);
+function isArrayOrString(test) {
+    return isArray(test) || isString(test);
 }
-// BASE64
+/*
+ * Base64 Validation
+ */
 function isBase64(test) {
-    if (!isStringValid(test))
+    if (!isStringSafe(test))
         return false;
     try {
-        if (support_1.default.window) {
+        if (isEnvWindow) {
             decodeURIComponent(atob(test));
         }
         else {
@@ -38,56 +35,122 @@ function isBase64(test) {
         return false;
     }
 }
-// BOOLEAN
+/*
+ * Boolean Validations
+ */
 function isBoolean(test) {
     return typeof test === "boolean";
 }
-function isBooleanString(test) {
-    return test === "true" || test === "false";
+function isBooleanAny(test) {
+    return isBoolean(test) || isBooleanNumber(test) || isBooleanString(test);
 }
 function isBooleanNumber(test) {
     return test === 0 || test === 1;
 }
-function isBooleanAny(test) {
-    return isBoolean(test) || isBooleanString(test) || isBooleanNumber(test);
+function isBooleanString(test) {
+    return test === "true" || test === "false";
 }
-// CREDIT CARD NUMBER
-const creditCardPattern = /^(?:4\d{12}(?:\d{3})?|5[1-5]\d{14}|6(?:011|5\d{2})\d{12}|3[47]\d{13}|3(?:0[0-5]|[68]\d)\d{11}|7\d{15})$/;
+/*
+ * Credit Card Number Validation (Luhn)
+ */
 function isCreditCardNumber(test) {
-    return isString(test) && (0, safe_regex_1.default)(test) && creditCardPattern.test(test);
+    if (!isStringSafe(test))
+        return false;
+    const digits = test.replace(/\D/g, "");
+    if (digits.length < 13 || digits.length > 19)
+        return false;
+    let sum = 0;
+    let shouldDouble = false;
+    for (let i = digits.length - 1; i >= 0; i--) {
+        let digit = digits.charCodeAt(i) - 48;
+        if (shouldDouble) {
+            digit *= 2;
+            if (digit > 9)
+                digit -= 9;
+        }
+        sum += digit;
+        shouldDouble = !shouldDouble;
+    }
+    return sum % 10 === 0;
 }
-// DATE
+/*
+ * Date Validation
+ */
 function isDate(test) {
     if (test instanceof Date) {
-        return !isNaN(test.getTime());
+        return !Number.isNaN(test.getTime());
     }
-    else if (typeof test === "string" || typeof test === "number") {
-        return !isNaN(new Date(test).getTime());
+    else if (isString(test) || isNumber(test)) {
+        return !Number.isNaN(new Date(test).getTime());
     }
     else
         return false;
 }
-// EMAIL
-const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+/*
+ * Email Validation
+ */
 function isEmail(test) {
-    return isString(test) && (0, safe_regex_1.default)(test) && emailPattern.test(test);
+    if (!isStringSafe(test))
+        return false;
+    const email = test.trim();
+    const match = email.match(/^([^@]+)@([^@]+)$/);
+    if (!match)
+        return false;
+    const [, local, domain] = match;
+    if (local.length > 64 || domain.length > 253)
+        return false;
+    return domain.includes(".");
 }
-// ERROR
+/*
+ * Environment Validations: Core Globals
+ */
+const isEnvWindow = typeof window !== "undefined";
+const isEnvDocument = typeof document !== "undefined";
+const isEnvBrowser = isEnvWindow && isEnvDocument;
+const isEnvNode = typeof process !== "undefined" && typeof ((_a = process.versions) === null || _a === void 0 ? void 0 : _a.node) === "string";
+const isEnvWorker = typeof self !== "undefined" &&
+    typeof self.importScripts === "function";
+/*
+ * Environment Validations: NODE_ENV
+ */
+const nodeEnv = isEnvNode ? process.env.NODE_ENV : undefined;
+const isEnvDevelopment = nodeEnv === "development" || nodeEnv === "dev";
+const isEnvProduction = nodeEnv === "production" || nodeEnv === "prod";
+const isEnvStaging = nodeEnv === "staging" || nodeEnv === "stage";
+const isEnvTest = nodeEnv === "test";
+/*
+ * Environment Validations: Browser-Specific
+ */
+function isEnvWindowProperty(name) {
+    return isEnvWindow && name in window;
+}
+const isEnvLocalhost = isEnvWindowProperty("location") &&
+    /^(localhost|127\.0\.0\.1)$/.test(window.location.hostname);
+const isEnvServiceWorker = isEnvWindowProperty("navigator") && !!window.navigator.serviceWorker;
+const isEnvNotificationGranted = isEnvWindowProperty("Notification") &&
+    window.Notification.permission === "granted";
+/*
+ * Error Validation
+ */
 function isError(test) {
-    return (!!test &&
-        (test instanceof Error ||
-            Object.prototype.toString.call(test) === "[object Error]"));
+    return (test instanceof Error ||
+        Object.prototype.toString.call(test) === "[object Error]");
 }
-// FUNCTION
-// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
+/*
+ * Function Validation
+ */
 function isFunction(test) {
     return typeof test === "function";
 }
-// HTTP
+/*
+ * HTTP Validation
+ */
 function isHTTP(test) {
-    return isString(test) && (0, safe_regex_1.default)(test) && /^https?:\/\//.test(test);
+    return isStringSafe(test) && /^https?:\/\//i.test(test);
 }
-// JSON
+/*
+ * JSON Validation
+ */
 function isJSON(test) {
     try {
         JSON.parse(JSON.stringify(test));
@@ -106,11 +169,21 @@ function isJSONString(test) {
         return false;
     }
 }
-// JWT
+/*
+ * JWT Validation
+ */
 function isJWT(test) {
-    return isStringValid(jwt_1.default.decode(test));
+    try {
+        jwt_1.default.decode(test);
+        return true;
+    }
+    catch (_a) {
+        return false;
+    }
 }
-// MODULE
+/*
+ * Module Validation
+ */
 function isModule(test) {
     try {
         require.resolve(test);
@@ -120,64 +193,109 @@ function isModule(test) {
         return false;
     }
 }
-// NUMBER
+/*
+ * Number Validations
+ */
 function isNumber(test) {
-    if (isStringValid(test))
-        return !isNaN(Number(test));
-    return typeof test === "number" && !isNaN(test) && isFinite(test);
+    return typeof test === "number" && Number.isFinite(test);
 }
-// OBJECT
+function isNumeric(test) {
+    if (isStringNonEmpty(test)) {
+        return !Number.isNaN(Number(test.trim()));
+    }
+    else
+        return isNumber(test);
+}
+/*
+ * Object Validations
+ */
 function isObject(test) {
-    return !!test && typeof test === "object" && test.constructor === Object;
+    return (!!test &&
+        typeof test === "object" &&
+        (test.constructor === Object || Object.getPrototypeOf(test) === null));
 }
-function isObjectValid(test) {
+function isObjectNonEmpty(test) {
     return isObject(test) && Object.keys(test).length > 0;
 }
-// PHONE NUMBER
+/*
+ * Phone Number Validation
+ */
 function isPhoneNumber(test) {
-    return isString(test) && (0, safe_regex_1.default)(test) && /^\+?[1-9]\d{1,14}$/.test(test); // E.164 format
+    return isStringSafe(test) && /^\+?[1-9]\d{1,14}$/.test(test); // E.164 format
 }
-// REGEX
+/*
+ * Regex Validation
+ */
 function isRegex(test) {
     return test instanceof RegExp;
 }
-// URL
-const urlPattern = /^(https?:\/\/)?([^\s.]+\.[^\s]{2,}|localhost[:\d]*)\S*$/;
-function isURL(test) {
-    return isString(test) && (0, safe_regex_1.default)(test) && urlPattern.test(test);
+/*
+ * String Validations
+ */
+function isString(test) {
+    return typeof test === "string";
 }
-// VALUE
+function isStringNonEmpty(test) {
+    return isString(test) && test.trim().length > 0;
+}
+function isStringSafe(test) {
+    return isString(test) && (0, safe_regex_1.default)(test);
+}
+/*
+ * URL Validation
+ */
+const urlPattern = /^(https?:\/\/)?([^\s.]+\.[^\s]{2,}|localhost[:\d]*)\S*$/i;
+function isURL(test) {
+    return isStringSafe(test) && urlPattern.test(test.trim());
+}
+/*
+ * General Validation
+ */
 function isValid(test, testAll = false) {
     if (test === undefined || test === null)
         return false;
     if (testAll) {
         if (isString(test)) {
-            return isStringValid(test);
+            return isStringNonEmpty(test);
         }
         else if (isObject(test)) {
-            return isObjectValid(test);
+            return isObjectNonEmpty(test);
         }
         else if (isArray(test)) {
-            return isArrayValid(test);
+            return isArrayNonEmpty(test);
         }
     }
     return true;
 }
-// EXPORT
+/*
+ * Module Default Export
+ */
 exports.default = {
-    isString,
-    isStringValid,
     isArray,
-    isArrayValid,
-    isStringOrArray,
+    isArrayNonEmpty,
+    isArrayOrString,
     isBase64,
     isBoolean,
-    isBooleanString,
-    isBooleanNumber,
     isBooleanAny,
+    isBooleanNumber,
+    isBooleanString,
     isCreditCardNumber,
     isDate,
     isEmail,
+    isEnvBrowser,
+    isEnvDevelopment,
+    isEnvDocument,
+    isEnvLive: isEnvProduction || isEnvStaging,
+    isEnvLocalhost,
+    isEnvNode,
+    isEnvNotificationGranted,
+    isEnvProduction,
+    isEnvServiceWorker,
+    isEnvStaging,
+    isEnvTest,
+    isEnvWindow,
+    isEnvWindowProperty,
+    isEnvWorker,
     isError,
     isFunction,
     isHTTP,
@@ -186,10 +304,15 @@ exports.default = {
     isJWT,
     isModule,
     isNumber,
+    isNumeric,
     isObject,
-    isObjectValid,
+    isObjectNonEmpty,
     isPhoneNumber,
     isRegex,
+    isString,
+    isStringNonEmpty,
+    isStringOrArray: isArrayOrString,
+    isStringSafe,
     isURL,
     isValid,
 };

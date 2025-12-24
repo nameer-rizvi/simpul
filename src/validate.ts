@@ -1,35 +1,28 @@
-import support from "./support";
-import safe from "safe-regex";
 import jwt from "./jwt";
+import safe from "safe-regex";
 
-// STRING (REQUIRED BY OTHER VALIDATIONS)
-
-function isString(test: unknown): test is string {
-  return typeof test === "string";
-}
-
-function isStringValid(test: unknown): test is string {
-  return isString(test) && test.trim().length > 0;
-}
-
-// ARRAY
+/*
+ * Array Validations
+ */
 
 const isArray = Array.isArray;
 
-function isArrayValid(test: unknown): test is unknown[] {
-  return isArray(test) && test.length > 0;
+function isArrayNonEmpty(test: unknown): test is unknown[] {
+  return isArray(test) && test.some(Boolean);
 }
 
-function isStringOrArray(test: unknown): test is string | unknown[] {
-  return isString(test) || isArray(test);
+function isArrayOrString(test: unknown): test is unknown[] | string {
+  return isArray(test) || isString(test);
 }
 
-// BASE64
+/*
+ * Base64 Validation
+ */
 
-function isBase64(test: string): boolean {
-  if (!isStringValid(test)) return false;
+function isBase64(test: unknown): test is string {
+  if (!isStringSafe(test)) return false;
   try {
-    if (support.window) {
+    if (isEnvWindow) {
       decodeURIComponent(atob(test));
     } else {
       Buffer.from(test, "base64").toString("utf-8");
@@ -40,77 +33,158 @@ function isBase64(test: string): boolean {
   }
 }
 
-// BOOLEAN
+/*
+ * Boolean Validations
+ */
 
 function isBoolean(test: unknown): test is boolean {
   return typeof test === "boolean";
 }
 
-function isBooleanString(test: unknown): test is "true" | "false" {
-  return test === "true" || test === "false";
+function isBooleanAny(
+  test: unknown,
+): test is boolean | 0 | 1 | "true" | "false" {
+  return isBoolean(test) || isBooleanNumber(test) || isBooleanString(test);
 }
 
 function isBooleanNumber(test: unknown): test is 0 | 1 {
   return test === 0 || test === 1;
 }
 
-function isBooleanAny(test: unknown): boolean {
-  return isBoolean(test) || isBooleanString(test) || isBooleanNumber(test);
+function isBooleanString(test: unknown): test is "true" | "false" {
+  return test === "true" || test === "false";
 }
 
-// CREDIT CARD NUMBER
+/*
+ * Credit Card Number Validation (Luhn)
+ */
 
-const creditCardPattern =
-  /^(?:4\d{12}(?:\d{3})?|5[1-5]\d{14}|6(?:011|5\d{2})\d{12}|3[47]\d{13}|3(?:0[0-5]|[68]\d)\d{11}|7\d{15})$/;
-
-function isCreditCardNumber(test: unknown): boolean {
-  return isString(test) && safe(test) && creditCardPattern.test(test);
+function isCreditCardNumber(test: unknown): test is string {
+  if (!isStringSafe(test)) return false;
+  const digits = test.replace(/\D/g, "");
+  if (digits.length < 13 || digits.length > 19) return false;
+  let sum = 0;
+  let shouldDouble = false;
+  for (let i = digits.length - 1; i >= 0; i--) {
+    let digit = digits.charCodeAt(i) - 48;
+    if (shouldDouble) {
+      digit *= 2;
+      if (digit > 9) digit -= 9;
+    }
+    sum += digit;
+    shouldDouble = !shouldDouble;
+  }
+  return sum % 10 === 0;
 }
 
-// DATE
+/*
+ * Date Validation
+ */
 
-function isDate(test: unknown): boolean {
+function isDate(test: unknown): test is Date | string | number {
   if (test instanceof Date) {
-    return !isNaN(test.getTime());
-  } else if (typeof test === "string" || typeof test === "number") {
-    return !isNaN(new Date(test).getTime());
+    return !Number.isNaN(test.getTime());
+  } else if (isString(test) || isNumber(test)) {
+    return !Number.isNaN(new Date(test).getTime());
   } else return false;
 }
 
-// EMAIL
+/*
+ * Email Validation
+ */
 
-const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-function isEmail(test: unknown): boolean {
-  return isString(test) && safe(test) && emailPattern.test(test);
+function isEmail(test: unknown): test is string {
+  if (!isStringSafe(test)) return false;
+  const email = test.trim();
+  const match = email.match(/^([^@]+)@([^@]+)$/);
+  if (!match) return false;
+  const [, local, domain] = match;
+  if (local.length > 64 || domain.length > 253) return false;
+  return domain.includes(".");
 }
 
-// ERROR
+/*
+ * Environment Validations: Core Globals
+ */
 
-function isError(test: unknown): boolean {
+const isEnvWindow = typeof window !== "undefined";
+
+const isEnvDocument = typeof document !== "undefined";
+
+const isEnvBrowser = isEnvWindow && isEnvDocument;
+
+const isEnvNode =
+  typeof process !== "undefined" && typeof process.versions?.node === "string";
+
+const isEnvWorker =
+  typeof self !== "undefined" &&
+  typeof (self as any).importScripts === "function";
+
+/*
+ * Environment Validations: NODE_ENV
+ */
+
+const nodeEnv = isEnvNode ? process.env.NODE_ENV : undefined;
+
+const isEnvDevelopment = nodeEnv === "development" || nodeEnv === "dev";
+
+const isEnvProduction = nodeEnv === "production" || nodeEnv === "prod";
+
+const isEnvStaging = nodeEnv === "staging" || nodeEnv === "stage";
+
+const isEnvTest = nodeEnv === "test";
+
+/*
+ * Environment Validations: Browser-Specific
+ */
+
+function isEnvWindowProperty(name: string): boolean {
+  return isEnvWindow && name in window;
+}
+
+const isEnvLocalhost =
+  isEnvWindowProperty("location") &&
+  /^(localhost|127\.0\.0\.1)$/.test(window.location.hostname);
+
+const isEnvServiceWorker =
+  isEnvWindowProperty("navigator") && !!window.navigator.serviceWorker;
+
+const isEnvNotificationGranted =
+  isEnvWindowProperty("Notification") &&
+  window.Notification.permission === "granted";
+
+/*
+ * Error Validation
+ */
+
+function isError(test: unknown): test is Error {
   return (
-    !!test &&
-    (test instanceof Error ||
-      Object.prototype.toString.call(test) === "[object Error]")
+    test instanceof Error ||
+    Object.prototype.toString.call(test) === "[object Error]"
   );
 }
 
-// FUNCTION
+/*
+ * Function Validation
+ */
 
-// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
-function isFunction(test: unknown): test is Function {
+function isFunction(test: unknown): test is (...args: any[]) => any {
   return typeof test === "function";
 }
 
-// HTTP
+/*
+ * HTTP Validation
+ */
 
-function isHTTP(test: unknown): boolean {
-  return isString(test) && safe(test) && /^https?:\/\//.test(test);
+function isHTTP(test: unknown): test is string {
+  return isStringSafe(test) && /^https?:\/\//i.test(test);
 }
 
-// JSON
+/*
+ * JSON Validation
+ */
 
-function isJSON(test: unknown): boolean {
+function isJSON(test: unknown): test is any {
   try {
     JSON.parse(JSON.stringify(test));
     return true;
@@ -119,7 +193,7 @@ function isJSON(test: unknown): boolean {
   }
 }
 
-function isJSONString(test: unknown): boolean {
+function isJSONString(test: unknown): test is string {
   try {
     JSON.parse(test as string);
     return true;
@@ -128,15 +202,24 @@ function isJSONString(test: unknown): boolean {
   }
 }
 
-// JWT
+/*
+ * JWT Validation
+ */
 
-function isJWT(test: unknown): boolean {
-  return isStringValid(jwt.decode(test as string));
+function isJWT(test: unknown): test is string {
+  try {
+    jwt.decode(test as string);
+    return true;
+  } catch {
+    return false;
+  }
 }
 
-// MODULE
+/*
+ * Module Validation
+ */
 
-function isModule(test: unknown): boolean {
+function isModule(test: unknown): test is string {
   try {
     require.resolve(test as string);
     return true;
@@ -145,75 +228,126 @@ function isModule(test: unknown): boolean {
   }
 }
 
-// NUMBER
+/*
+ * Number Validations
+ */
 
-function isNumber(test: unknown): boolean {
-  if (isStringValid(test)) return !isNaN(Number(test));
-  return typeof test === "number" && !isNaN(test) && isFinite(test);
+function isNumber(test: unknown): test is number {
+  return typeof test === "number" && Number.isFinite(test);
 }
 
-// OBJECT
-
-function isObject(test: unknown): test is object {
-  return !!test && typeof test === "object" && test.constructor === Object;
+function isNumeric(test: unknown): test is string | number {
+  if (isStringNonEmpty(test)) {
+    return !Number.isNaN(Number(test.trim()));
+  } else return isNumber(test);
 }
 
-function isObjectValid(test: unknown): boolean {
+/*
+ * Object Validations
+ */
+
+function isObject(test: unknown): test is Record<string, unknown> {
+  return (
+    !!test &&
+    typeof test === "object" &&
+    (test.constructor === Object || Object.getPrototypeOf(test) === null)
+  );
+}
+
+function isObjectNonEmpty(test: unknown): test is Record<string, unknown> {
   return isObject(test) && Object.keys(test).length > 0;
 }
 
-// PHONE NUMBER
+/*
+ * Phone Number Validation
+ */
 
-function isPhoneNumber(test: unknown): boolean {
-  return isString(test) && safe(test) && /^\+?[1-9]\d{1,14}$/.test(test); // E.164 format
+function isPhoneNumber(test: unknown): test is string {
+  return isStringSafe(test) && /^\+?[1-9]\d{1,14}$/.test(test); // E.164 format
 }
 
-// REGEX
+/*
+ * Regex Validation
+ */
 
 function isRegex(test: unknown): test is RegExp {
   return test instanceof RegExp;
 }
 
-// URL
+/*
+ * String Validations
+ */
 
-const urlPattern = /^(https?:\/\/)?([^\s.]+\.[^\s]{2,}|localhost[:\d]*)\S*$/;
-
-function isURL(test: unknown): boolean {
-  return isString(test) && safe(test) && urlPattern.test(test);
+function isString(test: unknown): test is string {
+  return typeof test === "string";
 }
 
-// VALUE
+function isStringNonEmpty(test: unknown): test is string {
+  return isString(test) && test.trim().length > 0;
+}
 
-function isValid(test: unknown, testAll: boolean = false): boolean {
+function isStringSafe(test: unknown): test is string {
+  return isString(test) && safe(test);
+}
+
+/*
+ * URL Validation
+ */
+
+const urlPattern = /^(https?:\/\/)?([^\s.]+\.[^\s]{2,}|localhost[:\d]*)\S*$/i;
+
+function isURL(test: unknown): test is string {
+  return isStringSafe(test) && urlPattern.test(test.trim());
+}
+
+/*
+ * General Validation
+ */
+
+function isValid(test: unknown, testAll = false): test is any {
   if (test === undefined || test === null) return false;
   if (testAll) {
     if (isString(test)) {
-      return isStringValid(test);
+      return isStringNonEmpty(test);
     } else if (isObject(test)) {
-      return isObjectValid(test);
+      return isObjectNonEmpty(test);
     } else if (isArray(test)) {
-      return isArrayValid(test);
+      return isArrayNonEmpty(test);
     }
   }
   return true;
 }
 
-// EXPORT
+/*
+ * Module Default Export
+ */
 
 export default {
-  isString,
-  isStringValid,
   isArray,
-  isArrayValid,
-  isStringOrArray,
+  isArrayNonEmpty,
+  isArrayOrString,
   isBase64,
   isBoolean,
-  isBooleanString,
-  isBooleanNumber,
   isBooleanAny,
+  isBooleanNumber,
+  isBooleanString,
   isCreditCardNumber,
   isDate,
   isEmail,
+  isEnvBrowser,
+  isEnvDevelopment,
+  isEnvDocument,
+  isEnvLive: isEnvProduction || isEnvStaging,
+  isEnvLocalhost,
+  isEnvNode,
+  isEnvNotificationGranted,
+  isEnvProduction,
+  isEnvServiceWorker,
+  isEnvStaging,
+  isEnvTest,
+  isEnvWindow,
+  isEnvWindowProperty,
+  isEnvWorker,
   isError,
   isFunction,
   isHTTP,
@@ -222,10 +356,15 @@ export default {
   isJWT,
   isModule,
   isNumber,
+  isNumeric,
   isObject,
-  isObjectValid,
+  isObjectNonEmpty,
   isPhoneNumber,
   isRegex,
+  isString,
+  isStringNonEmpty,
+  isStringOrArray: isArrayOrString,
+  isStringSafe,
   isURL,
   isValid,
 };
