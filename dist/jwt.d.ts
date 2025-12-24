@@ -1,5 +1,5 @@
-declare function encode(json: any): string | undefined;
-declare function decode(token: string): any;
+declare function encode(input: any): string | undefined;
+declare function decode(input: string): any;
 declare const _default: {
     encode: typeof encode;
     decode: typeof decode;

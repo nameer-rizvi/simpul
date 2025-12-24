@@ -5,7 +5,7 @@ function abbreviationToNumber(input: string | number): number | undefined {
 
   if (!validate.isString(input)) return;
 
-  const clean = input.replace(/\s+|\,/g, "");
+  const clean = input.replace(/\s+|,/g, "");
 
   if (!clean) return;
 

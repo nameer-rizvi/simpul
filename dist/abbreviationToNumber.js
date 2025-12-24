@@ -9,7 +9,7 @@ function abbreviationToNumber(input) {
         return input;
     if (!validate_1.default.isString(input))
         return;
-    const clean = input.replace(/\s+|\,/g, "");
+    const clean = input.replace(/\s+|,/g, "");
     if (!clean)
         return;
     const key = clean[clean.length - 1].toLowerCase();

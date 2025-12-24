@@ -1,2 +1,2 @@
-declare function applyValueToNumber(inputA: number, inputB: number, operator?: string): number;
+declare function applyValueToNumber(input: number, value: number, operator?: string): number;
 export default applyValueToNumber;

@@ -1,12 +1,12 @@
 import validate from "./validate";
 
-function batchify<T>(inputA: T[], inputB: number = 10): T[][] | undefined {
-  if (!validate.isArray(inputA) || !(inputB > 0)) return;
+function batchify<T>(input: T[], size: number = 10): T[][] | undefined {
+  if (!validate.isArray(input) || !(size > 0)) return;
 
   const batches: T[][] = [];
 
-  for (let i = 0; i < inputA.length; i += inputB) {
-    batches.push(inputA.slice(i, i + inputB));
+  for (let i = 0; i < input.length; i += size) {
+    batches.push(input.slice(i, i + size));
   }
 
   return batches;
