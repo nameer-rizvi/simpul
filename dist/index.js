@@ -10,6 +10,8 @@ const capitalize_1 = __importDefault(require("./capitalize"));
 const changecase_1 = __importDefault(require("./changecase"));
 const changeindex_1 = __importDefault(require("./changeindex"));
 const cleanstring_1 = __importDefault(require("./cleanstring"));
+const clone_1 = __importDefault(require("./clone"));
+const clonedeep_1 = __importDefault(require("./clonedeep"));
 const jwt_1 = __importDefault(require("./jwt"));
 const trim_1 = __importDefault(require("./trim"));
 const validate_1 = __importDefault(require("./validate"));
@@ -20,6 +22,8 @@ const simpul = Object.assign(Object.assign({ abbreviationToNumber: abbreviationT
     capitalize: capitalize_1.default,
     changecase: changecase_1.default,
     changeindex: changeindex_1.default,
-    cleanstring: cleanstring_1.default }, validate_1.default), { jwt: jwt_1.default,
+    cleanstring: cleanstring_1.default,
+    clone: clone_1.default,
+    clonedeep: clonedeep_1.default }, validate_1.default), { jwt: jwt_1.default,
     trim: trim_1.default });
 module.exports = simpul;

@@ -6,6 +6,8 @@ import capitalize from "./capitalize";
 import changecase from "./changecase";
 import changeindex from "./changeindex";
 import cleanstring from "./cleanstring";
+import clone from "./clone";
+import clonedeep from "./clonedeep";
 import jwt from "./jwt";
 import trim from "./trim";
 import validate from "./validate";
@@ -19,6 +21,8 @@ interface Simpul {
   changecase: typeof changecase;
   changeindex: typeof changeindex;
   cleanstring: typeof cleanstring;
+  clone: typeof clone;
+  clonedeep: typeof clonedeep;
   isArray: typeof validate.isArray;
   isArrayNonEmpty: typeof validate.isArrayNonEmpty;
   isArrayOrString: typeof validate.isArrayOrString;
@@ -78,6 +82,8 @@ const simpul: Simpul = {
   changecase,
   changeindex,
   cleanstring,
+  clone,
+  clonedeep,
   ...validate,
   jwt,
   trim,
