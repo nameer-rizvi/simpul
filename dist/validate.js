@@ -20,8 +20,6 @@ function isArrayOrString(test) {
  * Base64 Validation
  */
 function isBase64(test) {
-    if (!isStringSafe(test))
-        return false;
     try {
         if (isEnvWindow) {
             decodeURIComponent(atob(test));
@@ -197,14 +195,16 @@ function isModule(test) {
  * Number Validations
  */
 function isNumber(test) {
-    return typeof test === "number" && Number.isFinite(test);
+    return typeof test === "number";
+}
+function isNumberString(test) {
+    return isString(test) && isNumberValid(Number(test));
+}
+function isNumberValid(test) {
+    return isNumber(test) && !Number.isNaN(test) && Number.isFinite(test);
 }
 function isNumeric(test) {
-    if (isStringNonEmpty(test)) {
-        return !Number.isNaN(Number(test.trim()));
-    }
-    else
-        return isNumber(test);
+    return isNumberString(test) || isNumberValid(test);
 }
 /*
  * Object Validations
@@ -252,20 +252,24 @@ function isURL(test) {
  * General Validation
  */
 function isValid(test, testAll = false) {
-    if (test === undefined || test === null)
+    if (test === undefined || test === null) {
         return false;
-    if (testAll) {
-        if (isString(test)) {
-            return isStringNonEmpty(test);
-        }
-        else if (isObject(test)) {
-            return isObjectNonEmpty(test);
-        }
-        else if (isArray(test)) {
-            return isArrayNonEmpty(test);
-        }
     }
-    return true;
+    else if (testAll && isString(test)) {
+        return isStringNonEmpty(test);
+    }
+    else if (testAll && isNumber(test)) {
+        return !isNumberValid(test);
+    }
+    else if (testAll && isObject(test)) {
+        return isObjectNonEmpty(test);
+    }
+    else if (testAll && isArray(test)) {
+        return isArrayNonEmpty(test);
+    }
+    else {
+        return true;
+    }
 }
 /*
  * Module Default Export
@@ -304,6 +308,8 @@ exports.default = {
     isJWT,
     isModule,
     isNumber,
+    isNumberString,
+    isNumberValid,
     isNumeric,
     isObject,
     isObjectNonEmpty,

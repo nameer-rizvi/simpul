@@ -17,6 +17,8 @@ declare function isJSONString(test: unknown): test is string;
 declare function isJWT(test: unknown): test is string;
 declare function isModule(test: unknown): test is string;
 declare function isNumber(test: unknown): test is number;
+declare function isNumberString(test: unknown): test is string;
+declare function isNumberValid(test: unknown): test is number;
 declare function isNumeric(test: unknown): test is string | number;
 declare function isObject(test: unknown): test is Record<string, unknown>;
 declare function isObjectNonEmpty(test: unknown): test is Record<string, unknown>;
@@ -26,7 +28,7 @@ declare function isString(test: unknown): test is string;
 declare function isStringNonEmpty(test: unknown): test is string;
 declare function isStringSafe(test: unknown): test is string;
 declare function isURL(test: unknown): test is string;
-declare function isValid(test: unknown, testAll?: boolean): test is any;
+declare function isValid(test: unknown, testAll?: boolean): boolean;
 declare const _default: {
     isArray: (arg: any) => arg is any[];
     isArrayNonEmpty: typeof isArrayNonEmpty;
@@ -61,6 +63,8 @@ declare const _default: {
     isJWT: typeof isJWT;
     isModule: typeof isModule;
     isNumber: typeof isNumber;
+    isNumberString: typeof isNumberString;
+    isNumberValid: typeof isNumberValid;
     isNumeric: typeof isNumeric;
     isObject: typeof isObject;
     isObjectNonEmpty: typeof isObjectNonEmpty;

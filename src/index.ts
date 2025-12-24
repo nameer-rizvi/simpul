@@ -1,7 +1,11 @@
+import abbreviationToNumber from "./abbreviationToNumber";
+import applyValueToNumber from "./applyValueToNumber";
 import jwt from "./jwt";
 import validate from "./validate";
 
 interface Simpul {
+  abbreviationToNumber: typeof abbreviationToNumber;
+  applyValueToNumber: typeof applyValueToNumber;
   isArray: typeof validate.isArray;
   isArrayNonEmpty: typeof validate.isArrayNonEmpty;
   isArrayOrString: typeof validate.isArrayOrString;
@@ -35,6 +39,8 @@ interface Simpul {
   isJWT: typeof validate.isJWT;
   isModule: typeof validate.isModule;
   isNumber: typeof validate.isNumber;
+  isNumberString: typeof validate.isNumberString;
+  isNumberValid: typeof validate.isNumberValid;
   isNumeric: typeof validate.isNumeric;
   isObject: typeof validate.isObject;
   isObjectNonEmpty: typeof validate.isObjectNonEmpty;
@@ -50,6 +56,8 @@ interface Simpul {
 }
 
 const simpul: Simpul = {
+  abbreviationToNumber,
+  applyValueToNumber,
   ...validate,
   jwt,
 };

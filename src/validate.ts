@@ -20,12 +20,11 @@ function isArrayOrString(test: unknown): test is unknown[] | string {
  */
 
 function isBase64(test: unknown): test is string {
-  if (!isStringSafe(test)) return false;
   try {
     if (isEnvWindow) {
-      decodeURIComponent(atob(test));
+      decodeURIComponent(atob(test as string));
     } else {
-      Buffer.from(test, "base64").toString("utf-8");
+      Buffer.from(test as string, "base64").toString("utf-8");
     }
     return true;
   } catch {
@@ -233,13 +232,19 @@ function isModule(test: unknown): test is string {
  */
 
 function isNumber(test: unknown): test is number {
-  return typeof test === "number" && Number.isFinite(test);
+  return typeof test === "number";
+}
+
+function isNumberString(test: unknown): test is string {
+  return isString(test) && isNumberValid(Number(test));
+}
+
+function isNumberValid(test: unknown): test is number {
+  return isNumber(test) && !Number.isNaN(test) && Number.isFinite(test);
 }
 
 function isNumeric(test: unknown): test is string | number {
-  if (isStringNonEmpty(test)) {
-    return !Number.isNaN(Number(test.trim()));
-  } else return isNumber(test);
+  return isNumberString(test) || isNumberValid(test);
 }
 
 /*
@@ -304,18 +309,20 @@ function isURL(test: unknown): test is string {
  * General Validation
  */
 
-function isValid(test: unknown, testAll = false): test is any {
-  if (test === undefined || test === null) return false;
-  if (testAll) {
-    if (isString(test)) {
-      return isStringNonEmpty(test);
-    } else if (isObject(test)) {
-      return isObjectNonEmpty(test);
-    } else if (isArray(test)) {
-      return isArrayNonEmpty(test);
-    }
+function isValid(test: unknown, testAll = false): boolean {
+  if (test === undefined || test === null) {
+    return false;
+  } else if (testAll && isString(test)) {
+    return isStringNonEmpty(test);
+  } else if (testAll && isNumber(test)) {
+    return !isNumberValid(test);
+  } else if (testAll && isObject(test)) {
+    return isObjectNonEmpty(test);
+  } else if (testAll && isArray(test)) {
+    return isArrayNonEmpty(test);
+  } else {
+    return true;
   }
-  return true;
 }
 
 /*
@@ -356,6 +363,8 @@ export default {
   isJWT,
   isModule,
   isNumber,
+  isNumberString,
+  isNumberValid,
   isNumeric,
   isObject,
   isObjectNonEmpty,

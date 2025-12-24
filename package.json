@@ -7,7 +7,7 @@
   "scripts": {
     "update": "yarn && node package.update.js",
     "lint": "npx eslint 'src/**/*.{js,mjs,cjs,ts}'; exit 0",
-    "build": "tsc",
+    "build": "npx rimraf dist && tsc",
     "test-cjs": "yarn build && node test/test-cjs.js",
     "test-esm": "yarn build && node test/test-esm.mjs"
   },
