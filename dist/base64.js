@@ -14,13 +14,13 @@ function encode(input) {
         }
     }
 }
-function decode(base64) {
-    if (validate_1.default.isBase64(base64)) {
+function decode(input) {
+    if (validate_1.default.isBase64(input)) {
         if (validate_1.default.isEnvWindow) {
-            return decodeURIComponent(atob(base64));
+            return decodeURIComponent(atob(input));
         }
         else {
-            return Buffer.from(base64, "base64").toString("utf-8");
+            return Buffer.from(input, "base64").toString("utf-8");
         }
     }
 }
@@ -29,8 +29,8 @@ function encodeJSON(input) {
         return encode(JSON.stringify(input));
     }
 }
-function decodeJSON(base64) {
-    const decoded = decode(base64);
+function decodeJSON(input) {
+    const decoded = decode(input);
     if (validate_1.default.isJSONString(decoded)) {
         return JSON.parse(decoded);
     }

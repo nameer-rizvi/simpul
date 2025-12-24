@@ -3,7 +3,11 @@ import applyValueToNumber from "./applyValueToNumber";
 import base64 from "./base64";
 import batchify from "./batchify";
 import capitalize from "./capitalize";
+import changecase from "./changecase";
+import changeindex from "./changeindex";
+import cleanstring from "./cleanstring";
 import jwt from "./jwt";
+import trim from "./trim";
 import validate from "./validate";
 interface Simpul {
     abbreviationToNumber: typeof abbreviationToNumber;
@@ -11,6 +15,9 @@ interface Simpul {
     base64: typeof base64;
     batchify: typeof batchify;
     capitalize: typeof capitalize;
+    changecase: typeof changecase;
+    changeindex: typeof changeindex;
+    cleanstring: typeof cleanstring;
     isArray: typeof validate.isArray;
     isArrayNonEmpty: typeof validate.isArrayNonEmpty;
     isArrayOrString: typeof validate.isArrayOrString;
@@ -58,6 +65,7 @@ interface Simpul {
     isURL: typeof validate.isURL;
     isValid: typeof validate.isValid;
     jwt: typeof jwt;
+    trim: typeof trim;
 }
 declare const simpul: Simpul;
 export = simpul;

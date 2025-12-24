@@ -10,12 +10,12 @@ function encode(input: string): string | undefined {
   }
 }
 
-function decode(base64: string): string | undefined {
-  if (validate.isBase64(base64)) {
+function decode(input: string): string | undefined {
+  if (validate.isBase64(input)) {
     if (validate.isEnvWindow) {
-      return decodeURIComponent(atob(base64));
+      return decodeURIComponent(atob(input));
     } else {
-      return Buffer.from(base64, "base64").toString("utf-8");
+      return Buffer.from(input, "base64").toString("utf-8");
     }
   }
 }
@@ -26,8 +26,8 @@ function encodeJSON(input: any): string | undefined {
   }
 }
 
-function decodeJSON(base64: string): any | undefined {
-  const decoded = decode(base64);
+function decodeJSON(input: string): any | undefined {
+  const decoded = decode(input);
   if (validate.isJSONString(decoded)) {
     return JSON.parse(decoded);
   }
