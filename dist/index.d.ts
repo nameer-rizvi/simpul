@@ -1,12 +1,16 @@
 import abbreviationToNumber from "./abbreviationToNumber";
 import applyValueToNumber from "./applyValueToNumber";
 import base64 from "./base64";
+import batchify from "./batchify";
+import capitalize from "./capitalize";
 import jwt from "./jwt";
 import validate from "./validate";
 interface Simpul {
     abbreviationToNumber: typeof abbreviationToNumber;
     applyValueToNumber: typeof applyValueToNumber;
     base64: typeof base64;
+    batchify: typeof batchify;
+    capitalize: typeof capitalize;
     isArray: typeof validate.isArray;
     isArrayNonEmpty: typeof validate.isArrayNonEmpty;
     isArrayOrString: typeof validate.isArrayOrString;
