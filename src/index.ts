@@ -8,6 +8,10 @@ import changeindex from "./changeindex";
 import cleanstring from "./cleanstring";
 import clone from "./clone";
 import clonedeep from "./clonedeep";
+import compare from "./compare";
+import copytext from "./copytext";
+import countlabel from "./countlabel";
+import generalcount from "./generalcount";
 import jwt from "./jwt";
 import math from "./math";
 import trim from "./trim";
@@ -24,6 +28,10 @@ interface Simpul {
   cleanstring: typeof cleanstring;
   clone: typeof clone;
   clonedeep: typeof clonedeep;
+  compare: typeof compare;
+  copytext: typeof copytext;
+  countlabel: typeof countlabel;
+  generalcount: typeof generalcount;
   isArray: typeof validate.isArray;
   isArrayNonEmpty: typeof validate.isArrayNonEmpty;
   isArrayOrString: typeof validate.isArrayOrString;
@@ -86,7 +94,11 @@ const simpul: Simpul = {
   cleanstring,
   clone,
   clonedeep,
-  ...validate,
+  compare,
+  copytext,
+  countlabel,
+  generalcount,
+  ...validate, // "is.."
   jwt,
   math,
   trim,

@@ -12,6 +12,10 @@ const changeindex_1 = __importDefault(require("./changeindex"));
 const cleanstring_1 = __importDefault(require("./cleanstring"));
 const clone_1 = __importDefault(require("./clone"));
 const clonedeep_1 = __importDefault(require("./clonedeep"));
+const compare_1 = __importDefault(require("./compare"));
+const copytext_1 = __importDefault(require("./copytext"));
+const countlabel_1 = __importDefault(require("./countlabel"));
+const generalcount_1 = __importDefault(require("./generalcount"));
 const jwt_1 = __importDefault(require("./jwt"));
 const math_1 = __importDefault(require("./math"));
 const trim_1 = __importDefault(require("./trim"));
@@ -25,7 +29,13 @@ const simpul = Object.assign(Object.assign({ abbreviationToNumber: abbreviationT
     changeindex: changeindex_1.default,
     cleanstring: cleanstring_1.default,
     clone: clone_1.default,
-    clonedeep: clonedeep_1.default }, validate_1.default), { jwt: jwt_1.default,
+    clonedeep: clonedeep_1.default,
+    compare: compare_1.default,
+    copytext: copytext_1.default,
+    countlabel: countlabel_1.default,
+    generalcount: generalcount_1.default }, validate_1.default), { // "is.."
+    jwt: // "is.."
+    jwt_1.default,
     math: math_1.default,
     trim: trim_1.default });
 module.exports = simpul;
