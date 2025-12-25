@@ -8,7 +8,7 @@ import safe from "safe-regex";
 const isArray = Array.isArray;
 
 function isArrayNonEmpty(test: unknown): test is unknown[] {
-  return isArray(test) && test.some(Boolean);
+  return isArray(test) && test.length > 0;
 }
 
 function isArrayOrString(test: unknown): test is unknown[] | string {

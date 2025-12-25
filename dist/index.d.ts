@@ -9,6 +9,7 @@ import cleanstring from "./cleanstring";
 import clone from "./clone";
 import clonedeep from "./clonedeep";
 import jwt from "./jwt";
+import math from "./math";
 import trim from "./trim";
 import validate from "./validate";
 interface Simpul {
@@ -69,6 +70,7 @@ interface Simpul {
     isURL: typeof validate.isURL;
     isValid: typeof validate.isValid;
     jwt: typeof jwt;
+    math: typeof math;
     trim: typeof trim;
 }
 declare const simpul: Simpul;

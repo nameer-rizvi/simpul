@@ -11,7 +11,7 @@ const safe_regex_1 = __importDefault(require("safe-regex"));
  */
 const isArray = Array.isArray;
 function isArrayNonEmpty(test) {
-    return isArray(test) && test.some(Boolean);
+    return isArray(test) && test.length > 0;
 }
 function isArrayOrString(test) {
     return isArray(test) || isString(test);
