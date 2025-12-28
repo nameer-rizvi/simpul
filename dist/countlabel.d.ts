@@ -1,4 +1,4 @@
-declare function countlabel(input: number, plural: string, isFullCount: boolean): {
+declare function countlabel(input: number, plural: string, asFullCount: boolean): {
     full: string;
     number: string;
     label: string;

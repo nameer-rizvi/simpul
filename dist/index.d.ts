@@ -11,6 +11,7 @@ import clonedeep from "./clonedeep";
 import compare from "./compare";
 import copytext from "./copytext";
 import countlabel from "./countlabel";
+import date from "./date";
 import generalcount from "./generalcount";
 import jwt from "./jwt";
 import math from "./math";
@@ -30,6 +31,7 @@ interface Simpul {
     compare: typeof compare;
     copytext: typeof copytext;
     countlabel: typeof countlabel;
+    date: typeof date;
     generalcount: typeof generalcount;
     isArray: typeof validate.isArray;
     isArrayNonEmpty: typeof validate.isArrayNonEmpty;

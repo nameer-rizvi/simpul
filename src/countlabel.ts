@@ -5,14 +5,14 @@ import pluralize from "pluralize";
 function countlabel(
   input: number,
   plural: string,
-  isFullCount: boolean,
+  asFullCount: boolean,
 ): { full: string; number: string; label: string } {
   let number = "";
 
   let label = "";
 
   if (validate.isNumber(input)) {
-    number = isFullCount ? input.toLocaleString() : generalcount(input) || "0";
+    number = asFullCount ? input.toLocaleString() : generalcount(input) || "0";
   }
 
   if (validate.isString(plural)) {
