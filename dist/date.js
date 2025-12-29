@@ -288,7 +288,7 @@ exports.default = {
     getDaysTill, // days until target date
     getDaysDiff, // diff in days between dates
     getRelative, // friendly relative time (seconds → years, short/long)
-    // // Validators
+    // Validators
     isDay, // check if date matches options
     isPast, // check if date is in the past
     isPresent, // check if date is in the present

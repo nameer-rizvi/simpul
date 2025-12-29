@@ -12,6 +12,12 @@ import compare from "./compare";
 import copytext from "./copytext";
 import countlabel from "./countlabel";
 import date from "./date";
+import datestring from "./datestring";
+import delay from "./delay";
+import delimiter from "./delimiter";
+import delimitersplit from "./delimitersplit";
+import endswith from "./endswith";
+import escaper from "./escaper";
 import generalcount from "./generalcount";
 import jwt from "./jwt";
 import math from "./math";
@@ -33,6 +39,12 @@ interface Simpul {
   copytext: typeof copytext;
   countlabel: typeof countlabel;
   date: typeof date;
+  datestring: typeof datestring;
+  delay: typeof delay;
+  delimiter: typeof delimiter;
+  delimitersplit: typeof delimitersplit;
+  endswith: typeof endswith;
+  escaper: typeof escaper;
   generalcount: typeof generalcount;
   isArray: typeof validate.isArray;
   isArrayNonEmpty: typeof validate.isArrayNonEmpty;
@@ -100,6 +112,12 @@ const simpul: Simpul = {
   copytext,
   countlabel,
   date,
+  datestring,
+  delay,
+  delimiter,
+  delimitersplit,
+  endswith,
+  escaper,
   generalcount,
   ...validate, // "is.."
   jwt,

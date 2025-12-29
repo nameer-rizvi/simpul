@@ -16,6 +16,12 @@ const compare_1 = __importDefault(require("./compare"));
 const copytext_1 = __importDefault(require("./copytext"));
 const countlabel_1 = __importDefault(require("./countlabel"));
 const date_1 = __importDefault(require("./date"));
+const datestring_1 = __importDefault(require("./datestring"));
+const delay_1 = __importDefault(require("./delay"));
+const delimiter_1 = __importDefault(require("./delimiter"));
+const delimitersplit_1 = __importDefault(require("./delimitersplit"));
+const endswith_1 = __importDefault(require("./endswith"));
+const escaper_1 = __importDefault(require("./escaper"));
 const generalcount_1 = __importDefault(require("./generalcount"));
 const jwt_1 = __importDefault(require("./jwt"));
 const math_1 = __importDefault(require("./math"));
@@ -35,6 +41,12 @@ const simpul = Object.assign(Object.assign({ abbreviationToNumber: abbreviationT
     copytext: copytext_1.default,
     countlabel: countlabel_1.default,
     date: date_1.default,
+    datestring: datestring_1.default,
+    delay: delay_1.default,
+    delimiter: delimiter_1.default,
+    delimitersplit: delimitersplit_1.default,
+    endswith: endswith_1.default,
+    escaper: escaper_1.default,
     generalcount: generalcount_1.default }, validate_1.default), { // "is.."
     jwt: // "is.."
     jwt_1.default,

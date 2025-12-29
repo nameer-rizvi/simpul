@@ -1,4 +1,4 @@
-type DateType = Date | string | number;
+export type DateType = Date | string | number;
 declare function getWeekdays(locale?: string): readonly string[];
 declare function getWeekdaysShort(locale?: string): readonly string[];
 declare function getWeekday(input?: DateType, locale?: string): string;
