@@ -27,7 +27,11 @@ const flatten_1 = __importDefault(require("./flatten"));
 const generalcount_1 = __importDefault(require("./generalcount"));
 const jwt_1 = __importDefault(require("./jwt"));
 const keychange_1 = __importDefault(require("./keychange"));
+const listify_1 = __importDefault(require("./listify"));
+const logProgress_1 = __importDefault(require("./logProgress"));
 const math_1 = __importDefault(require("./math"));
+const noop_1 = __importDefault(require("./noop"));
+const numberstring_1 = __importDefault(require("./numberstring"));
 const trim_1 = __importDefault(require("./trim"));
 const validate_1 = __importDefault(require("./validate"));
 const simpul = Object.assign(Object.assign({ abbreviationToNumber: abbreviationToNumber_1.default,
@@ -56,6 +60,10 @@ const simpul = Object.assign(Object.assign({ abbreviationToNumber: abbreviationT
     jwt: // "is.."
     jwt_1.default,
     keychange: keychange_1.default,
+    listify: listify_1.default,
+    logProgress: logProgress_1.default,
     math: math_1.default,
+    noop: noop_1.default,
+    numberstring: numberstring_1.default,
     trim: trim_1.default });
 module.exports = simpul;

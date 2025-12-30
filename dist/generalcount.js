@@ -18,7 +18,7 @@ const validate_1 = __importDefault(require("./validate"));
 function generalcount(input, option = {}) {
     if (validate_1.default.isNumber(input)) {
         const { lang = "en-US", upperCase } = option, rest = __rest(option, ["lang", "upperCase"]);
-        let formatted = new Intl.NumberFormat(lang, Object.assign({ maximumFractionDigits: 1, notation: "compact", compactDisplay: "short" }, rest)).format(input);
+        const formatted = new Intl.NumberFormat(lang, Object.assign({ maximumFractionDigits: 1, notation: "compact", compactDisplay: "short" }, rest)).format(input);
         if (!formatted || formatted === "NaN")
             return;
         return upperCase ? formatted.toUpperCase() : formatted.toLowerCase();

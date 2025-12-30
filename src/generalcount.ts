@@ -7,7 +7,7 @@ function generalcount(
   if (validate.isNumber(input)) {
     const { lang = "en-US", upperCase, ...rest } = option;
 
-    let formatted = new Intl.NumberFormat(lang, {
+    const formatted = new Intl.NumberFormat(lang, {
       maximumFractionDigits: 1,
       notation: "compact",
       compactDisplay: "short",

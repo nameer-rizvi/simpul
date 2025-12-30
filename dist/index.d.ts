@@ -23,7 +23,11 @@ import flatten from "./flatten";
 import generalcount from "./generalcount";
 import jwt from "./jwt";
 import keychange from "./keychange";
+import listify from "./listify";
+import logProgress from "./logProgress";
 import math from "./math";
+import noop from "./noop";
+import numberstring from "./numberstring";
 import trim from "./trim";
 import validate from "./validate";
 interface Simpul {
@@ -98,7 +102,11 @@ interface Simpul {
     isValid: typeof validate.isValid;
     jwt: typeof jwt;
     keychange: typeof keychange;
+    listify: typeof listify;
+    logProgress: typeof logProgress;
     math: typeof math;
+    noop: typeof noop;
+    numberstring: typeof numberstring;
     trim: typeof trim;
 }
 declare const simpul: Simpul;
