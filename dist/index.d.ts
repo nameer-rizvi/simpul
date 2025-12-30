@@ -34,6 +34,12 @@ import paginationProps from "./paginationProps";
 import parseCommafiedNumber from "./parseCommafiedNumber";
 import parseJson from "./parseJson";
 import recursively from "./recursively";
+import reduceObject from "./reduceObject";
+import removeArrayItems from "./removeArrayItems";
+import removeNullValues from "./removeNullValues";
+import removePunctuation from "./removePunctuation";
+import removeStrings from "./removeStrings";
+import replaceStrings from "./replaceStrings";
 import trim from "./trim";
 import validate from "./validate";
 interface Simpul {
@@ -119,6 +125,12 @@ interface Simpul {
     parseCommafiedNumber: typeof parseCommafiedNumber;
     parseJson: typeof parseJson;
     recursively: typeof recursively;
+    reduceObject: typeof reduceObject;
+    removeArrayItems: typeof removeArrayItems;
+    removeNullValues: typeof removeNullValues;
+    removePunctuation: typeof removePunctuation;
+    removeStrings: typeof removeStrings;
+    replaceStrings: typeof replaceStrings;
     trim: typeof trim;
 }
 declare const simpul: Simpul;

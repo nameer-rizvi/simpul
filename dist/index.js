@@ -38,6 +38,12 @@ const paginationProps_1 = __importDefault(require("./paginationProps"));
 const parseCommafiedNumber_1 = __importDefault(require("./parseCommafiedNumber"));
 const parseJson_1 = __importDefault(require("./parseJson"));
 const recursively_1 = __importDefault(require("./recursively"));
+const reduceObject_1 = __importDefault(require("./reduceObject"));
+const removeArrayItems_1 = __importDefault(require("./removeArrayItems"));
+const removeNullValues_1 = __importDefault(require("./removeNullValues"));
+const removePunctuation_1 = __importDefault(require("./removePunctuation"));
+const removeStrings_1 = __importDefault(require("./removeStrings"));
+const replaceStrings_1 = __importDefault(require("./replaceStrings"));
 const trim_1 = __importDefault(require("./trim"));
 const validate_1 = __importDefault(require("./validate"));
 const simpul = Object.assign(Object.assign({ abbreviationToNumber: abbreviationToNumber_1.default,
@@ -77,5 +83,11 @@ const simpul = Object.assign(Object.assign({ abbreviationToNumber: abbreviationT
     parseCommafiedNumber: parseCommafiedNumber_1.default,
     parseJson: parseJson_1.default,
     recursively: recursively_1.default,
+    reduceObject: reduceObject_1.default,
+    removeArrayItems: removeArrayItems_1.default,
+    removeNullValues: removeNullValues_1.default,
+    removePunctuation: removePunctuation_1.default,
+    removeStrings: removeStrings_1.default,
+    replaceStrings: replaceStrings_1.default,
     trim: trim_1.default });
 module.exports = simpul;
