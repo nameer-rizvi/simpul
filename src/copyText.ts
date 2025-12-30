@@ -1,7 +1,7 @@
 import validate from "./validate";
 
-async function copytext(input: string): Promise<void> {
-  if (validate.isEnvDocument && validate.isString(copytext)) {
+async function copyText(input: string): Promise<void> {
+  if (validate.isEnvDocument && validate.isString(input)) {
     try {
       await navigator.clipboard.writeText(input);
     } catch {
@@ -15,4 +15,4 @@ async function copytext(input: string): Promise<void> {
   }
 }
 
-export default copytext;
+export default copyText;

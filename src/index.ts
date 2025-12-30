@@ -4,35 +4,35 @@ import base64 from "./base64";
 import batchify from "./batchify";
 import capitalize from "./capitalize";
 import changecase from "./changecase";
-import changeindex from "./changeindex";
-import cleanstring from "./cleanstring";
+import changeIndex from "./changeIndex";
+import cleanString from "./cleanString";
 import clone from "./clone";
 import clonedeep from "./clonedeep";
 import compare from "./compare";
-import copytext from "./copytext";
-import countlabel from "./countlabel";
+import copyText from "./copyText";
+import countLabel from "./countLabel";
 import date from "./date";
-import datestring from "./datestring";
+import dateString from "./dateString";
 import delay from "./delay";
 import delimiter from "./delimiter";
-import delimitersplit from "./delimitersplit";
-import endswith from "./endswith";
+import delimiterSplit from "./delimiterSplit";
+import endsWith from "./endsWith";
 import escaper from "./escaper";
 import evaluateSeries from "./evaluateSeries";
 import flatten from "./flatten";
-import generalcount from "./generalcount";
+import generalCount from "./generalCount";
 import jwt from "./jwt";
-import keychange from "./keychange";
+import keyChange from "./keyChange";
 import listify from "./listify";
 import logProgress from "./logProgress";
 import math from "./math";
 import noop from "./noop";
-import numberstring from "./numberstring";
+import numberString from "./numberString";
 import objectKeyGroup from "./objectKeyGroup";
 import ordinalized from "./ordinalized";
 import paginationProps from "./paginationProps";
 import parseCommafiedNumber from "./parseCommafiedNumber";
-import parsejson from "./parsejson";
+import parseJson from "./parseJson";
 import recursively from "./recursively";
 import trim from "./trim";
 import validate from "./validate";
@@ -44,23 +44,23 @@ interface Simpul {
   batchify: typeof batchify;
   capitalize: typeof capitalize;
   changecase: typeof changecase;
-  changeindex: typeof changeindex;
-  cleanstring: typeof cleanstring;
+  changeIndex: typeof changeIndex;
+  cleanString: typeof cleanString;
   clone: typeof clone;
   clonedeep: typeof clonedeep;
   compare: typeof compare;
-  copytext: typeof copytext;
-  countlabel: typeof countlabel;
+  copyText: typeof copyText;
+  countLabel: typeof countLabel;
   date: typeof date;
-  datestring: typeof datestring;
+  dateString: typeof dateString;
   delay: typeof delay;
   delimiter: typeof delimiter;
-  delimitersplit: typeof delimitersplit;
-  endswith: typeof endswith;
+  delimiterSplit: typeof delimiterSplit;
+  endsWith: typeof endsWith;
   escaper: typeof escaper;
   evaluateSeries: typeof evaluateSeries;
   flatten: typeof flatten;
-  generalcount: typeof generalcount;
+  generalCount: typeof generalCount;
   isArray: typeof validate.isArray;
   isArrayNonEmpty: typeof validate.isArrayNonEmpty;
   isArrayOrString: typeof validate.isArrayOrString;
@@ -108,17 +108,17 @@ interface Simpul {
   isURL: typeof validate.isURL;
   isValid: typeof validate.isValid;
   jwt: typeof jwt;
-  keychange: typeof keychange;
+  keyChange: typeof keyChange;
   listify: typeof listify;
   logProgress: typeof logProgress;
   math: typeof math;
   noop: typeof noop;
-  numberstring: typeof numberstring;
+  numberString: typeof numberString;
   objectKeyGroup: typeof objectKeyGroup;
   ordinalized: typeof ordinalized;
   paginationProps: typeof paginationProps;
   parseCommafiedNumber: typeof parseCommafiedNumber;
-  parsejson: typeof parsejson;
+  parseJson: typeof parseJson;
   recursively: typeof recursively;
   trim: typeof trim;
 }
@@ -130,36 +130,36 @@ const simpul: Simpul = {
   batchify,
   capitalize,
   changecase,
-  changeindex,
-  cleanstring,
+  changeIndex,
+  cleanString,
   clone,
   clonedeep,
   compare,
-  copytext,
-  countlabel,
+  copyText,
+  countLabel,
   date,
-  datestring,
+  dateString,
   delay,
   delimiter,
-  delimitersplit,
-  endswith,
+  delimiterSplit,
+  endsWith,
   escaper,
   evaluateSeries,
   flatten,
-  generalcount,
+  generalCount,
   ...validate, // "is.."
   jwt,
-  keychange,
+  keyChange,
   listify,
   logProgress,
   math,
   noop,
-  numberstring,
+  numberString,
   objectKeyGroup,
   ordinalized,
   paginationProps,
   parseCommafiedNumber,
-  parsejson,
+  parseJson,
   recursively,
   trim,
 };

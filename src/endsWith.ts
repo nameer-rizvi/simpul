@@ -20,7 +20,7 @@ interface Punctuation {
   isIncomplete3?: boolean;
 }
 
-function endswith(input = ""): Punctuation {
+function endsWith(input = ""): Punctuation {
   const string = input.trim();
 
   const last = string[string.length - 1];
@@ -70,4 +70,4 @@ function endswith(input = ""): Punctuation {
   return punctuation;
 }
 
-export default endswith;
+export default endsWith;

@@ -1,7 +1,7 @@
 import validate from "./validate";
 import math from "./math";
 
-function keychange(
+function keyChange(
   input: Record<string, unknown>,
   name: string,
   ...args: [number, number]
@@ -14,4 +14,4 @@ function keychange(
   }
 }
 
-export default keychange;
+export default keyChange;

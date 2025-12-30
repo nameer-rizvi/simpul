@@ -1,8 +1,8 @@
 import defaultDelimiter from "./delimiter";
 import validate from "./validate";
-import cleanstring from "./cleanstring";
+import cleanString from "./cleanString";
 
-function delimitersplit(
+function delimiterSplit(
   input: string,
   delimiter: string = defaultDelimiter,
   delimiter2?: string,
@@ -19,7 +19,7 @@ function delimitersplit(
   for (const part of normalized.split(delimiter)) {
     const pieces = delimiter2 ? part.split(delimiter2) : [part];
     for (const piece of pieces) {
-      const clean = cleanstring(piece);
+      const clean = cleanString(piece);
       if (!validate.isStringNonEmpty(clean)) continue;
       if (filterLower && clean.toLowerCase() === filterLower) continue;
       result.add(clean);
@@ -29,4 +29,4 @@ function delimitersplit(
   return [...result];
 }
 
-export default delimitersplit;
+export default delimiterSplit;

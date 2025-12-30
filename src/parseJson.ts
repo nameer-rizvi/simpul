@@ -1,6 +1,6 @@
 import validate from "./validate";
 
-function parsejson<T = unknown>(input: unknown): T | undefined {
+function parseJson<T = unknown>(input: unknown): T | undefined {
   if (!validate.isString(input)) return;
 
   const trimmed = input.trim();
@@ -14,4 +14,4 @@ function parsejson<T = unknown>(input: unknown): T | undefined {
   }
 }
 
-export default parsejson;
+export default parseJson;

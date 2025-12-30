@@ -1,6 +1,6 @@
 import validate from "./validate";
 
-function changeindex<T>(
+function changeIndex<T>(
   input: T[] = [],
   oldIndex: number,
   newIndex: number,
@@ -24,4 +24,4 @@ function changeindex<T>(
   return input;
 }
 
-export default changeindex;
+export default changeIndex;

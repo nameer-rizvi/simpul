@@ -1,6 +1,6 @@
 import validate from "./validate";
 
-function generalcount(
+function generalCount(
   input: number,
   option: { lang?: string; upperCase?: boolean; [key: string]: any } = {},
 ): string | undefined {
@@ -20,4 +20,4 @@ function generalcount(
   }
 }
 
-export default generalcount;
+export default generalCount;

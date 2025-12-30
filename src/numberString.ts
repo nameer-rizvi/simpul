@@ -10,7 +10,7 @@ const currencyFormatter = new Intl.NumberFormat("en-US", {
 
 type NumberStringType = "$" | "#" | "%" | "x" | "+" | ".-" | ".+";
 
-function numberstring(
+function numberString(
   input: string | number,
   types: readonly NumberStringType[] = [],
 ): string | undefined {
@@ -43,4 +43,4 @@ function numberstring(
   return output;
 }
 
-export default numberstring;
+export default numberString;

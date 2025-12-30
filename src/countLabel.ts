@@ -1,8 +1,8 @@
 import validate from "./validate";
-import generalcount from "./generalcount";
+import generalCount from "./generalCount";
 import pluralize from "pluralize";
 
-function countlabel(
+function countLabel(
   input: number,
   plural: string,
   asFullCount: boolean,
@@ -12,7 +12,7 @@ function countlabel(
   let label = "";
 
   if (validate.isNumber(input)) {
-    number = asFullCount ? input.toLocaleString() : generalcount(input) || "0";
+    number = asFullCount ? input.toLocaleString() : generalCount(input) || "0";
   }
 
   if (validate.isString(plural)) {
@@ -24,4 +24,4 @@ function countlabel(
   return { full, number, label };
 }
 
-export default countlabel;
+export default countLabel;

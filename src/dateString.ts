@@ -5,7 +5,7 @@ const FORMAT_CACHE = new Map<string, CompiledToken[]>();
 
 type Token = "MM" | "DD" | "YYYY" | "HH" | "hh" | "mm" | "ss" | "A" | "LITERAL";
 
-interface DatestringOptions {
+interface DateStringOptions {
   military?: boolean;
 }
 
@@ -14,10 +14,10 @@ interface CompiledToken {
   value?: string;
 }
 
-function datestring(
+function dateString(
   input?: DateType,
   format = "MM/DD/YYYY hh:mm:ss A",
-  options: DatestringOptions = {},
+  options: DateStringOptions = {},
 ): string {
   const date = validate.isDate(input) ? new Date(input) : new Date();
   const tokens = compileFormat(format);
@@ -124,4 +124,4 @@ function zero2(n: number): string {
   return n < 10 ? "0" + n : "" + n;
 }
 
-export default datestring;
+export default dateString;
