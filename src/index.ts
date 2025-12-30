@@ -28,6 +28,12 @@ import logProgress from "./logProgress";
 import math from "./math";
 import noop from "./noop";
 import numberstring from "./numberstring";
+import objectKeyGroup from "./objectKeyGroup";
+import ordinalized from "./ordinalized";
+import paginationProps from "./paginationProps";
+import parseCommafiedNumber from "./parseCommafiedNumber";
+import parsejson from "./parsejson";
+import recursively from "./recursively";
 import trim from "./trim";
 import validate from "./validate";
 
@@ -108,6 +114,12 @@ interface Simpul {
   math: typeof math;
   noop: typeof noop;
   numberstring: typeof numberstring;
+  objectKeyGroup: typeof objectKeyGroup;
+  ordinalized: typeof ordinalized;
+  paginationProps: typeof paginationProps;
+  parseCommafiedNumber: typeof parseCommafiedNumber;
+  parsejson: typeof parsejson;
+  recursively: typeof recursively;
   trim: typeof trim;
 }
 
@@ -143,6 +155,12 @@ const simpul: Simpul = {
   math,
   noop,
   numberstring,
+  objectKeyGroup,
+  ordinalized,
+  paginationProps,
+  parseCommafiedNumber,
+  parsejson,
+  recursively,
   trim,
 };
 

@@ -32,6 +32,12 @@ const logProgress_1 = __importDefault(require("./logProgress"));
 const math_1 = __importDefault(require("./math"));
 const noop_1 = __importDefault(require("./noop"));
 const numberstring_1 = __importDefault(require("./numberstring"));
+const objectKeyGroup_1 = __importDefault(require("./objectKeyGroup"));
+const ordinalized_1 = __importDefault(require("./ordinalized"));
+const paginationProps_1 = __importDefault(require("./paginationProps"));
+const parseCommafiedNumber_1 = __importDefault(require("./parseCommafiedNumber"));
+const parsejson_1 = __importDefault(require("./parsejson"));
+const recursively_1 = __importDefault(require("./recursively"));
 const trim_1 = __importDefault(require("./trim"));
 const validate_1 = __importDefault(require("./validate"));
 const simpul = Object.assign(Object.assign({ abbreviationToNumber: abbreviationToNumber_1.default,
@@ -65,5 +71,11 @@ const simpul = Object.assign(Object.assign({ abbreviationToNumber: abbreviationT
     math: math_1.default,
     noop: noop_1.default,
     numberstring: numberstring_1.default,
+    objectKeyGroup: objectKeyGroup_1.default,
+    ordinalized: ordinalized_1.default,
+    paginationProps: paginationProps_1.default,
+    parseCommafiedNumber: parseCommafiedNumber_1.default,
+    parsejson: parsejson_1.default,
+    recursively: recursively_1.default,
     trim: trim_1.default });
 module.exports = simpul;
