@@ -18,8 +18,11 @@ import delimiter from "./delimiter";
 import delimitersplit from "./delimitersplit";
 import endswith from "./endswith";
 import escaper from "./escaper";
+import evaluateSeries from "./evaluateSeries";
+import flatten from "./flatten";
 import generalcount from "./generalcount";
 import jwt from "./jwt";
+import keychange from "./keychange";
 import math from "./math";
 import trim from "./trim";
 import validate from "./validate";
@@ -44,6 +47,8 @@ interface Simpul {
     delimitersplit: typeof delimitersplit;
     endswith: typeof endswith;
     escaper: typeof escaper;
+    evaluateSeries: typeof evaluateSeries;
+    flatten: typeof flatten;
     generalcount: typeof generalcount;
     isArray: typeof validate.isArray;
     isArrayNonEmpty: typeof validate.isArrayNonEmpty;
@@ -92,6 +97,7 @@ interface Simpul {
     isURL: typeof validate.isURL;
     isValid: typeof validate.isValid;
     jwt: typeof jwt;
+    keychange: typeof keychange;
     math: typeof math;
     trim: typeof trim;
 }
