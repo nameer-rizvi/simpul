@@ -18,8 +18,12 @@ const simpul = require("../dist");
 // });
 
 const isKeysSorted =
-  JSON.stringify(Object.keys(simpul)) ===
-  JSON.stringify(Object.keys(simpul).sort());
+  JSON.stringify(Object.keys(simpul).map((i) => i.toLowerCase())) ===
+  JSON.stringify(
+    Object.keys(simpul)
+      .map((i) => i.toLowerCase())
+      .sort(),
+  );
 
 if (!isKeysSorted) {
   console.log(Object.keys(simpul).sort());
