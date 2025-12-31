@@ -43,6 +43,7 @@ import replaceStrings from "./replaceStrings";
 import rescale from "./rescale";
 import shuffle from "./shuffle";
 import slug from "./slug";
+import sortN from "./sortN";
 import trim from "./trim";
 import trimPunctuation from "./trimPunctuation";
 import validate from "./validate";
@@ -139,6 +140,7 @@ interface Simpul {
   rescale: typeof rescale;
   shuffle: typeof shuffle;
   slug: typeof slug;
+  sortN: typeof sortN;
   trim: typeof trim;
   trimPunctuation: typeof trimPunctuation;
 }
@@ -190,6 +192,7 @@ const simpul: Simpul = {
   rescale,
   shuffle,
   slug,
+  sortN,
   trim,
   trimPunctuation,
 };

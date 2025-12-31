@@ -47,6 +47,7 @@ const replaceStrings_1 = __importDefault(require("./replaceStrings"));
 const rescale_1 = __importDefault(require("./rescale"));
 const shuffle_1 = __importDefault(require("./shuffle"));
 const slug_1 = __importDefault(require("./slug"));
+const sortN_1 = __importDefault(require("./sortN"));
 const trim_1 = __importDefault(require("./trim"));
 const trimPunctuation_1 = __importDefault(require("./trimPunctuation"));
 const validate_1 = __importDefault(require("./validate"));
@@ -96,6 +97,7 @@ const simpul = Object.assign(Object.assign({ abbreviationToNumber: abbreviationT
     rescale: rescale_1.default,
     shuffle: shuffle_1.default,
     slug: slug_1.default,
+    sortN: sortN_1.default,
     trim: trim_1.default,
     trimPunctuation: trimPunctuation_1.default });
 module.exports = simpul;
