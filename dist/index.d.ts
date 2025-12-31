@@ -40,7 +40,11 @@ import removeNullValues from "./removeNullValues";
 import removePunctuation from "./removePunctuation";
 import removeStrings from "./removeStrings";
 import replaceStrings from "./replaceStrings";
+import rescale from "./rescale";
+import shuffle from "./shuffle";
+import slug from "./slug";
 import trim from "./trim";
+import trimPunctuation from "./trimPunctuation";
 import validate from "./validate";
 interface Simpul {
     abbreviationToNumber: typeof abbreviationToNumber;
@@ -131,7 +135,11 @@ interface Simpul {
     removePunctuation: typeof removePunctuation;
     removeStrings: typeof removeStrings;
     replaceStrings: typeof replaceStrings;
+    rescale: typeof rescale;
+    shuffle: typeof shuffle;
+    slug: typeof slug;
     trim: typeof trim;
+    trimPunctuation: typeof trimPunctuation;
 }
 declare const simpul: Simpul;
 export = simpul;
