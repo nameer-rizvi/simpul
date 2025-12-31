@@ -51,6 +51,10 @@ import tokenize from "./tokenize";
 import trim from "./trim";
 import trimBoundary from "./trimBoundary";
 import trimPunctuation from "./trimPunctuation";
+import tryAsync from "./tryAsync";
+import tryCallback from "./tryCallback";
+import urlBase64ToUint8Array from "./urlBase64ToUint8Array";
+import uuidv4 from "./uuidv4";
 import validate from "./validate";
 interface Simpul {
     abbreviationToNumber: typeof abbreviationToNumber;
@@ -152,6 +156,10 @@ interface Simpul {
     trim: typeof trim;
     trimBoundary: typeof trimBoundary;
     trimPunctuation: typeof trimPunctuation;
+    tryAsync: typeof tryAsync;
+    tryCallback: typeof tryCallback;
+    urlBase64ToUint8Array: typeof urlBase64ToUint8Array;
+    uuidv4: typeof uuidv4;
 }
 declare const simpul: Simpul;
 export = simpul;

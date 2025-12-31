@@ -55,6 +55,10 @@ const tokenize_1 = __importDefault(require("./tokenize"));
 const trim_1 = __importDefault(require("./trim"));
 const trimBoundary_1 = __importDefault(require("./trimBoundary"));
 const trimPunctuation_1 = __importDefault(require("./trimPunctuation"));
+const tryAsync_1 = __importDefault(require("./tryAsync"));
+const tryCallback_1 = __importDefault(require("./tryCallback"));
+const urlBase64ToUint8Array_1 = __importDefault(require("./urlBase64ToUint8Array"));
+const uuidv4_1 = __importDefault(require("./uuidv4"));
 const validate_1 = __importDefault(require("./validate"));
 const simpul = Object.assign(Object.assign({ abbreviationToNumber: abbreviationToNumber_1.default,
     applyValueToNumber: applyValueToNumber_1.default,
@@ -109,5 +113,9 @@ const simpul = Object.assign(Object.assign({ abbreviationToNumber: abbreviationT
     tokenize: tokenize_1.default,
     trim: trim_1.default,
     trimBoundary: trimBoundary_1.default,
-    trimPunctuation: trimPunctuation_1.default });
+    trimPunctuation: trimPunctuation_1.default,
+    tryAsync: tryAsync_1.default,
+    tryCallback: tryCallback_1.default,
+    urlBase64ToUint8Array: urlBase64ToUint8Array_1.default,
+    uuidv4: uuidv4_1.default });
 module.exports = simpul;
