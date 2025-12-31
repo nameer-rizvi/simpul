@@ -64,7 +64,7 @@ function sortN(input, ...props) {
             weightedSum += normalized * weight;
             weightTotal += weight;
         }
-        const score = weightTotal > 0 ? weightedSum / weightTotal : undefined;
+        const score = weightTotal > 0 ? weightedSum / weightTotal : 0;
         Object.assign(item, { score: math_1.default.num(score) });
     }
     input.sort((a, b) => {
@@ -79,8 +79,9 @@ function sortN(input, ...props) {
         else if (validate_1.default.isNumber(scoreA)) {
             return -1;
         }
-        else
+        else {
             return 0;
+        }
     });
 }
 exports.default = sortN;

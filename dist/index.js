@@ -48,7 +48,12 @@ const rescale_1 = __importDefault(require("./rescale"));
 const shuffle_1 = __importDefault(require("./shuffle"));
 const slug_1 = __importDefault(require("./slug"));
 const sortN_1 = __importDefault(require("./sortN"));
+const stringLength_1 = __importDefault(require("./stringLength"));
+const stringNumber_1 = __importDefault(require("./stringNumber"));
+const stringTest_1 = __importDefault(require("./stringTest"));
+const tokenize_1 = __importDefault(require("./tokenize"));
 const trim_1 = __importDefault(require("./trim"));
+const trimBoundary_1 = __importDefault(require("./trimBoundary"));
 const trimPunctuation_1 = __importDefault(require("./trimPunctuation"));
 const validate_1 = __importDefault(require("./validate"));
 const simpul = Object.assign(Object.assign({ abbreviationToNumber: abbreviationToNumber_1.default,
@@ -98,6 +103,11 @@ const simpul = Object.assign(Object.assign({ abbreviationToNumber: abbreviationT
     shuffle: shuffle_1.default,
     slug: slug_1.default,
     sortN: sortN_1.default,
+    stringLength: stringLength_1.default,
+    stringNumber: stringNumber_1.default,
+    stringTest: stringTest_1.default,
+    tokenize: tokenize_1.default,
     trim: trim_1.default,
+    trimBoundary: trimBoundary_1.default,
     trimPunctuation: trimPunctuation_1.default });
 module.exports = simpul;

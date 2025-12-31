@@ -44,7 +44,12 @@ import rescale from "./rescale";
 import shuffle from "./shuffle";
 import slug from "./slug";
 import sortN from "./sortN";
+import stringLength from "./stringLength";
+import stringNumber from "./stringNumber";
+import stringTest from "./stringTest";
+import tokenize from "./tokenize";
 import trim from "./trim";
+import trimBoundary from "./trimBoundary";
 import trimPunctuation from "./trimPunctuation";
 import validate from "./validate";
 interface Simpul {
@@ -140,7 +145,12 @@ interface Simpul {
     shuffle: typeof shuffle;
     slug: typeof slug;
     sortN: typeof sortN;
+    stringLength: typeof stringLength;
+    stringNumber: typeof stringNumber;
+    stringTest: typeof stringTest;
+    tokenize: typeof tokenize;
     trim: typeof trim;
+    trimBoundary: typeof trimBoundary;
     trimPunctuation: typeof trimPunctuation;
 }
 declare const simpul: Simpul;
