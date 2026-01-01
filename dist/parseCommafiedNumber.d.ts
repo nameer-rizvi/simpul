@@ -1,2 +1,2 @@
-declare function parseCommafiedNumber(input: string): number;
+declare function parseCommafiedNumber(input: unknown): number;
 export default parseCommafiedNumber;

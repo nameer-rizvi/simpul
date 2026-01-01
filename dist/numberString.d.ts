@@ -1,3 +1,3 @@
 type NumberStringType = "$" | "#" | "%" | "x" | "+" | ".-" | ".+";
-declare function numberString(input: string | number, types?: readonly NumberStringType[]): string | undefined;
+declare function numberString(input: unknown, types?: readonly NumberStringType[]): string | undefined;
 export default numberString;

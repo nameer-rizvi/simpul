@@ -9,7 +9,7 @@ function removeNullValues(input = {}) {
         return {};
     const result = {};
     for (const [key, value] of Object.entries(input)) {
-        if (validate_1.default.isValid(value))
+        if (value !== null && value !== undefined)
             result[key] = value;
     }
     return result;

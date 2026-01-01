@@ -11,7 +11,7 @@ const currencyFormatter = new Intl.NumberFormat("en-US", {
 type NumberStringType = "$" | "#" | "%" | "x" | "+" | ".-" | ".+";
 
 function numberString(
-  input: string | number,
+  input: unknown,
   types: readonly NumberStringType[] = [],
 ): string | undefined {
   if (!validate.isNumeric(input)) return;

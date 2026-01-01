@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const validate_1 = __importDefault(require("./validate"));
-function removePunctuation(input, delimiter = "") {
+function removePunctuation(input, delimiter = " ") {
     if (validate_1.default.isString(input)) {
         return input.replace(/[^\w\s]|_/g, delimiter);
     }

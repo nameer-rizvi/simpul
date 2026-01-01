@@ -8,7 +8,7 @@ function removeNullValues<T extends Record<string, any>>(
   const result: Partial<T> = {};
 
   for (const [key, value] of Object.entries(input)) {
-    if (validate.isValid(value)) result[key as keyof T] = value;
+    if (value !== null && value !== undefined) result[key as keyof T] = value;
   }
 
   return result;

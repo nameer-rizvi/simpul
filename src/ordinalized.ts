@@ -1,6 +1,6 @@
 import validate from "./validate";
 
-function ordinalized(input: number | string): string | undefined {
+function ordinalized(input: unknown): string | undefined {
   if (validate.isNumeric(input)) {
     const number = validate.isString(input) ? Number(input) : input;
 
