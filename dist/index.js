@@ -60,6 +60,8 @@ const tryCallback_1 = __importDefault(require("./tryCallback"));
 const urlBase64ToUint8Array_1 = __importDefault(require("./urlBase64ToUint8Array"));
 const uuidv4_1 = __importDefault(require("./uuidv4"));
 const validate_1 = __importDefault(require("./validate"));
+const version_1 = __importDefault(require("./version"));
+const wave_1 = __importDefault(require("./wave"));
 const simpul = Object.assign(Object.assign({ abbreviationToNumber: abbreviationToNumber_1.default,
     applyValueToNumber: applyValueToNumber_1.default,
     base64: base64_1.default,
@@ -117,5 +119,7 @@ const simpul = Object.assign(Object.assign({ abbreviationToNumber: abbreviationT
     tryAsync: tryAsync_1.default,
     tryCallback: tryCallback_1.default,
     urlBase64ToUint8Array: urlBase64ToUint8Array_1.default,
-    uuidv4: uuidv4_1.default });
+    uuidv4: uuidv4_1.default,
+    version: version_1.default,
+    wave: wave_1.default });
 module.exports = simpul;

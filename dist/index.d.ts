@@ -56,6 +56,8 @@ import tryCallback from "./tryCallback";
 import urlBase64ToUint8Array from "./urlBase64ToUint8Array";
 import uuidv4 from "./uuidv4";
 import validate from "./validate";
+import version from "./version";
+import wave from "./wave";
 interface Simpul {
     abbreviationToNumber: typeof abbreviationToNumber;
     applyValueToNumber: typeof applyValueToNumber;
@@ -160,6 +162,8 @@ interface Simpul {
     tryCallback: typeof tryCallback;
     urlBase64ToUint8Array: typeof urlBase64ToUint8Array;
     uuidv4: typeof uuidv4;
+    version: typeof version;
+    wave: typeof wave;
 }
 declare const simpul: Simpul;
 export = simpul;
