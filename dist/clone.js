@@ -7,19 +7,17 @@ const validate_1 = __importDefault(require("./validate"));
 // Shallow clone with deep recursion for objects/arrays.
 function clone(input) {
     if (validate_1.default.isArray(input)) {
-        return input.map(clone);
-    }
-    else if (validate_1.default.isObject(input)) {
-        const result = {};
-        for (const key in input) {
-            if (Object.prototype.hasOwnProperty.call(input, key)) {
-                result[key] = clone(input[key]);
-            }
-        }
+        const result = [];
+        for (const item of input)
+            result.push(clone(item));
         return result;
     }
-    else {
-        return input;
+    if (validate_1.default.isObject(input)) {
+        const result = {};
+        for (const key in input)
+            result[key] = clone(input[key]);
+        return result;
     }
+    return input;
 }
 exports.default = clone;

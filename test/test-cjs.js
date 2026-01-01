@@ -1,18 +1,6 @@
 const simpul = require("../dist");
 // console.log(simpul);
 
-const test1 = simpul.clone(42);
-const test2 = simpul.clone("hello");
-const test3 = simpul.clone(true);
-const test4 = simpul.clone([1, 2, 3]);
-const test5 = simpul.clone(["a", ["b", "c"], "d"]);
-const test6 = simpul.clone({ a: 1, b: 2 });
-const test7 = simpul.clone({ a: { b: { c: 3 } }, d: 4 });
-const test8 = simpul.clone([]);
-const test9 = simpul.clone({});
-const test10 = simpul.clone([{ x: 1 }, { y: 2 }]);
-const test11 = simpul.clone({ arr: [1, 2], obj: { a: "b" } });
-
 console.log({
   // test1,
   // test2,
@@ -32,6 +20,13 @@ console.log({
   // test16,
   // test17,
   // test18,
+  // test19,
+  // test20,
+  // test21,
+  // test22,
+  // test23,
+  // test24,
+  // test25,
 });
 
 const isKeysSorted =

@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const math_1 = __importDefault(require("./math"));
 // https://en.wikipedia.org/wiki/Euclidean_distance
-function euclidean(input1 = [], input2 = []) {
+function euclidean(input1, input2) {
     const a = math_1.default.normalize(input1);
     const b = math_1.default.normalize(input2);
     if (!a || !b || a.length !== b.length)
@@ -18,7 +18,7 @@ function euclidean(input1 = [], input2 = []) {
     return math_1.default.num(Math.sqrt(sum));
 }
 // https://en.wikipedia.org/wiki/Manhattan_distance
-function manhattan(input1 = [], input2 = []) {
+function manhattan(input1, input2) {
     const a = math_1.default.normalize(input1);
     const b = math_1.default.normalize(input2);
     if (!a || !b || a.length !== b.length)
@@ -29,7 +29,7 @@ function manhattan(input1 = [], input2 = []) {
     return math_1.default.num(sum);
 }
 // https://en.wikipedia.org/wiki/Cosine_similarity
-function cosine(input1 = [], input2 = []) {
+function cosine(input1, input2) {
     const a = math_1.default.normalize(input1);
     const b = math_1.default.normalize(input2);
     if (!a || !b || a.length !== b.length)
@@ -44,14 +44,13 @@ function cosine(input1 = [], input2 = []) {
         magA += x * x;
         magB += y * y;
     }
-    const denom = Math.sqrt(magA * magB);
-    if (!denom)
-        return;
-    return math_1.default.num(dot / denom);
+    return math_1.default.num(dot / Math.sqrt(magA * magB));
 }
 // https://en.wikipedia.org/wiki/Pearson_correlation_coefficient
-function pearson(input1 = [], input2 = []) {
-    if (input1.length !== input2.length || input1.length === 0)
+function pearson(input1, input2) {
+    const a = math_1.default.normalize(input1);
+    const b = math_1.default.normalize(input2);
+    if (!a || !b || a.length !== b.length)
         return;
     const n = input1.length;
     let sum1 = 0;

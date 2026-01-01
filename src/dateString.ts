@@ -28,43 +28,33 @@ function dateString(
   const hours12 = hours24 % 12 || 12;
   const minutes = date.getMinutes();
   const seconds = date.getSeconds();
-  const ctx = {
-    YYYY: "" + year,
-    MM: zero2(month),
-    DD: zero2(day),
-    HH: zero2(hours24),
-    hh: zero2(hours12),
-    mm: zero2(minutes),
-    ss: zero2(seconds),
-    A: hours24 >= 12 ? "PM" : "AM",
-  };
   const output = new Array(tokens.length);
   for (let i = 0; i < tokens.length; i++) {
     const t = tokens[i];
     switch (t.type) {
       case "YYYY":
-        output[i] = ctx.YYYY;
+        output[i] = "" + year;
         break;
       case "MM":
-        output[i] = ctx.MM;
+        output[i] = zero2(month);
         break;
       case "DD":
-        output[i] = ctx.DD;
+        output[i] = zero2(day);
         break;
       case "HH":
-        output[i] = ctx.HH;
+        output[i] = zero2(hours24);
         break;
       case "hh":
-        output[i] = options.military ? ctx.HH : ctx.hh;
+        output[i] = options.military ? zero2(hours24) : zero2(hours12);
         break;
       case "mm":
-        output[i] = ctx.mm;
+        output[i] = zero2(minutes);
         break;
       case "ss":
-        output[i] = ctx.ss;
+        output[i] = zero2(seconds);
         break;
       case "A":
-        output[i] = options.military ? "" : ctx.A;
+        output[i] = options.military ? "" : hours24 >= 12 ? "PM" : "AM";
         break;
       case "LITERAL":
         output[i] = t.value!;

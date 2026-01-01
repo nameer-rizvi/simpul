@@ -3,9 +3,9 @@ import generalCount from "./generalCount";
 import pluralize from "pluralize";
 
 function countLabel(
-  input: number,
-  plural: string,
-  asFullCount: boolean,
+  input: unknown,
+  singular: unknown,
+  asFullCount?: boolean,
 ): { full: string; number: string; label: string } {
   let number = "";
 
@@ -15,8 +15,8 @@ function countLabel(
     number = asFullCount ? input.toLocaleString() : generalCount(input) || "0";
   }
 
-  if (validate.isString(plural)) {
-    label = validate.isNumber(input) ? pluralize(plural, input) : plural;
+  if (validate.isString(singular)) {
+    label = validate.isNumber(input) ? pluralize(singular, input) : singular;
   }
 
   const full = [number, label].filter(Boolean).join(" ");

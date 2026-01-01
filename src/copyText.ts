@@ -1,6 +1,6 @@
 import validate from "./validate";
 
-async function copyText(input: string): Promise<void> {
+async function copyText(input: unknown): Promise<void> {
   if (validate.isEnvDocument && validate.isString(input)) {
     try {
       await navigator.clipboard.writeText(input);

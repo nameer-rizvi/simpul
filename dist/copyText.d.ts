@@ -1,2 +1,2 @@
-declare function copyText(input: string): Promise<void>;
+declare function copyText(input: unknown): Promise<void>;
 export default copyText;

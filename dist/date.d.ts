@@ -39,8 +39,8 @@ declare function isYearPresent(input1?: DateType, input2?: DateType): boolean;
 declare function isYearFuture(input1?: DateType, input2?: DateType): boolean;
 declare function isWeekend(input?: DateType): boolean;
 declare function isWeekday(input?: DateType): boolean;
-declare function isWeekdayName(input?: string, locale?: string): boolean;
-declare function isMonthName(input?: string, locale?: string): boolean;
+declare function isWeekdayName(input?: unknown, locale?: string): boolean;
+declare function isMonthName(input?: unknown, locale?: string): boolean;
 declare function resolve(input?: DateType): Date;
 declare function getFormatter(cache: Record<string, Intl.DateTimeFormat>, locale: string | undefined, options: Intl.DateTimeFormatOptions): Intl.DateTimeFormat;
 declare const _default: {

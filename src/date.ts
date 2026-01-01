@@ -323,7 +323,7 @@ function isWeekday(input?: DateType): boolean {
   return day >= 1 && day <= 5;
 }
 
-function isWeekdayName(input?: string, locale?: string): boolean {
+function isWeekdayName(input?: unknown, locale?: string): boolean {
   if (validate.isStringNonEmpty(input)) {
     const v = input.toLowerCase();
     const long = getWeekdays(locale);
@@ -335,7 +335,7 @@ function isWeekdayName(input?: string, locale?: string): boolean {
   return false;
 }
 
-function isMonthName(input?: string, locale?: string): boolean {
+function isMonthName(input?: unknown, locale?: string): boolean {
   if (validate.isStringNonEmpty(input)) {
     const v = input.toLowerCase();
     const long = getMonths(locale);
