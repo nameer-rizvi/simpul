@@ -1,6 +1,6 @@
 import validate from "./validate";
 
-function trim(input: string, delimiter: string = " "): string | undefined {
+function trim(input: unknown, delimiter = " "): string | undefined {
   if (validate.isString(input)) {
     return input.trim().replace(/\s+/g, delimiter);
   }

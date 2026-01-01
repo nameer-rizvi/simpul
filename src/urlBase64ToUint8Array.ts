@@ -1,7 +1,7 @@
 import validate from "./validate";
 import base64 from "./base64";
 
-function urlBase64ToUint8Array(input: string): Uint8Array | undefined {
+function urlBase64ToUint8Array(input: unknown): Uint8Array | undefined {
   if (validate.isBase64(input)) {
     const padding = "=".repeat((4 - (input.length % 4)) % 4);
 

@@ -2,14 +2,10 @@ import validate from "./validate";
 import trimPunctuation from "./trimPunctuation";
 import cleanString from "./cleanString";
 
-function slug(
-  input: string,
-  delimiter: string = "_",
-  maxlength: number = 2000,
-): string {
+function slug(input: unknown, delimiter = "_", maxlength = 2000): string {
   if (!validate.isString(input) || maxlength <= 0) return "";
 
-  let output: string | undefined = input
+  let output = input
     .normalize("NFKD")
     .replace(/[\u0300-\u036f]/g, "")
     .replace(/&|[+]/g, " and ")
@@ -17,12 +13,12 @@ function slug(
     .replace(/[%]/g, " percent ")
     .replace(/[=]/g, " is ");
 
-  output = trimPunctuation(cleanString(output)!, " ")!
+  output = (trimPunctuation(cleanString(output) || "") || "")
     .replace(/\s+/g, delimiter)
-    .toLowerCase()
-    .slice(0, maxlength);
+    .slice(0, maxlength)
+    .toLowerCase();
 
-  output = encodeURIComponent(output); // Shouldn't lower case and slice encoding.
+  output = encodeURIComponent(output); // Encoded value should not be mutated (sliced, lower cased, etc.).
 
   return output;
 }

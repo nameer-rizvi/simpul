@@ -8,5 +8,8 @@ function stringNumber(input) {
     if (validate_1.default.isString(input)) {
         return Number(input.replace(/[^0-9.-]+/g, ""));
     }
+    else if (validate_1.default.isNumber(input)) {
+        return input;
+    }
 }
 exports.default = stringNumber;

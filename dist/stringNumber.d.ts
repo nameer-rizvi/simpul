@@ -1,2 +1,2 @@
-declare function stringNumber(input: string): number | undefined;
+declare function stringNumber(input: unknown): number | undefined;
 export default stringNumber;

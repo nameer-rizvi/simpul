@@ -25,7 +25,7 @@ function isBase64(test) {
     const b64 = test.replace(/\s+/g, "");
     if (!b64.length)
         return true;
-    if (b64.length % 4 !== 0 || !/^[A-Za-z0-9+/]+={0,2}$/.test(b64))
+    if (!/^[A-Za-z0-9+/]+={0,2}$/.test(b64))
         return false;
     if (b64.includes("=") && !b64.endsWith("=") && !b64.endsWith("=="))
         return false;

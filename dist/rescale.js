@@ -11,9 +11,7 @@ function rescale(input, propName, [rangeMin, rangeMax] = [0, 100]) {
     let min = Infinity;
     let max = -Infinity;
     for (const item of input) {
-        const value = propName
-            ? item[propName]
-            : item;
+        const value = propName ? item[propName] : item;
         if (!validate_1.default.isNumber(value))
             continue;
         if (value < min)

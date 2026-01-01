@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const validate_1 = __importDefault(require("./validate"));
 function tokenize(input, asLowerCase) {
-    if (!validate_1.default.isStringNonEmpty(input)) {
+    if (!validate_1.default.isString(input)) {
         return {
             tokens: [],
             set: [],

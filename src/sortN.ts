@@ -1,11 +1,7 @@
 import validate from "./validate";
 import math from "./math";
 
-const RANGE_MIN = 0;
-
-const RANGE_MAX = 1;
-
-type NumericRecord = Record<string, unknown>;
+const RANGE = [0, 1];
 
 interface SortProp<T> {
   name: keyof T;
@@ -13,13 +9,11 @@ interface SortProp<T> {
   reverse?: boolean;
 }
 
-function sortN<T extends NumericRecord>(
+function sortN<T extends Record<string, unknown>>(
   input: T[],
   ...props: (keyof T | SortProp<T>)[]
 ): void {
-  if (!validate.isArrayNonEmpty(input)) {
-    return;
-  }
+  if (!validate.isArrayNonEmpty(input)) return;
 
   const normalizedProps: Array<{
     name: keyof T;
@@ -43,8 +37,6 @@ function sortN<T extends NumericRecord>(
     }
   }
 
-  if (normalizedProps.length === 0) return;
-
   const stats = new Map<keyof T, { min: number; max: number }>();
 
   for (const { name } of normalizedProps) {
@@ -61,9 +53,9 @@ function sortN<T extends NumericRecord>(
     }
   }
 
-  if (stats.size === 0) return;
+  if (!stats.size) return;
 
-  const targetRange = RANGE_MAX - RANGE_MIN;
+  const targetRange = RANGE[1] - RANGE[0];
 
   for (const item of input) {
     let weightedSum = 0;
@@ -73,8 +65,8 @@ function sortN<T extends NumericRecord>(
       const raw = item[name];
       if (!stat || !validate.isNumber(raw)) continue;
       let normalized =
-        RANGE_MIN + ((raw - stat.min) / (stat.max - stat.min)) * targetRange;
-      if (reverse) normalized = RANGE_MAX - normalized;
+        RANGE[0] + ((raw - stat.min) / (stat.max - stat.min)) * targetRange;
+      if (reverse) normalized = RANGE[1] - normalized;
       weightedSum += normalized * weight;
       weightTotal += weight;
     }

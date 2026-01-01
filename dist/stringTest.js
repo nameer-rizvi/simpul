@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const stringTest = {
-    arabic: "سم", // simple Arabic characters
     emoji: "❤️🚨⚡🐬➡️🔨🔺🚚📫👷🚧", // sequence of emojis including multi-codepoint ones
     punctuation: `\`~!@#$%^&*()-_=+[{]}\\|;",<.>/?Ω≈ç√∫˜µ≤≥÷æ…¬˚∆˙©ƒ∂ßåœ∑´®†¥¨ˆøπ“‘«≠–ºª•¶§∞¢£™¡`,
     htmlEntities: "&amp; &lt; &gt; &Agrave; &sect;", // common HTML entities

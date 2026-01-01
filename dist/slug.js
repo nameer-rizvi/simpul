@@ -16,11 +16,11 @@ function slug(input, delimiter = "_", maxlength = 2000) {
         .replace(/[@]/g, " at ")
         .replace(/[%]/g, " percent ")
         .replace(/[=]/g, " is ");
-    output = (0, trimPunctuation_1.default)((0, cleanString_1.default)(output), " ")
+    output = ((0, trimPunctuation_1.default)((0, cleanString_1.default)(output) || "") || "")
         .replace(/\s+/g, delimiter)
-        .toLowerCase()
-        .slice(0, maxlength);
-    output = encodeURIComponent(output); // Shouldn't lower case and slice encoding.
+        .slice(0, maxlength)
+        .toLowerCase();
+    output = encodeURIComponent(output); // Encoded value should not be mutated (sliced, lower cased, etc.).
     return output;
 }
 exports.default = slug;

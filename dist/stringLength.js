@@ -15,4 +15,20 @@ function wordLength(input) {
         return (_b = (_a = input.match(/[\p{L}\p{N}’'-]+/gu)) === null || _a === void 0 ? void 0 : _a.length) !== null && _b !== void 0 ? _b : 0;
     }
 }
-exports.default = { char: charLength, word: wordLength };
+function wordLength2(input) {
+    if (validate_1.default.isString(input)) {
+        let count = 0;
+        let inWord = false;
+        for (let i = 0; i < input.length; i++) {
+            if (/\s/.test(input[i])) {
+                inWord = false;
+            }
+            else if (!inWord) {
+                count++;
+                inWord = true;
+            }
+        }
+        return count;
+    }
+}
+exports.default = { char: charLength, word: wordLength, word2: wordLength2 };

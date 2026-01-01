@@ -5,12 +5,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const validate_1 = __importDefault(require("./validate"));
 const math_1 = __importDefault(require("./math"));
-const RANGE_MIN = 0;
-const RANGE_MAX = 1;
+const RANGE = [0, 1];
 function sortN(input, ...props) {
-    if (!validate_1.default.isArrayNonEmpty(input)) {
+    if (!validate_1.default.isArrayNonEmpty(input))
         return;
-    }
     const normalizedProps = [];
     for (const prop of props) {
         if (validate_1.default.isString(prop)) {
@@ -28,8 +26,6 @@ function sortN(input, ...props) {
             });
         }
     }
-    if (normalizedProps.length === 0)
-        return;
     const stats = new Map();
     for (const { name } of normalizedProps) {
         let min = Infinity;
@@ -47,9 +43,9 @@ function sortN(input, ...props) {
             stats.set(name, { min, max });
         }
     }
-    if (stats.size === 0)
+    if (!stats.size)
         return;
-    const targetRange = RANGE_MAX - RANGE_MIN;
+    const targetRange = RANGE[1] - RANGE[0];
     for (const item of input) {
         let weightedSum = 0;
         let weightTotal = 0;
@@ -58,9 +54,9 @@ function sortN(input, ...props) {
             const raw = item[name];
             if (!stat || !validate_1.default.isNumber(raw))
                 continue;
-            let normalized = RANGE_MIN + ((raw - stat.min) / (stat.max - stat.min)) * targetRange;
+            let normalized = RANGE[0] + ((raw - stat.min) / (stat.max - stat.min)) * targetRange;
             if (reverse)
-                normalized = RANGE_MAX - normalized;
+                normalized = RANGE[1] - normalized;
             weightedSum += normalized * weight;
             weightTotal += weight;
         }

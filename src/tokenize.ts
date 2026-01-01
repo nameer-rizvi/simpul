@@ -1,7 +1,7 @@
 import validate from "./validate";
 
 function tokenize(
-  input: string,
+  input: unknown,
   asLowerCase: boolean,
 ): {
   tokens: string[];
@@ -10,7 +10,7 @@ function tokenize(
   setCount: number;
   count: Record<string, number>;
 } {
-  if (!validate.isStringNonEmpty(input)) {
+  if (!validate.isString(input)) {
     return {
       tokens: [],
       set: [],

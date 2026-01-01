@@ -9,5 +9,3 @@ function trimPunctuation(input, delimiter) {
     return (0, trim_1.default)((0, removePunctuation_1.default)(input, delimiter), delimiter);
 }
 exports.default = trimPunctuation;
-// RE: "\W is equivalent to [^a-zA-Z_0-9]"
-//     Not using because it removes unicode characters.
