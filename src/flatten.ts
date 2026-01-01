@@ -1,8 +1,9 @@
 import validate from "./validate";
 
+// Using "_" instead of "." as it's more object name-friendly.
 function flatten(
   input: Record<string, unknown> = {},
-  delimiter = ".",
+  delimiter = "_",
 ): Record<string, unknown> {
   const result: Record<string, unknown> = {};
 

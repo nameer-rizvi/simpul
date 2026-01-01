@@ -1,4 +1,4 @@
-declare function generalCount(input: number, option?: {
+declare function generalCount(input: unknown, option?: {
     lang?: string;
     upperCase?: boolean;
     [key: string]: any;

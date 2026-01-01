@@ -3,8 +3,8 @@ import validate from "./validate";
 import cleanString from "./cleanString";
 
 function delimiterSplit(
-  input: string,
-  delimiter: string = defaultDelimiter,
+  input: unknown,
+  delimiter = defaultDelimiter,
   delimiter2?: string,
   filter?: string,
 ): string[] {

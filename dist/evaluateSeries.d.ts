@@ -44,5 +44,5 @@ interface Result {
     baselineChangeSymbol?: number;
     baselineCompare?: number;
 }
-declare function evaluateSeries(input?: never[], option?: Options): Result;
+declare function evaluateSeries(input: unknown, option?: Options): Result;
 export default evaluateSeries;

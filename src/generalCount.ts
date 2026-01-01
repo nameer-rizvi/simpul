@@ -1,7 +1,7 @@
 import validate from "./validate";
 
 function generalCount(
-  input: number,
+  input: unknown,
   option: { lang?: string; upperCase?: boolean; [key: string]: any } = {},
 ): string | undefined {
   if (validate.isNumber(input)) {

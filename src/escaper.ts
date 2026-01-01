@@ -1,6 +1,6 @@
 import validate from "./validate";
 
-function escaper(input = ""): string | undefined {
+function escaper(input: unknown): string | undefined {
   if (validate.isString(input)) {
     if ("escape" in RegExp && typeof RegExp.escape === "function") {
       return RegExp.escape(input);

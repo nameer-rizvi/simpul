@@ -5,12 +5,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const validate_1 = __importDefault(require("./validate"));
 const math_1 = __importDefault(require("./math"));
-function evaluateSeries(input = [], option = {}) {
+function evaluateSeries(input, option = {}) {
     const deltas = [];
     const multiplier = option.multiplier || 1;
-    for (const i of input) {
-        if (validate_1.default.isNumberValid(i))
-            deltas.push(i * multiplier);
+    if (validate_1.default.isArray(input)) {
+        for (const i of input) {
+            if (validate_1.default.isNumberValid(i))
+                deltas.push(i * multiplier);
+        }
     }
     const initialValue = option.initialValue || 100;
     const finalValue = deltas.reduce((r, n) => r + r * (n / 100), initialValue);

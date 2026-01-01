@@ -49,13 +49,15 @@ interface Result {
   baselineCompare?: number;
 }
 
-function evaluateSeries(input = [], option: Options = {}) {
+function evaluateSeries(input: unknown, option: Options = {}) {
   const deltas: number[] = [];
 
   const multiplier = option.multiplier || 1;
 
-  for (const i of input) {
-    if (validate.isNumberValid(i)) deltas.push(i * multiplier);
+  if (validate.isArray(input)) {
+    for (const i of input) {
+      if (validate.isNumberValid(i)) deltas.push(i * multiplier);
+    }
   }
 
   const initialValue = option.initialValue || 100;
