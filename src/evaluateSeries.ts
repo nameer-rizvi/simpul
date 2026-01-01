@@ -31,7 +31,7 @@ interface Result {
   mode?: number;
   max?: number;
   min?: number;
-  standarddeviation?: number;
+  standardDeviation?: number;
   variance?: number;
   slope?: number;
   efficiency?: number;
@@ -96,11 +96,11 @@ function evaluateSeries(input: unknown, option: Options = {}) {
 
   const min = math.num(Math.min(...deltas));
 
-  const standarddeviation = math.standarddeviation(deltas);
+  const standardDeviation = math.standardDeviation(deltas);
 
   const variance = math.variance(deltas);
 
-  const slope = math.trendslope(deltas);
+  const slope = math.trendSlope(deltas);
 
   const efficiency = math.efficiency(deltas);
 
@@ -123,7 +123,7 @@ function evaluateSeries(input: unknown, option: Options = {}) {
     mode,
     max,
     min,
-    standarddeviation,
+    standardDeviation,
     variance,
     slope,
     efficiency,

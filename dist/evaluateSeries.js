@@ -32,9 +32,9 @@ function evaluateSeries(input, option = {}) {
     const mode = math_1.default.mode(deltas.map(Math.round));
     const max = math_1.default.num(Math.max(...deltas));
     const min = math_1.default.num(Math.min(...deltas));
-    const standarddeviation = math_1.default.standarddeviation(deltas);
+    const standardDeviation = math_1.default.standardDeviation(deltas);
     const variance = math_1.default.variance(deltas);
-    const slope = math_1.default.trendslope(deltas);
+    const slope = math_1.default.trendSlope(deltas);
     const efficiency = math_1.default.efficiency(deltas);
     const result = {
         initialValue,
@@ -55,7 +55,7 @@ function evaluateSeries(input, option = {}) {
         mode,
         max,
         min,
-        standarddeviation,
+        standardDeviation,
         variance,
         slope,
         efficiency,

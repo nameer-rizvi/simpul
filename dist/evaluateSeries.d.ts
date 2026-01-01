@@ -27,7 +27,7 @@ interface Result {
     mode?: number;
     max?: number;
     min?: number;
-    standarddeviation?: number;
+    standardDeviation?: number;
     variance?: number;
     slope?: number;
     efficiency?: number;

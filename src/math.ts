@@ -1,12 +1,12 @@
 import validate from "./validate";
 
-function changeNum(input1: number, input2: number): number | undefined {
+function changeNum(input1: unknown, input2: unknown): number | undefined {
   if (validate.isNumberValid(input1) && validate.isNumberValid(input2)) {
     return num(input2 - input1);
   }
 }
 
-function changePercent(input1: number, input2: number): number | undefined {
+function changePercent(input1: unknown, input2: unknown): number | undefined {
   if (validate.isNumberValid(input1) && validate.isNumberValid(input2)) {
     if (input1 === 0) return;
     return num(((input2 - input1) / input1) * 100);
@@ -22,8 +22,8 @@ export type ChangeSymbolType = [
 ];
 
 function changeSymbol(
-  input1: number,
-  input2: number,
+  input1: unknown,
+  input2: unknown,
 ): ChangeSymbolType | undefined {
   if (validate.isNumberValid(input1) && validate.isNumberValid(input2)) {
     if (input2 > input1) return [1, "up", "+", "↑", "🟢"];
@@ -32,20 +32,16 @@ function changeSymbol(
   }
 }
 
-function discrepancy(input1: number, input2: number): number | undefined {
+function discrepancy(input1: unknown, input2: unknown): number | undefined {
   if (validate.isNumberValid(input1) && validate.isNumberValid(input2)) {
     return num(Math.abs(input1 - input2));
   }
 }
 
-function efficiency(...args: number[] | [number[]]): number | undefined {
-  const input = Array.isArray(args[0]) ? args[0] : (args as number[]);
-  if (!validate.isArray(input)) return;
-  const numbers = input.filter(validate.isNumberValid);
+function efficiency(...args: unknown[] | [unknown[]]): number | undefined {
+  const numbers = args.flat().filter(validate.isNumberValid);
   if (numbers.length < 2) return 0;
-  const first = numbers[0];
-  const last = numbers[numbers.length - 1];
-  const distance = Math.abs(last - first);
+  const distance = Math.abs(numbers[numbers.length - 1] - numbers[0]);
   if (distance === 0) return 0;
   let journey = 0;
   for (let i = 1; i < numbers.length; i++) {
@@ -56,9 +52,9 @@ function efficiency(...args: number[] | [number[]]): number | undefined {
 }
 
 function growthRate(
-  input1: number,
-  input2: number,
-  periods: number = 1,
+  input1: unknown,
+  input2: unknown,
+  periods = 1,
 ): number | undefined {
   if (
     validate.isNumberValid(input1) &&
@@ -70,27 +66,23 @@ function growthRate(
   }
 }
 
-function mean(...args: number[] | [number[]]): number | undefined {
-  const input = Array.isArray(args[0]) ? args[0] : (args as number[]);
-  if (!validate.isArray(input)) return;
+function mean(...args: unknown[] | [unknown[]]): number | undefined {
   let total = 0;
   let count = 0;
-  for (const n of input) {
+  for (const n of args.flat()) {
     if (validate.isNumberValid(n)) {
       total += n;
       count++;
     }
   }
-  if (count === 0) return undefined;
-  return num(total / count);
+  return count > 0 ? num(total / count) : undefined;
 }
 
-function median(...args: number[] | [number[]]): number | undefined {
-  const input = Array.isArray(args[0]) ? args[0] : (args as number[]);
-  if (!validate.isArray(input)) return;
-  const numbers = input.filter(validate.isNumberValid).sort((a, b) => a - b);
+function median(...args: unknown[] | [unknown[]]): number | undefined {
+  const numbers = args.flat().filter(validate.isNumberValid);
+  numbers.sort((a, b) => a - b);
   const length = numbers.length;
-  if (length === 0) return undefined;
+  if (length === 0) return;
   const middle = Math.floor(length / 2);
   if (length % 2 === 0) {
     return num((numbers[middle - 1] + numbers[middle]) / 2);
@@ -99,21 +91,16 @@ function median(...args: number[] | [number[]]): number | undefined {
   }
 }
 
-function mode(...args: number[] | [number[]]): number | undefined {
-  const input = Array.isArray(args[0]) ? args[0] : (args as number[]);
-  if (!validate.isArray(input)) return;
+function mode(...args: unknown[] | [unknown[]]): number | undefined {
   const freq: Record<number, number> = {};
-  for (const n of input) {
+  for (const n of args.flat()) {
     if (validate.isNumberValid(n)) freq[n] = (freq[n] || 0) + 1;
   }
   return +Object.keys(freq).sort((a, b) => freq[+b] - freq[+a])[0] || undefined;
 }
 
-function normalize(...args: number[] | [number[]]): number[] | undefined {
-  const input = Array.isArray(args[0]) ? args[0] : (args as number[]);
-  if (!validate.isArray(input)) return [];
-  const numbers: number[] = [];
-  for (const n of input) if (validate.isNumberValid(n)) numbers.push(n);
+function normalize(...args: unknown[] | [unknown[]]): number[] | undefined {
+  const numbers = args.flat().filter(validate.isNumberValid);
   let min = numbers[0];
   let max = numbers[0];
   for (const n of numbers) {
@@ -127,7 +114,7 @@ function normalize(...args: number[] | [number[]]): number[] | undefined {
   return normalized;
 }
 
-function num(input: number): number | undefined {
+function num(input: unknown): number | undefined {
   if (!validate.isNumberValid(input)) return;
   const abs = Math.abs(input);
   if (abs === 0) return 0;
@@ -137,32 +124,30 @@ function num(input: number): number | undefined {
   return +input.toFixed(decimals);
 }
 
-function percent(input1: number, input2: number): number | undefined {
+function percent(input1: unknown, input2: unknown): number | undefined {
   if (validate.isNumberValid(input1) && validate.isNumberValid(input2)) {
     if (input2 === 0) return;
     return num((input1 / input2) * 100);
   }
 }
 
-function standarddeviation(...args: number[] | [number[]]): number | undefined {
+function standardDeviation(
+  ...args: unknown[] | [unknown[]]
+): number | undefined {
   const varValue = variance(...args);
   if (varValue === undefined) return;
   return num(Math.sqrt(varValue));
 }
 
-function sum(...args: number[] | [number[]]): number | undefined {
-  const input = Array.isArray(args[0]) ? args[0] : (args as number[]);
-  if (!validate.isArray(input)) return;
+function sum(...args: unknown[] | [unknown[]]): number | undefined {
   let total = 0;
-  for (const n of input) if (validate.isNumberValid(n)) total += n;
+  for (const n of args.flat()) if (validate.isNumberValid(n)) total += n;
   return num(total);
 }
 
-function trendslope(...args: number[] | [number[]]): number | undefined {
-  const input = Array.isArray(args[0]) ? args[0] : (args as number[]);
-  if (!validate.isArray(input)) return;
+function trendSlope(...args: unknown[] | [unknown[]]): number | undefined {
   const numbers: number[] = [];
-  for (const n of input) if (validate.isNumberValid(n)) numbers.push(n);
+  for (const n of args.flat()) if (validate.isNumberValid(n)) numbers.push(n);
   const n = numbers.length;
   if (n < 2) return 0;
   let sumX = 0;
@@ -182,20 +167,18 @@ function trendslope(...args: number[] | [number[]]): number | undefined {
   return num((n * sumXY - sumX * sumY) / denominator);
 }
 
-function variance(...args: number[] | [number[]]): number | undefined {
-  const input = Array.isArray(args[0]) ? args[0] : (args as number[]);
-  if (!validate.isArray(input)) return;
+function variance(...args: unknown[] | [unknown[]]): number | undefined {
   let sum = 0;
   let count = 0;
   const numbers: number[] = [];
-  for (const n of input) {
+  for (const n of args.flat()) {
     if (validate.isNumberValid(n)) {
       sum += n;
       count++;
       numbers.push(n);
     }
   }
-  if (count === 0) return;
+  if (count < 2) return 0;
   let sqDiffSum = 0;
   for (const n of numbers) sqDiffSum += Math.pow(n - sum / count, 2);
   return num(sqDiffSum / count); // population variance
@@ -203,17 +186,14 @@ function variance(...args: number[] | [number[]]): number | undefined {
 
 function zscore(
   value: number,
-  ...args: number[] | [number[]]
+  ...args: unknown[] | [unknown[]]
 ): number | undefined {
   if (!validate.isNumberValid(value)) return;
-  const input = Array.isArray(args[0]) ? args[0] : (args as number[]);
-  if (!validate.isArray(input)) return;
   const numbers: number[] = [];
-  for (const n of input) if (validate.isNumberValid(n)) numbers.push(n);
-  if (!numbers.length) return;
+  for (const n of args.flat()) if (validate.isNumberValid(n)) numbers.push(n);
   const meanValue = mean(numbers);
-  const stdDev = standarddeviation(numbers);
-  if (stdDev === 0 || stdDev === undefined || meanValue === undefined) return 0;
+  const stdDev = standardDeviation(numbers);
+  if (!stdDev || !meanValue) return 0;
   return num((value - meanValue) / stdDev);
 }
 
@@ -232,9 +212,9 @@ export default {
   normalize,
   num,
   percent,
-  standarddeviation,
+  standardDeviation,
   sum,
-  trendslope,
+  trendSlope,
   variance,
   zscore,
 };
