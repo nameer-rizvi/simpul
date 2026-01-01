@@ -1,18 +1,17 @@
 import validate from "./validate";
 
-function batchify<T>(array: T[], size: number = 10): T[][] | undefined {
-  if (!validate.isArray(array)) return;
+function batchify<T>(input: T[], size = 10): T[][] | undefined {
+  if (validate.isArray(input)) {
+    if (size === 0) return [input];
 
-  const batches: T[][] = [];
+    const batches: T[][] = [];
 
-  let i = 0;
+    for (let i = 0; i < input.length; i += size) {
+      batches.push(input.slice(i, i + size));
+    }
 
-  while (i < array.length) {
-    batches.push(array.slice(i, i + size));
-    i += size;
+    return batches;
   }
-
-  return batches;
 }
 
 export default batchify;

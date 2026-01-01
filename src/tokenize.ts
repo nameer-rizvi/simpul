@@ -1,25 +1,43 @@
-import trimPunctuation from "./trimPunctuation";
+import validate from "./validate";
 
-function tokenize(string: string): {
+function tokenize(
+  input: unknown,
+  asLowerCase: boolean,
+): {
   tokens: string[];
   set: string[];
   tokensCount: number;
   setCount: number;
   count: Record<string, number>;
 } {
-  let tokens: string[] = [];
+  if (!validate.isString(input)) {
+    return {
+      tokens: [],
+      set: [],
+      tokensCount: 0,
+      setCount: 0,
+      count: {},
+    };
+  }
 
-  const trimmed = trimPunctuation(string);
+  const cleaned = input
+    .normalize("NFKC")
+    .replace(/[^\p{L}\p{N}\p{Emoji_Presentation}\s'-]+/gu, " ")
+    .replace(/\s+/g, " ")
+    .trim();
 
-  if (trimmed) tokens = trimmed.split(" ").filter(Boolean);
+  const tokens =
+    cleaned.length > 0
+      ? asLowerCase
+        ? cleaned.toLowerCase().split(" ")
+        : cleaned.split(" ")
+      : [];
 
-  const set: string[] = [...new Set(tokens)];
+  const set = Array.from(new Set(tokens));
 
   const count: Record<string, number> = {};
 
-  for (const token of tokens) {
-    count[token] = (count[token] || 0) + 1;
-  }
+  for (const token of tokens) count[token] = (count[token] || 0) + 1;
 
   return {
     tokens,

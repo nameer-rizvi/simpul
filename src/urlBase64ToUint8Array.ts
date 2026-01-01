@@ -1,11 +1,11 @@
 import validate from "./validate";
 import base64 from "./base64";
 
-function urlBase64ToUint8Array(urlBase64: string): Uint8Array | undefined {
-  if (validate.isBase64(urlBase64)) {
-    const padding = "=".repeat((4 - (urlBase64.length % 4)) % 4);
+function urlBase64ToUint8Array(input: unknown): Uint8Array | undefined {
+  if (validate.isBase64(input)) {
+    const padding = "=".repeat((4 - (input.length % 4)) % 4);
 
-    const urlBase64WithPadding = (urlBase64 + padding)
+    const urlBase64WithPadding = (input + padding)
       .replace(/-/g, "+")
       .replace(/_/g, "/");
 

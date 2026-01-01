@@ -4,14 +4,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const validate_1 = __importDefault(require("./validate"));
-function removeNullValues(object = {}) {
-    const clean = {};
-    for (const key of Object.keys(object)) {
-        const value = object[key];
-        if (validate_1.default.isValid(value)) {
-            clean[key] = value;
-        }
+function removeNullValues(input = {}) {
+    if (!validate_1.default.isObject(input))
+        return {};
+    const result = {};
+    for (const [key, value] of Object.entries(input)) {
+        if (value !== null && value !== undefined)
+            result[key] = value;
     }
-    return clean;
+    return result;
 }
 exports.default = removeNullValues;

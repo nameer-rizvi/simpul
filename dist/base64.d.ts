@@ -1,11 +1,13 @@
-declare function encode(string: string): string | undefined;
-declare function decode(base64: string): string | undefined;
-declare function encodeJSON(json: any): string | undefined;
-declare function decodeJSON(base64: string): any | undefined;
+declare function encode(input: unknown): string | undefined;
+declare function decode(input: unknown): string | undefined;
+declare function encodeJSON(input: unknown): string | undefined;
+declare function decodeJSON(input: unknown): any | undefined;
 declare const _default: {
     encode: typeof encode;
     decode: typeof decode;
     encodeJSON: typeof encodeJSON;
+    encodeJson: typeof encodeJSON;
     decodeJSON: typeof decodeJSON;
+    decodeJson: typeof decodeJSON;
 };
 export default _default;

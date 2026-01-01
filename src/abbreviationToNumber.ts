@@ -1,29 +1,33 @@
 import validate from "./validate";
 
-function abbreviationToNumber(
-  abbreviation: string | number,
-): number | undefined {
-  if (validate.isNumber(abbreviation)) return Number(abbreviation);
+function abbreviationToNumber(input: unknown): number | undefined {
+  if (validate.isNumber(input)) {
+    return input;
+  }
 
-  if (!validate.isString(abbreviation)) return;
+  if (validate.isNumberString(input)) {
+    return Number(input);
+  }
 
-  const cleanAbbreviation = (abbreviation as string).replace(/ /g, "");
+  if (validate.isString(input)) {
+    const clean = input.replace(/\s+|,/g, "");
 
-  const key = cleanAbbreviation.slice(-1).toLowerCase();
+    if (!clean) return;
 
-  const digits = { t: 12, b: 9, m: 6, k: 3 }[key];
+    const key = clean[clean.length - 1].toLowerCase();
 
-  if (!digits) return Number(cleanAbbreviation);
+    const power = { k: 3, m: 6, b: 9, t: 12 }[key];
 
-  const parts = cleanAbbreviation.slice(0, -1).split(".");
+    if (!power) {
+      return parseFloat(clean) || undefined;
+    }
 
-  let numberString = parts[0];
+    const number = Number(clean.slice(0, -1));
 
-  if (parts[1]) numberString += parts[1].slice(0, digits);
-
-  numberString = numberString.padEnd(parts[0].length + digits, "0");
-
-  return Number(numberString);
+    if (validate.isNumberValid(number)) {
+      return number * 10 ** power;
+    }
+  }
 }
 
 export default abbreviationToNumber;

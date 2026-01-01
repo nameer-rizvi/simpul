@@ -1,2 +1,2 @@
-declare function clone<T>(json: T): T;
+declare function clone<T>(input: T): T;
 export default clone;

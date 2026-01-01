@@ -4,58 +4,57 @@ import base64 from "./base64";
 import batchify from "./batchify";
 import capitalize from "./capitalize";
 import changecase from "./changecase";
-import changeindex from "./changeindex";
-import cleanstring from "./cleanstring";
+import changeIndex from "./changeIndex";
+import cleanString from "./cleanString";
 import clone from "./clone";
 import clonedeep from "./clonedeep";
 import compare from "./compare";
-import copytext from "./copytext";
-import countlabel from "./countlabel";
+import copyText from "./copyText";
+import countLabel from "./countLabel";
 import date from "./date";
-import datestring from "./datestring";
+import dateString from "./dateString";
 import delay from "./delay";
 import delimiter from "./delimiter";
-import delimitersplit from "./delimitersplit";
-import endswith from "./endswith";
+import delimiterSplit from "./delimiterSplit";
+import endsWith from "./endsWith";
 import escaper from "./escaper";
+import evaluateSeries from "./evaluateSeries";
 import flatten from "./flatten";
-import generalcount from "./generalcount";
-import isEnv from "./isEnv";
+import generalCount from "./generalCount";
 import jwt from "./jwt";
-import keychange from "./keychange";
+import keyChange from "./keyChange";
 import listify from "./listify";
-import logPermutation from "./logPermutation";
+import logProgress from "./logProgress";
 import math from "./math";
 import noop from "./noop";
-import numberstring from "./numberstring";
+import numberString from "./numberString";
 import objectKeyGroup from "./objectKeyGroup";
 import ordinalized from "./ordinalized";
 import paginationProps from "./paginationProps";
 import parseCommafiedNumber from "./parseCommafiedNumber";
-import parsejson from "./parsejson";
-import peaks from "./peaks";
+import parseJson from "./parseJson";
 import recursively from "./recursively";
-import reduceobject from "./reduceobject";
+import reduceObject from "./reduceObject";
 import removeArrayItems from "./removeArrayItems";
 import removeNullValues from "./removeNullValues";
 import removePunctuation from "./removePunctuation";
 import removeStrings from "./removeStrings";
 import replaceStrings from "./replaceStrings";
-import scale from "./scale";
+import rescale from "./rescale";
 import shuffle from "./shuffle";
 import slug from "./slug";
-import stringlength from "./stringlength";
-import stringnumber from "./stringnumber";
-import stringtest from "./stringtest";
-import support from "./support";
+import sortN from "./sortN";
+import stringLength from "./stringLength";
+import stringNumber from "./stringNumber";
+import stringTest from "./stringTest";
 import tokenize from "./tokenize";
 import trim from "./trim";
 import trimBoundary from "./trimBoundary";
 import trimPunctuation from "./trimPunctuation";
-import tryasync from "./tryasync";
-import trycallback from "./trycallback";
-import uid from "./uid";
+import tryAsync from "./tryAsync";
+import tryCallback from "./tryCallback";
 import urlBase64ToUint8Array from "./urlBase64ToUint8Array";
+import uuidv4 from "./uuidv4";
 import validate from "./validate";
 import version from "./version";
 import wave from "./wave";
@@ -67,61 +66,105 @@ interface Simpul {
   batchify: typeof batchify;
   capitalize: typeof capitalize;
   changecase: typeof changecase;
-  changeindex: typeof changeindex;
-  cleanstring: typeof cleanstring;
+  changeIndex: typeof changeIndex;
+  cleanString: typeof cleanString;
   clone: typeof clone;
   clonedeep: typeof clonedeep;
   compare: typeof compare;
-  copytext: typeof copytext;
-  countlabel: typeof countlabel;
+  copyText: typeof copyText;
+  countLabel: typeof countLabel;
   date: typeof date;
-  datestring: typeof datestring;
+  dateString: typeof dateString;
   delay: typeof delay;
   delimiter: typeof delimiter;
-  delimitersplit: typeof delimitersplit;
-  endswith: typeof endswith;
+  delimiterSplit: typeof delimiterSplit;
+  endsWith: typeof endsWith;
   escaper: typeof escaper;
+  evaluateSeries: typeof evaluateSeries;
   flatten: typeof flatten;
-  generalcount: typeof generalcount;
-  isEnv: typeof isEnv;
+  generalCount: typeof generalCount;
+  isArray: typeof validate.isArray;
+  isArrayNonEmpty: typeof validate.isArrayNonEmpty;
+  isArrayOrString: typeof validate.isArrayOrString;
+  isBase64: typeof validate.isBase64;
+  isBoolean: typeof validate.isBoolean;
+  isBooleanAny: typeof validate.isBooleanAny;
+  isBooleanNumber: typeof validate.isBooleanNumber;
+  isBooleanString: typeof validate.isBooleanString;
+  isCreditCardNumber: typeof validate.isCreditCardNumber;
+  isDate: typeof validate.isDate;
+  isEmail: typeof validate.isEmail;
+  isEnvBrowser: typeof validate.isEnvBrowser;
+  isEnvDevelopment: typeof validate.isEnvDevelopment;
+  isEnvDocument: typeof validate.isEnvDocument;
+  isEnvLive: typeof validate.isEnvLive;
+  isEnvLocalhost: typeof validate.isEnvLocalhost;
+  isEnvNode: typeof validate.isEnvNode;
+  isEnvNotificationGranted: typeof validate.isEnvNotificationGranted;
+  isEnvProduction: typeof validate.isEnvProduction;
+  isEnvServiceWorker: typeof validate.isEnvServiceWorker;
+  isEnvStaging: typeof validate.isEnvStaging;
+  isEnvTest: typeof validate.isEnvTest;
+  isEnvWindow: typeof validate.isEnvWindow;
+  isEnvWindowProperty: typeof validate.isEnvWindowProperty;
+  isEnvWorker: typeof validate.isEnvWorker;
+  isError: typeof validate.isError;
+  isFunction: typeof validate.isFunction;
+  isHTTP: typeof validate.isHTTP;
+  isJSON: typeof validate.isJSON;
+  isJSONString: typeof validate.isJSONString;
+  isJWT: typeof validate.isJWT;
+  isModule: typeof validate.isModule;
+  isNumber: typeof validate.isNumber;
+  isNumberString: typeof validate.isNumberString;
+  isNumberValid: typeof validate.isNumberValid;
+  isNumeric: typeof validate.isNumeric;
+  isObject: typeof validate.isObject;
+  isObjectNonEmpty: typeof validate.isObjectNonEmpty;
+  isPhoneNumber: typeof validate.isPhoneNumber;
+  isRegex: typeof validate.isRegex;
+  isString: typeof validate.isString;
+  isStringNonEmpty: typeof validate.isStringNonEmpty;
+  isStringOrArray: typeof validate.isStringOrArray;
+  isStringSafe: typeof validate.isStringSafe;
+  isURL: typeof validate.isURL;
+  isValid: typeof validate.isValid;
   jwt: typeof jwt;
-  keychange: typeof keychange;
+  keyChange: typeof keyChange;
   listify: typeof listify;
-  logPermutation: typeof logPermutation;
+  logProgress: typeof logProgress;
   math: typeof math;
   noop: typeof noop;
-  numberstring: typeof numberstring;
+  numberString: typeof numberString;
   objectKeyGroup: typeof objectKeyGroup;
   ordinalized: typeof ordinalized;
   paginationProps: typeof paginationProps;
   parseCommafiedNumber: typeof parseCommafiedNumber;
-  parsejson: typeof parsejson;
-  peaks: typeof peaks;
+  parseJson: typeof parseJson;
   recursively: typeof recursively;
-  reduceobject: typeof reduceobject;
+  reduceObject: typeof reduceObject;
   removeArrayItems: typeof removeArrayItems;
   removeNullValues: typeof removeNullValues;
   removePunctuation: typeof removePunctuation;
   removeStrings: typeof removeStrings;
   replaceStrings: typeof replaceStrings;
-  scale: typeof scale;
+  rescale: typeof rescale;
   shuffle: typeof shuffle;
   slug: typeof slug;
-  stringlength: typeof stringlength;
-  stringnumber: typeof stringnumber;
-  stringtest: typeof stringtest;
-  support: typeof support;
+  sortN: typeof sortN;
+  stringLength: typeof stringLength;
+  stringNumber: typeof stringNumber;
+  stringTest: typeof stringTest;
   tokenize: typeof tokenize;
   trim: typeof trim;
   trimBoundary: typeof trimBoundary;
   trimPunctuation: typeof trimPunctuation;
-  tryasync: typeof tryasync;
-  trycallback: typeof trycallback;
-  uid: typeof uid;
+  tryAsync: typeof tryAsync;
+  tryCallback: typeof tryCallback;
   urlBase64ToUint8Array: typeof urlBase64ToUint8Array;
+  uuidv4: typeof uuidv4;
   version: typeof version;
   wave: typeof wave;
-  [key: string]: any;
 }
 
 const simpul: Simpul = {
@@ -131,61 +174,60 @@ const simpul: Simpul = {
   batchify,
   capitalize,
   changecase,
-  changeindex,
-  cleanstring,
+  changeIndex,
+  cleanString,
   clone,
   clonedeep,
   compare,
-  copytext,
-  countlabel,
+  copyText,
+  countLabel,
   date,
-  datestring,
+  dateString,
   delay,
   delimiter,
-  delimitersplit,
-  endswith,
+  delimiterSplit,
+  endsWith,
   escaper,
+  evaluateSeries,
   flatten,
-  generalcount,
-  isEnv,
+  generalCount,
+  ...validate, // "is.."
   jwt,
-  keychange,
+  keyChange,
   listify,
-  logPermutation,
+  logProgress,
   math,
   noop,
-  numberstring,
+  numberString,
   objectKeyGroup,
   ordinalized,
   paginationProps,
   parseCommafiedNumber,
-  parsejson,
-  peaks,
+  parseJson,
   recursively,
-  reduceobject,
+  reduceObject,
   removeArrayItems,
   removeNullValues,
   removePunctuation,
   removeStrings,
   replaceStrings,
-  scale,
+  rescale,
   shuffle,
   slug,
-  stringlength,
-  stringnumber,
-  stringtest,
-  support,
+  sortN,
+  stringLength,
+  stringNumber,
+  stringTest,
   tokenize,
   trim,
   trimBoundary,
   trimPunctuation,
-  tryasync,
-  trycallback,
-  uid,
+  tryAsync,
+  tryCallback,
   urlBase64ToUint8Array,
+  uuidv4,
   version,
   wave,
-  ...validate,
 };
 
 export = simpul;

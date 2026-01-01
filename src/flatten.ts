@@ -1,23 +1,33 @@
 import validate from "./validate";
 
+// Using "_" instead of "." as it's more object name-friendly.
 function flatten(
-  object: Record<string, any> = {},
-  delimiter: string = "_",
-): Record<string, any> {
-  const result: Record<string, any> = {};
+  input: Record<string, unknown> = {},
+  delimiter = "_",
+): Record<string, unknown> {
+  const result: Record<string, unknown> = {};
 
-  function recurse(obj: Record<string, any>, currentKey: string) {
-    Object.keys(obj).forEach((key) => {
-      const newKey = currentKey ? `${currentKey}${delimiter}${key}` : key;
-      if (validate.isObject(obj[key])) {
-        recurse(obj[key], newKey);
+  const stack: Array<{ obj: Record<string, unknown>; prefix: string }> = [
+    { obj: input, prefix: "" },
+  ];
+
+  while (stack.length) {
+    const { obj, prefix } = stack.pop()!;
+
+    for (const key in obj) {
+      if (!Object.prototype.hasOwnProperty.call(obj, key)) continue;
+
+      const value = obj[key];
+
+      const newKey = prefix ? `${prefix}${delimiter}${key}` : key;
+
+      if (validate.isObject(value)) {
+        stack.push({ obj: value as Record<string, unknown>, prefix: newKey });
       } else {
-        result[newKey] = obj[key];
+        result[newKey] = value;
       }
-    });
+    }
   }
-
-  recurse(object, "");
 
   return result;
 }

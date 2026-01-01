@@ -1,2 +1,2 @@
-declare function replaceStrings(str: string, replaces?: [string, string][]): string | undefined;
+declare function replaceStrings(input: unknown, replaces?: [string | RegExp, string][]): string | undefined;
 export default replaceStrings;

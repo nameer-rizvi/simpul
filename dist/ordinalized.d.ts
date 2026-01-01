@@ -1,2 +1,2 @@
-declare function ordinalized(number: number | string): string | undefined;
+declare function ordinalized(input: unknown): string | undefined;
 export default ordinalized;

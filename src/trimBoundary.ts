@@ -1,21 +1,39 @@
+import validate from "./validate";
 import trim from "./trim";
 
+const PAIRS: Record<string, string> = {
+  "[": "]",
+  "(": ")",
+  "{": "}",
+  "<": ">",
+  "«": "»",
+  "“": "”",
+  "‘": "’",
+};
+
 function trimBoundary(
-  dirty: string,
+  input: unknown,
   boundary?: string,
-  delimiter?: string,
+  innerTrim?: string,
 ): string | undefined {
-  let clean = dirty?.trim() || undefined;
+  if (validate.isString(input)) {
+    let str = trim(input) || "";
 
-  if (clean) {
-    if (!boundary) boundary = clean.charAt(0);
+    const open = boundary ?? str.charAt(0);
 
-    if (clean.startsWith(boundary) && clean.endsWith(boundary)) {
-      clean = trim(clean.substring(1, clean.length - 1), delimiter);
+    const close = PAIRS[open] ?? open;
+
+    while (str.length >= 2 && str.startsWith(open) && str.endsWith(close)) {
+      str = str.slice(open.length, str.length - close.length).trim();
     }
-  }
 
-  return clean;
+    if (innerTrim) {
+      const pattern = new RegExp(`^[${innerTrim}]+|[${innerTrim}]+$`, "g");
+      str = str.replace(pattern, "").trim();
+    }
+
+    return str;
+  }
 }
 
 export default trimBoundary;

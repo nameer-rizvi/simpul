@@ -1,27 +1,31 @@
 import validate from "./validate";
 
 function applyValueToNumber(
-  number: number,
+  input: number,
   value: number,
   operator: string = "+",
 ): number {
-  if (!validate.isNumber(number) || !validate.isNumber(value)) return number;
+  if (!validate.isNumberValid(input) || !validate.isNumberValid(value)) {
+    return input;
+  }
 
   switch (operator) {
     case "+":
-      return number + value;
+      return input + value;
     case "-":
-      return number - value;
+      return input - value;
     case "*":
-      return number * value;
+      return input * value;
+    case "**":
+      return input ** value;
     case "/":
-      return number / value;
+      return value !== 0 ? input / value : input;
     case "+%":
-      return number + (number * value) / 100;
+      return input * (1 + value / 100);
     case "-%":
-      return number - (number * value) / 100;
+      return input * (1 - value / 100);
     default:
-      return number;
+      return input;
   }
 }
 

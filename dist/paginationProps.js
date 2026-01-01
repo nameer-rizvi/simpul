@@ -1,27 +1,33 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-function paginationProps(pageSize, currentPage, totalItems) {
-    // Handle edge cases.
-    if (pageSize < 1)
-        pageSize = 1;
-    if (currentPage < 1)
-        currentPage = 1;
-    const pages = Math.ceil(totalItems / pageSize);
-    // Ensure the current page doesn't exceed total pages.
-    if (currentPage > pages)
-        currentPage = pages;
-    const hasNextPage = currentPage < pages;
-    const hasPrevPage = currentPage > 1;
-    const nextPage = hasNextPage ? currentPage + 1 : null;
-    const prevPage = hasPrevPage ? currentPage - 1 : null;
+function paginationProps(pageSize, currentPage, totalItems, cursors) {
+    const size = Math.max(1, Math.floor(pageSize));
+    const pages = Math.max(1, Math.ceil(totalItems / size));
+    const page = Math.min(Math.max(1, Math.floor(currentPage)), pages);
+    const hasNextPage = page < pages;
+    const hasPrevPage = page > 1;
+    let cursor = null;
+    let prevCursor = null;
+    if (cursors === null || cursors === void 0 ? void 0 : cursors.length) {
+        const startIdx = (page - 1) * size;
+        const endIdx = startIdx + size;
+        if (hasNextPage && endIdx - 1 < cursors.length) {
+            cursor = cursors[endIdx - 1];
+        }
+        if (hasPrevPage && startIdx - 1 >= 0) {
+            prevCursor = cursors[startIdx - 1];
+        }
+    }
     return {
-        pageSize: pageSize,
-        page: currentPage,
-        pages: pages,
-        hasNextPage: hasNextPage,
-        nextPage: nextPage,
-        hasPrevPage: hasPrevPage,
-        prevPage: prevPage,
+        pageSize: size,
+        page,
+        pages,
+        hasNextPage,
+        nextPage: hasNextPage ? page + 1 : null,
+        hasPrevPage,
+        prevPage: hasPrevPage ? page - 1 : null,
+        cursor,
+        prevCursor,
     };
 }
 exports.default = paginationProps;

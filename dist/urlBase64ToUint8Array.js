@@ -5,10 +5,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const validate_1 = __importDefault(require("./validate"));
 const base64_1 = __importDefault(require("./base64"));
-function urlBase64ToUint8Array(urlBase64) {
-    if (validate_1.default.isBase64(urlBase64)) {
-        const padding = "=".repeat((4 - (urlBase64.length % 4)) % 4);
-        const urlBase64WithPadding = (urlBase64 + padding)
+function urlBase64ToUint8Array(input) {
+    if (validate_1.default.isBase64(input)) {
+        const padding = "=".repeat((4 - (input.length % 4)) % 4);
+        const urlBase64WithPadding = (input + padding)
             .replace(/-/g, "+")
             .replace(/_/g, "/");
         const decoded = base64_1.default.decode(urlBase64WithPadding);

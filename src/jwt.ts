@@ -1,29 +1,20 @@
-function decode(jwt: string): string | undefined {
-  if (typeof jwt !== "string") return;
+// Non-secure JWT-style payload encoder/decoder. Not a real JWT implementation.
 
+function encode(input: any): string | undefined {
   try {
-    const token = jwt.split(".")[1].replace(/-/g, "+").replace(/_/g, "/");
-
-    const array = Array.from(atob(token)).map((c) => {
-      return `%${("00" + c.charCodeAt(0).toString(16)).slice(-2)}`;
-    });
-
-    return decodeURIComponent(array.join(""));
+    return "." + Buffer.from(JSON.stringify(input), "utf-8").toString("base64");
   } catch {
     return;
   }
 }
 
-function decodeJSON(jwt: string): any {
-  const decoded = decode(jwt);
-
-  if (!decoded) return;
-
+function decode(input: string): any {
   try {
-    return JSON.parse(decoded);
+    const payload = input.split(".")[1].replace(/-/g, "+").replace(/_/g, "/");
+    return JSON.parse(Buffer.from(payload, "base64").toString("utf-8"));
   } catch {
     return;
   }
 }
 
-export default { decode, decodeJSON };
+export default { encode, decode, decodeJson: decode, decodeJSON: decode };

@@ -1,2 +1,2 @@
-declare function batchify<T>(array: T[], size?: number): T[][] | undefined;
+declare function batchify<T>(input: T[], size?: number): T[][] | undefined;
 export default batchify;

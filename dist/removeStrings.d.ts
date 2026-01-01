@@ -1,2 +1,2 @@
-declare function removeStrings(str: string, removes?: string[]): string | undefined;
+declare function removeStrings(input: unknown, removes?: (string | RegExp)[]): string | undefined;
 export default removeStrings;

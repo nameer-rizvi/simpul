@@ -1,2 +1,2 @@
-declare function trimBoundary(dirty: string, boundary?: string, delimiter?: string): string | undefined;
+declare function trimBoundary(input: unknown, boundary?: string, innerTrim?: string): string | undefined;
 export default trimBoundary;

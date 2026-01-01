@@ -1,17 +1,11 @@
-import removePunctuation from "./removePunctuation";
 import trim from "./trim";
+import removePunctuation from "./removePunctuation";
 
 function trimPunctuation(
-  dirty: string,
+  input: unknown,
   delimiter?: string,
 ): string | undefined {
-  const removed = removePunctuation(dirty);
-  if (removed) {
-    return trim(removed, delimiter);
-  }
+  return trim(removePunctuation(input, delimiter), delimiter);
 }
 
 export default trimPunctuation;
-
-// RE: "\W is equivalent to [^a-zA-Z_0-9]"
-//     Not using because it removes unicode characters.

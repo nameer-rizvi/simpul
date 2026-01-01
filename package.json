@@ -5,8 +5,9 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
+    "update": "yarn && node package.update.js",
     "lint": "npx eslint 'src/**/*.{js,mjs,cjs,ts}'; exit 0",
-    "build": "tsc",
+    "build": "npx rimraf dist && tsc",
     "test-cjs": "yarn build && node test/test-cjs.js",
     "test-esm": "yarn build && node test/test-esm.mjs"
   },
@@ -41,12 +42,12 @@
     "string-strip-html": "8.5.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.11.1",
-    "@types/node": "^22.7.2",
-    "eslint": "^9.11.1",
-    "globals": "^15.9.0",
+    "@eslint/js": "^9.39.2",
+    "@types/node": "^25.0.3",
+    "eslint": "^9.39.2",
+    "globals": "^16.5.0",
     "ts-node": "^10.9.2",
-    "typescript": "^5.6.2",
-    "typescript-eslint": "^8.7.0"
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.50.0"
   }
 }

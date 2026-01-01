@@ -1,2 +1,2 @@
-declare function delay(ms?: number, onDelay?: () => void): Promise<void>;
+declare function delay(input?: number, onDelay?: () => void): Promise<void>;
 export default delay;

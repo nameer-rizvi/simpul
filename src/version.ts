@@ -1,5 +1,12 @@
 import validate from "./validate";
 
+type VersionTuple = readonly [number, number, number];
+
+interface VersionOptions {
+  min?: string;
+  max?: string;
+}
+
 type VersionResult = {
   isSupported: boolean;
   string?: string;
@@ -8,79 +15,75 @@ type VersionResult = {
   patch?: number;
 };
 
-interface VersionOptions {
-  min?: string;
-  max?: string;
-}
+function version(input: string[] = []) {
+  const normalized = new Map<string, VersionTuple>();
 
-function version(versions: string[] = []) {
-  let SUPPORTED_VERSIONS = versions.map(formatter).filter(Boolean);
+  for (const v of input) {
+    const tuple = normalize(v);
+    if (tuple) normalized.set(toString(tuple), tuple);
+  }
 
-  SUPPORTED_VERSIONS = [...new Set(SUPPORTED_VERSIONS)];
-
-  SUPPORTED_VERSIONS.sort(sorter);
+  const SUPPORTED_VERSIONS = [...normalized.values()]
+    .sort(compare)
+    .map(toString);
 
   const SUPPORTED_VERSION_LATEST =
     SUPPORTED_VERSIONS[SUPPORTED_VERSIONS.length - 1];
 
-  function isMaxVersion(v: string, m: string): boolean {
-    return parse(v, { max: m }).isSupported;
+  const versionSet = new Set(SUPPORTED_VERSIONS);
+
+  function parse(v: string, options: VersionOptions = {}): VersionResult {
+    const tuple = normalize(v);
+    if (!tuple) return { isSupported: false };
+    const min = options.min ? normalize(options.min) : undefined;
+    const max = options.max ? normalize(options.max) : undefined;
+    const string = toString(tuple);
+    const isSupported = versionSet.has(string) && inRange(tuple, min, max);
+    return {
+      isSupported,
+      string,
+      major: tuple[0],
+      minor: tuple[1],
+      patch: tuple[2],
+    };
   }
 
-  function isMinVersion(v: string, m: string): boolean {
-    return parse(v, { min: m }).isSupported;
+  function isMinVersion(v: string, min: string): boolean {
+    return parse(v, { min }).isSupported;
   }
 
-  function parse(v: string, o: VersionOptions = {}): VersionResult {
-    const result: VersionResult = { isSupported: false };
-    const version = formatter(v);
-    if (version) {
-      result.string = version;
-      const parts = version.split(".").filter(validate.isNumber).slice(0, 3);
-      result.major = +parts[0];
-      result.minor = +parts[1];
-      result.patch = +parts[2];
-      let sliceMin = SUPPORTED_VERSIONS.findIndex((i) => i === o.min);
-      if (sliceMin === -1) sliceMin = 0;
-      let sliceMax = SUPPORTED_VERSIONS.findIndex((i) => i === o.max);
-      if (sliceMax === -1) {
-        sliceMax = SUPPORTED_VERSIONS.length;
-      } else {
-        sliceMax++;
-      }
-      const supportedVersions = SUPPORTED_VERSIONS.slice(sliceMin, sliceMax);
-      result.isSupported = supportedVersions.includes(v);
-    }
-    return result;
+  function isMaxVersion(v: string, max: string): boolean {
+    return parse(v, { max }).isSupported;
   }
 
   return {
     SUPPORTED_VERSIONS,
     SUPPORTED_VERSION_LATEST,
     parse,
-    isMaxVersion,
     isMinVersion,
+    isMaxVersion,
   };
 }
 
-function formatter(v: string): string | undefined {
-  const parts = v.split(".");
-  const strings = parts.map((part) => Number(part).toString());
-  const numbers = strings.filter(validate.isNumber);
-  if (!numbers.length) return;
-  while (numbers.length < 3) numbers.push("0");
-  return numbers.slice(0, 3).join(".");
+function normalize(version: string): VersionTuple | undefined {
+  if (!validate.isString(version)) return;
+  const parts = version.split(".").map(Number).filter(validate.isNumberValid);
+  if (!parts.length) return;
+  return [parts[0] ?? 0, parts[1] ?? 0, parts[2] ?? 0];
 }
 
-function sorter(a: string = "", b: string = ""): number {
-  const aParts = a.split(".").map(Number);
-  const bParts = b.split(".").map(Number);
-  for (let i = 0; i < Math.max(aParts.length, bParts.length); i++) {
-    const aPart = aParts[i] || 0;
-    const bPart = bParts[i] || 0;
-    if (aPart !== bPart) return aPart - bPart;
-  }
-  return 0;
+function toString([a, b, c]: VersionTuple): string {
+  return `${a}.${b}.${c}`;
+}
+
+function compare(a: VersionTuple, b: VersionTuple): number {
+  return a[0] - b[0] || a[1] - b[1] || a[2] - b[2];
+}
+
+function inRange(v: VersionTuple, min?: VersionTuple, max?: VersionTuple) {
+  if (min && compare(v, min) < 0) return false;
+  if (max && compare(v, max) > 0) return false;
+  return true;
 }
 
 export default version;

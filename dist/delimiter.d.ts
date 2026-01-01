@@ -1,2 +1,2 @@
-declare const delimiter: string;
+declare const delimiter = "{{DELIMITER}}";
 export default delimiter;

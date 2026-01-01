@@ -1,11 +1,11 @@
 import validate from "./validate";
 
 function removePunctuation(
-  dirty: string,
-  delimiter: string = "",
+  input: unknown,
+  delimiter = " ",
 ): string | undefined {
-  if (validate.isString(dirty)) {
-    return dirty.replace(/[`~!@#$%^&*()\-_=+[{\]}\\|;:'",<.>/?]/g, delimiter);
+  if (validate.isString(input)) {
+    return input.replace(/[^\w\s]|_/g, delimiter);
   }
 }
 

@@ -1,3 +1,7 @@
+interface VersionOptions {
+    min?: string;
+    max?: string;
+}
 type VersionResult = {
     isSupported: boolean;
     string?: string;
@@ -5,15 +9,11 @@ type VersionResult = {
     minor?: number;
     patch?: number;
 };
-interface VersionOptions {
-    min?: string;
-    max?: string;
-}
-declare function version(versions?: string[]): {
-    SUPPORTED_VERSIONS: (string | undefined)[];
-    SUPPORTED_VERSION_LATEST: string | undefined;
-    parse: (v: string, o?: VersionOptions) => VersionResult;
-    isMaxVersion: (v: string, m: string) => boolean;
-    isMinVersion: (v: string, m: string) => boolean;
+declare function version(input?: string[]): {
+    SUPPORTED_VERSIONS: string[];
+    SUPPORTED_VERSION_LATEST: string;
+    parse: (v: string, options?: VersionOptions) => VersionResult;
+    isMinVersion: (v: string, min: string) => boolean;
+    isMaxVersion: (v: string, max: string) => boolean;
 };
 export default version;

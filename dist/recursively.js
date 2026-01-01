@@ -4,26 +4,28 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const validate_1 = __importDefault(require("./validate"));
-function recursively(json, callback, depth = 0, path = []) {
+function recursively(input, callback, depth = 0, path = []) {
     function makePath(curr) {
-        const path0 = curr.toString();
-        const path1 = (path === null || path === void 0 ? void 0 : path[1]) ? `${path[1]}.${curr}` : curr.toString();
-        return [path0, path1];
+        const key = String(curr);
+        const fullPath = path[1] ? `${path[1]}.${key}` : key;
+        return [key, fullPath];
     }
-    if (validate_1.default.isArray(json)) {
-        for (let i = 0; i < json.length; i++) {
-            json[i] = recursively(json[i], callback, depth + 1, makePath(i));
+    if (validate_1.default.isArray(input)) {
+        const results = [];
+        for (let i = 0; i < input.length; i++) {
+            results.push(recursively(input[i], callback, depth + 1, makePath(i)));
         }
-        return json;
+        return results;
     }
-    if (validate_1.default.isObject(json)) {
-        for (const key in json) {
-            if (Object.prototype.hasOwnProperty.call(json, key)) {
-                json[key] = recursively(json[key], callback, depth + 1, makePath(key));
-            }
+    if (validate_1.default.isObject(input)) {
+        const result = {};
+        for (const key in input) {
+            if (!Object.prototype.hasOwnProperty.call(input, key))
+                continue;
+            result[key] = recursively(input[key], callback, depth + 1, makePath(key));
         }
-        return json;
+        return result;
     }
-    return callback({ key: path[0], path: path[1], value: json, depth });
+    return callback({ key: path[0], path: path[1], value: input, depth });
 }
 exports.default = recursively;

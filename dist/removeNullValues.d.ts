@@ -1,2 +1,2 @@
-declare function removeNullValues<T extends Record<string, any>>(object?: T): Partial<T>;
+declare function removeNullValues<T extends Record<string, any>>(input?: T): Partial<T>;
 export default removeNullValues;

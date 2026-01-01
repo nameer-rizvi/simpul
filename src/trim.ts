@@ -1,8 +1,8 @@
 import validate from "./validate";
 
-function trim(dirty: string, delimiter: string = " "): string | undefined {
-  if (validate.isString(dirty)) {
-    return dirty.replace(/\s+/g, delimiter).trim();
+function trim(input: unknown, delimiter = " "): string | undefined {
+  if (validate.isString(input)) {
+    return input.trim().replace(/\s+/g, delimiter);
   }
 }
 

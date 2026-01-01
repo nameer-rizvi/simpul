@@ -4,13 +4,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const validate_1 = __importDefault(require("./validate"));
-function listify(input, delimiter = ",") {
-    if (validate_1.default.isString(input)) {
-        return input
-            .split(delimiter)
-            .map((i) => i.trim())
-            .filter(Boolean);
+function listify(...inputs) {
+    const list = [];
+    for (const input of inputs) {
+        const parts = validate_1.default.isString(input)
+            ? input.split(",")
+            : validate_1.default.isArray(input)
+                ? listify(...input)
+                : [];
+        for (const part of parts) {
+            if (validate_1.default.isString(part)) {
+                const v = part.trim();
+                if (v)
+                    list.push(v);
+            }
+        }
     }
-    return [];
+    return list;
 }
 exports.default = listify;

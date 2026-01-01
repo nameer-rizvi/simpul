@@ -1,17 +1,23 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-// shallow clone.
-function clone(json) {
-    if (json === null || typeof json !== "object")
-        return json;
-    if (Array.isArray(json))
-        return [...json];
-    const result = {};
-    for (const key in json) {
-        if (Object.prototype.hasOwnProperty.call(json, key)) {
-            result[key] = clone(json[key]);
-        }
+const validate_1 = __importDefault(require("./validate"));
+// Shallow clone with deep recursion for objects/arrays.
+function clone(input) {
+    if (validate_1.default.isArray(input)) {
+        const result = [];
+        for (const item of input)
+            result.push(clone(item));
+        return result;
     }
-    return result;
+    if (validate_1.default.isObject(input)) {
+        const result = {};
+        for (const key in input)
+            result[key] = clone(input[key]);
+        return result;
+    }
+    return input;
 }
 exports.default = clone;

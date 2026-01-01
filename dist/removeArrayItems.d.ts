@@ -1,4 +1,4 @@
-declare function removeArrayItems<T>(array: T[] | undefined, finder: (item: T, index: number) => boolean, replaceWith?: T | undefined): {
+declare function removeArrayItems<T>(input: T[] | undefined, finder: (item: T, index: number) => boolean, replaceWith?: T): {
     removed: T[];
     replaced: T[];
 };

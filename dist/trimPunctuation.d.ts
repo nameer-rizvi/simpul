@@ -1,2 +1,2 @@
-declare function trimPunctuation(dirty: string, delimiter?: string): string | undefined;
+declare function trimPunctuation(input: unknown, delimiter?: string): string | undefined;
 export default trimPunctuation;

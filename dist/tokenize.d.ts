@@ -1,4 +1,4 @@
-declare function tokenize(string: string): {
+declare function tokenize(input: unknown, asLowerCase: boolean): {
     tokens: string[];
     set: string[];
     tokensCount: number;

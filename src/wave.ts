@@ -13,65 +13,69 @@ interface WaveResult {
 }
 
 function wave(array: number[]): WaveResult[] {
-  const results: WaveResult[] = [];
+  if (!validate.isArrayNonEmpty(array)) return [];
 
-  if (!validate.isArrayValid(array)) return results;
+  const results: WaveResult[] = new Array(array.length);
 
-  const range: WaveResult["range"] = [array[0], array[0]]; // ["low", "high"]
+  let low = array[0];
 
-  const trend: WaveResult["trend"] = [0, 0]; // ["trend", "extrema" ("maxima" or "minima")]
+  let high = array[0];
+
+  let trendDir: -1 | 0 | 1 = 0;
+
+  let extrema: -1 | 0 | 1 = 0;
 
   for (let i = 0; i < array.length; i++) {
     const value = array[i];
 
-    if (trend[1] === 0 && value > range[1]) {
-      trend[1] = 1;
-      trend[0] = 1;
-    } else if (trend[1] === 0 && value < range[0]) {
-      trend[1] = -1;
-      trend[0] = -1;
+    if (extrema === 0) {
+      if (value > high) {
+        extrema = 1;
+        trendDir = 1;
+        high = value;
+      } else if (value < low) {
+        extrema = -1;
+        trendDir = -1;
+        low = value;
+      }
+    } else if (extrema === 1) {
+      if (value > high) {
+        high = value;
+      } else if (value < high) {
+        low = value;
+        extrema = 0;
+      }
+    } else {
+      if (value < low) {
+        low = value;
+      } else if (value > low) {
+        high = value;
+        extrema = 0;
+      }
     }
 
-    if (trend[1] === 1 && value > range[1]) {
-      range[1] = value;
-    } else if (trend[1] === 1 && value < range[1]) {
-      range[0] = value;
-      trend[1] = 0;
-    }
+    const changeLowNum = math.change.num(low, value) || 0;
 
-    if (trend[1] === -1 && value < range[0]) {
-      range[0] = value;
-    } else if (trend[1] === -1 && value > range[0]) {
-      range[1] = value;
-      trend[1] = 0;
-    }
+    const changeHighNum = math.change.num(high, value) || 0;
 
-    const changeNum: WaveResult["changeNum"] = [
-      math.change.num(range[0], value) || 0,
-      math.change.num(range[1], value) || 0,
-    ];
+    const changeLowPerc = math.change.percent(low, value) || 0;
 
-    const changePerc: WaveResult["changePerc"] = [
-      math.change.percent(range[0], value) || 0,
-      math.change.percent(range[1], value) || 0,
-    ];
+    const changeHighPerc = math.change.percent(high, value) || 0;
 
-    const gapNum: WaveResult["gapNum"] =
-      math.change.num(range[0], range[1]) || 0;
+    const gapNum = math.change.num(low, high) || 0;
 
-    const gapPerc: WaveResult["gapPerc"] =
-      math.change.percent(range[0], range[1]) || 0;
+    const gapPerc = math.change.percent(low, high) || 0;
 
-    results.push({
+    results[i] = {
       index: i,
       value,
-      range: [range[0], range[1]],
-      trend: [trend[0], trend[1]],
-      changeNum,
-      changePerc,
+      range: [low, high],
+      trend: [trendDir, extrema],
+      changeNum: [changeLowNum, changeHighNum],
+      changePerc: [changeLowPerc, changeHighPerc],
       gapNum,
       gapPerc,
-    });
+    };
   }
 
   return results;

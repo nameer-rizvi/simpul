@@ -3,33 +3,41 @@ import validate from "./validate";
 interface GroupedObject {
   keys: string[];
   keysWithoutId: string[];
-  extracted: Record<string, any>;
-  extractedWithoutId: Record<string, any>;
+  extracted: Record<string, unknown>;
+  extractedWithoutId: Record<string, unknown>;
 }
 
 function objectKeyGroup(
-  object: Record<string, any> = {},
+  input: Record<string, unknown> = {},
   keyStartsWith?: string,
   keyEndsWith?: string,
 ): GroupedObject {
-  const keys = Object.keys(object).filter((key) => {
-    const startsWith = keyStartsWith && key.startsWith(keyStartsWith);
-    const endsWith = keyEndsWith && key.endsWith(keyEndsWith);
-    const isValid = validate.isValid(object[key]);
-    return (startsWith || endsWith) && isValid;
-  });
+  const keys: string[] = [];
 
-  const extracted = keys.reduce((r, k) => {
-    return { ...r, [k]: object[k] };
-  }, {});
+  for (const key in input) {
+    if (!Object.prototype.hasOwnProperty.call(input, key)) continue;
+    const value = input[key];
+    const startsWith = keyStartsWith ? key.startsWith(keyStartsWith) : false;
+    const endsWith = keyEndsWith ? key.endsWith(keyEndsWith) : false;
+    if ((startsWith || endsWith) && validate.isValid(value)) keys.push(key);
+  }
 
-  const keysWithoutId = keys.map((k) => {
-    return k.replace(keyStartsWith || keyEndsWith || "", "");
-  });
+  const extracted: Record<string, unknown> = {};
 
-  const extractedWithoutId = keysWithoutId.reduce((r, k, i) => {
-    return { ...r, [k]: object[keys[i]] };
-  }, {});
+  const keysWithoutId: string[] = [];
+
+  const extractedWithoutId: Record<string, unknown> = {};
+
+  for (const key of keys) {
+    extracted[key] = input[key];
+    const stripped = keyStartsWith
+      ? key.replace(keyStartsWith, "")
+      : keyEndsWith
+      ? key.replace(keyEndsWith, "")
+      : key;
+    keysWithoutId.push(stripped);
+    extractedWithoutId[stripped] = input[key];
+  }
 
   return { keys, keysWithoutId, extracted, extractedWithoutId };
 }

@@ -1,2 +1,2 @@
-declare function trim(dirty: string, delimiter?: string): string | undefined;
+declare function trim(input: unknown, delimiter?: string): string | undefined;
 export default trim;

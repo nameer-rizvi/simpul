@@ -1,7 +1,7 @@
-declare function euclidean(arr1?: number[], arr2?: number[]): number | undefined;
-declare function manhattan(arr1?: number[], arr2?: number[]): number | undefined;
-declare function cosine(arr1?: number[], arr2?: number[]): number | undefined;
-declare function pearson(arr1?: number[], arr2?: number[]): number | undefined;
+declare function euclidean(input1: number[], input2: number[]): number | undefined;
+declare function manhattan(input1: number[], input2: number[]): number | undefined;
+declare function cosine(input1: number[], input2: number[]): number | undefined;
+declare function pearson(input1: number[], input2: number[]): number | undefined;
 declare const _default: {
     euclidean: typeof euclidean;
     manhattan: typeof manhattan;

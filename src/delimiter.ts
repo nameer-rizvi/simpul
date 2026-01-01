@@ -1,3 +1,3 @@
-const delimiter: string = "{{DELIMITER}}";
+const delimiter = "{{DELIMITER}}";
 
 export default delimiter;

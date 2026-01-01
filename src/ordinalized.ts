@@ -1,14 +1,14 @@
 import validate from "./validate";
 
-function ordinalized(number: number | string): string | undefined {
-  if (validate.isNumber(number)) {
-    if (validate.isString(number)) number = +number;
+function ordinalized(input: unknown): string | undefined {
+  if (validate.isNumeric(input)) {
+    const number = validate.isString(input) ? Number(input) : input;
 
     const index = (number / 10) % 10 ^ 1 && number % 10;
 
-    const ending = ["", "st", "nd", "rd"][Math.abs(index)] || "th";
+    const suffix = ["th", "st", "nd", "rd"][Math.abs(index)] || "th";
 
-    return number.toLocaleString() + ending;
+    return number.toLocaleString() + suffix;
   }
 }
 

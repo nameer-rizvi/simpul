@@ -4,36 +4,42 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const validate_1 = __importDefault(require("./validate"));
-const support_1 = __importDefault(require("./support"));
-function encode(string) {
-    if (validate_1.default.isString(string)) {
-        if (support_1.default.window) {
-            return btoa(encodeURIComponent(string));
+function encode(input) {
+    if (validate_1.default.isString(input)) {
+        if (validate_1.default.isEnvWindow) {
+            return btoa(encodeURIComponent(input));
         }
         else {
-            return Buffer.from(string, "utf-8").toString("base64");
+            return Buffer.from(input, "utf-8").toString("base64");
         }
     }
 }
-function decode(base64) {
-    if (validate_1.default.isBase64(base64)) {
-        if (support_1.default.window) {
-            return decodeURIComponent(atob(base64));
+function decode(input) {
+    if (validate_1.default.isBase64(input)) {
+        if (validate_1.default.isEnvWindow) {
+            return decodeURIComponent(atob(input));
         }
         else {
-            return Buffer.from(base64, "base64").toString("utf-8");
+            return Buffer.from(input, "base64").toString("utf-8");
         }
     }
 }
-function encodeJSON(json) {
-    if (validate_1.default.isJSON(json)) {
-        return encode(JSON.stringify(json));
+function encodeJSON(input) {
+    if (validate_1.default.isJSON(input)) {
+        return encode(JSON.stringify(input));
     }
 }
-function decodeJSON(base64) {
-    const json = decode(base64);
-    if (json && validate_1.default.isJSONString(json)) {
-        return JSON.parse(json);
+function decodeJSON(input) {
+    const decoded = decode(input);
+    if (validate_1.default.isJSONString(decoded)) {
+        return JSON.parse(decoded);
     }
 }
-exports.default = { encode, decode, encodeJSON, decodeJSON };
+exports.default = {
+    encode,
+    decode,
+    encodeJSON,
+    encodeJson: encodeJSON,
+    decodeJSON,
+    decodeJson: decodeJSON,
+};

@@ -1,18 +1,20 @@
-// shallow clone.
-function clone<T>(json: T): T {
-  if (json === null || typeof json !== "object") return json;
+import validate from "./validate";
 
-  if (Array.isArray(json)) return [...json] as T;
-
-  const result: { [key: string]: any } = {};
-
-  for (const key in json) {
-    if (Object.prototype.hasOwnProperty.call(json, key)) {
-      result[key] = clone(json[key]);
-    }
+// Shallow clone with deep recursion for objects/arrays.
+function clone<T>(input: T): T {
+  if (validate.isArray(input)) {
+    const result = [];
+    for (const item of input) result.push(clone(item));
+    return result as T;
   }
 
-  return result as T;
+  if (validate.isObject(input)) {
+    const result: { [key: string]: any } = {};
+    for (const key in input) result[key] = clone(input[key]);
+    return result as T;
+  }
+
+  return input;
 }
 
 export default clone;

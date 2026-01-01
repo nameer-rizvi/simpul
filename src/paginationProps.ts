@@ -1,4 +1,4 @@
-interface PaginationProps {
+export interface PaginationProps {
   pageSize: number;
   page: number;
   pages: number;
@@ -6,41 +6,54 @@ interface PaginationProps {
   nextPage: number | null;
   hasPrevPage: boolean;
   prevPage: number | null;
+  cursor?: string | null;
+  prevCursor?: string | null;
 }
 
 function paginationProps(
   pageSize: number,
   currentPage: number,
   totalItems: number,
+  cursors?: (string | null)[],
 ): PaginationProps {
-  // Handle edge cases.
+  const size = Math.max(1, Math.floor(pageSize));
 
-  if (pageSize < 1) pageSize = 1;
+  const pages = Math.max(1, Math.ceil(totalItems / size));
 
-  if (currentPage < 1) currentPage = 1;
+  const page = Math.min(Math.max(1, Math.floor(currentPage)), pages);
 
-  const pages = Math.ceil(totalItems / pageSize);
+  const hasNextPage = page < pages;
 
-  // Ensure the current page doesn't exceed total pages.
+  const hasPrevPage = page > 1;
 
-  if (currentPage > pages) currentPage = pages;
+  let cursor: string | null = null;
 
-  const hasNextPage = currentPage < pages;
+  let prevCursor: string | null = null;
 
-  const hasPrevPage = currentPage > 1;
+  if (cursors?.length) {
+    const startIdx = (page - 1) * size;
 
-  const nextPage = hasNextPage ? currentPage + 1 : null;
+    const endIdx = startIdx + size;
 
-  const prevPage = hasPrevPage ? currentPage - 1 : null;
+    if (hasNextPage && endIdx - 1 < cursors.length) {
+      cursor = cursors[endIdx - 1];
+    }
+
+    if (hasPrevPage && startIdx - 1 >= 0) {
+      prevCursor = cursors[startIdx - 1];
+    }
+  }
 
   return {
-    pageSize: pageSize,
-    page: currentPage,
-    pages: pages,
-    hasNextPage: hasNextPage,
-    nextPage: nextPage,
-    hasPrevPage: hasPrevPage,
-    prevPage: prevPage,
+    pageSize: size,
+    page,
+    pages,
+    hasNextPage,
+    nextPage: hasNextPage ? page + 1 : null,
+    hasPrevPage,
+    prevPage: hasPrevPage ? page - 1 : null,
+    cursor,
+    prevCursor,
   };
 }
 

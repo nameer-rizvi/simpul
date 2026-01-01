@@ -1,28 +1,21 @@
 "use strict";
+// Non-secure JWT-style payload encoder/decoder. Not a real JWT implementation.
 Object.defineProperty(exports, "__esModule", { value: true });
-function decode(jwt) {
-    if (typeof jwt !== "string")
-        return;
+function encode(input) {
     try {
-        const token = jwt.split(".")[1].replace(/-/g, "+").replace(/_/g, "/");
-        const array = Array.from(atob(token)).map((c) => {
-            return `%${("00" + c.charCodeAt(0).toString(16)).slice(-2)}`;
-        });
-        return decodeURIComponent(array.join(""));
+        return "." + Buffer.from(JSON.stringify(input), "utf-8").toString("base64");
     }
     catch (_a) {
         return;
     }
 }
-function decodeJSON(jwt) {
-    const decoded = decode(jwt);
-    if (!decoded)
-        return;
+function decode(input) {
     try {
-        return JSON.parse(decoded);
+        const payload = input.split(".")[1].replace(/-/g, "+").replace(/_/g, "/");
+        return JSON.parse(Buffer.from(payload, "base64").toString("utf-8"));
     }
     catch (_a) {
         return;
     }
 }
-exports.default = { decode, decodeJSON };
+exports.default = { encode, decode, decodeJson: decode, decodeJSON: decode };

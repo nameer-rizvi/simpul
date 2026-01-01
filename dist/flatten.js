@@ -4,20 +4,27 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const validate_1 = __importDefault(require("./validate"));
-function flatten(object = {}, delimiter = "_") {
+// Using "_" instead of "." as it's more object name-friendly.
+function flatten(input = {}, delimiter = "_") {
     const result = {};
-    function recurse(obj, currentKey) {
-        Object.keys(obj).forEach((key) => {
-            const newKey = currentKey ? `${currentKey}${delimiter}${key}` : key;
-            if (validate_1.default.isObject(obj[key])) {
-                recurse(obj[key], newKey);
+    const stack = [
+        { obj: input, prefix: "" },
+    ];
+    while (stack.length) {
+        const { obj, prefix } = stack.pop();
+        for (const key in obj) {
+            if (!Object.prototype.hasOwnProperty.call(obj, key))
+                continue;
+            const value = obj[key];
+            const newKey = prefix ? `${prefix}${delimiter}${key}` : key;
+            if (validate_1.default.isObject(value)) {
+                stack.push({ obj: value, prefix: newKey });
             }
             else {
-                result[newKey] = obj[key];
+                result[newKey] = value;
             }
-        });
+        }
     }
-    recurse(object, "");
     return result;
 }
 exports.default = flatten;

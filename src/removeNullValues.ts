@@ -1,18 +1,17 @@
 import validate from "./validate";
 
 function removeNullValues<T extends Record<string, any>>(
-  object: T = {} as T,
+  input: T = {} as T,
 ): Partial<T> {
-  const clean: Partial<T> = {};
+  if (!validate.isObject(input)) return {};
 
-  for (const key of Object.keys(object)) {
-    const value = object[key];
-    if (validate.isValid(value)) {
-      clean[key as keyof T] = value;
-    }
+  const result: Partial<T> = {};
+
+  for (const [key, value] of Object.entries(input)) {
+    if (value !== null && value !== undefined) result[key as keyof T] = value;
   }
 
-  return clean;
+  return result;
 }
 
 export default removeNullValues;
