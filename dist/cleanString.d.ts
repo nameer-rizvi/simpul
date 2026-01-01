@@ -1,2 +1,2 @@
-declare function cleanString(input: string): string | undefined;
+declare function cleanString(input: unknown): string | undefined;
 export default cleanString;

@@ -20,12 +20,21 @@ function isArrayOrString(test) {
  * Base64 Validation
  */
 function isBase64(test) {
+    if (!isString(test))
+        return false;
+    const b64 = test.replace(/\s+/g, "");
+    if (!b64.length)
+        return true;
+    if (b64.length % 4 !== 0 || !/^[A-Za-z0-9+/]+={0,2}$/.test(b64))
+        return false;
+    if (b64.includes("=") && !b64.endsWith("=") && !b64.endsWith("=="))
+        return false;
     try {
         if (isEnvWindow) {
-            decodeURIComponent(atob(test));
+            decodeURIComponent(atob(b64));
         }
         else {
-            Buffer.from(test, "base64").toString("utf-8");
+            Buffer.from(b64, "base64").toString("utf-8");
         }
         return true;
     }

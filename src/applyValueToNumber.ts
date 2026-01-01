@@ -16,6 +16,8 @@ function applyValueToNumber(
       return input - value;
     case "*":
       return input * value;
+    case "**":
+      return input ** value;
     case "/":
       return value !== 0 ? input / value : input;
     case "+%":

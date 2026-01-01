@@ -13,7 +13,9 @@ function changeIndex<T>(
     throw new Error('Third argument ("new index") is not a valid integer.');
   }
 
-  if (oldIndex < 0 || oldIndex >= input.length) return input;
+  if (oldIndex < 0 || oldIndex >= input.length) {
+    return input;
+  }
 
   if (newIndex >= input.length) {
     input.length = newIndex + 1; // Extend array length if necessary.

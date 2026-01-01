@@ -1,13 +1,13 @@
 import validate from "./validate";
 
-function capitalize(input: string): string | undefined {
-  if (!validate.isString(input)) return;
+function capitalize(input: unknown): string | undefined {
+  if (validate.isString(input)) {
+    const trimmed = input.trim();
 
-  const trimmed = input.trim();
+    if (!trimmed) return "";
 
-  if (!trimmed) return "";
-
-  return trimmed.charAt(0).toUpperCase() + trimmed.slice(1);
+    return trimmed.charAt(0).toUpperCase() + trimmed.slice(1);
+  }
 }
 
 export default capitalize;

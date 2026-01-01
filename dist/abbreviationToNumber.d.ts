@@ -1,2 +1,2 @@
-declare function abbreviationToNumber(input: string | number): number | undefined;
+declare function abbreviationToNumber(input: unknown): number | undefined;
 export default abbreviationToNumber;

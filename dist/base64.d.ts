@@ -1,7 +1,7 @@
-declare function encode(input: string): string | undefined;
-declare function decode(input: string): string | undefined;
-declare function encodeJSON(input: any): string | undefined;
-declare function decodeJSON(input: string): any | undefined;
+declare function encode(input: unknown): string | undefined;
+declare function decode(input: unknown): string | undefined;
+declare function encodeJSON(input: unknown): string | undefined;
+declare function decodeJSON(input: unknown): any | undefined;
 declare const _default: {
     encode: typeof encode;
     decode: typeof decode;
