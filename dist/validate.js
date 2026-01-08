@@ -180,13 +180,8 @@ function isJSONString(test) {
  * JWT Validation
  */
 function isJWT(test) {
-    try {
-        jwt_1.default.decode(test);
-        return true;
-    }
-    catch (_a) {
-        return false;
-    }
+    const res = jwt_1.default.decode(test);
+    return res !== undefined;
 }
 /*
  * Module Validation

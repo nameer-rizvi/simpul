@@ -212,8 +212,7 @@ function isJSONString(test: unknown): test is string {
  */
 
 function isJWT(test: unknown): test is string {
-  const res = jwt.decode(test as string);
-  return res !== undefined;
+  return jwt.decode(test as string) !== undefined;
 }
 
 /*
