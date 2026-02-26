@@ -300,9 +300,13 @@ function isStringSafe(test: unknown): test is string {
  * URL Validation
  */
 
+function isURL(test: unknown): test is URL {
+  return test instanceof URL;
+}
+
 const urlPattern = /^(https?:\/\/)?([^\s.]+\.[^\s]{2,}|localhost[:\d]*)\S*$/i;
 
-function isURL(test: unknown): test is string {
+function isURLString(test: unknown): test is string {
   return isStringSafe(test) && urlPattern.test(test.trim());
 }
 
@@ -376,5 +380,6 @@ export default {
   isStringOrArray: isArrayOrString,
   isStringSafe,
   isURL,
+  isURLString,
   isValid,
 };

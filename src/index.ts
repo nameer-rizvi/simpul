@@ -128,6 +128,7 @@ interface Simpul {
   isStringOrArray: typeof validate.isStringOrArray;
   isStringSafe: typeof validate.isStringSafe;
   isURL: typeof validate.isURL;
+  isURLString: typeof validate.isURLString;
   isValid: typeof validate.isValid;
   jwt: typeof jwt;
   keyChange: typeof keyChange;
