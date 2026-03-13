@@ -1,53 +1,62 @@
-const packageJson = require("./package.json");
-const { execSync } = require("child_process");
+const pkg = require("./package.json");
+const readline = require("readline");
+const { execFileSync } = require("child_process");
 
-const manager = process.env.npm_config_user_agent.split("/")[0];
+const RANGE_PREFIXES = ["^", "~"];
 
-const instructions = [
-  {
-    action: manager === "yarn" ? "remove" : "uninstall",
-    types: ["devDependencies", "dependencies"],
-  },
-  {
-    action: manager === "yarn" ? "add" : "install",
-    types: ["devDependencies"],
-    flag: "-D",
-  },
-  {
-    action: manager === "yarn" ? "add" : "install",
-    types: ["dependencies"],
-  },
-];
+const devPkgs = Object.entries(pkg.devDependencies || {})
+  .filter((i) => RANGE_PREFIXES.includes(i[1].charAt(0)))
+  .map((i) => i[0]);
 
-function mapper(instruction) {
-  const names = [];
-  for (const type of instruction.types) {
-    for (const [name, version] of Object.entries(packageJson[type] || {})) {
-      if (version.startsWith("^") || version.startsWith("~")) {
-        names.push(name);
-      }
-    }
-  }
-  if (names.length) {
-    if (instruction.flag) names.push(instruction.flag);
-    return [manager, instruction.action, ...names].join(" ");
-  }
+const prodPkgs = Object.entries(pkg.dependencies || {})
+  .filter((i) => RANGE_PREFIXES.includes(i[1].charAt(0)))
+  .map((i) => i[0]);
+
+const removePkgs = [...new Set([...devPkgs, ...prodPkgs])];
+
+const userAgent = process.env.npm_config_user_agent || "";
+
+const manager = (userAgent.split(" ")[0]?.split("/")[0] || "npm").toLowerCase();
+
+const { remove, add } = {
+  npm: { remove: "uninstall", add: "install" },
+  yarn: { remove: "remove", add: "add" },
+  pnpm: { remove: "remove", add: "add" },
+}[manager];
+
+const steps = [];
+
+if (removePkgs.length) steps.push([remove, ...removePkgs]);
+
+if (devPkgs.length) steps.push([add, "-D", ...devPkgs]);
+
+if (prodPkgs.length) steps.push([add, ...prodPkgs]);
+
+if (!steps.length) {
+  console.info("⚪ Package updates not detected.");
+  return;
 }
 
-const commands = instructions.map(mapper).filter(Boolean);
-
-if (commands.length) {
-  try {
-    process.stdout.write("🟠 Package updates in-progress...");
-    execSync(commands.join(" && "));
-    process.stdout.clearLine(0);
-    process.stdout.cursorTo(0);
-    console.info("🟢 Package updates success.");
-  } catch {
-    process.stdout.clearLine(0);
-    process.stdout.cursorTo(0);
-    console.error("🔴 Package updates failed.");
+try {
+  process.stdout.write("🟠 Package updates in-progress...");
+  for (const args of steps) {
+    execFileSync(manager, args, {
+      stdio: ["ignore", "pipe", "pipe"],
+      encoding: "utf8",
+      maxBuffer: 10 * 1024 * 1024,
+    });
   }
-} else {
-  console.info("⚪ Package updates not detected.");
+  clearStatusLine();
+  console.info("🟢 Package updates success.");
+} catch (err) {
+  clearStatusLine();
+  console.error(`🔴 Package updates failed ("${err}").`);
+  if (err?.stdout) console.error(String(err.stdout).trim());
+  if (err?.stderr) console.error(String(err.stderr).trim());
+}
+
+function clearStatusLine() {
+  if (!process.stdout.isTTY) return;
+  readline.clearLine(process.stdout, 0);
+  readline.cursorTo(process.stdout, 0);
 }
