@@ -27,7 +27,8 @@ declare function isRegex(test: unknown): test is RegExp;
 declare function isString(test: unknown): test is string;
 declare function isStringNonEmpty(test: unknown): test is string;
 declare function isStringSafe(test: unknown): test is string;
-declare function isURL(test: unknown): test is string;
+declare function isURL(test: unknown): test is URL;
+declare function isURLString(test: unknown): test is string;
 declare function isValid(test: unknown, testAll?: boolean): boolean;
 declare const _default: {
     isArray: (arg: any) => arg is any[];
@@ -75,6 +76,7 @@ declare const _default: {
     isStringOrArray: typeof isArrayOrString;
     isStringSafe: typeof isStringSafe;
     isURL: typeof isURL;
+    isURLString: typeof isURLString;
     isValid: typeof isValid;
 };
 export default _default;

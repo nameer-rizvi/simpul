@@ -180,8 +180,7 @@ function isJSONString(test) {
  * JWT Validation
  */
 function isJWT(test) {
-    const res = jwt_1.default.decode(test);
-    return res !== undefined;
+    return jwt_1.default.decode(test) !== undefined;
 }
 /*
  * Module Validation
@@ -248,8 +247,11 @@ function isStringSafe(test) {
 /*
  * URL Validation
  */
-const urlPattern = /^(https?:\/\/)?([^\s.]+\.[^\s]{2,}|localhost[:\d]*)\S*$/i;
 function isURL(test) {
+    return test instanceof URL;
+}
+const urlPattern = /^(https?:\/\/)?([^\s.]+\.[^\s]{2,}|localhost[:\d]*)\S*$/i;
+function isURLString(test) {
     return isStringSafe(test) && urlPattern.test(test.trim());
 }
 /*
@@ -324,5 +326,6 @@ exports.default = {
     isStringOrArray: isArrayOrString,
     isStringSafe,
     isURL,
+    isURLString,
     isValid,
 };
